@@ -8,5 +8,7 @@ class Book < ApplicationRecord
 
   has_many :book_users
   has_many :readers, through: :book_users, source: :users
+
+  has_one :order_items
   
 end

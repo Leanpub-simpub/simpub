@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_20_101300) do
+ActiveRecord::Schema.define(version: 2020_08_20_115341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,27 @@ ActiveRecord::Schema.define(version: 2020_08_20_101300) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.bigint "book_id", null: false
+    t.float "price"
+    t.integer "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_order_items_on_book_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "book_user_id", null: false
+    t.string "payment_term"
+    t.string "state"
+    t.float "total"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_user_id"], name: "index_orders_on_book_user_id"
+  end
+
   create_table "taggings", force: :cascade do |t|
     t.bigint "tag_id", null: false
     t.bigint "book_id", null: false
@@ -80,6 +101,9 @@ ActiveRecord::Schema.define(version: 2020_08_20_101300) do
   add_foreign_key "book_authors", "users"
   add_foreign_key "book_users", "books"
   add_foreign_key "book_users", "users"
+  add_foreign_key "order_items", "books"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "orders", "book_users"
   add_foreign_key "taggings", "books"
   add_foreign_key "taggings", "tags"
 end
