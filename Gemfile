@@ -65,4 +65,5 @@ gem 'factory_bot_rails', '~> 6.1'
 gem 'figaro', '~> 1.2'
 gem 'shrine', '~> 3.2', '>= 3.2.2'
 gem 'aws-sdk-s3', '~> 1.78'
+gem 'foreman', '~> 0.87.2'
 
