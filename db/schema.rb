@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_20_115341) do
+ActiveRecord::Schema.define(version: 2020_08_23_063323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,13 +40,13 @@ ActiveRecord::Schema.define(version: 2020_08_20_115341) do
     t.text "catalog"
     t.integer "pages"
     t.integer "words"
-    t.string "cover"
-    t.string "sample"
-    t.string "completed_content"
     t.integer "completeness"
     t.string "publish_state", default: "off-shelf"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "cover_data"
+    t.text "sample_date"
+    t.text "completed_content_data"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -90,10 +90,10 @@ ActiveRecord::Schema.define(version: 2020_08_20_115341) do
     t.string "email"
     t.string "password"
     t.text "about"
-    t.string "avatar"
     t.boolean "as_author"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "avatar_data"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

@@ -27,15 +27,13 @@ gem 'jbuilder', '~> 2.7'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
-gem 'devise', '~> 4.7', '>= 4.7.2'
-gem 'paranoia', '~> 2.4', '>= 2.4.2'
-gem 'aasm', '~> 5.1', '>= 5.1.1'
-gem 'faker', '~> 2.13'
-gem 'factory_bot_rails', '~> 6.1'
+
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'dotenv-rails', '~> 2.7', '>= 2.7.6'
 end
 
 group :development do
@@ -59,3 +57,13 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'devise', '~> 4.7', '>= 4.7.2'
+gem 'paranoia', '~> 2.4', '>= 2.4.2'
+gem 'aasm', '~> 5.1', '>= 5.1.1'
+gem 'faker', '~> 2.13'
+gem 'factory_bot_rails', '~> 6.1'
+gem 'figaro', '~> 1.2'
+gem 'shrine', '~> 3.2', '>= 3.2.2'
+gem 'aws-sdk-s3', '~> 1.78'
+gem 'foreman', '~> 0.87.2'
+
