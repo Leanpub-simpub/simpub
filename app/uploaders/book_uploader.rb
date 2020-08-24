@@ -1,5 +1,4 @@
-class BookUploader < Shrine
-  # validates
-  
+class SampleDateUploader < Shrine
+  validates: 
   
 end
