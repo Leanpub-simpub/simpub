@@ -34,16 +34,8 @@
             </div>
           </a>
         <% else %>
-          <a href="#">
-            <div>
-              <span>Sign up</span>
-            </div>
-          </a>
-          <a href="#">
-            <div>
-              <span>Sign in</span>
-            </div>
-          </a>
+          <%= link_to 'Sign up', new_user_registration_path %>
+          <%= link_to 'Sign in', new_user_session_path %>
         <% end %>
       </div>
       <% if user_signed_in?  %> <%#  有登入才看得到漢堡%>
