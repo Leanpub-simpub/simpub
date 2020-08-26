@@ -17,6 +17,11 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
       </form>
       <div class="mx-2 d-flex flex-row">
+        <a href="#">
+          <div>
+            <i class="text-white mg-auto mx-2 fas fa-shopping-cart"></i>
+          </div>
+        </a>
         <% if user_signed_in? %>
           <a href="#">
             <div>
@@ -28,14 +33,9 @@
               <i class="text-white mg-auto mx-2 fas fa-bell"></i>
             </div>
           </a>
-          <a href="#">
-            <div>
-              <i class="text-white mg-auto mx-2 fas fa-shopping-cart"></i>
-            </div>
-          </a>
         <% else %>
-          <%= link_to 'Sign up', new_user_registration_path %>
-          <%= link_to 'Sign in', new_user_session_path %>
+          <%= link_to 'Sign up', new_user_registration_path ,class: 'mx-2' %>
+          <%= link_to 'Sign in', new_user_session_path ,class: 'mx-2'%>
         <% end %>
       </div>
       <% if user_signed_in?  %> <%#  有登入才看得到漢堡%>
@@ -48,7 +48,6 @@
         </div>
       <% end %>
     </nav>
-    
     <div class="collapse position-absolute ml-auto" id="navbarToggleExternalContent">
       <div class="bg-dark p-4 ml-auto col-2 fixed-top" style="margin-top:72px">
         <a href="#"><div class="text-white">Create a Book</div></a>
