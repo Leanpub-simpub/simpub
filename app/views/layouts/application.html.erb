@@ -50,11 +50,17 @@
     </nav>
     <div class="collapse position-absolute ml-auto" id="navbarToggleExternalContent">
       <div class="bg-dark p-4 ml-auto col-2 fixed-top" style="margin-top:72px">
-        <a href="#"><div class="text-white">Create a Book</div></a>
+        <!-- <a href="#"><div class="text-white">Create a Book</div></a> -->
+        <!-- 加入 new book 連結 -->
+        <div class="text-white">
+          <%= link_to "Create a Book", :new_book, class: "text-white" %>
+        </div>
         <a href="#"><div class="text-white">Edit Profile</div></a>
         <!-- <a href="/users/sign_out"><div class="text-white">Sign Out</div></a> -->
         <!-- 更改 sign out 連結及方法 -->
-        <%= link_to "Sign Out", :destroy_user_session, method: :delete, class: "text-white"%>
+        <div class="textwhite">
+          <%= link_to "Sign Out", :destroy_user_session, method: :delete, class: "text-white"%>
+      </div>
       </div>
     </div>
 
