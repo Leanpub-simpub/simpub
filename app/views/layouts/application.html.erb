@@ -11,7 +11,7 @@
 
 	<body>
 		<nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand">Simpub</a> //link_to Homepage
+      <a href="/" class="navbar-brand">Simpub</a>
       <form class="form-inline ml-auto">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
@@ -19,29 +19,35 @@
       <div class="mx-2 d-flex flex-row">
         <a href="#">
           <div>
-            <i class="text-white mg-auto mx-2 fas fa-heart"></i>
-          </div>
-        </a>
-        <a href="#">
-          <div>
-            <i class="text-white mg-auto mx-2 fas fa-bell"></i>
-          </div>
-        </a>
-        <a href="#">
-          <div>
             <i class="text-white mg-auto mx-2 fas fa-shopping-cart"></i>
           </div>
         </a>
+        <% if user_signed_in? %>
+          <a href="#">
+            <div>
+              <i class="text-white mg-auto mx-2 fas fa-heart"></i>
+            </div>
+          </a>
+          <a href="#">
+            <div>
+              <i class="text-white mg-auto mx-2 fas fa-bell"></i>
+            </div>
+          </a>
+        <% else %>
+          <%= link_to 'Sign up', new_user_registration_path ,class: 'mx-2' %>
+          <%= link_to 'Sign in', new_user_session_path ,class: 'mx-2'%>
+        <% end %>
       </div>
-      <div class="fix-down">
-        <nav class="navbar navbar-dark bg-dark">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </nav>
-      </div>
+      <% if user_signed_in?  %> <%#  有登入才看得到漢堡%>
+        <div class="fix-down">
+          <nav class="navbar navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </nav>
+        </div>
+      <% end %>
     </nav>
-  
     <div class="collapse position-absolute ml-auto" id="navbarToggleExternalContent">
       <div class="bg-dark p-4 ml-auto col-2 fixed-top" style="margin-top:72px">
         <a href="#"><div class="text-white">Create a Book</div></a>
