@@ -1,0 +1,32 @@
+<h1>new book</h1>
+
+<%= form_for(@book) do |f| %>
+  <div>
+    <%= f.label :cover, "封面" %>
+  </div>
+
+  <div>
+    <%= f.label :title, "書籍標題" %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label :about, "關於此書" %>
+    <%= f.text_area :about %>
+  </div>
+
+  <div>
+    <%= f.label :price, "價格" %>
+    <%= f.number_field :price, :step => "0.01" %>
+  </div>
+
+  <div>
+    <%= f.label :catalog, "目錄 (暫時的)" %>
+    <%= f.text_area :catalog %>
+  </div>
+
+  <div>
+    <%= f.label :completeness, "完成度" %>
+    <%= f.number_field :completeness %>
+  </div>
+<% end %>
