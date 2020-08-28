@@ -1,0 +1,57 @@
+.layout-navbar{
+    .navbar-brand:hover{
+        color: gold;
+    }
+    .nav-item{
+        text-decoration: none;
+        color: white;
+    }
+    .nav-item:hover{
+        color: gold;
+    }
+    div .nav-icon{
+        color: white;
+    }
+    div .nav-icon:hover{
+        animation-name: shaking;
+        animation-duration: 1s;
+        animation: shaking 1s infinite;
+    }
+    
+}
+.layout-dropdown{
+    margin-top:72px
+}
+.nav-avatar{
+    width: 40px;
+    height: 40px;
+}
+.nav-avatar img{
+    width: 100%;
+}
+.nav-user-info{
+    color: white;
+}
+.nav-drop-item{
+    color: white;
+}
+.sign_out_btn{
+    color: rgba(255, 255, 255, 0.5);
+}
+@keyframes shaking{
+    0%{
+        transform: rotate(0turn);
+    }
+    25%{
+        transform: rotate(0.05turn);
+    }
+    50%{
+        transform: rotate(0turn);
+    }
+    75%{
+        transform: rotate(-0.05turn);
+    }
+    100%{
+        transform: rotate(0turn);
+    }
+}
