@@ -29,4 +29,12 @@
     <%= f.label :completeness, "完成度" %>
     <%= f.number_field :completeness %>
   </div>
+
+  <div>
+    <%= f.rich_text_area :content %>
+  </div>
+
+  <div>
+    <%= f.submit "完成" %>
+  </div>
 <% end %>
