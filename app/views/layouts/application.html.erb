@@ -58,16 +58,18 @@
           <p class="text-light my-0 px-2">user email</p> 
           </div>
         </div>
-        <a href="#"><div class="text-white py-2">Create a Book</div></a>
-        <a href="#"><div class="text-white py-2">My Writings</div></a>
-        <a href="#"><div class="text-white py-2">Edit Profile</div></a>
-        <a href="#"><div class="text-white py-2">Sign Out</div></a>
+        <div class="py-2">
+          <%= link_to "Create a Book", :new_book, class: "text-white" %>
+        </div>
+        <div class="py-2"><a class="text-white" href="#">My Writings</a></div>
+        <div class="py-2"><a class="text-white" href="#">Edit Profile</a></div>
+        <div class="py-2">
+          <%= link_to "Sign Out", :destroy_user_session, method: :delete, class: "text-white"%>
+        </div>
       </div>
     </div>
-
 		<p class="notice"><%= notice %></p>
 		<p class="alert"><%= alert %></p>
-
 		<%= yield %>
 	</body>
 </html>
