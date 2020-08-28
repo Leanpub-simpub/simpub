@@ -34,6 +34,11 @@
 }
 .nav-drop-item{
     color: white;
+    text-decoration: none;
+}
+.nav-drop-item:hover{
+    color: gold;
+    text-decoration: none;
 }
 .sign_out_btn{
     color: rgba(255, 255, 255, 0.5);
