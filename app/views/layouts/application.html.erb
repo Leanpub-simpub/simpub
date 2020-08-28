@@ -19,18 +19,14 @@
       </form>
       <div class="mx-2 d-flex flex-row">
         <a href="#">
-            <i class="text-white mg-auto mx-2 fas fa-shopping-cart"></i>
+          <i class="text-white mg-auto mx-2 fas fa-shopping-cart"></i>
         </a>
         <% if user_signed_in? %>
           <a href="#">
-            <div>
-              <i class="text-white mg-auto mx-2 fas fa-heart"></i>
-            </div>
+            <i class="text-white mg-auto mx-2 fas fa-heart"></i>
           </a>
           <a href="#">
-            <div>
-              <i class="text-white mg-auto mx-2 fas fa-bell"></i>
-            </div>
+            <i class="text-white mg-auto mx-2 fas fa-bell"></i>
           </a>
         <% else %>
           <%= link_to 'Sign up', new_user_registration_path ,class: 'mx-2' %>
