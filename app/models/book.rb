@@ -1,5 +1,5 @@
 class Book < ApplicationRecord
-  include BookUploader::Attachment(:book) # adds an `image` virtual attribute
+  # include BookUploader::Attachment(:book) # adds an `image` virtual attribute
 
   has_many :taggings
   has_many :tags, through: :taggings
@@ -12,4 +12,5 @@ class Book < ApplicationRecord
 
   has_one :order_items
   
+  has_rich_text :content
 end
