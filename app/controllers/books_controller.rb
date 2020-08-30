@@ -14,7 +14,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     
     if @book.save
-      redirect_to "/", notice: "YAH~~~"
+      redirect_to "/", notice: "已建立新書～"
     end
   end
 
