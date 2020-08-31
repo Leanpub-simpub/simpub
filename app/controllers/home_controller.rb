@@ -4,14 +4,18 @@ class HomeController < ApplicationController
   end
 
   def upload
-    @book = current_user.books.new 
-    
+    @book = Book.new 
+  end
+
+  def uploaded
   end
 
 
-
   private
-  params
+  
+  def upload_params
+    params.require(:book).permit(:title, :about, :cover_data)
+  end
 
   
 end

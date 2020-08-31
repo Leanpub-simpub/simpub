@@ -1,4 +1,4 @@
-class SampleDateUploader < Shrine
-  validates: 
+class CoverDataUploader < Shrine
+  # validates: 
   
 end
