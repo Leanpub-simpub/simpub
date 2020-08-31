@@ -1,0 +1,17 @@
+<h1>upload</h1>
+<%= form_for(@book, url: :upload) do |f| %>
+  <div class="fields">
+    <%= f.label :title, "圖片名稱" %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="fields">
+    <%= f.label :about, "圖片敘述" %>
+    <%= f.text_area :about %>
+  </div>
+  <div class="fields">
+    <%= f.label :cover, value: @photo.cached_cover_data %>
+    <%= f.file_field :cover %>
+  </div>
+
+  <%= f.submit "送出" %>
+<% end %>
