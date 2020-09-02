@@ -1,0 +1,13 @@
+<h1>所有的書</h1>
+
+<div class="container">
+  <div class="row">
+    <% @books.each do |book| %>
+      <div class="col-2">
+        <div class="cover"><img style="max-width: 100%;" src="https://picsum.photos/400/300/?random=1"></div>
+        <p><%= link_to book.title, book_path(book) %></p>
+        <p><%= book.authors[0].name %></p>
+      </div>
+    <% end %>
+  </div>
+</div>

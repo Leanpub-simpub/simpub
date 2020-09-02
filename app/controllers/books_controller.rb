@@ -1,5 +1,9 @@
 class BooksController < ApplicationController
 
+  def index
+    @books = Book.all
+  end
+  
   def show
     @book = Book.find(params[:id])
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, filter_html: false, autolink: true, tables: true)
