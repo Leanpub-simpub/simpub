@@ -2,7 +2,9 @@
 
 <%= form_for(@book) do |f| %>
   <div>
+    <%= f.hidden_field :cover, value: @book.cached_cover_data %>
     <%= f.label :cover, "封面" %>
+    <%= f.file_field :cover %>
   </div>
 
   <div>
