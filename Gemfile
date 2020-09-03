@@ -67,3 +67,6 @@ gem 'figaro', '~> 1.2'
 gem 'shrine', '~> 3.2', '>= 3.2.2'
 gem 'aws-sdk-s3', '~> 1.78'
 gem 'redcarpet', '~> 3.5'
+gem 'omniauth', '~> 1.9', '>= 1.9.1'
+gem 'omniauth-facebook', '~> 7.0'
+
