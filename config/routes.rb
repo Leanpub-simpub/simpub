@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     get "/user_dashboard/settings", to: "users/registrations#edit", as: "user_dashboard"
   end
 
+  get "/u/:username", to: "users/profile#show", as: "profile"
+
   resources :books, only: [:index, :show, :new, :create]
 
 end
