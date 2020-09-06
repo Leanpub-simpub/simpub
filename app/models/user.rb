@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
 
   validates :email, presence: true, uniqueness: true
+  validates :name, presence: true
 
   has_many :book_authors
   has_many :pub_books, through: :book_authors, source: :book
@@ -33,7 +34,7 @@ class User < ApplicationRecord
         identity.save!
       end
       
-      user
+    user
   end
 
 end

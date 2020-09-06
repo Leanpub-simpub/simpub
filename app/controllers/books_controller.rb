@@ -16,9 +16,10 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
+    @book.authors << current_user
     
     if @book.save
-      redirect_to "/", notice: "已建立新書～"
+      redirect_to @book, notice: "已建立新書～"
     end
   end
 
