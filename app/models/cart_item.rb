@@ -15,6 +15,6 @@ class CartItem
   end
 
   def price
-    Book.price * quantity
+    book.price * quantity
   end
 end
