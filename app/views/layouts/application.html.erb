@@ -37,6 +37,7 @@
           <%= link_to "Sign in", new_user_session_path ,class: "mx-2" %>
         <% end %>
       </div>
+
       <% if user_signed_in?  %>
         <div class="fix-down">
           <nav class="navbar navbar-dark bg-dark">
@@ -45,28 +46,35 @@
             </button>
           </nav>
         </div>
-      <% end %>
-      <div class="layout-dropdown collapse position-absolute w-100 ml-auto" id="navbarToggleExternalContent">
-        <div class="layout-dropdown-child position-absolute bg-dark px-4 py-1 ml-auto col-2 col-lg-2">
-          <div class="row mx-auto align-items-center">
-            <div class="nav-avatar">
-              <img src="https://www.nicepng.com/png/full/136-1366211_group-of-10-guys-login-user-icon-png.png" alt="">
+        
+        <div class="layout-dropdown collapse position-absolute w-100 ml-auto" id="navbarToggleExternalContent">
+          <div class="layout-dropdown-child position-absolute bg-dark px-4 py-1 ml-auto col-2 col-lg-2">
+            <div class="row mx-auto align-items-center">
+              <div class="nav-avatar">
+                <img src="https://www.nicepng.com/png/full/136-1366211_group-of-10-guys-login-user-icon-png.png" alt="">
+              </div>
+              <div>
+                <p class= "nav-user-info my-0 px-2"><%= current_user.name %></p> 
+                <p class= "nav-user-info my-0 px-2"><%= current_user.email %></p> 
+              </div>
             </div>
-            <div>
-              <p class= "nav-user-info my-0 px-2">user name</p> 
-              <p class= "nav-user-info my-0 px-2">user email</p> 
+            <div class="py-2">
+              <%= link_to "Create a Book", :new_book, class: "nav-drop-item" %>
             </div>
-          </div>
-          <div class="py-2">
-            <%= link_to "Create a Book", :new_book, class: "nav-drop-item" %>
-          </div>
-          <div class="py-2"><a class="nav-drop-item" href="#">My Writings</a></div>
-          <div class="py-2"><a class="nav-drop-item" href="#">Edit Profile</a></div>
-          <div class="py-2">
-            <%= link_to "Sign Out", :destroy_user_session, method: :delete, class: "sign_out_btn"%>
+            <div class="py-2"><a class="nav-drop-item" href="#">My Writings</a></div>
+            <div class="py-2">
+              <%= link_to "Edit Profile", user_dashboard_path, class: "nav-drop-item" %>
+            </div>
+            <div class="py-2"><a class="nav-drop-item" href="#">My Writings</a></div>
+            <div class="py-2">
+              <%= link_to "View Profile", profile_path(current_user.username), class: "nav-drop-item" %>
+            </div>
+            <div class="py-2">
+              <%= link_to "Sign Out", :destroy_user_session, method: :delete, class: "sign_out_btn"%>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
     </nav>
     
 		<p class="notice"><%= notice %></p>

@@ -1,8 +1,5 @@
 class Book < ApplicationRecord
   include CoverUploader::Attachment(:cover) # adds an `image` virtual attribute
-  # uploader = CoverUploader(:store)
-  uploader = CoverUploader.new(:store)
-  uploader.upload StringIO.new("file content")
 
   has_many :taggings
   has_many :tags, through: :taggings
