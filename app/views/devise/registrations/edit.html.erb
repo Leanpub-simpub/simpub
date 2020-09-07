@@ -1,43 +1,132 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container">
+  <div class="row">
+  
+    <div class="col-2">
+      <div>
+        <% if current_user.avatar_data %>
+          <%= image_tag current_user.avatar_url %>
+        <% else %>
+          <img src="https://conservation-innovations.org/wp-content/uploads/2019/09/Dummy-Person.png" style="width: 100%; border-radius: 50%;">
+        <% end %>
+      </div>
+      <p><%= current_user.name %></p>
+    </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="col-10">
+      <h2>Edit Profile</h2>
+      <p>This is where you edit the info which shows up on your profile page.</p>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div style="border: 1px solid #ccc">
+        <p>UPLOAD YOUR AVATAR</p>
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), method: :patch) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+
+          <div class="field" style="width: 18%;">
+            <% if current_user.avatar_data %>
+              <%= image_tag current_user.avatar_url %>
+            <% else %>
+              <img src="https://conservation-innovations.org/wp-content/uploads/2019/09/Dummy-Person.png" style="width: 100%; border-radius: 50%;">
+            <% end %>
+          </div>
+
+          <div class="field">
+            <%= f.hidden_field :avatar, value: current_user.cached_avatar_data %>
+            <%= f.file_field :avatar %>
+          </div>
+
+          <br>
+
+          <div class="field">
+            <%= f.label :name, "NAME" %><br>
+            <%= f.text_field :name, autofocus: true %>
+          </div>
+          
+          <div class="field">
+            <%= f.label :email, "EMAIL" %><br>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :about, "ABOUT YOU" %><br>
+            <%= f.text_area :about %>
+          </div>
+
+          <!-- checkbox 暫時沒有功能，先做畫面 -->
+          <div class="field">
+            <input type="checkbox" name="" id="public-profile">
+            <label for="public-profile">Show public profile</label>
+          </div>
+          <!-- checkbox 暫時沒有功能，先做畫面 -->
+
+          <div class="field">
+            <%= f.label :username, "USERNAME" %><br>
+            <span>simpub.com/u/</span>
+            <%= f.text_field :username %>
+          </div>
+
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+
+          <div class="field">
+            <%= f.label :password, "NEW PASSWORD" %><br>
+            <%= f.password_field :password, autocomplete: "new-password" %>
+            <% if @minimum_password_length %>
+              <br>
+              <em><%= @minimum_password_length %> characters minimum</em>
+            <% end %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password_confirmation %><br>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br>
+            <%= f.password_field :current_password, autocomplete: "current-password" %>
+          </div>
+
+          <!-- 以下目前不會寫入 db，待討論是否要實作 -->
+          <div class="field">
+            <label for="twitter-username">TWITTER USERNAME<br>
+              <span>@</span>
+              <input type="text" id="twitter-username">
+            </label>
+          </div>
+
+          <div class="field">
+            <label for="github-username">GITHUB USERNAME<br>
+              <span>github.com/</span>
+              <input type="text" id="github-username">
+            </label>
+          </div>
+
+          <div class="field">
+            <label for="instagram-username">INSTAGRAM USERNAME<br>
+              <span>instagram.con/</span>
+              <input type="text" id="instagram-username">
+            </label>
+          </div>
+          <!-- 以上目前不會寫入 db，待討論是否要實作 -->
+
+          <div class="actions">
+            <%= f.submit "Save Settings" %>
+          </div>
+
+        <% end %>
+        
+      </div>
+    </div>
+
   </div>
+</div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
+<!--
 <h3>Cancel my account</h3>
 
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+-->
