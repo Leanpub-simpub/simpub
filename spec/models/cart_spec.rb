@@ -45,5 +45,21 @@ RSpec.describe Cart, type: :model do
       expect(cart.items.first.book).to be_a Book
       # 第 1 個 item 拿出來的東⻄應該是一種商品
     end
+    it "可以計算整台購物車的總消費金額" do
+      cart = Cart.new
+      p1 = Book.create(title:"七龍珠", price: 80)
+      # 建立商品 1
+      p2 = Book.create(title:"冒險野郎", price: 200)
+      # 建立商品 2
+
+      3.times{
+        cart.add_item(p1.id)
+        cart.add_item(p2.id)
+      }
+      # 商品 1 跟商品 2 各買 3 份
+
+      expect(cart.total_price).to be 840.0
+      # 整台購物車的 total_price 應該是 840 元。
+    end
   end
 end
