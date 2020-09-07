@@ -26,5 +26,24 @@ RSpec.describe Cart, type: :model do
       expect(cart.items.second.quantity).to be 5 
       # 第 2 個 item 的數量會是 5
     end
+    it "商品可以放到購物車裡，也可以再拿出來" do
+      cart = Cart.new
+      p1 = Book.create(title:"七龍珠") 
+      # 建立商品 1
+      p2 = Book.create(title:"冒險野郎")
+      # 建立商品 2
+
+      4.times { cart.add_item(p1.id) }
+      # 放了 4 次的商品 1
+      2.times { cart.add_item(p2.id) }
+      # 放了 2 次的商品 2
+
+      expect(cart.items.first.book_id).to be p1.id 
+      # 第 1 個 item 的商品 id 應該會等於商品 1 的 id
+      expect(cart.items.second.book_id).to be p2.id 
+      # 第 2 個 item 的商品 id 應該會等於商品 2 的 id
+      expect(cart.items.first.book).to be_a Book
+      # 第 1 個 item 拿出來的東⻄應該是一種商品
+    end
   end
 end

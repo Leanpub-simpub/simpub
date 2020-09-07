@@ -11,10 +11,10 @@ class CartItem
   end
 
   def book
-    book.find_by(id: book_id)
+    Book.find_by(id: book_id)
   end
 
   def price
-    book.price * quantity
+    Book.price * quantity
   end
 end
