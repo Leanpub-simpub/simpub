@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   get "/u/:username", to: "users/profile#show", as: "profile"
+  get "/dash_board/books", to: "author#show"
 
   resources :books, only: [:index, :show, :new, :create]
 
