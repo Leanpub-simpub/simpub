@@ -5,8 +5,9 @@
     <% @books.each do |book| %>
       <div class="col-2">
         <div class="cover"><img style="max-width: 100%;" src="https://picsum.photos/400/300/?random=1"></div>
-        <p><%= link_to book.title, book_path(book) %></p>
-        <p><%= book.authors[0].name %></p>
+        <%# <p><%= link_to book.title, book_path(book) %></p> %>
+        <%# <p><%= book.authors[0].name %></p> %>
+        <%= link_to  "新增商品到購物車", add_cart_path(book), method: "post", class: "btn btn-xs btn-danger" %>
       </div>
     <% end %>
   </div>
