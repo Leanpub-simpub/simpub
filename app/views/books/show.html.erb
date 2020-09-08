@@ -1,9 +1,9 @@
 <h1>BOOK SHOW</h1>
 
 <% if @book.cover_data %>
-  <%= image_tag @book.cover(:large).url%>
-  <%= image_tag @book.cover(:medium).url%>
-  <%= image_tag @book.cover(:small).url%>
+  <%= image_tag @book.cover(:large).url %>
+  <%= image_tag @book.cover(:medium).url %>
+  <%= image_tag @book.cover(:small).url %>
 <% end %>
 
 <p><%= @book.authors[0].name %></p>
