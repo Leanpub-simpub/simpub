@@ -138,6 +138,9 @@ GEM
       unicode-display_width (~> 0.1.1)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
+    image_processing (1.11.0)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.17, < 3)
     jbuilder (2.10.0)
       activesupport (>= 5.0.0)
     jmespath (1.4.0)
@@ -154,6 +157,7 @@ GEM
       mimemagic (~> 0.3.2)
     method_source (1.0.0)
     mimemagic (0.3.5)
+    mini_magick (4.10.1)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.1)
@@ -262,6 +266,8 @@ GEM
       rspec-mocks (~> 3.9)
       rspec-support (~> 3.9)
     rspec-support (3.9.3)
+    ruby-vips (2.0.17)
+      ffi (~> 1.9)
     rubyzip (2.3.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -324,6 +330,9 @@ GEM
     websocket-driver (0.7.3-java)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    wicked_pdf (2.1.0)
+      activesupport
+    wkhtmltopdf-binary (0.12.6.3)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.4.0)
@@ -350,8 +359,10 @@ DEPENDENCIES
   font-awesome-sass (~> 5.13.0)
   foreman (~> 0.87.2)
   hirb-unicode (~> 0.0.5)
+  image_processing (~> 1.11.0)
   jbuilder (~> 2.7)
   listen (~> 3.2)
+  mini_magick (~> 4.10, >= 4.10.1)
   omniauth (~> 1.9, >= 1.9.1)
   omniauth-facebook (~> 7.0)
   omniauth-github (~> 1.4)
@@ -372,6 +383,8 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)
+  wicked_pdf
+  wkhtmltopdf-binary
 
 RUBY VERSION
    ruby 2.6.5p114
