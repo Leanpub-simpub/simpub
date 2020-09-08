@@ -1,37 +1,3 @@
 <h1>new book</h1>
 
-<%= form_for(@book) do |f| %>
-  <div>
-    <%= f.hidden_field :cover, value: @book.cached_cover_data %>
-    <%= f.label :cover, "封面" %>
-    <%= f.file_field :cover %>
-  </div>
-
-  <div>
-    <%= f.label :title, "書籍標題" %>
-    <%= f.text_field :title %>
-  </div>
-
-  <div>
-    <%= f.label :about, "關於此書" %>
-    <%= f.text_area :about %>
-  </div>
-
-  <div>
-    <%= f.label :price, "價格" %>
-    <%= f.number_field :price, :step => "0.01" %>
-  </div>
-
-  <!-- 目錄我們自己產生 -->
-
-  <div>
-    <%= f.label :completeness, "完成度" %>
-    <%= f.number_field :completeness %>
-  </div>
-
-  <!-- 編輯器另外做一個頁面 -->
-
-  <div>
-    <%= f.submit "完成" %>
-  </div>
-<% end %>
+<%= render "form", book: @book %>

@@ -64,17 +64,17 @@
                 <p class= "nav-user-info my-0 px-2"><%= current_user.email %></p> 
               </div>
             </div>
-            <div class="py-2">
-              <%= link_to "Author", dash_board_books_path, class: "nav-drop-item" %>
-            </div>
+            <% if current_user.pub_books.count > 0 %>
+              <div class="py-2">
+                <%= link_to "Author", dash_board_books_path, class: "nav-drop-item" %>
+              </div>
+            <% end %>
             <div class="py-2">
               <%= link_to "Create a Book", :new_book, class: "nav-drop-item" %>
             </div>
-            <div class="py-2"><a class="nav-drop-item" href="#">My Writings</a></div>
             <div class="py-2">
               <%= link_to "Edit Profile", user_dashboard_path, class: "nav-drop-item" %>
             </div>
-            <div class="py-2"><a class="nav-drop-item" href="#">My Writings</a></div>
             <div class="py-2">
               <%= link_to "View Profile", profile_path(current_user.username), class: "nav-drop-item" %>
             </div>

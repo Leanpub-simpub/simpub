@@ -1,6 +1,8 @@
 class Book < ApplicationRecord
   include CoverUploader::Attachment(:cover) # adds an `image` virtual attribute
 
+  validates :title, presence: true
+
   has_many :taggings
   has_many :tags, through: :taggings
   
