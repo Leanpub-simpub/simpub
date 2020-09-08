@@ -23,6 +23,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.authors << current_user
     
+    @book.cover_derivatives!
     if @book.save
       if @book.md_data
         @book.update(publish_state: "on-shelf")

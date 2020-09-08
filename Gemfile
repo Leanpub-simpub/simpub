@@ -76,5 +76,10 @@ gem 'omniauth', '~> 1.9', '>= 1.9.1'
 gem 'omniauth-facebook', '~> 7.0'
 gem 'omniauth-google-oauth2', '~> 0.8.0'
 gem 'omniauth-github', '~> 1.4'
+<<<<<<< HEAD
 
 
+=======
+gem 'mini_magick', '~> 4.10', '>= 4.10.1'
+gem "image_processing", '~> 1.11.0'
+>>>>>>> image_magick加入轉檔與照片尺寸設定
