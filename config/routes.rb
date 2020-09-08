@@ -11,7 +11,14 @@ Rails.application.routes.draw do
   get "/u/:username", to: "users/profiles#show", as: "profile"
   get "/dash_board/books", to: "users/authors#show"
 
-  resources :books
+  resources :books do
+    member do
+      get :editor_new
+      post :editor_create
+      get :editor_edit
+      post :editor_update
+    end
+  end
 
   resource :cart, only:[:show, :destroy] do
     collection do

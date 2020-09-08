@@ -14,13 +14,13 @@
 
     <div class="col-10">
       <h2>Your Books</h2>
-      <div style="border: 1px solid #ccc">
+      <div class="border">
         <p>You can edit your books by clicking on the  <i class="fas fa-cog"></i>. You can also choose which books show up on your profile page by using the <i class="far fa-eye"></i>. Books which are in stealth mode, embargo or not accepted will not show up, of course...</p>
         <p><%= button_to "Create Another Leanpub Book Now!", :new_book, method: :get %></p>
         <p class="text-center">Published (<%= published_books.count %>)</p>
-        <div class="d-flex justify-content-center">
+        <div class="row justify-content-center">
           <% published_books.each do |book| %>
-            <div class="pubbook-item border col-3 p-0">
+            <div class="pubbook-item border col-2 p-0 m-3">
               <% if book.cover_data %>
                 <p><%= book.cover_url %></p>
               <% else %>

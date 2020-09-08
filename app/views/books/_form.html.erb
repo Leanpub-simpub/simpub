@@ -36,6 +36,11 @@
   </div>
 
   <!-- 編輯器另外做一個頁面 -->
+  <div>
+    <%= f.hidden_field :md, value: book.cached_md_data %>
+    <%= f.label :md, "上傳 MD 檔案" %>
+    <%= f.file_field :md %>
+  </div>
 
   <div>
     <%= f.submit "完成" %>
