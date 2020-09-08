@@ -1,14 +1,17 @@
 class BooksController < ApplicationController  
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :find_book, only: [:show, :edit, :update]
+  before_action :find_book, except: [:index, :new, :create]
 
   def index
     @books = Book.published_books
   end
   
   def show
-    # markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, filter_html: false, autolink: true, tables: true)
-    # @content = markdown.render(@book.content.to_plain_text)
+    require "open-uri"
+    md = open(@book.md_url).read
+
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, filter_html: false, autolink: true, tables: true)
+    @md = markdown.render(md)
   end
   
 
@@ -21,7 +24,12 @@ class BooksController < ApplicationController
     @book.authors << current_user
     
     if @book.save
-      redirect_to edit_book_path(@book), notice: "已建立新書～"
+      if @book.md_data
+        @book.update(publish_state: "on-shelf")
+        redirect_to @book, notice: "已建立新書～"
+      else
+        redirect_to editor_new_book_path(@book)
+      end
     else
       render :new
     end
@@ -39,13 +47,25 @@ class BooksController < ApplicationController
     end
   end
 
+
+  # 線上編輯 action
+  def editor_new
+  end
+
+  def editor_create
+  end
+
+  def editor_eidt
+  end
+
+  def editor_update
+  end
+
   
 
   private
   def book_params
-    params.require(:book)
-      .permit(:cover, :title, :about, :price, :catalog, :completeness, :content)
-      .merge(publish_state: "on-shelf")
+    params.require(:book).permit(:cover, :title, :about, :price, :catalog, :completeness, :md)
   end
 
   def find_book

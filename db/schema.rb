@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_06_074014) do
+ActiveRecord::Schema.define(version: 2020_09_08_083721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_074014) do
     t.text "cover_data"
     t.text "sample_date"
     t.text "completed_content_data"
-    t.text "content"
+    t.text "md_data"
   end
 
   create_table "identities", force: :cascade do |t|
