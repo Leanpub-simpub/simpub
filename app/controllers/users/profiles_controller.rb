@@ -1,4 +1,4 @@
-class Users::ProfileController < ApplicationController
+class Users::ProfilesController < ApplicationController
 
   def show
     @user = User.find_by(username: params[:username])

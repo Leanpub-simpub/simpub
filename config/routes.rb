@@ -8,10 +8,10 @@ Rails.application.routes.draw do
     get "/user_dashboard/settings", to: "users/registrations#edit", as: "user_dashboard"
   end
 
-  get "/u/:username", to: "users/profile#show", as: "profile"
-  get "/dash_board/books", to: "author#show"
+  get "/u/:username", to: "users/profiles#show", as: "profile"
+  get "/dash_board/books", to: "users/authors#show"
 
-  resources :books, only: [:index, :show, :new, :create]
+  resources :books
 
   resource :cart, only:[:show, :destroy] do
     collection do

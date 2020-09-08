@@ -22,19 +22,14 @@
     <%= f.number_field :price, :step => "0.01" %>
   </div>
 
-  <div>
-    <%= f.label :catalog, "目錄 (暫時的)" %>
-    <%= f.text_area :catalog %>
-  </div>
+  <!-- 目錄我們自己產生 -->
 
   <div>
     <%= f.label :completeness, "完成度" %>
     <%= f.number_field :completeness %>
   </div>
 
-  <div>
-    <%= f.rich_text_area :content %>
-  </div>
+  <!-- 編輯器另外做一個頁面 -->
 
   <div>
     <%= f.submit "完成" %>
