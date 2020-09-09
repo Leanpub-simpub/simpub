@@ -23,29 +23,17 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.authors << current_user
     
-    if not @book.valid?
-      render :new
-      return
+    # 把 cover 切出 大中小 三個尺寸
+    @book.cover_derivatives! if @book.cover_data?
     end
     
-    @book.cover_derivatives! # create derivatives
-
     if @book.save
-<<<<<<< HEAD
       if @book.md_data
         @book.update(publish_state: "on-shelf")
         redirect_to @book, notice: "已建立新書～"
       else
         redirect_to editor_new_book_path(@book)
       end
-=======
-      # if @book.md_data
-        @book.update(publish_state: "on-shelf")
-        redirect_to @book, notice: "已建立新書～"
-      # else
-        # redirect_to editor_new_book_path(@book)
-      # end
->>>>>>> 測試default_url完成 修改s3照片存取路徑
     else
       render :new
     end
