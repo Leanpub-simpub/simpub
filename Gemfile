@@ -35,8 +35,11 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails', '~> 2.7', '>= 2.7.6'
+  omniauth_GitHub_Google
   # gem 'factory_girl_rails', '~> 4.9'
   gem 'factory_bot', '~> 6.1'
+  gem 'rspec-rails'
+  master
 end
 
 group :development do

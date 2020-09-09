@@ -22,9 +22,9 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
       </form>
       <div class="mx-2 d-flex flex-row">
-        <a href="#">
-          <i class="nav-icon mg-auto mx-2 fas fa-shopping-cart"></i>
-        </a>
+        <%= link_to cart_path do %>
+         <i class="nav-icon mg-auto mx-2 fas fa-shopping-cart"></i>
+        <% end %>
         <% if user_signed_in? %>
           <a href="#">
             <i class="nav-icon mg-auto mx-2 fas fa-heart"></i>
