@@ -25,7 +25,6 @@ class BooksController < ApplicationController
     
     # 把 cover 切出 大中小 三個尺寸
     @book.cover_derivatives! if @book.cover_data?
-    end
     
     if @book.save
       if @book.md_data
