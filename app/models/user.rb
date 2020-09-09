@@ -3,7 +3,7 @@ class User < ApplicationRecord
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
+         :confirmable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
 
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
@@ -24,7 +24,8 @@ class User < ApplicationRecord
         if user.nil?
           user = User.new(name: auth.info.name.gsub(/\s+/, '_'),
                           email: auth.info.email,
-                          password: Devise.friendly_token[0,20])
+                          password: Devise.friendly_token[0,20],
+                          username: auth.info.name.gsub(/\s+/, '_').downcase)
           user.save!
         end
       end
