@@ -1,5 +1,9 @@
 class Book < ApplicationRecord
   include CoverUploader::Attachment(:cover) # adds an `image` virtual attribute
+  include MdUploader::Attachment(:md) # adds an `image` virtual attribute
+
+  validates :title, presence: true
+  validates :price, presence: true
 
   has_many :taggings
   has_many :tags, through: :taggings
@@ -12,5 +16,8 @@ class Book < ApplicationRecord
 
   has_one :order_items
   
-  has_rich_text :content
+  # has_rich_text :content
+
+  scope :published_books, -> { where(publish_state: "on-shelf")}
+  scope :unpublish_books, -> { where(publish_state: "off-shelf")}
 end
