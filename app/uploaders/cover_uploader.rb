@@ -2,7 +2,7 @@ require "image_processing/mini_magick"
 
 class CoverUploader < Shrine
   plugin :validation_helpers
-  plugin :pretty_location
+  plugin :pretty_location, identifier: :title
   plugin :derivatives
   plugin :default_url
   

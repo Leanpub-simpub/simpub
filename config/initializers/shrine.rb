@@ -11,7 +11,9 @@ s3_options = {
 
 Shrine.storages = {
   cache: Shrine::Storage::S3.new(prefix: "cache", **s3_options), # temporary
+  # cache: Shrine::Storage::S3.new(prefix: "cache/book/cover"),
   store: Shrine::Storage::S3.new(prefix: "store", **s3_options), # permanent
+  # store: Shrine::Storage::S3.new(prefix: "store/book/#{id}/cover")
 }
 
 Shrine.plugin :activerecord           # loads Active Record integration
