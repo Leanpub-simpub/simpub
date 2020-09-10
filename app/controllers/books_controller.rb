@@ -23,6 +23,9 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.authors << current_user
     
+    # 把 cover 切出 大中小 三個尺寸
+    @book.cover_derivatives! if @book.cover_data?
+    
     if @book.save
       if @book.md_data
         @book.update(publish_state: "on-shelf")
