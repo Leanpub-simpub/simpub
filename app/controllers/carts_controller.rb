@@ -12,14 +12,15 @@ class CartsController < ApplicationController
     redirect_to :cart, notice: "購物車已清空"
   end
 
+
   def payment
     @token = gateway.client_token.generate
   end
 
   def checkout
     result = gateway.transaction.sale(
-      amount: "10.00",
-      payment_method_nonce: params[:nonoce],
+      amount: current_cart.total_price,
+      payment_method_nonce: params[:nonce],
       options: {
         submit_for_settlement: true
       }
@@ -29,6 +30,8 @@ class CartsController < ApplicationController
       current_cart.items.each do |item|
         current_user.bought_books << Book.find_by(id: item.book_id)
       end
+
+      session[Cart::SessionKey] = nil
       redirect_to root_path, notice: "付款成功"
     else
       redirect_to root_path, notice: "付款發生錯誤"
