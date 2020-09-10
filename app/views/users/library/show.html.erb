@@ -1,0 +1,14 @@
+<h1>Library</h1>
+
+<div class="container">
+  <div class="row">
+    <% @books.each do |book| %>
+      <div class="col-2">
+        <div class="library">
+            <a href="<%= book_path(book) %>"><%= image_tag book.cover_url(:small), class: "w-100" %></a>
+            <p><%= link_to '下載', book.md_url %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

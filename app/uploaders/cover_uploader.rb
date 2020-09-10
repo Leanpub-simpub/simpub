@@ -25,4 +25,5 @@ class CoverUploader < Shrine
   Attacher.default_url do |**options|
     url if derivatives
   end
+  # s3.clear! { |object| object.last_modified < Time.now - 7*24*60*60 }
 end
