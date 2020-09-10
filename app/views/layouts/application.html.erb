@@ -51,7 +51,13 @@
           <div class="layout-dropdown-child position-absolute bg-dark px-4 py-1 ml-auto col-2 col-lg-2">
             <div class="row mx-auto align-items-center">
               <div class="nav-avatar">
-                <img src="https://www.nicepng.com/png/full/136-1366211_group-of-10-guys-login-user-icon-png.png" alt="">
+                <div class="square-img border rounded-circle">
+                  <% if current_user.avatar_data %>
+                    <%= image_tag current_user.avatar_url, class: "position-absolute" %>
+                  <% else %>
+                    <img src="https://www.nicepng.com/png/full/136-1366211_group-of-10-guys-login-user-icon-png.png" alt="" class="position-absolute">
+                  <% end %>
+                </div>
               </div>
               <div>
                 <p class= "nav-user-info my-0 px-2"><%= current_user.name %></p> 
@@ -62,6 +68,14 @@
               <%= link_to "Create a Book", :new_book, class: "nav-drop-item container-fluid" %>
             </div>
             <div class="py-2 d-flex"><a class="nav-drop-item container-fluid" href="#">My Writings</a></div>
+            <% if current_user.pub_books.count > 0 %>
+              <div class="py-2 d-flex">
+                <%= link_to "Author", dash_board_books_path, class: "nav-drop-item" %>
+              </div>
+            <% end %>
+            <div class="py-2 d-flex">
+              <%= link_to "Create a Book", :new_book, class: "nav-drop-item" %>
+            </div>
             <div class="py-2">
               <%= link_to "Edit Profile", user_dashboard_path, class: "nav-drop-item container-fluid"%>
             </div>
@@ -81,6 +95,7 @@
     
 		<p class="notice"><%= notice %></p>
 		<p class="alert"><%= alert %></p>
+    
 		<%= yield %>
 	</body>
 </html>

@@ -7,7 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 50.times do
-  user = User.create(email: Faker::Internet.unique.email, password: "123456", name: Faker::Name.name)
-  book = Book.create(title: Faker::Book.title)
+  name = Faker::Name.name
+  
+  user = User.create(email: Faker::Internet.unique.email, password: "123456", name: name, username: name.downcase.gsub(/[^a-z0-9]+/,''))
+
+  book = Book.create(title: Faker::Book.title, price: rand(50), publish_state: "on-shelf")
+  
   book.book_authors.create(user: user, book: book)
 end
