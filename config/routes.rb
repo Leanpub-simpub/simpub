@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   root "home#index"
+  get "/payment", to: "carts#payment"
+  post "/checkout", to: "carts#checkout"
 
   devise_for :users, controllers: { registrations: "users/registrations", omniauth_callbacks: "users/omniauth_callbacks" }
   
@@ -23,6 +25,7 @@ Rails.application.routes.draw do
   resource :cart, only:[:show, :destroy] do
     collection do
       post :add, path:'add/:id'
+      
     end
   end
 end

@@ -76,3 +76,6 @@ gem 'omniauth-google-oauth2', '~> 0.8.0'
 gem 'omniauth-github', '~> 1.4'
 gem 'mini_magick', '~> 4.10', '>= 4.10.1'
 gem "image_processing", '~> 1.11.0'
+gem "braintree", "~> 2.103.0"
+
+
