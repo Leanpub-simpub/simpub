@@ -13,7 +13,7 @@
         </div>
         <%= link_to  "新增商品到購物車", add_cart_path(book), method: "post", class: "btn btn-xs btn-danger" %>
         <p><%= link_to book.title, book_path(book) %></p>
-        <%# <p><%= link_to book.authors[0].name, profile_path(book.authors[0].username) %></p> %>
+        <p><%= link_to book.authors[0].name, profile_path(book.authors[0].username) %></p>
       </div>
     <% end %>
   </div>
