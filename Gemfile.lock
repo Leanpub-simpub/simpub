@@ -83,6 +83,8 @@ GEM
       msgpack (~> 1.0)
     bootsnap (1.4.8-java)
       msgpack (~> 1.0)
+    braintree (2.103.0)
+      builder (>= 2.0.0)
     builder (3.2.4)
     byebug (11.1.3)
     capybara (3.33.0)
@@ -330,9 +332,6 @@ GEM
     websocket-driver (0.7.3-java)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    wicked_pdf (2.1.0)
-      activesupport
-    wkhtmltopdf-binary (0.12.6.3)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.4.0)
@@ -348,6 +347,7 @@ DEPENDENCIES
   aasm (~> 5.1, >= 5.1.1)
   aws-sdk-s3 (~> 1.78)
   bootsnap (>= 1.4.2)
+  braintree (~> 2.103.0)
   byebug
   capybara (>= 2.15)
   devise (~> 4.7, >= 4.7.2)
@@ -383,8 +383,6 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)
-  wicked_pdf
-  wkhtmltopdf-binary
 
 RUBY VERSION
    ruby 2.6.5p114

@@ -8,10 +8,10 @@ class BooksController < ApplicationController
   
   def show
     require "open-uri"
-    md = open(@book.md_url).read
+    # md = open(@book.md_url).read
 
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, filter_html: false, autolink: true, tables: true)
-    @md = markdown.render(md)
+    # markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, filter_html: false, autolink: true, tables: true)
+    # @md = markdown.render(md)
   end
   
 
