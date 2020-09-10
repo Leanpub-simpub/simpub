@@ -1,14 +1,15 @@
 class CartsController < ApplicationController
+
   def add
     current_cart.add_item(params[:id]) 
     session[Cart::SessionKey] = current_cart.serialize
 
-    redirect_to books_path, notice: "已加入購物車" 
+    # redirect_to books_path, notice: "已加入購物車" 
   end
 
   def destroy
     session[Cart::SessionKey] = nil
-    redirect_to books_path, notice: "購物車已清空"
+    redirect_to :cart, notice: "購物車已清空"
   end
 
   def payment
@@ -25,15 +26,18 @@ class CartsController < ApplicationController
     )
 
     if result.success?
-      redirect_to root_path, notice: '付款成功'
+      current_cart.items.each do |item|
+        current_user.bought_books << Book.find_by(id: item.book_id)
+      end
+      redirect_to root_path, notice: "付款成功"
     else
-      redirect_to root_path, notice: '付款發生錯誤'
+      redirect_to root_path, notice: "付款發生錯誤"
     end
-  
   end
 
-  private
 
+
+  private
   def gateway
     Braintree::Gateway.new(
       environment: :sandbox, 
