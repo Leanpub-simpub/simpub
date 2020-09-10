@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   get "/u/:username", to: "users/profiles#show", as: "profile"
   get "/dash_board/books", to: "users/authors#show"
-  get "/u/:username/library", to: "users/library#show", as: "library"
+  get "/dash_board/library", to: "users/library#show", as: "library"
 
   resources :books do
     member do
