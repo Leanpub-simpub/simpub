@@ -1,0 +1,7 @@
+<h1>Library</h1>
+
+<% if @book.cover_data %>
+  <%= image_tag @book.cover(:large).url %>
+
+<% end %>
+
