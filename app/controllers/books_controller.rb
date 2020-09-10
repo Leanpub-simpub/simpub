@@ -3,7 +3,7 @@ class BooksController < ApplicationController
   before_action :find_book, except: [:index, :new, :create]
 
   def index
-    @books = Book.all
+    @books = Book.published_books
   end
   
   def show
