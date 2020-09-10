@@ -1,7 +1,7 @@
 <script src="https://js.braintreegateway.com/web/dropin/1.23.0/js/dropin.min.js"></script>
 
 
-<%= form_with(url: '/checkout', method: 'post', id: 'payment_form', local: true) do%>
+<%= form_with(url: '/cart/checkout', method: 'post', id: 'payment_form', local: true) do%>
   <div id="dropin-container"></div>
   <button id="submit-button">付款</button>
   <input type="hidden" value="" id= "nonce" name= "nonce">
