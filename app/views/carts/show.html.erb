@@ -1,6 +1,6 @@
 <h1>購物車</h1>
 
-<%= link_to '清空購物車', cart_path, method: :delete, class: "btn btn-default btn-danger" %>
+<%= link_to "清空購物車", cart_path, method: :delete, class: "btn btn-default btn-danger" %>
 
 <table class="table table-hover"> 
   <thead>
@@ -37,6 +37,5 @@
   </tfoot>
 </table>
 
-<%= link_to '繼續選購', books_path, class: "btn btn-default" %> 
-<%= link_to '結帳', payment_cart_path, class: "btn btn-default" %>
-
+<%= link_to "繼續選購", books_path, class: "btn btn-default" %> 
+<%= link_to "結帳", :payment_cart, class: "btn btn-default" %>
