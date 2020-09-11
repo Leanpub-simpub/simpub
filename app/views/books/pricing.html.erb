@@ -11,7 +11,7 @@
 
 <br>
 
-<%= form_for(@book, url: :publish_books) do |f| %>
+<%= form_for(@book, url: publish_book_path(@book)) do |f| %>
   <div>
     <%= f.label :price, "設定價格" %>
     <%= f.number_field :price, :step => "0.01", data: { required: "requred" } %>

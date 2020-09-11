@@ -45,7 +45,7 @@ class BooksController < ApplicationController
 
   def update
     if @book.update(book_params)
-      redirect_to @book, notice: "更新成功～"
+      redirect_to pricing_book_path(@book)
     else
       render :edit
     end
@@ -56,7 +56,10 @@ class BooksController < ApplicationController
   end
   
   def publish
-    @book.update(book_params, publish_state: "on-shelf")
+    @book.update(book_params)
+    @book.update(publish_state: "on-shelf")
+    
+    redirect_to @book, notice: "書籍已上架囉～"
   end
 
 

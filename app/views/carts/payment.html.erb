@@ -1,7 +1,6 @@
-
 <h3>信用卡資訊</h3>
-<%= form_with(url: "/cart/checkout", method: "post", id: "payment_form", local: true, data: { no_turbolink: true }) do%>
-  <div id="dropin-container"></div>
+<%= form_with(url: "/cart/checkout", method: "post", id: "payment_form", local: true) do%>
+  <div id="dropin-container" data-token="<%= @token %>"></div>
   <input type="hidden" value="" id="nonce" name="nonce">
 
   <h3>Summary</h3>
@@ -37,29 +36,7 @@
   </table>
 
   <button id="submit-button" class="btn btn-default btn-danger">付款</button>
-
 <% end %>
 
-
 <script>
-  var button = document.querySelector("#submit-button");
-
-  braintree.dropin.create(
-    {
-      authorization: "<%= @token %>",
-      container: "#dropin-container"
-    }, 
-    
-    function(createErr, instance) {
-      button.addEventListener("click", function(e) {
-        e.preventDefault();
-        instance.requestPaymentMethod(function(err, payload) {
-          const form = document.querySelector("#payment_form");
-          const nonce_dom = document.querySelector("#nonce");
-          nonce_dom.value = payload.nonce;
-          form.submit();
-        });
-      });
-    } 
-  );
 </script>

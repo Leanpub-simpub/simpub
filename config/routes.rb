@@ -19,10 +19,7 @@ Rails.application.routes.draw do
       get :editor_edit
       post :editor_update
       get :pricing
-    end
-    
-    collection do
-      post :publish
+      patch :publish
     end
   end
 
