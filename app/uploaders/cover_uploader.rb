@@ -1,10 +1,8 @@
-require "image_processing/mini_magick"
-
-class CoverUploader < Shrine
-  plugin :validation_helpers
-  plugin :pretty_location, identifier: :title
+class CoverUploader < ApplicationUploader
   plugin :derivatives
   plugin :default_url
+  plugin :pretty_location, identifier: :title
+  
   
   Attacher.validate do
     validate_mime_type_inclusion ['image/jpg', 'image/jpeg', 'image/png']
