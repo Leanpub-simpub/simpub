@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   resource :cart, only:[:show, :destroy] do
     collection do
       post :add, path:'add/:id'
-      get  :payment
+      get :payment
       post :checkout
     end
   end

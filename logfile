@@ -1,0 +1,12 @@
+2020-09-10 20:00:01.243 CST [6232] LOG:  starting PostgreSQL 12.4 on x86_64-apple-darwin19.5.0, compiled by Apple clang version 11.0.3 (clang-1103.0.32.62), 64-bit
+2020-09-10 20:00:01.246 CST [6232] LOG:  listening on IPv6 address "::1", port 5432
+2020-09-10 20:00:01.247 CST [6232] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2020-09-10 20:00:01.248 CST [6232] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2020-09-10 20:00:01.262 CST [6233] LOG:  database system was shut down at 2020-09-10 19:59:21 CST
+2020-09-10 20:00:01.267 CST [6232] LOG:  database system is ready to accept connections
+2020-09-10 20:00:30.878 CST [6297] FATAL:  database "simpub_development" does not exist
+2020-09-10 20:00:49.247 CST [6334] FATAL:  database "simpub_development" does not exist
+2020-09-11 09:53:10.558 CST [6232] LOG:  received smart shutdown request
+2020-09-11 09:53:10.561 CST [6232] LOG:  background worker "logical replication launcher" (PID 6239) exited with exit code 1
+2020-09-11 09:53:10.561 CST [6234] LOG:  shutting down
+2020-09-11 09:53:10.572 CST [6232] LOG:  database system is shut down

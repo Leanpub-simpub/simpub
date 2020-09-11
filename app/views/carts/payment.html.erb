@@ -1,31 +1,65 @@
-<script src="https://js.braintreegateway.com/web/dropin/1.23.0/js/dropin.min.js"></script>
 
-
-<%= form_with(url: '/cart/checkout', method: 'post', id: 'payment_form', local: true) do%>
+<h3>信用卡資訊</h3>
+<%= form_with(url: "/cart/checkout", method: "post", id: "payment_form", local: true, data: { no_turbolink: true }) do%>
   <div id="dropin-container"></div>
-  <button id="submit-button">付款</button>
-  <input type="hidden" value="" id= "nonce" name= "nonce">
+  <input type="hidden" value="" id="nonce" name="nonce">
+
+  <h3>Summary</h3>
+  <table class="table table-hover"> 
+    <thead>
+      <tr> 
+        <td>商品名稱</td> 
+        <td>數量</td> 
+        <td>小計</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% current_cart.items.each do |item| %> 
+        <tr>
+          <td>
+            <%= item.book.title %>
+          </td>
+          <td>
+            <%= item.quantity %>
+          </td>
+          <td>
+            <%= item.price %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2">總計</td>
+        <td><%= current_cart.total_price %></td>
+      <tr>
+    </tfoot>
+  </table>
+
+  <button id="submit-button" class="btn btn-default btn-danger">付款</button>
+
 <% end %>
 
-<script>
-  var button = document.querySelector('#submit-button');
 
-    braintree.dropin.create(
-      {
-        authorization: '<%= @token %>',
-        container: '#dropin-container'
-      }, 
-      
-      function (createErr, instance) {
-       button.addEventListener('click', function (e) {
+<script>
+  var button = document.querySelector("#submit-button");
+
+  braintree.dropin.create(
+    {
+      authorization: "<%= @token %>",
+      container: "#dropin-container"
+    }, 
+    
+    function(createErr, instance) {
+      button.addEventListener("click", function(e) {
         e.preventDefault();
-        instance.requestPaymentMethod(function (err, payload) {
-          const form = document.querySelector('#payment_form');
-          const nonce_dom = document.querySelector('#nonce');
+        instance.requestPaymentMethod(function(err, payload) {
+          const form = document.querySelector("#payment_form");
+          const nonce_dom = document.querySelector("#nonce");
           nonce_dom.value = payload.nonce;
           form.submit();
-         });
-       });
-      } 
-    );
+        });
+      });
+    } 
+  );
 </script>
