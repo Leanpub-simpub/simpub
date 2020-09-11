@@ -38,9 +38,11 @@ window.addEventListener('turbolinks:load',()=>{
       temp = text
       let target = document.getElementById('targetDiv')
       let md = markdownit(({
-        html: true,
-        linkify: true,
-        typographer: true,
+        html:           false,
+        linkify:        true,
+        typographer:    true,
+        breaks:         false,
+        quotes:       '“”‘’',
         highlight: function (str, lang) {
           if (lang && hljs.getLanguage(lang)) {
             try {
@@ -55,7 +57,9 @@ window.addEventListener('turbolinks:load',()=>{
       }))
       var result = md.render(text);
       target.innerHTML=result
+    }else{
+      return
     }
   }
-      setInterval(mdToHTML,100) //模擬即時顯示 
+    setInterval(mdToHTML,250) //模擬即時顯示 // 重複執行時間拉開，避免被圖片連結的網站認為是
 })
