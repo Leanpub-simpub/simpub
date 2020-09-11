@@ -1,0 +1,82 @@
+<nav class="layout-navbar navbar navbar-dark bg-dark px-5">
+  <a href="/" class="navbar-brand">Simpub</a>
+  <%= link_to "Books", :books, class: "nav-item mx-2" %>
+  <%= link_to "Library", library_path, class: "nav-item mx-2" %>
+  <a href="#" class="nav-item mx-2">Purchase</a>
+  <a href="#" class="nav-item mx-2">Create a Books</a>
+  <a href="#" class="nav-item mx-2">My Writings</a>
+  <form class="form-inline ml-auto">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+  </form>
+  <div class="mx-2 d-flex flex-row">
+    <%= link_to cart_path do %>
+      <i class="nav-icon mg-auto mx-2 fas fa-shopping-cart"></i>
+    <% end %>
+    <% if user_signed_in? %>
+      <a href="#">
+        <i class="nav-icon mg-auto mx-2 fas fa-heart"></i>
+      </a>
+      <a href="#">
+        <i class="nav-icon mg-auto mx-2 fas fa-bell"></i>
+      </a>
+    <% else %>
+      <%= link_to "Sign up", new_user_registration_path ,class: "mx-2" %>
+      <%= link_to "Sign in", new_user_session_path ,class: "mx-2" %>
+    <% end %>
+  </div>
+
+  <!-- 下拉選單 -->
+  <% if user_signed_in?  %>
+    <div class="fix-down">
+      <nav class="navbar navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </nav>
+    </div>
+    
+    <div class="layout-dropdown collapse position-absolute w-100 ml-auto" id="navbarToggleExternalContent">
+      <div class="layout-dropdown-child position-absolute bg-dark px-4 py-1 ml-auto col-2 col-lg-2">
+        <div class="row mx-auto align-items-center">
+          <div class="nav-avatar">
+            <div class="square-img border rounded-circle">
+              <% if current_user.avatar_data %>
+                <%= image_tag current_user.avatar_url, class: "position-absolute" %>
+              <% else %>
+                <img src="https://www.nicepng.com/png/full/136-1366211_group-of-10-guys-login-user-icon-png.png" alt="" class="position-absolute">
+              <% end %>
+            </div>
+          </div>
+          <div>
+            <p class= "nav-user-info my-0 px-2"><%= current_user.name %></p> 
+            <p class= "nav-user-info my-0 px-2"><%= current_user.email %></p> 
+          </div>
+        </div>
+
+        <!-- 作者主頁 (有創建過書籍才會顯示) -->
+        <% if current_user.pub_books.count > 0 %>
+          <div class="py-2 d-flex">
+            <%= link_to "Author", dash_board_books_path, class: "nav-drop-item container-fluid" %>
+          </div>
+        <% end %>
+        <!-- 寫書 -->
+        <div class="py-2 d-flex">
+          <%= link_to "Create a Book", :new_book, class: "nav-drop-item container-fluid" %>
+        </div>
+        <!-- 編輯個人資料 -->
+        <div class="py-2 d-flex">
+          <%= link_to "Edit Profile", user_dashboard_path, class: "nav-drop-item container-fluid"%>
+        </div>
+        <!-- 檢視個人主頁 -->
+        <div class="py-2 d-flex">
+          <%= link_to "View Profile", profile_path(current_user.username), class: "nav-drop-item container-fluid" %>
+        </div>
+        <!-- 登出 -->
+        <div class="py-2 d-flex">
+          <%= link_to "Sign Out", :destroy_user_session, method: :delete, class: "sign_out_btn container-fluid"%>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</nav>
