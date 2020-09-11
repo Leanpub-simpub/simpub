@@ -29,9 +29,10 @@ class BooksController < ApplicationController
     if @book.save
       if @book.md_data
         @book.update(publish_state: "on-shelf")
-        redirect_to @book, notice: "已建立新書～"
+        redirect_to pricing_book_path(@book)
       else
-        redirect_to editor_new_book_path(@book)
+        redirect_to pricing_book_path(@book)
+        # redirect_to editor_new_book_path(@book)
       end
     else
       render :new
@@ -48,6 +49,14 @@ class BooksController < ApplicationController
     else
       render :edit
     end
+  end
+
+  # 設定書本價格
+  def pricing
+  end
+  
+  def publish
+    @book.update(book_params, publish_state: "on-shelf")
   end
 
 

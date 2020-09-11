@@ -18,6 +18,11 @@ Rails.application.routes.draw do
       post :editor_create
       get :editor_edit
       post :editor_update
+      get :pricing
+    end
+    
+    collection do
+      post :publish
     end
   end
 
