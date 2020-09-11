@@ -11,6 +11,9 @@ import "codemirror/mode/xml/xml"
 import "codemirror/mode/css/css"
 import "codemirror/mode/sass/sass"
 // import 這麼多是因為在 markdown 中打的 code 需要對應的 js 程式去掃 才會 highlight
+
+import markdownit from "markdown-it/dist/markdown-it" 
+
 window.addEventListener('DOMContentLoaded',()=>{
 
   let myCodeMirror //使mycodemirror變成變數
@@ -27,4 +30,17 @@ window.addEventListener('DOMContentLoaded',()=>{
   myCodeMirror = CodeMirror(contentArea, editorConfig);
   // 把 codemirror 的編輯器塞到 contentArea 裡面，格式要求就依照 editorConfig
 
+  function mdToHTML(){
+    let text = myCodeMirror.getValue()
+    let target = document.getElementById('targetDiv')
+    let md = markdownit(({
+      html: true,
+      linkify: true,
+      typographer: true,
+      
+    }))
+        var result = md.render(text);
+        target.innerHTML=result
+    }
+      setInterval(mdToHTML,100)
 })
