@@ -1,10 +1,15 @@
+.book_name {
+  font-size: 30px;
+  padding: 10px;
+}
 .wrap {
   display: flex;
   width: 100%;
 }
+
 .custom {
   display: block;
-  width: 50%;
+  width: 42.5%;
   height: 100vh;
 }
 .custom .CodeMirror {
@@ -13,8 +18,8 @@
   font-size: 20px;
 }
 #targetDiv {
-  border: 1px dashed #333333;
-  width: 50%;
+  border: 1px solid #333333;
+  width: 42.5%;
   height: 100vh;
-  padding: 0px 5px 0px 5px;
+  padding: 10px 10px 10px 10px;
 }
