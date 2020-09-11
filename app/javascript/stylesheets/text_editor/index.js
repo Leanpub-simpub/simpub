@@ -16,7 +16,7 @@ import markdownit from "markdown-it/dist/markdown-it"
 import hljs from 'highlightjs/highlight.pack'
 import "highlightjs/styles/github"
 import "./text_editor.css"
-window.addEventListener('DOMContentLoaded',()=>{
+window.addEventListener('turbolinks:load',()=>{
 
   let myCodeMirror //使mycodemirror變成變數
   let contentArea = document.querySelector('#sourceTA')
