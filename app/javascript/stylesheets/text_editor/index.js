@@ -13,7 +13,8 @@ import "codemirror/mode/sass/sass"
 // import 這麼多是因為在 markdown 中打的 code 需要對應的 js 程式去掃 才會 highlight
 
 import markdownit from "markdown-it/dist/markdown-it" 
-
+import hljs from 'highlightjs/highlight.pack'
+import "highlightjs/styles/github"
 window.addEventListener('DOMContentLoaded',()=>{
 
   let myCodeMirror //使mycodemirror變成變數
@@ -37,10 +38,20 @@ window.addEventListener('DOMContentLoaded',()=>{
       html: true,
       linkify: true,
       typographer: true,
-      
+      highlight: function (str, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+          try {
+            return '<pre class="hljs"><code>' +
+                   hljs.highlight(lang, str, true).value +
+                   '</code></pre>';
+          } catch (__) {}
+        }
+    
+        return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
+      }
     }))
         var result = md.render(text);
         target.innerHTML=result
     }
-      setInterval(mdToHTML,100)
+      setInterval(mdToHTML,100) //模擬即時顯示 
 })
