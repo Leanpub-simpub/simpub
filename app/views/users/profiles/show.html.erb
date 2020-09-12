@@ -20,15 +20,18 @@
       <p class="col-2 text-center h3"><%= current_user.about %></p>
     </div>
   
+    <h3 class="text-center">Published Books</h3>
     <div class="row justify-content-center">
       <% current_user.pub_books.each do |book| %>
-        <% if book.cover_data %>
-          <%= book.cover_url %>
-        <% else %>
-          <img class="w-100" src="https://picsum.photos/200/250/?random=<%= rand(100) %>">
-        <% end %>
-        <%= book.title %>
-        <%= book.authors[0].name %>
+        <div class="col-2">
+          <% if book.cover_data %>
+            <%= image_tag book.cover_url %>
+          <% else %>
+            <img class="w-100" src="https://picsum.photos/200/250/?random=<%= rand(100) %>">
+          <% end %>
+          <%= book.title %>
+          <%= book.authors[0].name %>
+        </div>
       <% end %>
     </div>
   </div>
