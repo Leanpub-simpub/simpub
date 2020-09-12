@@ -1,4 +1,4 @@
-import "./text_editor.css"
+import "./text_editor.scss"
 import "./text_editor.js"
 
 import"./chapter_list.js"

@@ -1,0 +1,30 @@
+.book_name {
+  font-size: 30px;
+  padding: 10px;
+}
+.wrap {
+  display: flex;
+  width: 100%;
+
+  .custom {
+    display: block;
+    width: 42.5%;
+    height: 100vh;
+    .CodeMirror {
+      width: 100%;
+      height: 100vh;
+      font-size: 20px;
+    }
+  }
+  #targetDiv {
+    border: 1px solid #333333;
+    width: 42.5%;
+    height: 100vh;
+    padding: 10px 10px 10px 10px;
+    overflow-y: scroll;
+  }
+}
+
+
+
+
