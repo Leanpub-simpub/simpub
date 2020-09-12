@@ -1,4 +1,4 @@
-class BooksController < ApplicationController  
+class BooksController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   before_action :find_book, except: [:index, :new, :create]
 
