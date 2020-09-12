@@ -11,7 +11,7 @@
             <img class="w-100" src="https://picsum.photos/200/250/?random=<%= rand(100) %>">
           <% end %>
         </div>
-        <%= link_to "新增商品到購物車", add_cart_path(book), method: "post", class: "btn btn-xs btn-danger" %>
+        <%= link_to "新增商品到購物車", add_cart_path(book), method: "post", class: "btn btn-xs bg-blue-900 text-white" %>
         <!-- <div class="btn btn-xs btn-danger add-cart">新增商品到購物車</div> -->
         <p><%= link_to book.title, book_path(book) %></p>
         <p><%= link_to book.authors[0].name, profile_path(book.authors[0].username) %></p>
