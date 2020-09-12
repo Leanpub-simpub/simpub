@@ -22,6 +22,157 @@
     height: 100vh;
     padding: 10px 10px 10px 10px;
     overflow-y: scroll;
+    
+    // html default css
+    h1, h2, h3, h4,
+ 
+    h5, h6, noframes,
+      
+    ol, p, ul, center,
+      
+    dir, hr, menu, pre { display: block }
+    
+    li { display: list-item!important }
+
+    table { display: table }
+
+    tr { display: table-row }
+ 
+    thead { display: table-header-group }
+
+    tbody { display: table-row-group }
+
+    tfoot { display: table-footer-group }
+
+    td, th { display: table-cell }
+
+    th { font-weight: bolder; text-align: center }
+
+    h1 { font-size: 2em; margin: .67em 0 }
+ 
+    h2 { font-size: 1.5em; margin: .75em 0 }
+
+    h3 { font-size: 1.17em; margin: .83em 0 }
+
+    h4, p, blockquote, ul, fieldset, form, ol, dl, dir, menu { margin: 1.12em 0 }
+
+    h5 { font-size: .83em; margin: 1.5em 0 }
+
+    h6 { font-size: .75em; margin: 1.67em 0 }
+
+    h1, h2, h3, h4, h5, h6, b, strong { font-weight: bolder }
+
+    blockquote { margin-left: 40px; margin-right: 40px }
+ 
+    i, cite, em, var, address { font-style: italic }
+
+    pre { white-space: pre }
+
+    button, textarea, input, select { display: inline-block }
+
+    big { font-size: 1.17em }
+
+    table { border-spacing: 2px; }
+ 
+    thead, tbody, tfoot { vertical-align: middle }
+
+    td, th { vertical-align: inherit }
+
+    s, strike, del { text-decoration: line-through }
+
+    hr { border: 1px inset }
+
+    ol, ul, dir, menu, dd { margin-left: 40px }
+ 
+    ol { list-style-type: decimal }
+
+    ol ul, ul ol,
+ 
+    ul ul, ol ol { margin-top: 0; margin-bottom: 0 }
+
+    u, ins { text-decoration: underline }
+ 
+    br:before { content: "\A" }
+
+    :before, :after { white-space: pre-line }
+
+    center { text-align: center }
+
+    :link, :visited { text-decoration: underline }
+
+    :focus { outline: thin dotted invert }
+    
+    @media print {
+ 
+      h1 { page-break-before: always }
+       
+       
+      h1, h2, h3,
+       
+      h4, h5, h6 { page-break-after: avoid }
+       
+       
+      ul, ol, dl { page-break-before: avoid }
+       
+      }
+      
+      // 客製修改
+    h1 {
+      padding-bottom: .3em;
+      font-size: 2em;
+      border-bottom: 1px solid #eee;
+    }
+    h2 {
+      padding-bottom: .3em;
+      font-size: 1.5em;
+      border-bottom: 1px solid #eee;
+    }
+    h6 {
+      font-size: .85em;
+      color: #777;
+    }
+    ul {
+      margin-left: 1em;
+      li::before {
+        content: " ";
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        background-color: gray;
+        border-radius: 50%;
+        margin-bottom: 2px;
+        margin-right: 15px;
+      }
+    }
+    
+    ol {
+      margin-left: 2em;
+    }
+
+    table {
+      display: block;
+      width: 100%;
+      overflow: auto;
+      word-break: keep-all;
+    }
+
+    table th,table td {
+      padding: 6px 13px;
+      border: 1px solid #ddd;
+    }
+
+    a {
+    color: #337ab7;
+    text-decoration: none;
+    }
+    
+    hr {
+      height: .25em;
+      padding: 0;
+      margin: 24px 0;
+      background-color: #e7e7e7;
+      border: 0;
+    }
   }
 }
 

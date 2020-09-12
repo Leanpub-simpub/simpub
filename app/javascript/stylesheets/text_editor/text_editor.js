@@ -61,5 +61,5 @@ window.addEventListener('turbolinks:load',()=>{
       return
     }
   }
-    setInterval(mdToHTML,250) //模擬即時顯示 // 重複執行時間拉開，避免被圖片連結的網站認為是
+    setInterval(mdToHTML,500) //模擬即時顯示 // 重複執行時間拉開，避免被圖片連結的網站認為是
 })
