@@ -1,11 +1,9 @@
-<h1 class="text-red-500">Library</h1>
-
 <div class="container">
+<h1 class="p-2">Library</h1>
   <div class="row">
     <% @books.each do |book| %>
       <div class="col-2">
         <div class="library">
-<<<<<<< HEAD
           <div class="cover">
             <!-- 加入判斷避免該欄位使用假圖壞掉的 bug -->
             <% if book.cover_data %>
@@ -21,12 +19,9 @@
           <% else %>
             <p>沒有上傳 PDF</p>
           <% end %>
-=======
-            <a href="<%= book_path(book) %>"><%= image_tag book.cover_url(:small), class: "w-100" %></a>
-            <p><%= link_to '下載', book.md_url %></p>
->>>>>>> 建立libaray 完成
         </div>
       </div>
     <% end %>
   </div>
 </div>
+
