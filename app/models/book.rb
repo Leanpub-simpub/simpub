@@ -3,7 +3,7 @@ class Book < ApplicationRecord
   include MdUploader::Attachment(:md) # adds an `image` virtual attribute
 
   validates :title, presence: true
-  validates :price, presence: true
+  # validates :price, presence: true
 
   has_many :taggings
   has_many :tags, through: :taggings

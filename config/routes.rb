@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       post :editor_create
       get :editor_edit
       post :editor_update
+      get :pricing
+      patch :publish
     end
   end
 
