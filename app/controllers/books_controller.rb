@@ -1,5 +1,5 @@
 class BooksController < ApplicationController  
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :editor_new, :editor_edit]
   before_action :find_book, except: [:index, :new, :create]
 
   def index
@@ -58,7 +58,7 @@ class BooksController < ApplicationController
   def editor_create
   end
 
-  def editor_eidt
+  def editor_edit
   end
 
   def editor_update
