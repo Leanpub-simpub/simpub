@@ -16,7 +16,7 @@
 		"jquery": "^3.5.1",
 		"markdown-it": "^11.0.0",
 		"popper.js": "^1.16.1",
-		"tailwindcss": "~1.0.0",
+		"tailwindcss": "^1.8.8",
 		"trix": "^1.2.0",
 		"turbolinks": "^5.2.0"
 	},
