@@ -52,7 +52,7 @@ window.addEventListener('turbolinks:load',()=>{
                 const lines = preCode.split(/\n/).slice(0, -1)
                 // 添加自定义行号
                 let html = lines.map((item, index) => {
-                  return '<li><span class="line-num" data-line="' + (index + 1) + '"></span>' + item + '</li>'
+                  return '<div><span class="line-num line-index"  data-line="">' + (index + 1) + '</span>' + item + '</div>'
                 }).join('')
                 html = '<ol>' + html + '</ol>'
 
