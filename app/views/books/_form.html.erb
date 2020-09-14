@@ -7,10 +7,14 @@
 <% end %>
 
 <%= form_for(book) do |f| %>
+  <div id="cover-preview" class="w-50">
+    <img src="#" alt="" class="w-100">
+  </div>
+
   <div>
     <%= f.hidden_field :cover, value: book.cached_cover_data %>
     <%= f.label :cover, "封面" %>
-    <%= f.file_field :cover %>
+    <%= f.file_field :cover, id: "cover-input" %>
   </div>
 
   <div>
@@ -23,10 +27,12 @@
     <%= f.text_area :about %>
   </div>
 
+  <!--
   <div>
     <%= f.label :price, "價格" %>
     <%= f.number_field :price, :step => "0.01" %>
   </div>
+  -->
 
   <!-- 目錄我們自己產生 -->
 

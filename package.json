@@ -11,6 +11,8 @@
 		"bootstrap": "^4.5.2",
 		"codemirror": "^5.57.0",
 		"highlightjs": "^9.16.2",
+		"braintree-web": "^3.65.0",
+		"braintree-web-drop-in": "^1.24.0",
 		"jquery": "^3.5.1",
 		"markdown-it": "^11.0.0",
 		"popper.js": "^1.16.1",

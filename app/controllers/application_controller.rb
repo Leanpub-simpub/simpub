@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::Base
   include CartsHelper
 
-  helper_method :published_books, :unpublish_books
+  helper_method :published_books, :unpublish_books, :has_avatar?
+  
+  
 
   private
   def published_books
@@ -10,5 +12,9 @@ class ApplicationController < ActionController::Base
   
   def unpublish_books
     current_user.pub_books.unpublish_books
+  end
+
+  def has_avatar?
+    current_user.avatar_data
   end
 end

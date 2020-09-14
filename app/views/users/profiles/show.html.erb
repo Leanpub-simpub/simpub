@@ -2,7 +2,7 @@
   <div class="row d-flex justify-content-center">
     <div class="col-2">
       <div class="square-img border rounded-circle">
-        <% if current_user.avatar_data %>
+        <% if has_avatar? %>
           <%= image_tag current_user.avatar_url, class: "w-100 position-absolute" %>
         <% else %>
           <img src="https://www.nicepng.com/png/full/136-1366211_group-of-10-guys-login-user-icon-png.png" class="w-100 position-absolute">
@@ -20,11 +20,18 @@
       <p class="col-2 text-center h3"><%= current_user.about %></p>
     </div>
   
+    <h3 class="text-center">Published Books</h3>
     <div class="row justify-content-center">
       <% current_user.pub_books.each do |book| %>
-        <%= book.cover_url %>
-        <%= book.title %>
-        <%= book.authors[0].name %>
+        <div class="col-2">
+          <% if book.cover_data %>
+            <%= image_tag book.cover_url %>
+          <% else %>
+            <img class="w-100" src="https://picsum.photos/200/250/?random=<%= rand(100) %>">
+          <% end %>
+          <%= book.title %>
+          <%= book.authors[0].name %>
+        </div>
       <% end %>
     </div>
   </div>
