@@ -4,7 +4,7 @@
         PUBLISH EARLY,</br>
         PUBLISH OFTEN.
     </h2>
-    <div class="text-sm ">
+    <div class="text-sm">
       <p>
         Authors, companies and universities use Simpub to</br>easily <strong>write,
         publish and sell</strong> amazing <strong>in-progress</br>and completed ebooks and online courses.</strong>
@@ -29,11 +29,11 @@
     </div>
   </div> 
 
-  <div class="mx-10 -my-2">
+  <div class="mx-10 -my-1">
     <h2 >Sign up</h2>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
-        <div class="font-light" >
+        <div class="font-light">
         <%= f.label :name %><br />
           <div class="border-2 border-gray-400">
             <%= f.text_field :name, autofocus: true %>
