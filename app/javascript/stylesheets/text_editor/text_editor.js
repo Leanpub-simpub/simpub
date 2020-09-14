@@ -16,50 +16,50 @@ import markdownit from "markdown-it/dist/markdown-it"
 import hljs from 'highlightjs/highlight.pack'
 import "highlightjs/styles/github"
 window.addEventListener('turbolinks:load',()=>{
-
-  let myCodeMirror //使mycodemirror變成變數
-  let contentArea = document.querySelector('#sourceTA')
-  let editorConfig = {
-    mode: "markdown",
-    lint: true,
-    lineNumbers: true,
-    theme: 'abcdef',
-    lineWrapping: true,
-    autoRefresh: true,
-    value: ""
-  }
-  myCodeMirror = CodeMirror(contentArea, editorConfig);
-  // 把 codemirror 的編輯器塞到 contentArea 裡面，格式要求就依照 editorConfig
-  
-  let temp
-  function mdToHTML(){
-    let text = myCodeMirror.getValue()
-    if(text !== temp){
-      temp = text
-      let target = document.getElementById('targetDiv')
-      let md = markdownit(({
-        html:           false,
-        linkify:        true,
-        typographer:    true,
-        breaks:         false,
-        quotes:       '“”‘’',
-        highlight: function (str, lang) {
-          if (lang && hljs.getLanguage(lang)) {
-            try {
-              return '<pre class="hljs"><code>' +
-                     hljs.highlight(lang, str, true).value +
-                     '</code></pre>';
-            } catch (__) {}
-          }
-      
-          return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
-        }
-      }))
-      var result = md.render(text);
-      target.innerHTML=result
-    }else{
-      return
+  if(document.querySelector('#sourceTA')){
+    let myCodeMirror //使mycodemirror變成變數
+    let contentArea = document.querySelector('#sourceTA')
+    let editorConfig = {
+      mode: "markdown",
+      lint: true,
+      lineNumbers: true,
+      theme: 'abcdef',
+      lineWrapping: true,
+      autoRefresh: true,
+      value: ""
     }
-  }
+    myCodeMirror = CodeMirror(contentArea, editorConfig);
+    // 把 codemirror 的編輯器塞到 contentArea 裡面，格式要求就依照 editorConfig
+    
+    let temp
+    function mdToHTML(){
+      let text = myCodeMirror.getValue()
+      if(text !== temp){
+        temp = text
+        let target = document.getElementById('targetDiv')
+        let md = markdownit(({
+          html:           false,
+          linkify:        true,
+          typographer:    true,
+          breaks:         false,
+          quotes:       '“”‘’',
+          highlight: function (str, lang) {
+            if (lang && hljs.getLanguage(lang)) {
+              try {
+                return '<pre class="hljs"><code>' +
+                       hljs.highlight(lang, str, true).value +
+                       '</code></pre>';
+              } catch (__) {}
+            }
+            return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
+          }
+        }))
+        var result = md.render(text);
+        target.innerHTML=result
+      }else{
+        return
+      }
+    }
     setInterval(mdToHTML,500) //模擬即時顯示 // 重複執行時間拉開，避免被圖片連結的網站認為是
+  }
 })
