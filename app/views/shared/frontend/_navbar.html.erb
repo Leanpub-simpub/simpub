@@ -7,8 +7,10 @@
   <%= link_to "My Writings", dash_board_books_path, class: "nav-item mx-2" %>
   <form class="form-inline ml-auto">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-blue-900 my-2 my-sm-0 border-1 border-white" type="submit">
-      <i class="fas fa-search text-white"></i>
+    <button class="btn btn-outline-blue-900 my-2 my-sm-0 border-1 border-white" >
+      <%= link_to :books do %>
+        <i class="fas fa-search text-white"></i>
+      <% end %>
     </button>
   </form>
   <div class="mx-2 d-flex flex-row">
