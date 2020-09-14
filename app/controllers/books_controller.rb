@@ -31,7 +31,7 @@ class BooksController < ApplicationController
         @book.update(publish_state: "on-shelf")
         redirect_to pricing_book_path(@book)
       else
-        redirect_to pricing_book_path(@book)
+        redirect_to dash_board_books_path
         # redirect_to editor_new_book_path(@book)
       end
     else
