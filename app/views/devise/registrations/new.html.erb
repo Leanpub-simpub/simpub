@@ -1,40 +1,40 @@
 <section class="container flex justify-center my-10">
-  <div class="mx-10">
+  <div class="mx-4">
     <h2 class="text-base font-bold tracking-widest">
-        PUBLISH EARLY,</br>
+        PUBLISH EARLY,<br />
         PUBLISH OFTEN.
-    </h2>
+    </h2><br />
     <div class="text-sm">
       <p>
         Authors, companies and universities use Simpub to</br>easily <strong>write,
-        publish and sell</strong> amazing <strong>in-progress</br>and completed ebooks and online courses.</strong>
-      </p>
+        publish and sell</strong> amazing <strong>in-progress<br />and completed ebooks and online courses.</strong>
+      </p><br />
       <p>
-        By the way, this is a sign up page, but <strong>you actually</br>don't need to sign up here!</strong>
-      </p>
+        By the way, this is a sign up page, but <strong>you actually<br />don't need to sign up here!</strong>
+      </p><br />
       <p>
-        We automatically create an account for you if you <strong><a href="#">buy</br>
-        a book or course as a reader</a></strong>.This is because many</br> of our books and courses are published in-progress,</br>
-        and you get free updates whenever an author</br>publishes a new versio.
-      </p>
+        We automatically create an account for you if you <strong><a href="#" class="text-blue-500">buy<br />
+        a book or course as a reader</a></strong>.This is because many<br /> of our books and courses are published in-progress,<br />
+        and you get free updates whenever an author<br />publishes a new version.
+      </p><br />
       <p>
-        We also automatically create an account for you if</br>you <strong><a href="#">create a book or course as an author</a></strong>.Simpub</br>authors can create up to <strong>100 books or courses for</br> free</strong>, or choose a Standard or Pro plan for more features.
-      </p>       
+        We also automatically create an account for you if<br />you <strong><a href="#" class="text-blue-500">create a book or course as an author</a></strong>.Simpub<br />authors can create up to <strong>100 books or courses for<br /> free</strong>, or choose a Standard or Pro plan for more features.
+      </p><br />      
       <p>
-        So why does this page exist? Simple: when it didn't,</br>people asked us where it was. So, it's here, and you</br>can use it if you wish!
-      </p>      
+        So why does this page exist? Simple: when it didn't,<br />people asked us where it was. So, it's here, and you<br />can use it if you wish!
+      </p><br />     
       <p>
-        If you have an issue signing up here, just go <strong><a href="#">buy a</br> book or course</a></strong> or <strong><a href="#">create a book or course</a></strong> instead!
+        If you have an issue signing up here, just go <strong><a href="#" class="text-blue-500">buy a<br />book or course</a></strong> or <strong><a href="#" class="text-blue-500">create a book or course</a></strong> instead!
       </p>
     </div>
   </div> 
 
-  <div class="mx-10 -my-1">
-    <h2 >Sign up</h2>
+  <div class="mx-4 -my-1"> 
+    <h2 class="text-2xl font-light mb-2">Sign up</h2>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
-        <div class="font-light">
-        <%= f.label :name %><br />
+        <div class="font-light mb-2">
+        <%= f.label :name %>
           <div class="border-2 border-gray-400">
             <%= f.text_field :name, autofocus: true %>
           </div>
@@ -76,7 +76,7 @@
           I accept the Leanpub <a href="">Terms of Service</a> and <a href="#">Privacy Policy</a>
         </span>
         
-        <div class="mb-2 mt-2" >
+        <div class="my-3" >
           <%= f.submit "Create account" %>
         </div>
         
