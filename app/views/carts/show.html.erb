@@ -14,16 +14,14 @@
         <p class="self-center">Settings & Download</p>
       </div>
     </header>
-
-    <!-- <%= link_to "繼續選購", books_path, class: "btn btn-default" %> -->
-
   </div>
 
   <div class="checkoutstage_review flex justify-center">
-    <table class="  w-3/5">
+    <table class="table w-3/5">
       <thead class="text-gray-600">
         <tr>
           <th>商品</th>
+          <th></th>
           <th>數量</th>
           <th>小計</th>
         </tr>
@@ -32,7 +30,17 @@
       <% current_cart.items.each do |item| %>
         <tr>
           <td>
-          <%= item.book.title %>
+            <div></div>
+          </td>
+          <td>
+            <%= item.book.title %>
+            <div class="text-sm">
+              <a href="">edit</a>
+              <span class="mx-2">|</span>
+              <a href="">Move to Wishlist</a>
+              <span class="mx-2">|</span>
+              <a href="">Delete</a>
+            </div>
           </td>
           <td>
           <%= item.quantity %>
@@ -54,12 +62,9 @@
     <%= current_cart.total_price %>
   </div>
 
-  <div class="w-4/5 flex justify-end ml- mt-10">
-    <button class="w-24 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-      <a href="/cart/payment">結帳</a>
-    </button>     
-  </div>
+  <button class="w-4/5 flex justify-end ml- mt-10">
+    <%= link_to "結帳", books_path, class: "w-24 bg-blue-500 hover:bg-blue-700 text-white text-center font-bold py-2 px-4 rounded" %>
+  </button>
 
-    
 </section>
 
