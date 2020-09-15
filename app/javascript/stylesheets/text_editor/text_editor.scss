@@ -165,13 +165,20 @@
     color: #337ab7;
     text-decoration: none;
     }
-    
+
     hr {
       height: .25em;
       padding: 0;
       margin: 24px 0;
       background-color: #e7e7e7;
       border: 0;
+    }
+    .line-index {
+      display: inline-block;
+      margin-left: -20px; 
+      margin-right: 20px;
+      border-right: 3px solid greenyellow;
+      padding-right: 10px;
     }
   }
 }

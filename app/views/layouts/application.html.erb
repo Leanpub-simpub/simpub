@@ -7,20 +7,23 @@
     
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
     <%= javascript_pack_tag "application", "data-turbolinks-track": "reload" %>
+
 		<%= stylesheet_pack_tag 'application' %>
 
 		<!-- 信用卡結帳頁面載入付款的 JS 檔 -->
 	  <%= javascript_pack_tag "payment", "data-turbolinks-track": "reload" if params[:controller] == "carts" && params[:action] == "payment" %>
 		<!-- 編輯個人資料 & 書籍封面的圖片預覽 JS 檔 -->
 	  <%= javascript_pack_tag "image_preview", "data-turbolinks-track": "reload" if (params[:controller] == "users/registrations" && params[:action] == "edit") or (params[:controller] == "books") %>
+
 	</head>
 
 	<body>
 		<%= render "shared/frontend/navbar" %>
-    
+
 		<p class="notice"><%= notice %></p>
 		<p class="alert"><%= alert %></p>
     
 		<%= yield %>
+		<%= render "shared/frontend/footer" %>
 	</body>
 </html>
