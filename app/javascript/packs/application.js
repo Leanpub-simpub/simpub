@@ -18,5 +18,7 @@ require("../stylesheets");
 //
 const images = require.context("../images", true);
 const imagePath = (name) => images(name, true);
-// import "bootstrap";
+
+import "bootstrap";
 import "../css/application.css";
+
