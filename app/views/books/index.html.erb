@@ -1,6 +1,11 @@
-<h1>所有的書</h1>
-
+<%# <h1>所有的書</h1> %>
 <div class="container">
+  <div class="col-12  mb-6 text-center">
+    <input type="text" class="book-search-input col-10  border border-dark" >
+    <span class="book-search-btn d-inline-block border border-dark" >
+        <i class="fas fa-search text-black"></i>
+    </span>
+  </div>
   <div class="row books-show">
     <% @books.each do |book| %>
       <div class="col-2">
