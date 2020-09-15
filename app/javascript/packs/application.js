@@ -21,8 +21,4 @@ require("channels");
 
 import "bootstrap";
 import "../css/application.css";
-<<<<<<< HEAD
-
-=======
 require("../stylesheets");
->>>>>>> frontend
