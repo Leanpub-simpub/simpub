@@ -20,7 +20,7 @@
   </div>
 
   <div class="checkoutstage_review flex justify-center">
-    <table class=" table w-3/5">
+    <table class="  w-3/5">
       <thead class="text-gray-600">
         <tr>
           <th>商品</th>
@@ -28,21 +28,21 @@
           <th>小計</th>
         </tr>
       </thead>
-    <tbody>
-    <% current_cart.items.each do |item| %>
-    <tr>
-    <td>
-    <%= item.book.title %>
-    </td>
-    <td>
-    <%= item.quantity %>
-    </td>
-    <td>
-    <%= item.book.price %>
-    </td>
-    </tr>
-    <% end %>
-    </tbody>
+      <tbody>
+      <% current_cart.items.each do |item| %>
+        <tr>
+          <td>
+          <%= item.book.title %>
+          </td>
+          <td>
+          <%= item.quantity %>
+          </td>
+          <td>
+          <%= item.book.price %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
     </table>
   </div>
     
