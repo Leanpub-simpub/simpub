@@ -5,6 +5,13 @@ class CartsController < ApplicationController
     session[Cart::SessionKey] = current_cart.serialize
   end
 
+  def show
+    respond_to do |format|
+      # format.json { render json: {@cart = session[Cart::SessionKey]} }
+      format.json { @cart = session[Cart::SessionKey] }
+    end
+  end
+
   def destroy
     session[Cart::SessionKey] = nil
     redirect_to :cart, notice: "購物車已清空"
