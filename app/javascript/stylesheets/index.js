@@ -4,4 +4,5 @@ import "./actiontext.scss";
 import "./avatar.scss";
 import "./home.scss";
 import "./text_editor";
-require("./layout");
+import "./books";
+import "./layout";

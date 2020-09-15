@@ -24,11 +24,11 @@
 			</div>
 			<%# <%= link_to "加到購物車", add_cart_path(book), method: "post", class:
 			"btn btn-xs bg-blue-900 text-white"> # 建議移到商品頁 %>
-			<div class="book-title h-10 mt-2">
-				<h2 class="text-sm font-semibold"><%= book.title%></h3>
+			<div>
+				<h2 class="book-title"><%= book.title%></h3>
 			</div>
-			<div class="book-author d-flex">
-				<p class="text-xs"><%= link_to book.authors[0].name, profile_path(book.authors[0].username) %></p>
+			<div>
+				<p class="book-author"><%= link_to book.authors[0].name, profile_path(book.authors[0].username) %></p>
 			</div>
 		</div>
 		<% end %>
