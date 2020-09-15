@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :book_users
   has_many :bought_books, through: :book_users, source: :book
 
+  has_many :orders
+
   def self.from_omniauth(auth, signed_in_resource = nil)
     identity = Identity.find_for_oauth(auth)
     user = signed_in_resource ? signed_in_resource : identity.user
