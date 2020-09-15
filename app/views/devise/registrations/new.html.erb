@@ -35,22 +35,22 @@
       <%= render "devise/shared/error_messages", resource: resource %>
         <div class="font-light mb-2">
         <%= f.label :name %>
-          <div class="border-2 border-gray-400">
-            <%= f.text_field :name, autofocus: true %>
-          </div>
+          <div>
+            <%= f.text_field :name, autofocus: true, class: "border-2 border-gray-400 w-full" %>
+          </div> 
         </div>
         
         <div class="mb-2 font-light">
         <%= f.label :email %><br />
-            <div class="border-2 border-gray-400">
-              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            <div>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "border-2 border-gray-400 w-full"%>
             </div>
         </div>
         
         <div class="mb-2 font-light">
         <%= f.label :username %><br />
-          <div class="border-2 border-gray-400">
-            <%= f.text_field :username, autofocus: true %>
+          <div>
+            <%= f.text_field :username, autofocus: true, class: "border-2 border-gray-400 w-full" %>
           </div>
         </div>
         
@@ -59,25 +59,25 @@
         <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %><br />
-          <div class="border-2 border-gray-400">
-            <%= f.password_field :password, autocomplete: "new-password" %>
+          <div>
+            <%= f.password_field :password, autocomplete: "new-password", class: "border-2 border-gray-400 w-full" %>
           </div>
         </div>
         
         <div class="mb-2 font-light">
         <%= f.label :password_confirmation %><br />
-          <div class="border-2 border-gray-400">
-            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          <div>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "border-2 border-gray-400 w-full" %>
           </div>
         </div>
 
         <input class="mr-2 leading-tight" type="checkbox">
         <span class="text-base">
-          I accept the Leanpub <a href="">Terms of Service</a> and <a href="#">Privacy Policy</a>
+          I accept the Simpub <a href="" class="text-blue-500">Terms of Service</a> and <a href="#" class="text-blue-500">Privacy Policy</a>
         </span>
         
         <div class="my-3" >
-          <%= f.submit "Create account" %>
+          <%= f.submit "Create Account", class: "w-full py-2 rounded-sm text-white bg-blue-500 text-lg font-meduim" %>
         </div>
         
         <% end %>

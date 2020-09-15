@@ -5,15 +5,15 @@
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="mb-2 font-light">
     <%= f.label :email %><br />
-      <div class="border-2 border-gray-400">
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "border-2 border-gray-400 w-full" %>
       </div>
     </div>
     
     <div class="mb-2 font-light">
     <%= f.label :password %><br />
-      <div class="border-2 border-gray-400">
-        <%= f.password_field :password, autocomplete: "current-password" %>
+      <div>
+        <%= f.password_field :password, autocomplete: "current-password", class: "border-2 border-gray-400 w-full" %>
       </div>
     </div>
     
@@ -29,7 +29,7 @@
     </p>
     
     <div class="my-3">
-    <%= f.submit "Sign in"%>
+    <%= f.submit "Sign In", class: "w-full py-1 rounded-sm text-white bg-blue-500 text-lg font-meduim"%>
     </div>
     <% end %>
     
