@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get "/purchase", to: "users/purchase#index"
+
   resource :cart, only:[:show, :destroy] do
     collection do
       post :add, path:'add/:id'
