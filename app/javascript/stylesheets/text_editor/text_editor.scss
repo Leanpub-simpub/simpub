@@ -6,6 +6,50 @@
   display: flex;
   width: 100%;
 
+  .chapter_list {
+    width: 15%;
+    height: 100vh;
+    border: lightgray 2px solid;
+    margin-right: 5px;
+    padding: 10px;
+    font-size: 24px;
+  }
+
+  .chapter_list div {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .chapter::before {
+    content: " ";
+    height: 10px;
+    width: 10px;
+    border: 2px solid red;
+    margin-right: 10px;
+  }
+
+  .session::before{
+    content: "-";
+    width: 10px;
+    display: inline-block;
+    height: 5px;
+    color: yellow;
+    line-height: 100%;
+    margin-right: 10px;
+  }
+
+  .session {
+    margin-left: 20px
+  }
+
+  
+
+  #addChapter {
+    border: 1px solid yellow;
+    text-align: center;
+    font-size: 24px;
+  }
+
   .custom {
     display: block;
     width: 42.5%;
