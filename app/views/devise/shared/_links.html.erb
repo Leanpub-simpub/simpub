@@ -19,16 +19,15 @@
 <% end %>
 
 
-	<%= link_to omniauth_authorize_path(resource_name, :facebook), class: " fab fa-facebook-f px-4 py-2 btn btn-primary" do %>
-	  <span class="text-base font-medium">FACEBOOK</span> 
-	<% end %>
+<%= link_to omniauth_authorize_path(resource_name, :facebook), class: " fab fa-facebook-f px-3 py-2 btn btn-primary" do %>
+  <span class="text-base font-medium">FACEBOOK</span> 
+<% end %>
 
-
-<%= link_to omniauth_authorize_path(resource_name, :google_oauth2), class: "fab fa-google-plus-g px-4 py-2 btn btn-danger" do %>
+<%= link_to omniauth_authorize_path(resource_name, :google_oauth2), class: "fab fa-google-plus-g px-3 py-2 btn btn-danger" do %>
   <span class="text-base font-medium">GOOGLE+</span> 
 <% end %>
 
-<%= link_to omniauth_authorize_path(resource_name, :github), class: "fab fa-github px-4 py-2 btn btn-dark" do %>
+<%= link_to omniauth_authorize_path(resource_name, :github), class: "fab fa-github px-3 py-2 btn btn-dark" do %>
 <span class="text-base font-medium">GITHUB</span> 
 <% end %>
 
