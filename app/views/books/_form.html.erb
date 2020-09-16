@@ -6,7 +6,7 @@
   </ul>
 <% end %>
 
-<%= form_for(book) do |f| %>
+<%= form_for(book, remote: true) do |f| %>
   <div id="cover-preview" class="w-50">
     <img src="#" alt="" class="w-100">
   </div>
@@ -35,6 +35,13 @@
   -->
 
   <!-- 目錄我們自己產生 -->
+
+  <div>
+    <%= f.label :tag_items, "標籤" %>
+    <select class="form-control select optional" multiple="multiple" name="books[tag_items][]" id="book_tag_items">
+      <%= options_for_select(@tags) %>
+    </select>
+  </div>
 
   <div>
     <%= f.label :completeness, "完成度" %>
