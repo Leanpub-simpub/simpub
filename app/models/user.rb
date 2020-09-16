@@ -10,10 +10,10 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
 
   has_many :book_authors
-  has_many :pub_books, through: :book_authors, source: :book
+  has_many :pub_books, through: :book_authors, source: :book, dependent: :destroy
 
   has_many :book_users
-  has_many :bought_books, through: :book_users, source: :book
+  has_many :bought_books, through: :book_users, source: :book, dependent: :destroy
 
   has_many :orders
 
