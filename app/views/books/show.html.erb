@@ -33,6 +33,12 @@
           </p>
         <% end %>
       </div>
+
+      <div class="tags mb-3 d-flex">
+        <% @book.tag_items.each do |tag| %>
+          <span>#<%= tag %></span>
+        <% end %>
+      </div>
       
 			<div class="button-group">
         <%= link_to "#", class: "btn w-50 p-1 mb-2" do %>

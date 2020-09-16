@@ -8,6 +8,13 @@
 	text-decoration: underline;
 }
 
+.tags {
+  span {
+    color: rgba(225, 154, 96, .7) !important;
+    margin-right: 10px;
+  }
+}
+
 .button-group {
 	a.btn {
 		border: 1px solid rgba(225, 154, 96, 0.5);
