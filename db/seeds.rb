@@ -1,17 +1,31 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+puts "-" * 20
+puts "開始建立假資料"
 
-50.times do
+users_limit = 50
+
+(users_limit - User.count).times do 
   name = Faker::Name.name
   
-  user = User.create(email: Faker::Internet.unique.email, password: "123456", name: name, username: name.downcase.gsub(/[^a-z0-9]+/,''))
-
-  book = Book.create(title: Faker::Book.title, price: rand(50), publish_state: "on-shelf")
+  user = User.new(
+    email: Faker::Internet.unique.email,
+    password: "123456",
+    name: name,
+    username: name.downcase.gsub(/[^a-z0-9]+/,'')
+  )
+  user.avatar_remote_url = Faker::LoremFlickr.image(search_terms: ["people"])
+  user.save!
   
-  book.book_authors.create(user: user, book: book)
+
+  book = Book.new
+  book.title = Faker::Book.title
+  book.price = rand(50)
+  book.publish_state = "on-shelf"
+  book.cover_remote_url = Faker::LoremFlickr.image
+
+  user.pub_books << book if book.save!
+  
 end
+
+
+puts "資料建立完成!"
+puts "-" * 20
