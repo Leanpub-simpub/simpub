@@ -21,3 +21,4 @@ const imagePath = (name) => images(name, true);
 import "bootstrap";
 import "../css/application.css";
 require("../stylesheets");
+require("../cart");
