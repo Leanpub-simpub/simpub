@@ -1,7 +1,7 @@
 class BooksController < ApplicationController  
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :editor_new, :editor_edit]
   before_action :find_book, except: [:index, :new, :create]
-
+  require'aws-sdk-s3'
   def index
     @books = Book.published_books
   end
@@ -25,7 +25,10 @@ class BooksController < ApplicationController
     
     # 把 cover 切出 大中小 三個尺寸
     @book.cover_derivatives! if @book.cover_data?
-    
+
+    book_start(@book.title) 
+    # 在 s3 做出書的資料夾，chapter1.md，與 structure.json(存章節結構)
+
     if @book.save
       if @book.md_data
         @book.update(publish_state: "on-shelf")
@@ -85,6 +88,15 @@ class BooksController < ApplicationController
 
   def find_book
     @book = Book.find_by(id: params[:id])
+  end
+
+  def book_start(title)
+    s3 = Aws::S3::Resource.new
+    bucket = s3.bucket(ENV['bucket'])
+    structure = bucket.object("store/book/#{title}/structure.json")
+    structure.put(body:'{"chapter1":[]}')
+    chapter = bucket.object("store/book/#{title}/chapter1.md")
+    chapter.put(body:'# Chapter 1')
   end
   
 end
