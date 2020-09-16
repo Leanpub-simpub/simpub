@@ -90,17 +90,16 @@ class BooksController < ApplicationController
     # else
     #   # errors
     #   storage.errors
-    # byebug
     
     # 取到結構json檔資料
     s3 = Aws::S3::Client.new
     object = s3.get_object(bucket: ENV['bucket'], key:"store/book/#{@book.id}/structure.json")    
     structure_json = object.body.read
     # 將新增的章節加入結構中
-    structure_json = JSON.parse(json)
+    structure_json = JSON.parse(structure_json)
     structure_json["#{params[:chapter]}"] =[]
-    structure_json = json.to_json
-
+    structure_json = structure_json.to_json
+    
     s3 = Aws::S3::Resource.new
     bucket = s3.bucket(ENV['bucket'])
     structure = bucket.object("store/book/#{@book.id}/structure.json")
