@@ -15,3 +15,31 @@
   <div id="sourceTA" class="custom" rows="10" cols="82"></div> <%# 給 codemirror 塞 code highlight 編輯器 %>
   <div id="targetDiv"></div>                                   <%# 給 markdown-it 塞 md to html 的東西 %>
 </div>
+
+<%# <div class="chapterCreate x">
+  <div>Add New Chapter</div>
+  <div>
+    <label for="chapterName">Chapter Name</label>
+    <input type="text" name="chapterName">
+  </div>
+  <div>
+    <button class="btn chapterBtn" id="agreeBtn">OK</button>
+    <button class="btn chapterBtn" id="notAgreeBtn">X</button>
+  </div>
+</div> %>
+
+<div class="chapterCreate x">
+  <%= form_with url: add_chapter_book_path(book) do |f| %>
+    <div>Add New Chapter</div>
+
+    <div>
+      <%= f.label :chapter, "Chapter" %>
+      <%= f.text_field :chapter %>
+    </div>
+
+    <div>
+      <%= f.submit "OK",class: 'chapterBtn',id: 'agreeBtn' %>
+      <button class="btn chapterBtn" id="notAgreeBtn">X</button>
+    </div>
+  <% end %>
+</div>
