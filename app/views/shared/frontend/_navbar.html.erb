@@ -13,7 +13,9 @@
   </form>
   <div class="mx-2 d-flex flex-row">
     <%= link_to cart_path do %>
-      <i class="nav-icon mg-auto mx-2 fas fa-shopping-cart"></i>
+      <i class="nav-icon mg-auto mx-2 fas fa-shopping-cart">
+        <div class="cart-bubble"></div>
+      </i>
     <% end %>
     <% if user_signed_in? %>
       <a href="#">

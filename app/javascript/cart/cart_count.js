@@ -3,11 +3,11 @@ document.addEventListener("turbolinks:load", () => {
     getCartItems();
   }
   
-  if(document.querySelector(".books-show")) {
-    const booksContainer = document.querySelector(".books-show");
+  if(document.querySelector(".add-to-cart-btn")) {
+    const addCartBtn = document.querySelector(".add-to-cart-btn");
 
-    booksContainer.addEventListener("click", e => {
-      if (e.target.classList.contains("add-cart")) {
+    addCartBtn.addEventListener("click", e => {
+      if (e.target.classList.contains("add-to-cart-btn")) {
         // 加入 setTimeout 避免後端資料還沒寫入，前端就先去抓資料
         setTimeout(() => { getCartItems(); }, 500);
       }
@@ -15,7 +15,7 @@ document.addEventListener("turbolinks:load", () => {
   }
 
   function getCartItems() {
-    fetch("http://localhost:3000/api/v1/carts.json")
+    fetch("http://localhost:3000/cart.json")
       .then(response => response.json())
       .then(cartItems => {
         let cartBubble = document.querySelector(".cart-bubble")
