@@ -1,15 +1,14 @@
 <section class="sign-in container flex justify-center my-5">
-  <div>
+  <div class="row w-50">
     <h3 class="font-weight-light">Sign in</h3>
     
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col mb-3"%> 
-    <div class="w-100"></div>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-12 mb-3"%> 
 
     <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password", class:"col mb-3" %>
+    <%= f.password_field :password, autocomplete: "current-password", class:"col-12 mb-3" %>
     
     <% if devise_mapping.rememberable? %>
     <div class="field">
@@ -22,7 +21,7 @@
       This site is protected by reCAPTCHA and the Google<br/>  <a href="#" class="text-blue-500">Privacy Policy</a> and  <a href="#" class="text-blue-500">Terms of Service</a> apply.
     </p>
     
-    <%= f.submit "Sign In", class: "col-2 btn btn-danger main-button border-0"%>
+    <%= f.submit "Sign In", class: "col-2 btn btn-danger main-button border-0 d-flex justify-content-center text-center"%>
     <% end %>
     
     <%= render "devise/shared/links" %>

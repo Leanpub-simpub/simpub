@@ -88,6 +88,9 @@
         <%= link_to "Add Ebook to Cart", add_cart_path(@book), method: :post, class: "add-to-cart-btn btn" %>
       </div>
 
+      <%= link_to "加到購物車", add_cart_path(book), method: "post", class:
+			"btn btn-danger main-button" %>
+
       <%# <%= link_to "Add to Wish List", "#", class: "add-to-wishlist" %>
 		</div>
 	</div>
