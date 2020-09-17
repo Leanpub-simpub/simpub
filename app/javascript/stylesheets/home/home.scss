@@ -1,0 +1,28 @@
+body {
+	background-color: #111;
+}
+
+// 網站主視覺色
+.main-color {
+	color: #e09a5f;
+}
+
+.home {
+	p,
+	h1,
+	h2,
+	button,
+	span,
+	button,
+	.slogan {
+		color: #e09a5f;
+	}
+}
+
+.content-text {
+	margin-top: 30px;
+}
+.main-button {
+	background-color: #e09a5f;
+	color: white;
+}

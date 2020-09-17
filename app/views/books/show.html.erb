@@ -1,6 +1,6 @@
 
 
-<div class="container">
+<div class="show container">
 	<div class="row">
 		<div class="col-4 d-flex flex-column">
       <!-- 書本標題 -->
@@ -19,7 +19,7 @@
         </div>
         <!-- 作者名稱 -->
         <div class="book-show-author-name pl-3">
-          <%= link_to link_to @book.authors[0].name, profile_path(@book.authors[0].username) %>
+          <%= link_to link_to @book.authors[0].name, profile_path(@book.authors[0].username) r%>
         </div>
       </div>
 
@@ -28,16 +28,18 @@
         <% if @book.about %>
           <%= @book.about %>
         <% else %>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga enim vitae, consequuntur asperiores, itaque beatae maxime cumque sapiente quae eius odit, autem corrupti quos ipsa amet non iusto eveniet expedita?
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga enim vitae, consequuntur asperiores, itaque beatae maxime cumque sapiente quae eius odit, autem corrupti quos ipsa amet non iusto eveniet expedita?
+          </p>
         <% end %>
       </div>
       
 			<div class="button-group">
         <%= link_to "#", class: "btn w-50 p-1 mb-2" do %>
-          Read Free Sample <i class="far  fa-file-pdf"></i>
+          <span class="mr-2">Read Free Sample</span><i class="far fa-file-pdf"></i>
         <% end %> 
         <%= link_to "#", class: "btn w-50 p-1" do %>
-          Table Of Contents <i class="fas fa-list-ol"></i>
+          <span class="mr-2">Table Of Contents</span><i class="fas fa-list-ol"></i>
         <% end %>
 			</div>
 		</div>
@@ -86,7 +88,7 @@
         <%= link_to "Add Ebook to Cart", add_cart_path(@book), method: :post, class: "add-to-cart-btn btn" %>
       </div>
 
-      <%= link_to "Add to Wish List", "#", class: "add-to-wishlist" %>
+      <%# <%= link_to "Add to Wish List", "#", class: "add-to-wishlist" %>
 		</div>
 	</div>
 </div>

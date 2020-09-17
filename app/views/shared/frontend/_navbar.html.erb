@@ -2,31 +2,44 @@
   <div class="col-1">
     <a href="/" class="navbar-brand d-flex"><%= image_pack_tag "logo.png", class: "w-100 img-responsive" %></a>
 	</div>
+  
+  <!-- 書搜尋頁 -->
   <%= link_to "Books", :books, class: "nav-item main-color mr-3 text-lg" %>
-  <%= link_to "Library", library_path, class: "nav-item main-color mr-3 text-lg" %>
-  <a href="#" class="nav-item main-color mr-3 text-lg">Purchase</a>
-  <a href="#" class="nav-item main-color mr-3 text-lg">Create a Books</a>
-  <a href="#" class="nav-item main-color mr-3 text-lg">My Writings</a>
+  
+  <% if user_signed_in?  %>
+    <!-- 個人書櫃 -->
+    <%= link_to "Library", :library, class: "nav-item mr-3 text-lg main-color" %>
+    <a href="#" class="nav-item main-color mr-3 text-lg">Purchase</a>
+
+    <!-- 寫書 -->
+    <%= link_to "Create a Book", :new_book, class: "nav-item mr-3 text-lg main-color" %>
+      
+      <!-- 寫過的書 -->
+      <% if current_user.pub_books.count > 0 %>
+      <a href="#" class="nav-item main-color mr-3 text-lg">My Writings</a>
+      <% end %>
+    
+  <% end %>
   <form class="form-inline ml-auto">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-black my-2 my-sm-0" type="submit"><i class="fas fa-search text-white"></i></button>
+    <button class="btn btn-outline-black my-2 my-sm-0" type="submit"><i class="fas fa-search main-color"></i></button>
   </form>
   <div class="mx-2 d-flex flex-row">
     <%= link_to cart_path do %>
-      <i class="nav-icon mg-auto mx-2 fas fa-shopping-cart">
+      <i class="nav-icon mg-auto mx-2 fas fa-shopping-cart main-color">
         <div class="cart-bubble"></div>
       </i>
     <% end %>
     <% if user_signed_in? %>
       <a href="#">
-        <i class="nav-icon mg-auto mx-2 fas fa-heart"></i>
+        <i class="nav-icon mg-auto mx-2 fas fa-heart main-color"></i>
       </a>
       <a href="#">
-        <i class="nav-icon mg-auto mx-2 fas fa-bell"></i>
+        <i class="nav-icon mg-auto mx-2 fas fa-bell main-color"></i>
       </a>
     <% else %>
-      <%= link_to "Sign up", new_user_registration_path ,class: "mx-2" %>
-      <%= link_to "Sign in", new_user_session_path ,class: "mx-2" %>
+      <%= link_to "Sign up", new_user_registration_path ,class: "mx-2 main-color" %>
+      <%= link_to "Sign in", new_user_session_path ,class: "mx-2 main-color" %>
     <% end %>
   </div>
 

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="home container">
 	<div class="row">
 		<div class="col-4 d-flex flex-column justify-content-around">
 			<div class="logo d-flex justify-content-center align-items-center">
@@ -25,8 +25,8 @@
 				</p>
 			</div>
 			<div class="button-group">
-				<button type="button" class="btn my-1">Create a Book</button>
-				<button type="button" class="btn btn-outline">
+				<%= link_to "Create a Book", :books, class: "btn btn-danger main-button my-1" %>
+				<button type="button" class="btn btn-outline-secondary">
 					Learn More
 				</button>
 			</div>
@@ -54,7 +54,7 @@
 				unde distinctio culpa eius, officia volup tas sunt cum quibusdam?
 			</p>
 			<div class="button-group">
-				<%= link_to "Find some Books", :books, class: "btn color-primary" %>
+				<%= link_to "Find More Books", :books, class: "btn btn-danger main-button" %>
 				<button type="button" class="btn btn-outline-secondary">
 					Learn More
 				</button>
