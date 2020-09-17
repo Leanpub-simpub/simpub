@@ -19,21 +19,6 @@
 <% end %>
 
 
-<<<<<<< HEAD
-	<%= link_to omniauth_authorize_path(resource_name, :facebook), class: " fab fa-facebook-f px-4 py-2 btn btn-primary" do %>
-	  <span class="text-base font-medium">FACEBOOK</span> 
-	<% end %>
-
-
-<%= link_to omniauth_authorize_path(resource_name, :google_oauth2), class: "fab fa-google-plus-g px-4 py-2 btn btn-danger" do %>
-  <span class="text-base font-medium">GOOGLE+</span> 
-<% end %>
-
-<%= link_to omniauth_authorize_path(resource_name, :github), class: "fab fa-github px-4 py-2 btn btn-dark" do %>
-<span class="text-base font-medium">GITHUB</span> 
-<% end %>
-
-=======
 <div class="omniauth_authorize mt-2">
   <%= link_to omniauth_authorize_path(resource_name, :facebook), class: "fab fa-facebook-f px-3 py-2 btn", style:"background-color: #3B5998" do %>
     <span>FACEBOOK</span> 
@@ -47,7 +32,6 @@
   <span>GITHUB</span> 
   <% end %>
 </div>
->>>>>>> 0b6671029ec3e8b9c39a90a9c3bbac6f15f87f7d
 
 
 
