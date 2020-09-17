@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       get :pricing
       patch :publish
       post :add_chapter
+      post :add_session
     end
   end
 

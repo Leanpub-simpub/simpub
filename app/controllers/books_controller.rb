@@ -31,7 +31,7 @@ class BooksController < ApplicationController
         redirect_to pricing_book_path(@book)
       else
         # 在 s3 做出書的資料夾，chapter1.md，與 structure.json(存章節結構)
-        book_start(@book.id)
+        book_start(@book.title)
         redirect_to dash_board_books_path
         # redirect_to editor_new_book_path(@book)
       end
@@ -93,21 +93,43 @@ class BooksController < ApplicationController
     
     # 取到結構json檔資料
     s3 = Aws::S3::Client.new
-    object = s3.get_object(bucket: ENV['bucket'], key:"store/book/#{@book.id}/structure.json")    
+    object = s3.get_object(bucket: ENV['bucket'], key:"store/book/#{@book.title}/structure.json")    
     structure_json = object.body.read
     # 將新增的章節加入結構中
     structure_json = JSON.parse(structure_json)
-    structure_json["#{params[:chapter]}"] =[]
+    structure_json[params[:chapter]] =[]
     structure_json = structure_json.to_json
     
     s3 = Aws::S3::Resource.new
     bucket = s3.bucket(ENV['bucket'])
-    structure = bucket.object("store/book/#{@book.id}/structure.json")
+    structure = bucket.object("store/book/#{@book.title}/structure.json")
     structure.put(body: structure_json)
     # 將新的結構存到 structure.json檔案
-    chapter = bucket.object("store/book/#{@book.id}/#{params[:chapter]}.md")
-    chapter.put(body:'# Chapter 2')
+    chapter = bucket.object("store/book/#{@book.title}/#{params[:chapter]}.md")
+    chapter.put(body:'# New Chapter')
     # 做出章節
+  end
+
+  def add_session
+    @book = Book.find(params[:id])
+   
+    # 取到結構json檔資料
+     s3 = Aws::S3::Client.new
+     object = s3.get_object(bucket: ENV['bucket'], key:"store/book/#{@book.title}/structure.json")    
+     structure_json = object.body.read
+     # 將新增的 session 加入結構中
+     structure_json = JSON.parse(structure_json)
+     structure_json[params[:chapter]].push(params[:session])
+     structure_json = structure_json.to_json
+     
+     s3 = Aws::S3::Resource.new
+     bucket = s3.bucket(ENV['bucket'])
+     structure = bucket.object("store/book/#{@book.title}/structure.json")
+     structure.put(body: structure_json)
+     # 將新的結構存到 structure.json檔案
+     chapter = bucket.object("store/book/#{@book.title}/#{params[:session]}.md")
+     chapter.put(body:'# New Session')
+     # 做出 session 檔案
   end
   
 
@@ -120,13 +142,15 @@ class BooksController < ApplicationController
     @book = Book.find_by(id: params[:id])
   end
 
-  def book_start(id)
+  def book_start(title)
     s3 = Aws::S3::Resource.new
     bucket = s3.bucket(ENV['bucket'])
-    structure = bucket.object("store/book/#{id}/structure.json")
-    structure.put(body:'{"chapter1":[]}')
-    chapter = bucket.object("store/book/#{id}/chapter1.md")
-    chapter.put(body:'# Chapter 1')
+    structure = bucket.object("store/book/#{title}/structure.json")
+    a = {Chapter_1:[]}
+    a = a.to_json
+    structure.put(body: a )
+    chapter = bucket.object("store/book/#{title}/Chapter1.md")
+    chapter.put(body:'# Chapter_1')
   end
   
 end

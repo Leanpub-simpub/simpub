@@ -42,17 +42,25 @@
     margin-left: 20px
   }
 
-  
-
   #addChapter {
     border: 1px solid yellow;
     text-align: center;
     font-size: 24px;
+    cursor: pointer;
   }
   #addChapter:hover {
     background-color: wheat;
     color: black;
   }
+
+  .addsession {
+    cursor: pointer;
+  }
+  
+  .addsession:hover {
+    color: white!important;
+  }
+
   .custom {
     display: block;
     width: 42.5%;
@@ -137,7 +145,7 @@
   }
 }
 
-.chapterCreate {
+.chapterCreate,.sessionCreate {
   width: 30%;
   height: 25%;
   border: 1px solid red;
@@ -155,18 +163,14 @@
   margin: 10px;
 }
 
-.chapterBtn {
+.formBtn {
   text-align: center;
   width:50px;
   padding: 5px;
   font-size: 20px;
   margin-left: 5px;
   margin-right: 5px;
-}
-
-.addsession {
-  float: right;
-  color: white;
+  cursor: pointer;
 }
 
 .x {

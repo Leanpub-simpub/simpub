@@ -2,16 +2,15 @@
 <div class="wrap">
   <div class="chapter_list">
     <div >Chapter List</div>
-    <div class="chapter">Chapter 1
-      <span class="addsession">
-      +
-      </span>
+    <div class="d-flex justify-content-between">
+      <div class="chapter">Chapter_1</div>
+      <div class="addsession">+</div>
     </div>
-    <div class="session">session 1-1</div>
-    <div class="session">session 1-2</div>
-    <div class="chapter">Chapter 2</div>
-    <div class="chapter">Chapter 3</div>
-    <div class="chapter">Chapter 4</div>
+    <div class="session">session_1-1</div>
+    <div class="session">session_1-2</div>
+    <div class="chapter">Chapter_2</div>
+    <div class="chapter">Chapter_3</div>
+    <div class="chapter">Chapter_4</div>
     <div id="addChapter">
       <i class="fa fa-plus-circle" aria-hidden="true"></i>
     </div>
@@ -32,18 +31,34 @@
   </div>
 </div> %>
 
-<div class="chapterCreate x">
-  <%= form_with url: add_chapter_book_path(book) do |f| %>
-    <div>Add New Chapter</div>
 
-    <div>
-      <%= f.label :chapter, "Chapter" %>
-      <%= f.text_field :chapter %>
-    </div>
+<%= form_with url: add_chapter_book_path(book),class: "chapterCreate x" do |f| %>
+  <div>Add New Chapter</div>
 
-    <div>
-      <%= f.submit "OK",class: 'chapterBtn',id: 'agreeBtn' %>
-      <button class="btn chapterBtn" id="notAgreeBtn">X</button>
-    </div>
-  <% end %>
-</div>
+  <div>
+    <%= f.label :chapter, "Chapter" %>
+    <%= f.text_field :chapter %>
+  </div>
+
+  <div>
+    <%= f.submit "OK",class: 'formBtn', id:"chapterAgreeBtn"%>
+    <button class="btn formBtn" id="chapterNotAgreeBtn">X</button>
+  </div>
+<% end %>
+
+
+<%= form_with url: add_session_book_path(book),class: "sessionCreate x" do |f| %>
+  <div>Add New Session</div>
+  <div>
+    <%= f.text_field :chapter ,class: 'x', id:'forSessionRecord'%>
+  </div>
+  <div>
+    <%= f.label :session, "Session" %>
+    <%= f.text_field :session %>
+  </div>
+
+  <div>
+    <%= f.submit "OK",class: 'formBtn' ,id:'sessionAgreeBtn' %>
+    <button class="btn formBtn" id="sessionNotAgreeBtn">X</button>
+  </div>
+<% end %>
