@@ -1,4 +1,4 @@
-<div class="container">
+<div class="book-index container">
 	<form class="form-inline d-flex justify-content-center md-form form-sm mt-0 my-6 mb-5">
 		<i class="fas fa-search" aria-hidden="true"></i>
 		<input
@@ -23,13 +23,11 @@
 					<% end %>
 				</div>
 				<div>
-					<h2 class="book-title">
-						<%= link_to book.title, book_path(book) %>
-					</h2>
+					<%= link_to book.title, book_path(book), class: "book-title" %>
 				</div>
 				<div>
 					<p class="book-author">
-						<%= link_to book.authors[0].name, profile_path(book.authors[0].username) %>
+						<%= link_to book.authors[0].name, profile_path(book.authors[0].username), class: "book-author" %>
 					</p>
 				</div>
 			</div>
