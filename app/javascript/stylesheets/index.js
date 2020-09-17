@@ -7,9 +7,11 @@ import "./text_editor"
 import "./book_search.scss"
 // require('./layout')
 
+import "./cart_review.scss";
 import "./avatar.scss";
 import "./home.scss";
 import "./text_editor";
 import "./books";
 import "./layout";
+
 
