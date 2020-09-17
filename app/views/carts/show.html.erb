@@ -1,24 +1,24 @@
 
 <%# <%= link_to "清空購物車", cart_path, method: :delete, class: "btn btn-default btn-danger" %> 
 
-<section class="cart-show">
+<section class="cart-show container">
   <div>
-    <header class="checkout_header flex justify-center text-xl mb-4">
-      <div style="width:20%" class=" h-12 mb-4 flex justify-center text-white bg-blue-500">
-        <p class="self-center">Preview</p>
+    <header class="checkout_header d-flex justify-content-center mb-5">
+      <div class=" h-12 py-2 border w-25 d-flex justify-content-center align-items-center bg-secondary">
+        Preview
       </div>
-      <div style="width:20%" class=" h-12 mb-4 flex justify-center text-gray-400 border border-gray-300">
-        <p class="self-center">Checkout</p>
+      <div class=" h-12 py-2 border w-25 d-flex justify-content-center align-items-center">
+        Checkout
       </div>
-      <div style="width:20%" class=" h-12 mb-4 flex justify-center text-gray-400 border border-gray-300">
-        <p class="self-center">Settings & Download</p>
+      <div class=" h-12 py-2 border w-25 d-flex justify-content-center align-items-center">
+        Settings & Download
       </div>
     </header>
   </div>
 
-  <div class="checkoutstage_review flex justify-center">
-    <table class="table w-3/5">
-      <thead class="text-gray-600">
+  <div class="checkoutstage_review d-flex justify-content-center">
+    <table class="table w-75">
+      <thead class="text-white">
         <tr>
           <th>商品</th>
           <th></th>
@@ -28,13 +28,13 @@
       </thead>
       <tbody>
       <% current_cart.items.each do |item| %>
-        <tr>
+        <tr class="text-white">
           <td>
             <div></div>
           </td>
           <td>
             <%= item.book.title %>
-            <div class="text-sm">
+            <div>
               <a href="">edit</a>
               <span class="mx-2">|</span>
               <a href="">Move to Wishlist</a>
@@ -42,7 +42,7 @@
               <a href="">Delete</a>
             </div>
           </td>
-          <td>
+          <td >
           <%= item.quantity %>
           </td>
           <td>
@@ -55,16 +55,23 @@
   </div>
     
   
-  <div class="w-4/5 flex justify-end ml- mt-10">
-    <span>總計</span>
-  </div>
-  <div class="w-4/5 flex justify-end ml- text-3xl">
-    <%= current_cart.total_price %>
+  <div class="d-flex justify-content-center">
+    <div class="w-75 d-flex justify-content-end align-items-center">總計</div>
   </div>
 
-  <button class="w-4/5 flex justify-end ml- mt-10">
-    <%= link_to "結帳", books_path, class: "w-24 bg-blue-500 hover:bg-blue-700 text-white text-center font-bold py-2 px-4 rounded" %>
-  </button>
+  <div class="check-out d-flex justify-content-center">
+    <div class="w-75 d-flex justify-content-end align-items-center">
+    	<%= current_cart.total_price%>
+    </div>
+  </div>
+
+  
+  <div class="d-flex justify-content-center mt-5">
+    <div class="w-75 d-flex justify-content-end align-items-center">
+      <%= link_to "結帳", payment_cart_path, class:"text-white w-25 d-flex justify-content-center btn", style:"background-color: #e09a5f" %>
+    </div>
+  </div>
+    
 
 </section>
 
