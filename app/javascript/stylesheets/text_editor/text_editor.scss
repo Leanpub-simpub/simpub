@@ -1,0 +1,95 @@
+.book_name {
+  font-size: 30px;
+  padding: 10px;
+}
+.wrap {
+  display: flex;
+  width: 100%;
+
+  .custom {
+    display: block;
+    width: 42.5%;
+    height: 100vh;
+    .CodeMirror {
+      width: 100%;
+      height: 100vh;
+      font-size: 20px;
+    }
+  }
+  #targetDiv {
+    border: 1px solid #333333;
+    width: 42.5%;
+    height: 100vh;
+    padding: 10px 10px 10px 10px;
+    overflow-y: scroll;
+    
+      // 客製修改
+    h1 {
+      padding-bottom: .3em;
+      font-size: 2em;
+      border-bottom: 1px solid #eee;
+    }
+    h2 {
+      padding-bottom: .3em;
+      font-size: 1.5em;
+      border-bottom: 1px solid #eee;
+    }
+    h6 {
+      font-size: .85em;
+      color: #777;
+    }
+    ul {
+      margin-left: 1em;
+      li::before {
+        content: " ";
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        background-color: gray;
+        border-radius: 50%;
+        margin-bottom: 2px;
+        margin-right: 15px;
+      }
+    }
+    
+    ol {
+      margin-left: 2em;
+    }
+
+    table {
+      display: block;
+      width: 100%;
+      overflow: auto;
+      word-break: keep-all;
+    }
+
+    table th,table td {
+      padding: 6px 13px;
+      border: 1px solid #ddd;
+    }
+
+    a {
+    color: #337ab7;
+    text-decoration: none;
+    }
+
+    hr {
+      height: .25em;
+      padding: 0;
+      margin: 24px 0;
+      background-color: #e7e7e7;
+      border: 0;
+    }
+    .line-index {
+      display: inline-block;
+      margin-left: -20px; 
+      margin-right: 20px;
+      border-right: 3px solid greenyellow;
+      padding-right: 10px;
+    }
+  }
+}
+
+
+
+

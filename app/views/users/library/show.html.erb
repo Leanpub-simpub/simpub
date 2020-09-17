@@ -1,0 +1,57 @@
+<div class="container m-5">
+  <div class="text-4xl mb-4">Library</div>
+
+  <div class="row">
+    <% @books.each do |book| %>
+    <div class="col-2">
+      <div class="library">
+        <div class="cover">
+          <!-- 加入判斷避免該欄位使用假圖壞掉的 bug -->
+          <a href="#collapseBook" data-toggle="collapse" data-target="#collapseBook">
+            <% if book.cover_data %>
+              <%= image_tag book.cover_url(:small), class: "w-60"%>
+            <% else %>
+              <img class="w-100" src="https://picsum.photos/200/250/?random=<%= rand(100) %>">
+            <% end %>
+          </a>
+        </div>
+
+        <div><%= book.title %></div>
+        <!-- 加入判斷避免沒上傳檔案的書籍連結壞掉 -->
+        <% if book.md_data %>
+        <p><%= link_to "下載", book.md_url, target: "_blank" %></p>
+        <% else %>
+        <p>沒有上傳 PDF</p>
+        <% end %>
+      </div>
+    </div>
+
+    <% end %>
+  </div>
+</div>
+
+<div class="collapse" id="collapseBook">
+  <div class="card card-body">
+    <div class="container-2 flex">
+      <div class="row">
+        <%#= image_tag book.cover_url(:medium), class: "w-52"%>
+        <img src="https://picsum.photos/id/684/600/400" alt="" />
+      </div>
+      <div>
+        <h2 class="book-info">title</h2>
+        <a href="#" class="author">author</a>
+        <h2 class="Read this book">Read this book</h2>
+        <a href="#" class="PDF"><i class="fas fa-laptop">PDF</i></a><br>
+        <a href="#" class="EPUB"><i class="fas fa-mobile-alt">EPUB</i></a><br>
+        <a href="#" class="MOBI"><i class="fas fa-tablet-alt">MOBI</i></a><br>
+        <a href="#" class="Leanpub text-lg font-extrabold"><i class="fab fa-leanpub">Read on Leanpub</i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+
+</script>

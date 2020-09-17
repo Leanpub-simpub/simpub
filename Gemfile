@@ -23,18 +23,21 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'font-awesome-sass', '~> 5.13.0'
-
+gem 'tailwindcss', '~> 1.0.0'
 
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails', '~> 2.7', '>= 2.7.6'
+  # gem 'factory_girl_rails', '~> 4.9'
+  gem 'factory_bot', '~> 6.1'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -58,17 +61,34 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# 會員系統
 gem 'devise', '~> 4.7', '>= 4.7.2'
-gem 'paranoia', '~> 2.4', '>= 2.4.2'
-gem 'aasm', '~> 5.1', '>= 5.1.1'
-gem 'faker', '~> 2.13'
-gem 'factory_bot_rails', '~> 6.1'
-gem 'figaro', '~> 1.2'
-gem 'shrine', '~> 3.2', '>= 3.2.2'
-gem 'aws-sdk-s3', '~> 1.78'
-gem 'redcarpet', '~> 3.5'
 gem 'omniauth', '~> 1.9', '>= 1.9.1'
 gem 'omniauth-facebook', '~> 7.0'
 gem 'omniauth-google-oauth2', '~> 0.8.0'
 gem 'omniauth-github', '~> 1.4'
 
+# DB
+gem 'paranoia', '~> 2.4', '>= 2.4.2'
+gem 'faker', '~> 2.13'
+
+# S3
+gem 'aws-sdk-s3', '~> 1.78'
+gem 'shrine', '~> 3.2', '>= 3.2.2'
+gem 'mini_magick', '~> 4.10', '>= 4.10.1'
+
+# CSS
+gem 'kaminari', '~> 1.2', '>= 1.2.1'
+
+# 公鑰
+gem 'figaro', '~> 1.2'
+
+# Markdown
+gem 'redcarpet', '~> 3.5'
+
+# 金流
+gem "braintree", "~> 2.103.0"
+
+gem 'aasm', '~> 5.1', '>= 5.1.1'
+gem 'factory_bot_rails', '~> 6.1'

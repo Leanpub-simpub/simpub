@@ -4,73 +4,25 @@
 		<title>Simpub</title>
 		<%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
+    <%= javascript_pack_tag "application", "data-turbolinks-track": "reload" %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+		<%= stylesheet_pack_tag 'application' %>
+
+		<!-- 信用卡結帳頁面載入付款的 JS 檔 -->
+	  <%= javascript_pack_tag "payment", "data-turbolinks-track": "reload" if params[:controller] == "carts" && params[:action] == "payment" %>
+		<!-- 編輯個人資料 & 書籍封面的圖片預覽 JS 檔 -->
+	  <%= javascript_pack_tag "image_preview", "data-turbolinks-track": "reload" if (params[:controller] == "users/registrations" && params[:action] == "edit") or (params[:controller] == "books") %>
+
 	</head>
 
 	<body>
-		<nav class="layout-navbar navbar navbar-dark bg-dark">
-      <a href="/" class="navbar-brand">Simpub</a>
-      <%= link_to "Books", :books, class: "nav-item mx-2" %>
-      <a href="#" class="nav-item mx-2">Library</a>
-      <a href="#" class="nav-item mx-2">Purchase</a>
-      <a href="#" class="nav-item mx-2">Create a Books</a>
-      <a href="#" class="nav-item mx-2">My Writings</a>
-      <form class="form-inline ml-auto">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-      </form>
-      <div class="mx-2 d-flex flex-row">
-        <a href="#">
-          <i class="nav-icon mg-auto mx-2 fas fa-shopping-cart"></i>
-        </a>
-        <% if user_signed_in? %>
-          <a href="#">
-            <i class="nav-icon mg-auto mx-2 fas fa-heart"></i>
-          </a>
-          <a href="#">
-            <i class="nav-icon mg-auto mx-2 fas fa-bell"></i>
-          </a>
-        <% else %>
-          <%= link_to "Sign up", new_user_registration_path ,class: "mx-2" %>
-          <%= link_to "Sign in", new_user_session_path ,class: "mx-2" %>
-        <% end %>
-      </div>
-      <% if user_signed_in?  %>
-        <div class="fix-down">
-          <nav class="navbar navbar-dark bg-dark">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          </nav>
-        </div>
-      <% end %>
-      <div class="layout-dropdown collapse position-absolute w-100 ml-auto" id="navbarToggleExternalContent">
-        <div class="layout-dropdown-child position-absolute bg-dark px-4 py-1 ml-auto col-2 col-lg-2">
-          <div class="row mx-auto align-items-center">
-            <div class="nav-avatar">
-              <img src="https://www.nicepng.com/png/full/136-1366211_group-of-10-guys-login-user-icon-png.png" alt="">
-            </div>
-            <div>
-              <p class= "nav-user-info my-0 px-2">user name</p> 
-              <p class= "nav-user-info my-0 px-2">user email</p> 
-            </div>
-          </div>
-          <div class="py-2">
-            <%= link_to "Create a Book", :new_book, class: "nav-drop-item" %>
-          </div>
-          <div class="py-2"><a class="nav-drop-item" href="#">My Writings</a></div>
-          <div class="py-2"><a class="nav-drop-item" href="#">Edit Profile</a></div>
-          <div class="py-2">
-            <%= link_to "Sign Out", :destroy_user_session, method: :delete, class: "sign_out_btn"%>
-          </div>
-        </div>
-      </div>
-    </nav>
-    
+		<%= render "shared/frontend/navbar" %>
 		<p class="notice"><%= notice %></p>
 		<p class="alert"><%= alert %></p>
+    
 		<%= yield %>
+		<%= render "shared/frontend/footer" %>
 	</body>
 </html>

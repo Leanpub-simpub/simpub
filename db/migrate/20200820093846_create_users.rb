@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.text :about
       t.string :avatar
       t.boolean :as_author
+      t.integer :order
 
       t.timestamps
     end

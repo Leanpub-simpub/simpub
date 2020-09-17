@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row">
+  
+    <div class="col-2">
+      <div class="square-img border rounded-circle">
+        <% if has_avatar?(current_user) %>
+          <%= image_tag current_user.avatar_url, class: "w-100 position-absolute" %>
+        <% else %>
+          <img src="https://www.nicepng.com/png/full/136-1366211_group-of-10-guys-login-user-icon-png.png" class="w-100 position-absolute">
+        <% end %>
+      </div>
+      <p class="text-center"><%= current_user.name %></p>
+    </div>
+
+    <div class="col-10">
+      <h2>Your Books</h2>
+      <div class="border">
+        <p>You can edit your books by clicking on the  <i class="fas fa-cog"></i>. You can also choose which books show up on your profile page by using the <i class="far fa-eye"></i>. Books which are in stealth mode, embargo or not accepted will not show up, of course...</p>
+        <p><%= button_to "Create Another Leanpub Book Now!", :new_book, method: :get %></p>
+        <p class="text-center">Published (<%= published_books.count %>)</p>
+
+        <div class="row justify-content-center">
+          <% published_books.each do |book| %>
+            <div class="pubbook-item border col-2 p-0 m-3">
+              <% if book.cover_data %>
+                <p><%= image_tag book.cover_url, class: "w-100" %></p>
+              <% else %>
+                <p class="w-100"><img src="https://picsum.photos/200/250/?random=<%= rand(100) %>", class="w-100"></p>
+              <% end %>
+              <p class="text-center"><%= link_to book.title, book_path(book) %></p>
+            </div>
+          <% end %>
+        </div>
+
+        <p class="text-center">Unpublished (<%= unpublish_books.count %>)</p>
+        <div class="row justify-content-center">
+          <% unpublish_books.each do |book| %>
+            <div class="pubbook-item border col-2 p-0 m-3">
+              <% if book.cover_data %>
+                <p><%= image_tag book.cover_url, class: "w-100" %></p>
+              <% else %>
+                <p class="w-100"><img src="https://picsum.photos/200/250/?random=<%= rand(100) %>", class="w-100"></p>
+              <% end %>
+              <p class="text-center"><%= link_to book.title, book_path(book) %></p>
+              <div class="text-center">
+                <%= link_to edit_book_path(book) do %>
+                  <i class="fas fa-pencil-alt text-dark"></i>
+                <% end %>
+                <%= link_to pricing_book_path(book) do %>
+                  <i class="far fa-eye-slash text-dark"></i>
+                <% end %>
+                <%= link_to editor_edit_book_path(book) do %>
+                  <i class="fas fa-cog text-dark"></i>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        
+        
+      </div>
+    </div>
+
+  </div>
+</div>

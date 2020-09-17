@@ -1,13 +1,51 @@
-<h1>所有的書</h1>
-
 <div class="container">
-  <div class="row">
-    <% @books.each do |book| %>
-      <div class="col-2">
-        <div class="cover"><img style="max-width: 100%;" src="https://picsum.photos/400/300/?random=1"></div>
-        <p><%= link_to book.title, book_path(book) %></p>
-        <p><%= book.authors[0].name %></p>
-      </div>
-    <% end %>
-  </div>
+	<form class="form-inline d-flex justify-content-center md-form form-sm mt-0 my-6 mb-5">
+		<i class="fas fa-search" aria-hidden="true"></i>
+		<input
+			class="form-control form-control-sm ml-3 w-75"
+			type="text"
+			placeholder="Search"
+			aria-label="Search"
+		/>
+	</form>
+
+	<div class="row books-show">
+		<% @books.each do |book| %>
+			<!-- 調整 RWD -->
+			<div class="col-6 col-sm-4 col-md-3 col-lg-2 border-black mt-8 p-3">
+				<div class="cover">
+					<% if has_cover?(book) %>
+						<%= image_tag book.cover_url(:small), class: "w-100" %>
+					<% else %>
+						<%= image_pack_tag "open_book_cover.jpeg", class: "w-100" %>
+					<% end %>
+				</div>
+				<div>
+					<h2 class="book-title">
+						<%= link_to book.title, book_path(book) %>
+					</h2>
+				</div>
+				<div>
+					<p class="book-author">
+						<%= link_to book.authors[0].name, profile_path(book.authors[0].username) %>
+					</p>
+				</div>
+			</div>
+
+<!-- 			<%# <%= link_to "加到購物車", add_cart_path(book), method: "post", class:
+			<%# "btn btn-xs bg-blue-900 text-white"%>     -->
+			
+			<div>
+				<h2 class="book-title"><%= book.title%></h3>
+			</div>
+			<div>
+				<p class="book-author"><%= link_to book.authors[0].name, profile_path(book.authors[0].username) %></p>
+			</div>
+		</div>
+
+		<% end %>
+	</div>
+
+	<%= paginate @books %>
 </div>
+
