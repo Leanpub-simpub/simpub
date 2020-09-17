@@ -28,7 +28,7 @@ class User < ApplicationRecord
                           email: auth.info.email,
                           password: Devise.friendly_token[0,20],
                           username: auth.info.name.gsub(/\s+/, '_').downcase)
-          user.save!
+          user.save!   
         end
       end
 
