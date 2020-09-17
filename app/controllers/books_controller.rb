@@ -73,6 +73,11 @@ class BooksController < ApplicationController
 
   def editor_edit
     @book = Book.find(params[:id])
+    s3 = Aws::S3::Client.new
+    object = s3.get_object(bucket: ENV['bucket'], key:"store/book/#{@book.title}/structure.json")    
+    structure_json = object.body.read
+    # 將新增的章節加入結構中
+    @json = JSON.parse(structure_json)
   end
 
   def editor_update

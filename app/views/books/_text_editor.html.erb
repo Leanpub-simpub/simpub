@@ -1,25 +1,24 @@
 <h1 class="book_name"><%=  @book.title %></h1>
 <div class="wrap">
   <div class="chapter_list">
-    <div >Chapter List</div>
-    <div class="d-flex justify-content-between">
+    <%# <div class="d-flex justify-content-between">
       <div class="chapter" data-order="0">Chapter_1</div>
       <div class="addsession">+</div>
     </div>
     <div class="session">session_1-1</div>
-    <div class="session">session_1-2</div>
-    <div class="d-flex justify-content-between">
-      <div class="chapter" data-order="1">Chapter_2</div>
-      <div class="addsession">+</div>
-    </div>
-    <div class="d-flex justify-content-between">
-      <div class="chapter" data-order="2">Chapter_3</div>
-      <div class="addsession">+</div>
-    </div>
-    <div class="d-flex justify-content-between">
-      <div class="chapter" data-order="3">Chapter_4</div>
-      <div class="addsession">+</div>
-    </div>
+    <div class="session">session_1-2</div> %>
+    <% json.each do |chapter,index| %>
+      <div class="d-flex justify-content-between">
+        <div class="chapter" data-order="<%= index%>"><%= chapter.keys[0] %></div>
+        <div class="addsession">+</div>
+      </div>
+        <% if chapter.values[0].length != 0 %>
+          <% chapter.values[0].each do |session| %>
+          <div class="session"><%= session %></div>
+          <% end %>
+        <% end %>
+    <% end %>
+
     <div id="addChapter">
       <i class="fa fa-plus-circle" aria-hidden="true"></i>
     </div>
