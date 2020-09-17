@@ -33,7 +33,10 @@
             <div></div>
           </td>
           <td>
-            <%= item.book.title %>
+            <div style="font-size:large" class="text-white font-weight-bold" >
+              <%= item.book.title %>
+            </div>
+
             <div>
               <a href="">edit</a>
               <span class="mx-2">|</span>
@@ -42,10 +45,10 @@
               <a href="">Delete</a>
             </div>
           </td>
-          <td >
+          <td style="font-size: large">
           <%= item.quantity %>
           </td>
-          <td>
+          <td style="font-size: large">
           <%= item.book.price %>
           </td>
         </tr>
@@ -61,7 +64,7 @@
 
   <div class="check-out d-flex justify-content-center">
     <div class="w-75 d-flex justify-content-end align-items-center">
-    	<%= current_cart.total_price%>
+    	<%= current_cart.total_price %>
     </div>
   </div>
 
@@ -71,7 +74,6 @@
       <%= link_to "結帳", payment_cart_path, class:"text-white w-25 d-flex justify-content-center btn", style:"background-color: #e09a5f" %>
     </div>
   </div>
-    
-
+  
 </section>
 
