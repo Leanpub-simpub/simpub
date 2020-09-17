@@ -3,4 +3,6 @@ import "./text_editor.js"
 
 import"./add_chapter.js"
 
-import"./syn_scroll"
+import"./syn_scroll.js"
+
+import "./chapter_list.scss"
