@@ -1,4 +1,4 @@
-<section class="container d-flex justify-content-center my-10">
+<section class="sign-up container flex justify-center my-10">
   <div class="mx-4">
     <h4 class="font-weight-normal">
         PUBLISH EARLY,<br />
@@ -63,8 +63,9 @@
           I accept the Simpub <a href="" class="text-blue-500">Terms of Service</a> and <a href="#">Privacy Policy</a>
         </span>
 
-        <%= f.submit "Create Account", class:"my-3 d-flex justify-content-center btn btn-primary col-10 " %>
-       
+        <div class="my-3" >
+          <%= f.submit "Create Account", class: "col-2 btn btn-danger main-button border-0 py-2 " %>
+        </div>
         <% end %>
         
         <%= render "devise/shared/links" %>
