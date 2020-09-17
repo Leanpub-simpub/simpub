@@ -3,7 +3,7 @@
   
     <div class="col-2">
       <div class="square-img border rounded-circle">
-        <% if has_avatar? %>
+        <% if has_avatar?(current_user) %>
           <%= image_tag current_user.avatar_url, class: "w-100 position-absolute" %>
         <% else %>
           <img src="https://www.nicepng.com/png/full/136-1366211_group-of-10-guys-login-user-icon-png.png" class="w-100 position-absolute">

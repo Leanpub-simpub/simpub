@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include CartsHelper
 
-  helper_method :published_books, :unpublish_books, :has_avatar?
+  helper_method :published_books, :unpublish_books, :has_avatar?, :has_cover?
   
   
 
@@ -14,7 +14,11 @@ class ApplicationController < ActionController::Base
     current_user.pub_books.unpublish_books
   end
 
-  def has_avatar?
-    current_user.avatar_data
+  def has_avatar?(user)
+    user.avatar_data
+  end
+
+  def has_cover?(book)
+    book.cover_data
   end
 end

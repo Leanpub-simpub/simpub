@@ -13,7 +13,9 @@
   </form>
   <div class="mx-2 d-flex flex-row">
     <%= link_to cart_path do %>
-      <i class="nav-icon mg-auto mx-2 fas fa-shopping-cart"></i>
+      <i class="nav-icon mg-auto mx-2 fas fa-shopping-cart">
+        <div class="cart-bubble"></div>
+      </i>
     <% end %>
     <% if user_signed_in? %>
       <a href="#">
@@ -43,7 +45,7 @@
         <div class="row mx-auto align-items-center">
           <div class="nav-avatar">
             <div class="square-img border rounded-circle">
-              <% if has_avatar? %>
+              <% if has_avatar?(current_user) %>
                 <%= image_tag current_user.avatar_url, class: "position-absolute" %>
               <% else %>
                 <img src="https://www.nicepng.com/png/full/136-1366211_group-of-10-guys-login-user-icon-png.png" alt="" class="position-absolute">

@@ -18,6 +18,6 @@ class Book < ApplicationRecord
   
   # has_rich_text :content
 
-  scope :published_books, -> { where(publish_state: "on-shelf")}
+  scope :published_books, -> { where(publish_state: "on-shelf").order(id: :desc)}
   scope :unpublish_books, -> { where(publish_state: "off-shelf")}
 end

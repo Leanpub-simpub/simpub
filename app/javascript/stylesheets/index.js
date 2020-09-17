@@ -5,7 +5,7 @@ import "./actiontext.scss";
 import "./avatar.scss"
 import "./text_editor"
 import "./book_search.scss"
-require('./layout')
+// require('./layout')
 
 import "./avatar.scss";
 import "./home.scss";
