@@ -3,11 +3,11 @@
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-<%= link_to "Create An Account", new_registration_path(resource_name) %><br />
+<%= link_to "Create An Account", new_registration_path(resource_name) %>
 <% end %>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+  <%= link_to "Forgot your password?", new_password_path(resource_name), class:"ml-3" %><br />
 <% end %>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
@@ -19,6 +19,7 @@
 <% end %>
 
 
+<<<<<<< HEAD
 	<%= link_to omniauth_authorize_path(resource_name, :facebook), class: " fab fa-facebook-f px-4 py-2 btn btn-primary" do %>
 	  <span class="text-base font-medium">FACEBOOK</span> 
 	<% end %>
@@ -32,6 +33,21 @@
 <span class="text-base font-medium">GITHUB</span> 
 <% end %>
 
+=======
+<div class="omniauth_authorize mt-2">
+  <%= link_to omniauth_authorize_path(resource_name, :facebook), class: "fab fa-facebook-f px-3 py-2 btn", style:"background-color: #3B5998" do %>
+    <span>FACEBOOK</span> 
+  <% end %>
+  
+  <%= link_to omniauth_authorize_path(resource_name, :google_oauth2), class: "fab fa-google-plus-g px-3 py-2 btn", style:"background-color: #DD4B39" do %>
+    <span>GOOGLE+</span> 
+  <% end %>
+  
+  <%= link_to omniauth_authorize_path(resource_name, :github), class: "fab fa-github px-3 py-2 btn", style:"background-color: #444444" do %>
+  <span>GITHUB</span> 
+  <% end %>
+</div>
+>>>>>>> 0b6671029ec3e8b9c39a90a9c3bbac6f15f87f7d
 
 
 

@@ -1,89 +1,74 @@
-<section class="container flex justify-center my-10">
+<section class="container d-flex justify-content-center my-10">
   <div class="mx-4">
-    <h2 class="text-base font-bold tracking-widest">
+    <h4 class="font-weight-normal">
         PUBLISH EARLY,<br />
         PUBLISH OFTEN.
-    </h2><br />
-    <div class="text-sm">
+    </h4>
+    <div>
       <p>
-        Authors, companies and universities use Simpub to</br>easily <strong>write,
+        Authors, companies and universities use Simpub to<br />easily <strong>write,
         publish and sell</strong> amazing <strong>in-progress<br />and completed ebooks and online courses.</strong>
-      </p><br />
+      </p>
       <p>
         By the way, this is a sign up page, but <strong>you actually<br />don't need to sign up here!</strong>
-      </p><br />
+      </p>
       <p>
-        We automatically create an account for you if you <strong><a href="#" class="text-blue-500">buy<br />
+        We automatically create an account for you if you <strong><a href="#">buy<br />
         a book or course as a reader</a></strong>.This is because many<br /> of our books and courses are published in-progress,<br />
         and you get free updates whenever an author<br />publishes a new version.
-      </p><br />
+      </p>
       <p>
-        We also automatically create an account for you if<br />you <strong><a href="#" class="text-blue-500">create a book or course as an author</a></strong>.Simpub<br />authors can create up to <strong>100 books or courses for<br /> free</strong>, or choose a Standard or Pro plan for more features.
-      </p><br />      
+        We also automatically create an account for you if<br />you <strong><a href="#">create a book or course as an author</a></strong>.Simpub<br />authors can create up to <strong>100 books or courses for<br /> free</strong>, or choose a Standard or Pro plan for more features.
+      </p>     
       <p>
         So why does this page exist? Simple: when it didn't,<br />people asked us where it was. So, it's here, and you<br />can use it if you wish!
-      </p><br />     
+      </p>     
       <p>
-        If you have an issue signing up here, just go <strong><a href="#" class="text-blue-500">buy a<br />book or course</a></strong> or <strong><a href="#" class="text-blue-500">create a book or course</a></strong> instead!
+        If you have an issue signing up here, just go <strong><a href="#" class="text-blue-500">buy a<br />book or course</a></strong> or <strong><a href="#">create a book or course</a></strong> instead!
       </p>
     </div>
   </div> 
 
-  <div class="mx-4 -my-1"> 
-    <h2 class="text-2xl font-light mb-2">Sign up</h2>
+  <div class="mx-4"> 
+    <h3 class="font-weight-light">Sign up</h3>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
-        <div class="font-light mb-2">
-        <%= f.label :name %>
-          <div>
-            <%= f.text_field :name, autofocus: true, class: "border-2 border-gray-400 w-full" %>
-          </div> 
-        </div>
         
-        <div class="mb-2 font-light">
+        <%= f.label :name %><br />
+        <%= f.text_field :name, autofocus: true, class:"col-10 mb-3" %>
+        <div class="w-100"></div>
+
         <%= f.label :email %><br />
-            <div>
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "border-2 border-gray-400 w-full"%>
-            </div>
-        </div>
-        
-        <div class="mb-2 font-light">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-10 mb-3" %>
+        <div class="w-100"></div>
+
         <%= f.label :username %><br />
-          <div>
-            <%= f.text_field :username, autofocus: true, class: "border-2 border-gray-400 w-full" %>
-          </div>
-        </div>
-        
-        <div class="mb-2 font-light">
+        <%= f.text_field :username, autofocus: true, class:"col-10 mb-3" %>
+        <div class="w-100"></div>
+
         <%= f.label :password %>
         <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %><br />
-          <div>
-            <%= f.password_field :password, autocomplete: "new-password", class: "border-2 border-gray-400 w-full" %>
-          </div>
-        </div>
-        
-        <div class="mb-2 font-light">
-        <%= f.label :password_confirmation %><br />
-          <div>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "border-2 border-gray-400 w-full" %>
-          </div>
-        </div>
 
+        <%= f.password_field :password, autocomplete: "new-password", class:"col-10 mb-3" %>
+        <div class="w-100"></div>
+
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"col-10 mb-3" %>
+        <div class="w-100"></div>
+      
         <input class="mr-2 leading-tight" type="checkbox">
         <span class="text-base">
-          I accept the Simpub <a href="" class="text-blue-500">Terms of Service</a> and <a href="#" class="text-blue-500">Privacy Policy</a>
+          I accept the Simpub <a href="" class="text-blue-500">Terms of Service</a> and <a href="#">Privacy Policy</a>
         </span>
-        
-        <div class="my-3" >
-          <%= f.submit "Create Account", class: "w-full py-2 rounded-sm text-white bg-blue-500 text-lg font-meduim" %>
-        </div>
-        
+
+        <%= f.submit "Create Account", class:"my-3 d-flex justify-content-center btn btn-primary col-10 " %>
+       
         <% end %>
         
         <%= render "devise/shared/links" %>
-  </div>
+   </div>
 </section>
 
 
