@@ -80,56 +80,60 @@ class BooksController < ApplicationController
   end
 
   def add_chapter
-
-    @book = Book.find(params[:id])
-    # 後來考慮把打 s3 做成一個 service
-    # storage = BookStorage.find(book.id)
-    # # render error if not find storage
-    # if storage.add_chapter("name")
-    #   # success
-    # else
-    #   # errors
-    #   storage.errors
-    
-    # 取到結構json檔資料
-    s3 = Aws::S3::Client.new
-    object = s3.get_object(bucket: ENV['bucket'], key:"store/book/#{@book.title}/structure.json")    
-    structure_json = object.body.read
-    # 將新增的章節加入結構中
-    structure_json = JSON.parse(structure_json)
-    structure_json[params[:chapter]] =[]
-    structure_json = structure_json.to_json
-    
-    s3 = Aws::S3::Resource.new
-    bucket = s3.bucket(ENV['bucket'])
-    structure = bucket.object("store/book/#{@book.title}/structure.json")
-    structure.put(body: structure_json)
-    # 將新的結構存到 structure.json檔案
-    chapter = bucket.object("store/book/#{@book.title}/#{params[:chapter]}.md")
-    chapter.put(body:'# New Chapter')
-    # 做出章節
+    if params[:chapter] != ""  
+      @book = Book.find(params[:id])
+      # 後來考慮把打 s3 做成一個 service
+      # storage = BookStorage.find(book.id)
+      # # render error if not find storage
+      # if storage.add_chapter("name")
+      #   # success
+      # else
+      #   # errors
+      #   storage.errors
+      
+      # 取到結構json檔資料
+      s3 = Aws::S3::Client.new
+      object = s3.get_object(bucket: ENV['bucket'], key:"store/book/#{@book.title}/structure.json")    
+      structure_json = object.body.read
+      # 將新增的章節加入結構中
+      structure_json = JSON.parse(structure_json)
+      chapter = { "#{params[:chapter]}": []}
+      structure_json.push(chapter)     
+      structure_json = structure_json.to_json
+      
+      s3 = Aws::S3::Resource.new
+      bucket = s3.bucket(ENV['bucket'])
+      structure = bucket.object("store/book/#{@book.title}/structure.json")
+      structure.put(body: structure_json)
+      # 將新的結構存到 structure.json檔案
+      chapter = bucket.object("store/book/#{@book.title}/#{params[:chapter]}.md")
+      chapter.put(body:'# New Chapter')
+      # 做出章節
+    end
   end
 
   def add_session
     @book = Book.find(params[:id])
-   
-    # 取到結構json檔資料
-     s3 = Aws::S3::Client.new
-     object = s3.get_object(bucket: ENV['bucket'], key:"store/book/#{@book.title}/structure.json")    
-     structure_json = object.body.read
-     # 將新增的 session 加入結構中
-     structure_json = JSON.parse(structure_json)
-     structure_json[params[:chapter]].push(params[:session])
-     structure_json = structure_json.to_json
-     
-     s3 = Aws::S3::Resource.new
-     bucket = s3.bucket(ENV['bucket'])
-     structure = bucket.object("store/book/#{@book.title}/structure.json")
-     structure.put(body: structure_json)
-     # 將新的結構存到 structure.json檔案
-     chapter = bucket.object("store/book/#{@book.title}/#{params[:session]}.md")
-     chapter.put(body:'# New Session')
-     # 做出 session 檔案
+    
+    if params[:session] != ""
+      # 取到結構json檔資料
+      s3 = Aws::S3::Client.new
+      object = s3.get_object(bucket: ENV['bucket'], key:"store/book/#{@book.title}/structure.json")    
+      structure_json = object.body.read
+      # 將新增的 session 加入結構中
+      structure_json = JSON.parse(structure_json)
+      structure_json[params[:order].to_i][params[:chapter]].push(params[:session])
+      structure_json = structure_json.to_json
+      
+      s3 = Aws::S3::Resource.new
+      bucket = s3.bucket(ENV['bucket'])
+      structure = bucket.object("store/book/#{@book.title}/structure.json")
+      structure.put(body: structure_json)
+      # 將新的結構存到 structure.json檔案
+      chapter = bucket.object("store/book/#{@book.title}/#{params[:session]}.md")
+      chapter.put(body:'# New Session')
+      # 做出 session 檔案
+    end
   end
   
 
@@ -146,10 +150,10 @@ class BooksController < ApplicationController
     s3 = Aws::S3::Resource.new
     bucket = s3.bucket(ENV['bucket'])
     structure = bucket.object("store/book/#{title}/structure.json")
-    a = {Chapter_1:[]}
+    a = [Chapter_1:[]]
     a = a.to_json
     structure.put(body: a )
-    chapter = bucket.object("store/book/#{title}/Chapter1.md")
+    chapter = bucket.object("store/book/#{title}/Chapter_1.md")
     chapter.put(body:'# Chapter_1')
   end
   

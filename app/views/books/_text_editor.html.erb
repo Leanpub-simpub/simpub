@@ -3,14 +3,23 @@
   <div class="chapter_list">
     <div >Chapter List</div>
     <div class="d-flex justify-content-between">
-      <div class="chapter">Chapter_1</div>
+      <div class="chapter" data-order="0">Chapter_1</div>
       <div class="addsession">+</div>
     </div>
     <div class="session">session_1-1</div>
     <div class="session">session_1-2</div>
-    <div class="chapter">Chapter_2</div>
-    <div class="chapter">Chapter_3</div>
-    <div class="chapter">Chapter_4</div>
+    <div class="d-flex justify-content-between">
+      <div class="chapter" data-order="1">Chapter_2</div>
+      <div class="addsession">+</div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <div class="chapter" data-order="2">Chapter_3</div>
+      <div class="addsession">+</div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <div class="chapter" data-order="3">Chapter_4</div>
+      <div class="addsession">+</div>
+    </div>
     <div id="addChapter">
       <i class="fa fa-plus-circle" aria-hidden="true"></i>
     </div>
@@ -19,19 +28,7 @@
   <div id="targetDiv"></div>                                   <%# 給 markdown-it 塞 md to html 的東西 %>
 </div>
 
-<%# <div class="chapterCreate x">
-  <div>Add New Chapter</div>
-  <div>
-    <label for="chapterName">Chapter Name</label>
-    <input type="text" name="chapterName">
-  </div>
-  <div>
-    <button class="btn chapterBtn" id="agreeBtn">OK</button>
-    <button class="btn chapterBtn" id="notAgreeBtn">X</button>
-  </div>
-</div> %>
-
-
+<%# add chapter form %>
 <%= form_with url: add_chapter_book_path(book),class: "chapterCreate x" do |f| %>
   <div>Add New Chapter</div>
 
@@ -46,11 +43,14 @@
   </div>
 <% end %>
 
-
+<%# add session form %>
 <%= form_with url: add_session_book_path(book),class: "sessionCreate x" do |f| %>
   <div>Add New Session</div>
   <div>
-    <%= f.text_field :chapter ,class: 'x', id:'forSessionRecord'%>
+    <%= f.text_field :chapter ,class: 'x', id:'chapterForSessionRecord'%>
+    <%= f.text_field :order ,class: 'x', id:'orderForSessionRecord'%>  
+  </div>
+  <div>
   </div>
   <div>
     <%= f.label :session, "Session" %>

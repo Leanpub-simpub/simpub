@@ -44,9 +44,10 @@ window.addEventListener('turbolinks:load',()=>{
       addSessionBtn.addEventListener('click',()=>{
         sessionform.classList.remove('x')
 
-        let chapter = addSessionBtn.previousSibling.previousSibling.textContent
+        let chapter = addSessionBtn.previousSibling.previousSibling
         //  addSession 是 ＋ 前一個 DOM 是 chapter::before 再前一個才是 chapter 
-        document.querySelector('#forSessionRecord').value = chapter
+        document.querySelector('#chapterForSessionRecord').value = chapter.textContent
+        document.querySelector('#orderForSessionRecord').value = chapter.dataset.order
       })
     })
 
