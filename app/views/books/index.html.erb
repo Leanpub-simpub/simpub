@@ -23,23 +23,14 @@
 					<% end %>
 				</div>
 				<div>
-					<%= link_to book.title, book_path(book), class: "book-title" %>
+					<h2 class="book-title"><%= book.title%></h3>
 				</div>
 				<div>
-					<p class="book-author">
-						<%= link_to book.authors[0].name, profile_path(book.authors[0].username), class: "book-author" %>
-					</p>
+					<p class="book-author"><%= link_to book.authors[0].name, profile_path(book.authors[0].username) %></p>
 				</div>
 			</div>
 			<%# <%= link_to "加到購物車", add_cart_path(book), method: "post", class:
 			<%# "btn btn-xs bg-blue-900 text-white"%>    
-			
-			<div>
-				<h2 class="book-title"><%= book.title%></h3>
-			</div>
-			<div>
-				<p class="book-author"><%= link_to book.authors[0].name, profile_path(book.authors[0].username) %></p>
-			</div>
 		</div>
 
 		<% end %>
