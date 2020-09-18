@@ -1,7 +1,9 @@
 class CartsController < ApplicationController
 
   def add
-    current_cart.add_item(params[:id]) 
+    cart_price = params[:cart_price][1..-1].to_i
+    
+    current_cart.add_item(params[:id], cart_price) 
     session[Cart::SessionKey] = current_cart.serialize
   end
 
