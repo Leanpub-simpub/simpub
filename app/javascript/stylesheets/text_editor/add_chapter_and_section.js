@@ -19,7 +19,7 @@ window.addEventListener('turbolinks:load',()=>{
     let chapterform = document.querySelector('.chapterCreate')
     let addSection = document.querySelectorAll('.addsection')
     let sectionform = document.querySelector('.sectionCreate')
-
+    let sectionInsetTarget // 之後新增 section 要當作位置參照
     chapterList.addEventListener('click',(e)=>{
       chapterList.querySelectorAll('div').forEach((div)=>{
         div.classList.remove('active')
@@ -54,6 +54,18 @@ window.addEventListener('turbolinks:load',()=>{
         //將新增的 chapter 在加到 chapter_list
         let chapterDOM = document.importNode(chapterTemplate.content,true)
         chapterDOM.querySelector('.chapter').textContent = chapterInput.value
+        let order = document.querySelectorAll('.chapter').length
+        chapterDOM.querySelector('.chapter').dataset.order = order
+        chapterDOM.querySelector('.addsection').addEventListener('click',(e)=>{
+          e.stopPropagation()
+          sectionform.classList.remove('x')
+          chapterform.classList.add('x')
+          let chapter = addSectionBtn.previousSibling.previousSibling
+          //  addSection 是 ＋ 前一個 DOM 是 chapter::before 再前一個才是 chapter 
+          document.querySelector('#chapterForSectionRecord').value = chapter.textContent
+          document.querySelector('#orderForSectionRecord').value = chapter.dataset.order
+          
+        })
         chapterList.insertBefore(chapterDOM,addChapter)
         setTimeout(function(){
           chapterInput.value = ""
@@ -77,11 +89,13 @@ window.addEventListener('turbolinks:load',()=>{
         //  addSection 是 ＋ 前一個 DOM 是 chapter::before 再前一個才是 chapter 
         document.querySelector('#chapterForSectionRecord').value = chapter.textContent
         document.querySelector('#orderForSectionRecord').value = chapter.dataset.order
+        sectionInsetTarget = addSectionBtn.parentElement
       })
     })
 
     let sectionAgree = document.querySelector('#sectionAgreeBtn')
     let sectionInput = document.querySelector('[name="section"]')
+    
     sectionAgree.addEventListener('click',()=>{
       if(sectionInput.value === "" ){
         // 如果沒填 section 名稱
@@ -97,10 +111,11 @@ window.addEventListener('turbolinks:load',()=>{
         sectionform.classList.add('x')
         let sectionDOM = document.importNode(sectionTemplate.content,true)
         sectionDOM.querySelector('.section').textContent = sectionInput.value
-
         
-        chapterList.insertBefore(sectionDOM,addChapter)
-
+        // sectionDOM sectionInsetTarget
+        
+        chapterList.insertBefore(sectionDOM,sectionInsetTarget.nextElementSibling)
+       
 
         // addSectionBtn.previousSibling.previousSibling.insertAdjacentElement("afterend",sectionDOM)
         setTimeout(function(){
@@ -117,3 +132,4 @@ window.addEventListener('turbolinks:load',()=>{
   }
 
 })
+

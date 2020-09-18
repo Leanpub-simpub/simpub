@@ -1,9 +1,9 @@
 <h1 class="book_name"><%=  @book.title %></h1>
 <div class="wrap">
   <div class="chapter_list">
-    <% json.each do |chapter,index| %>
+    <% json.each_with_index do |chapter,index| %>
       <div class="d-flex justify-content-between">
-        <div class="chapter" data-order="<%= index%>"><%= chapter.keys[0] %></div>
+        <div class="chapter" data-order=<%= index%>><%= chapter.keys[0] %></div>
         <div class="addsection">+</div>
       </div>
       <% if chapter.values[0].length != 0 %>
