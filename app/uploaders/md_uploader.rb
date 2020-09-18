@@ -1,2 +1,3 @@
-class MdUploader < Shrine
+class MdUploader < ApplicationUploader
+  plugin :pretty_location, identifier: :title
 end

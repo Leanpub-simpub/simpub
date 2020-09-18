@@ -3,7 +3,7 @@ class BooksController < ApplicationController
   before_action :find_book, except: [:index, :new, :create]
 
   def index
-    @books = Book.published_books
+    @books = Book.published_books.page(params[:page]).per(24)
   end
   
   def show
@@ -17,8 +17,9 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
+    @tags = Tag.all.map(&:name)
   end
-
+  
   def create
     @book = Book.new(book_params)
     @book.authors << current_user
@@ -41,13 +42,15 @@ class BooksController < ApplicationController
 
 
   def edit
+    @tags = Tag.all.map(&:name)
   end
-
+  
   def update
     if @book.update(book_params)
       redirect_to pricing_book_path(@book)
     else
       render :edit
+      @tags = Tag.all.map(&:name)
     end
   end
 
@@ -80,7 +83,7 @@ class BooksController < ApplicationController
 
   private
   def book_params
-    params.require(:book).permit(:cover, :title, :about, :price, :catalog, :completeness, :md)
+    params.require(:book).permit(:cover, :title, :about, :price, :catalog, :completeness, :md, { tag_items: [] })
   end
 
   def find_book

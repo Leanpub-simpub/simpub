@@ -1,0 +1,49 @@
+body {
+	background-color: black;
+}
+
+// 網站主視覺色
+.main-color {
+	color: #e09a5f;
+}
+
+.home {
+	p,
+	h1,
+	h2,
+	button,
+	span,
+	button,
+	.slogan {
+		color: #e09a5f;
+	}
+}
+
+.content-text {
+	margin-top: 30px;
+}
+.main-button {
+	background-color: #e09a5f;
+	color: white;
+}
+
+.sign-in,
+.sign-up,
+.cart-show,
+.cart-payment,
+.edit-profile,
+.cart-show,
+.book-index,
+.book-new {
+	i,
+	a,
+	div,
+	span {
+		color: #e09a5f;
+	}
+
+	button {
+		background-color: #e09a5f;
+		color: white;
+	}
+}

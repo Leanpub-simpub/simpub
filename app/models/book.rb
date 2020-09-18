@@ -18,6 +18,24 @@ class Book < ApplicationRecord
   
   # has_rich_text :content
 
-  scope :published_books, -> { where(publish_state: "on-shelf")}
+  scope :published_books, -> { where(publish_state: "on-shelf").order(id: :desc)}
   scope :unpublish_books, -> { where(publish_state: "off-shelf")}
+
+
+  
+  # 可以用 Book.tagge_with(tagname) 來找到文章
+  def self.tagged_with(name)
+    Tag.find_by!(name: name).books
+  end
+  
+  # 如果要取用 tag_items，可以加上這個 getter
+  def tag_items
+    tags.map(&:name)
+  end
+  
+  # tag_items 的 setter
+  def tag_items=(names)
+    self.tags = names.map{|item|
+      Tag.where(name: item.strip).first_or_create! unless item.blank?}.compact!
+  end
 end
