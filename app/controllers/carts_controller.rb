@@ -7,7 +7,7 @@ class CartsController < ApplicationController
 
   def show
     respond_to do |format|
-      format.html {}
+      format.html
       format.json { @cart = session[Cart::SessionKey] }
     end
   end
