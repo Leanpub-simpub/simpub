@@ -1,18 +1,17 @@
-<h1 class="book_name"><%=  @book.title %></h1>
+<h1 class="book_name"><%=  @book.title %><span></span></h1>
 <div class="wrap">
   <div class="chapter_list">
     <% json.each_with_index do |chapter,index| %>
-      <div class="d-flex justify-content-between">
-        <div class="chapter" data-order=<%= index%>><%= chapter.keys[0] %></div>
-        <div class="addsection">+</div>
-      </div>
+    <div class="d-flex justify-content-between">
+      <div class="chapter" data-order=<%= index%>><%= chapter.keys[0] %></div>
+      <div class="addsection">+</div>
+    </div>
       <% if chapter.values[0].length != 0 %>
         <% chapter.values[0].each do |section| %>
         <div class="section"><%= section %></div>
         <% end %>
       <% end %>
     <% end %>
-
     <div id="addChapter">
       <i class="fa fa-plus-circle" aria-hidden="true"></i>
     </div>
@@ -24,14 +23,12 @@
 <%# add chapter form %>
 <%= form_with url: add_chapter_book_path(book),class: "chapterCreate x" do |f| %>
   <div>Add New Chapter</div>
-
   <div>
     <%= f.label :chapter, "Chapter" %>
     <%= f.text_field :chapter %>
   </div>
-
   <div>
-    <%= f.submit "OK",class: 'formBtn', id:"chapterAgreeBtn"%>
+    <%= f.submit "OK",class: 'btn formBtn', id:"chapterAgreeBtn"%>
     <button class="btn formBtn" id="chapterNotAgreeBtn">X</button>
   </div>
 <% end %>
@@ -49,9 +46,12 @@
     <%= f.label :section, "Section" %>
     <%= f.text_field :section %>
   </div>
-
   <div>
-    <%= f.submit "OK",class: 'formBtn' ,id:'sectionAgreeBtn' %>
+    <%= f.submit "OK",class: 'btn formBtn' ,id:'sectionAgreeBtn' %>
     <button class="btn formBtn" id="sectionNotAgreeBtn">X</button>
   </div>
 <% end %>
+
+
+
+ 
