@@ -20,6 +20,8 @@ Rails.application.routes.draw do
       post :editor_update
       get :pricing
       patch :publish
+      post :add_chapter
+      post :add_section
     end
   end
 
