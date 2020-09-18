@@ -11,15 +11,15 @@
       <div class="d-flex align-items-center mb-2">
         <!-- 書籍作者頭像 -->
         <div class="book-show-author-avatar">
-          <% if has_avatar?(@book.authors[0]) %>
-            <%= image_tag @book.authors[0].avatar_url, class: "w-100" %>
-          <% else %>
+          <%# if has_avatar?(@book.authors[0]) %>
+            <%#= image_tag @book.authors[0].avatar_url, class: "w-100" %>
+          <%# else %>
             <img src="https://www.nicepng.com/png/full/136-1366211_group-of-10-guys-login-user-icon-png.png" alt="" class="w-100">
-          <% end %>
+          <%# end %>
         </div>
         <!-- 作者名稱 -->
         <div class="book-show-author-name pl-3">
-          <%= link_to link_to @book.authors[0].name, profile_path(@book.authors[0].username) r%>
+          <%= link_to link_to @book.authors[0].name, profile_path(@book.authors[0].username) %>
         </div>
       </div>
 
@@ -59,11 +59,11 @@
     <!-- 書籍封面 -->
 		<div class="cover col-4">
       <div class="mb-2">
-        <% if has_cover?(@book) %>
-          <%= image_tag @book.cover(:large).url, class: "w-100" %>
-        <% else %>
+        <%# if has_cover?(@book) %>
+          <%#= image_tag @book.cover(:large).url, class: "w-100" %>
+        <%# else %>
           <img class="w-100" src="https://picsum.photos/400/600/?random=<%= rand(100) %>">
-        <% end %>
+        <%# end %>
       </div>
       <div class="completeness">
         <div class="progress mx-auto mb-2"></div>
@@ -104,5 +104,3 @@
 		</div>
 	</div>
 </div>
-
-<!--  -->
