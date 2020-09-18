@@ -20,12 +20,16 @@ window.addEventListener('turbolinks:load',()=>{
     let addSection = document.querySelectorAll('.addsection')
     let sectionform = document.querySelector('.sectionCreate')
     let sectionInsetTarget // 之後新增 section 要當作位置參照
+    let current = document.querySelector('.book_name span')
+
+
     chapterList.addEventListener('click',(e)=>{
       chapterList.querySelectorAll('div').forEach((div)=>{
         div.classList.remove('active')
       })
       if(e.target.className == 'chapter' || e.target.className == 'section'){
         e.target.classList.add('active')
+        current.textContent = `----${e.target.textContent}`
       }
     })
 
