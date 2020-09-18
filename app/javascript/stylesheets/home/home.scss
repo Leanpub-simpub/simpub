@@ -1,5 +1,5 @@
 body {
-	background-color: #111;
+	background-color: black;
 }
 
 // 網站主視覺色
@@ -31,7 +31,10 @@ body {
 .sign-up,
 .cart-show,
 .cart-payment,
-.edit-profile {
+.edit-profile,
+.cart-show,
+.book-index,
+.book-new {
 	i,
 	a,
 	div,
