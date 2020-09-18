@@ -1,11 +1,34 @@
+const chapterTemplate = document.createElement("template");
+chapterTemplate.innerHTML = `
+    <div class="d-flex justify-content-between">
+      <div class="chapter"></div>
+      <div class="addsection">+</div>
+    </div>
+`
+const sectionTemplate = document.createElement("template");
+sectionTemplate.innerHTML = `
+    <div class="section"></div>
+`  
+
+
 window.addEventListener('turbolinks:load',()=>{
 
   if(document.querySelector('#addChapter')){
-
+    let chapterList = document.querySelector('.chapter_list')
     let addChapter =document.querySelector('#addChapter')
     let chapterform = document.querySelector('.chapterCreate')
     let addSection = document.querySelectorAll('.addsection')
     let sectionform = document.querySelector('.sectionCreate')
+
+    chapterList.addEventListener('click',(e)=>{
+      chapterList.querySelectorAll('div').forEach((div)=>{
+        div.classList.remove('active')
+      })
+      if(e.target.className == 'chapter' || e.target.className == 'section'){
+        e.target.classList.add('active')
+      }
+    })
+
     // add-chapter-form control
     addChapter.addEventListener('click',(e)=>{
       e.stopPropagation()
@@ -28,6 +51,10 @@ window.addEventListener('turbolinks:load',()=>{
         // 有填寫 chapter 名稱即可送出
         chapterform.submit()
         chapterform.classList.add('x')
+        //將新增的 chapter 在加到 chapter_list
+        let chapterDOM = document.importNode(chapterTemplate.content,true)
+        chapterDOM.querySelector('.chapter').textContent = chapterInput.value
+        chapterList.insertBefore(chapterDOM,addChapter)
         setTimeout(function(){
           chapterInput.value = ""
         },5000)
@@ -68,6 +95,14 @@ window.addEventListener('turbolinks:load',()=>{
         // 有填寫 section 名稱即可送出
         sectionform.submit()
         sectionform.classList.add('x')
+        let sectionDOM = document.importNode(sectionTemplate.content,true)
+        sectionDOM.querySelector('.section').textContent = sectionInput.value
+
+        
+        chapterList.insertBefore(sectionDOM,addChapter)
+
+
+        // addSectionBtn.previousSibling.previousSibling.insertAdjacentElement("afterend",sectionDOM)
         setTimeout(function(){
           sectionInput.value = ""
         },5000)

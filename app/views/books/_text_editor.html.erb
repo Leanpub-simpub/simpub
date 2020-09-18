@@ -6,11 +6,11 @@
         <div class="chapter" data-order="<%= index%>"><%= chapter.keys[0] %></div>
         <div class="addsection">+</div>
       </div>
-        <% if chapter.values[0].length != 0 %>
-          <% chapter.values[0].each do |section| %>
-          <div class="section"><%= section %></div>
-          <% end %>
+      <% if chapter.values[0].length != 0 %>
+        <% chapter.values[0].each do |section| %>
+        <div class="section"><%= section %></div>
         <% end %>
+      <% end %>
     <% end %>
 
     <div id="addChapter">

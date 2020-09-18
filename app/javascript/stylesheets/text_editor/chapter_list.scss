@@ -20,6 +20,10 @@
   margin-right: 10px;
 }
 
+.chapter:hover {
+  color: white;
+}
+
 .section::before{
   content: "-";
   width: 10px;
@@ -33,7 +37,9 @@
 .section {
   margin-left: 20px
 }
-
+.section:hover {
+  color: white;
+}
 #addChapter {
   border: 1px solid yellow;
   text-align: center;
@@ -84,4 +90,8 @@
 
 .x {
   display: none;
+}
+
+.active {
+  color: mediumblue;
 }

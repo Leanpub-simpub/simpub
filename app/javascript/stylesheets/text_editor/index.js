@@ -7,4 +7,3 @@ import"./syn_scroll.js"
 
 import "./chapter_list.scss"
 
-import "./chapter_list.js"
