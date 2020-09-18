@@ -8,11 +8,11 @@
         <div class="cover">
           <!-- 加入判斷避免該欄位使用假圖壞掉的 bug -->
           <a href="#collapseBook" data-toggle="collapse" data-target="#collapseBook">
-            <% if book.cover_data %>
-              <%= image_tag book.cover_url(:small), class: "w-60"%>
-            <% else %>
+            <%# if book.cover_data %>
+              <%#= image_tag book.cover_url(:small), class: "w-60"%>
+            <%# else %>
               <img class="w-100" src="https://picsum.photos/200/250/?random=<%= rand(100) %>">
-            <% end %>
+            <%# end %>
           </a>
         </div>
 
