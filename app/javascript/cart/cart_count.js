@@ -18,16 +18,14 @@ document.addEventListener("turbolinks:load", () => {
     fetch("http://localhost:3000/cart.json")
       .then(response => response.json())
       .then(cartItems => {
-        let cartBubble = document.querySelector(".cart-bubble")
+        let cartBubble = document.querySelector(".fa-shopping-cart").firstElementChild;
 
-        if (cartItems.length === 0) {
-          cartBubble.style.opacity = "0";
-        } else {
+        if (cartItems.length !== 0) {
           let cartCount = cartItems[0][1].reduce((sum, item) => {
-            return sum += item.quantity
+            return sum += item.quantity;
           }, 0).toString();
           
-          cartBubble.style.opacity = "1";
+          cartBubble.classList.add("cart-bubble");
           cartBubble.textContent = cartCount;
         }
       });

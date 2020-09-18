@@ -25,9 +25,10 @@
     <button class="btn btn-outline-black my-2 my-sm-0" type="submit"><i class="fas fa-search main-color"></i></button>
   </form>
   <div class="mx-2 d-flex flex-row">
+    <!-- 購物車 -->
     <%= link_to cart_path do %>
       <i class="nav-icon mg-auto mx-2 fas fa-shopping-cart main-color">
-        <div class="cart-bubble"></div>
+        <div></div>
       </i>
     <% end %>
     <% if user_signed_in? %>
