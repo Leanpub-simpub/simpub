@@ -1,14 +1,57 @@
 <h1 class="book_name"><%=  @book.title %></h1>
 <div class="wrap">
   <div class="chapter_list">
-    <div>Chapter List</div>
-    <div>Chapter 1</div>
-    <div>session 1-1</div>
-    <div>session 1-2</div>
-    <div>Chapter 2</div>
-    <div>Chapter 3</div>
-    <div>Chapter 4</div>
+    <% json.each_with_index do |chapter,index| %>
+      <div class="d-flex justify-content-between">
+        <div class="chapter" data-order=<%= index%>><%= chapter.keys[0] %></div>
+        <div class="addsection">+</div>
+      </div>
+      <% if chapter.values[0].length != 0 %>
+        <% chapter.values[0].each do |section| %>
+        <div class="section"><%= section %></div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <div id="addChapter">
+      <i class="fa fa-plus-circle" aria-hidden="true"></i>
+    </div>
   </div>
   <div id="sourceTA" class="custom" rows="10" cols="82"></div> <%# 給 codemirror 塞 code highlight 編輯器 %>
   <div id="targetDiv"></div>                                   <%# 給 markdown-it 塞 md to html 的東西 %>
 </div>
+
+<%# add chapter form %>
+<%= form_with url: add_chapter_book_path(book),class: "chapterCreate x" do |f| %>
+  <div>Add New Chapter</div>
+
+  <div>
+    <%= f.label :chapter, "Chapter" %>
+    <%= f.text_field :chapter %>
+  </div>
+
+  <div>
+    <%= f.submit "OK",class: 'formBtn', id:"chapterAgreeBtn"%>
+    <button class="btn formBtn" id="chapterNotAgreeBtn">X</button>
+  </div>
+<% end %>
+
+<%# add section form %>
+<%= form_with url: add_section_book_path(book),class: "sectionCreate x" do |f| %>
+  <div>Add New Section</div>
+  <div>
+    <%= f.text_field :chapter ,class: 'x', id:'chapterForSectionRecord'%>
+    <%= f.text_field :order ,class: 'x', id:'orderForSectionRecord'%>  
+  </div>
+  <div>
+  </div>
+  <div>
+    <%= f.label :section, "Section" %>
+    <%= f.text_field :section %>
+  </div>
+
+  <div>
+    <%= f.submit "OK",class: 'formBtn' ,id:'sectionAgreeBtn' %>
+    <button class="btn formBtn" id="sectionNotAgreeBtn">X</button>
+  </div>
+<% end %>

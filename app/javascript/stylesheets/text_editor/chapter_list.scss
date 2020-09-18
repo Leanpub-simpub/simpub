@@ -1,0 +1,98 @@
+.chapter_list {
+  width: 15%;
+  height: 100vh;
+  border: lightgray 2px solid;
+  margin-right: 5px;
+  padding: 10px;
+  font-size: 24px;
+  overflow-y: scroll;
+}
+
+.chapter_list div {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.chapter::before {
+  content: " ";
+  height: 10px;
+  width: 10px;
+  border: 2px solid red;
+  margin-right: 10px;
+}
+
+.chapter:hover {
+  color: white;
+}
+
+.section::before{
+  content: "-";
+  width: 10px;
+  display: inline-block;
+  height: 5px;
+  color: yellow;
+  line-height: 100%;
+  margin-right: 10px;
+}
+
+.section {
+  margin-left: 20px
+}
+.section:hover {
+  color: white;
+}
+#addChapter {
+  border: 1px solid yellow;
+  text-align: center;
+  font-size: 24px;
+  cursor: pointer;
+}
+#addChapter:hover {
+  background-color: wheat;
+  color: black;
+}
+
+.addsection {
+  cursor: pointer;
+}
+
+.addsection:hover {
+  color: white!important;
+}
+
+
+.chapterCreate,.sectionCreate {
+  width: 30%;
+  height: 25%;
+  border: 1px solid red;
+  font-size: 20px;
+  text-align: center;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  margin: auto;
+}
+
+.chapterCreate div{
+  margin: 10px;
+}
+
+.formBtn {
+  text-align: center;
+  width:50px;
+  padding: 5px;
+  font-size: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.x {
+  display: none;
+}
+
+.active {
+  color: mediumblue;
+}
