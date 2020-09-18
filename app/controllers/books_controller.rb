@@ -117,17 +117,17 @@ class BooksController < ApplicationController
     end
   end
 
-  def add_session
+  def add_section
     @book = Book.find(params[:id])
     
-    if params[:session] != ""
+    if params[:section] != ""
       # 取到結構json檔資料
       s3 = Aws::S3::Client.new
       object = s3.get_object(bucket: ENV['bucket'], key:"store/book/#{@book.title}/structure.json")    
       structure_json = object.body.read
-      # 將新增的 session 加入結構中
+      # 將新增的 section 加入結構中
       structure_json = JSON.parse(structure_json)
-      structure_json[params[:order].to_i][params[:chapter]].push(params[:session])
+      structure_json[params[:order].to_i][params[:chapter]].push(params[:section])
       structure_json = structure_json.to_json
       
       s3 = Aws::S3::Resource.new
@@ -135,9 +135,9 @@ class BooksController < ApplicationController
       structure = bucket.object("store/book/#{@book.title}/structure.json")
       structure.put(body: structure_json)
       # 將新的結構存到 structure.json檔案
-      chapter = bucket.object("store/book/#{@book.title}/#{params[:session]}.md")
-      chapter.put(body:'# New Session')
-      # 做出 session 檔案
+      chapter = bucket.object("store/book/#{@book.title}/#{params[:section]}.md")
+      chapter.put(body:'# New section')
+      # 做出 section 檔案
     end
   end
   

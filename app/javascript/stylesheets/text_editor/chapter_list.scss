@@ -20,7 +20,7 @@
   margin-right: 10px;
 }
 
-.session::before{
+.section::before{
   content: "-";
   width: 10px;
   display: inline-block;
@@ -30,7 +30,7 @@
   margin-right: 10px;
 }
 
-.session {
+.section {
   margin-left: 20px
 }
 
@@ -45,16 +45,16 @@
   color: black;
 }
 
-.addsession {
+.addsection {
   cursor: pointer;
 }
 
-.addsession:hover {
+.addsection:hover {
   color: white!important;
 }
 
 
-.chapterCreate,.sessionCreate {
+.chapterCreate,.sectionCreate {
   width: 30%;
   height: 25%;
   border: 1px solid red;

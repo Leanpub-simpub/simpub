@@ -1,7 +1,7 @@
 import "./text_editor.scss"
 import "./text_editor.js"
 
-import"./add_chapter_and_session.js"
+import"./add_chapter_and_section.js"
 
 import"./syn_scroll.js"
 
