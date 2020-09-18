@@ -7,14 +7,15 @@ window.addEventListener('turbolinks:load',()=>{
     let addSession = document.querySelectorAll('.addsession')
     let sessionform = document.querySelector('.sessionCreate')
     // add-chapter-form control
-    addChapter.addEventListener('click',()=>{
+    addChapter.addEventListener('click',(e)=>{
+      e.stopPropagation()
       chapterform.classList.remove('x')
+      sessionform.classList.add('x')
     })
   
     let chapterAgree = document.querySelector('#chapterAgreeBtn')
     let chapterInput = document.querySelector('[name="chapter"]')
-    chapterAgree.addEventListener('click',(e)=>{
-      e.preventDefault()
+    chapterAgree.addEventListener('click',()=>{
       if(chapterInput.value === "" ){
         // 如果沒填 chapter 名稱
         chapterInput.style.border = 'red 3px solid'
@@ -41,9 +42,10 @@ window.addEventListener('turbolinks:load',()=>{
 
     // add-session-form control
     addSession.forEach((addSessionBtn)=>{
-      addSessionBtn.addEventListener('click',()=>{
+      addSessionBtn.addEventListener('click',(e)=>{
+        e.stopPropagation()
         sessionform.classList.remove('x')
-
+        chapterform.classList.add('x')
         let chapter = addSessionBtn.previousSibling.previousSibling
         //  addSession 是 ＋ 前一個 DOM 是 chapter::before 再前一個才是 chapter 
         document.querySelector('#chapterForSessionRecord').value = chapter.textContent
@@ -53,8 +55,7 @@ window.addEventListener('turbolinks:load',()=>{
 
     let sessionAgree = document.querySelector('#sessionAgreeBtn')
     let sessionInput = document.querySelector('[name="session"]')
-    sessionAgree.addEventListener('click',(e)=>{
-      e.preventDefault()
+    sessionAgree.addEventListener('click',()=>{
       if(sessionInput.value === "" ){
         // 如果沒填 session 名稱
         sessionInput.style.border = 'red 3px solid'

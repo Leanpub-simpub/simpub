@@ -1,12 +1,6 @@
 <h1 class="book_name"><%=  @book.title %></h1>
 <div class="wrap">
   <div class="chapter_list">
-    <%# <div class="d-flex justify-content-between">
-      <div class="chapter" data-order="0">Chapter_1</div>
-      <div class="addsession">+</div>
-    </div>
-    <div class="session">session_1-1</div>
-    <div class="session">session_1-2</div> %>
     <% json.each do |chapter,index| %>
       <div class="d-flex justify-content-between">
         <div class="chapter" data-order="<%= index%>"><%= chapter.keys[0] %></div>
