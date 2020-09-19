@@ -6,7 +6,7 @@ class Cart
     @items = items
   end
   
-  def add_item(book_id, cart_price) 
+  def add_item(book_id, cart_price)
     found_item = items.find { |item|
       item.book_id == book_id and item.cart_price == cart_price
     }
