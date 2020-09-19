@@ -1,5 +1,6 @@
 document.addEventListener("turbolinks:load", () => {
   if (document.querySelector("#user-pay")) {
+    console.log(1234);
     const userPay = document.querySelector("#user-pay");
     const userPayShow = document.querySelector(".user-pay-show");
     const authorEarns = document.querySelector("#author-earns");
