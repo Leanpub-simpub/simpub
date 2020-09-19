@@ -18,6 +18,9 @@
 		position: relative;
 	}
 	.fa-shopping-cart {
+		.x {
+			display: none;
+		}
 		.cart-bubble {
 			text-align: center;
 			line-height: 16px;
