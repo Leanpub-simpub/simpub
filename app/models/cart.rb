@@ -6,13 +6,15 @@ class Cart
     @items = items
   end
   
-  def add_item(book_id) 
-    found_item = items.find { |item| item.book_id == book_id}
-
+  def add_item(book_id, cart_price)
+    found_item = items.find { |item|
+      item.book_id == book_id and item.cart_price == cart_price
+    }
+    
     if found_item 
       found_item.increment
     else
-      @items << CartItem.new(book_id)
+      @items << CartItem.new(book_id, cart_price)
     end
   end
   
@@ -26,7 +28,7 @@ class Cart
 
   def serialize
     all_items = items.map { |item|
-      { "book_id" => item.book_id, "quantity" => item.quantity}
+      { "book_id" => item.book_id, "cart_price" => item.cart_price, "quantity" => item.quantity}
     }
     { "items" => all_items } 
   end
@@ -36,7 +38,7 @@ class Cart
       new []
     else
       new hash["items"].map { |item_hash| 
-        CartItem.new(item_hash["book_id"], item_hash["quantity"])
+        @cart_item = CartItem.new(item_hash["book_id"], item_hash["cart_price"], item_hash["quantity"])
       }
     end
     # 1. 因為 Cart.from_hash 是類別方法，所以在定義方法的時候加上了 self.。

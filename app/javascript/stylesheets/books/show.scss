@@ -1,3 +1,10 @@
+.book-show-author-name > a {
+	color: #e09a5f;
+}
+.book-show-author-name > a:hover {
+	color: #e09a5f;
+}
+
 .book-show-author-avatar {
 	width: 40px;
 	height: 40px;
@@ -10,7 +17,7 @@
 
 .tags {
   span {
-    color: rgba(225, 154, 96, .7) !important;
+    color: rgba(225, 154, 96, .7);
     margin-right: 10px;
   }
 }
@@ -58,11 +65,34 @@
 		font-weight: 200;
 	}
 
+	.user-pay-box, .author-earns-box {
+		height: 28px;
+		width: 90px;
+		background-color: rgba(225, 154, 96, 0.5);
+		border-top: 2px solid black;
+		border-left: 2px solid black;
+		border-bottom: 2px solid black;
+		position: relative;
+
+		span.user-pay-show, span.author-earns-show {
+			color: black;
+			font-weight: 500;
+			position: absolute;
+			top: 0;
+			left: 5px;
+		}
+	}
+	.author-earns-box {
+		width: 80px;
+	}
 	input[type="range"] {
 		-webkit-appearance: none;
-		height: 25px;
+		height: 28px;
 		outline: none;
 		background-color: rgba(225, 154, 96, 0.5);
+		border-top: 2px solid black;
+		border-right: 2px solid black;
+		border-bottom: 2px solid black;
 	}
 	input[type="range"]::-webkit-slider-thumb {
 		-webkit-appearance: none;
@@ -72,6 +102,7 @@
 		background-color: black;
 		border: 2px solid #e09a5f;
 		border-radius: 12px;
+		box-shadow: 0 2px 10px 0 #111;
 	}
 }
 
@@ -82,19 +113,24 @@
 	}
 	span.hint {
 		font-size: 12px;
-		color: rgba(225, 154, 96, 0.7) !important;
+		color: rgba(225, 154, 96, 0.7);
 	}
 
 	.cart-price {
-		border: 2px solid rgba(225, 154, 96, 0.2);
+		border: 2px solid rgba(225, 154, 96, .3);
 		width: 140px;
 		height: 44px;
 		line-height: 38px;
 		font-size: 22px;
+		background-color: #111;
+		color: white;
+	}
+	.cart-price:focus {
+		outline: none;
 	}
 	.add-to-cart-btn {
 		background-color: #e09a5f;
-		color: black !important;
+		color: #111;
 		font-size: 22px;
 		font-weight: 700;
 		transition: 0.3s;
