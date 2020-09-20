@@ -22,11 +22,9 @@
         <div class="row justify-content-center">
           <% published_books.each do |book| %>
             <div class="pubbook-item border col-2 p-0 m-3">
-              <%# if book.cover_data %>
-                <p><%#= image_tag book.cover_url, class: "w-100" %></p>
-              <%# else %>
-                <p class="w-100"><img src="https://picsum.photos/200/250/?random=<%= rand(100) %>", class="w-100"></p>
-              <%# end %>
+              <div class="w-100">
+                <%= render "shared/frontend/bookcover", locals: {book: book, size: :small} %>
+              </div>
               <p class="text-center"><%= link_to book.title, book_path(book) %></p>
             </div>
           <% end %>
@@ -36,11 +34,9 @@
         <div class="row justify-content-center">
           <% unpublish_books.each do |book| %>
             <div class="pubbook-item border col-2 p-0 m-3">
-              <%# if book.cover_data %>
-                <p><%#= image_tag book.cover_url, class: "w-100" %></p>
-              <%# else %>
-                <p class="w-100"><img src="https://picsum.photos/200/250/?random=<%= rand(100) %>", class="w-100"></p>
-              <%# end %>
+              <div class="w-100">
+                <%= render "shared/frontend/bookcover", book: book %>
+              </div>
               <p class="text-center"><%= link_to book.title, book_path(book) %></p>
               <div class="text-center">
                 <%= link_to edit_book_path(book) do %>
@@ -56,7 +52,6 @@
             </div>
           <% end %>
         </div>
-        
         
       </div>
     </div>

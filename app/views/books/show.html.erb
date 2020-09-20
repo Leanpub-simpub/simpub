@@ -53,12 +53,7 @@
     <!-- 書籍封面 -->
 		<div class="cover col-4">
       <div class="mb-2">
-        <%# if has_cover?(@book) %>
-          <%#= image_tag @book.cover(:large).url, class: "w-100" %>
-          <%#= image_tag @book.cover_url, class: "w-100" %>
-        <%# else %>
-          <%= image_pack_tag "open_book_cover.jpeg", class: "w-100" %>
-        <%# end %>
+        <%= render "shared/frontend/book_cover", locals: {book: @book, size: :large} %>
       </div>
       <div class="completeness">
         <div class="progress mx-auto mb-2"></div>

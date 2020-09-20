@@ -8,20 +8,16 @@
         <div class="cover">
           <!-- 加入判斷避免該欄位使用假圖壞掉的 bug -->
           <a href="#collapseBook" data-toggle="collapse" data-target="#collapseBook">
-            <%# if book.cover_data %>
-              <%#= image_tag book.cover_url(:small), class: "w-60"%>
-            <%# else %>
-              <img class="w-100" src="https://picsum.photos/200/250/?random=<%= rand(100) %>">
-            <%# end %>
+            <%= render "shared/frontend/bookcover", locals: {book: book, size: :small} %>
           </a>
         </div>
 
         <div><%= book.title %></div>
         <!-- 加入判斷避免沒上傳檔案的書籍連結壞掉 -->
         <% if book.md_data %>
-        <p><%= link_to "下載", book.md_url, target: "_blank" %></p>
+          <p><%= link_to "下載", book.md_url, target: "_blank" %></p>
         <% else %>
-        <p>沒有上傳 PDF</p>
+          <p>沒有上傳 PDF</p>
         <% end %>
       </div>
     </div>

@@ -24,11 +24,7 @@
     <div class="row justify-content-center">
       <% @user.pub_books.each do |book| %>
         <div class="col-2">
-          <%# if book.cover_data %>
-            <%#= image_tag book.cover_url %>
-          <%# else %>
-            <img class="w-100" src="https://picsum.photos/200/250/?random=<%= rand(100) %>">
-          <%# end %>
+          <%= render "shared/frontend/bookcover", locals: {book: book, size: :small} %>
           <%= book.title %>
           <%= book.authors[0].name %>
         </div>
