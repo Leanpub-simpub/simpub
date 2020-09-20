@@ -2,12 +2,8 @@
   <div class="row">
   
     <div class="col-2">
-      <div class="square-img border rounded-circle">
-        <%# if has_avatar?(current_user) %>
-          <%#= image_tag current_user.avatar_url, class: "w-100 position-absolute" %>
-        <%# else %>
-          <img src="https://www.nicepng.com/png/full/136-1366211_group-of-10-guys-login-user-icon-png.png" class="w-100 position-absolute">
-        <%# end %>
+      <div>
+        <%= render "shared/frontend/user_avatar", user: current_user %>
       </div>
       <p class="text-center"><%= current_user.name %></p>
     </div>
@@ -23,7 +19,7 @@
           <% published_books.each do |book| %>
             <div class="pubbook-item border col-2 p-0 m-3">
               <div class="w-100">
-                <%= render "shared/frontend/bookcover", locals: {book: book, size: :small} %>
+                <%= render "shared/frontend/book_cover", locals: {book: book, size: :small} %>
               </div>
               <p class="text-center"><%= link_to book.title, book_path(book) %></p>
             </div>
@@ -35,7 +31,7 @@
           <% unpublish_books.each do |book| %>
             <div class="pubbook-item border col-2 p-0 m-3">
               <div class="w-100">
-                <%= render "shared/frontend/bookcover", book: book %>
+                <%= render "shared/frontend/book_cover", book: book %>
               </div>
               <p class="text-center"><%= link_to book.title, book_path(book) %></p>
               <div class="text-center">
