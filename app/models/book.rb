@@ -36,6 +36,6 @@ class Book < ApplicationRecord
   # tag_items 的 setter
   def tag_items=(names)
     self.tags = names.map{|item|
-      Tag.where(name: item.strip).first_or_create! unless item.blank?}.compact!
+      Tag.where(name: item.strip).first_or_create! unless item.blank?}.compact
   end
 end
