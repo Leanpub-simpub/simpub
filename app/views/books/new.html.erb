@@ -1,11 +1,15 @@
-<div class="book-new container">
-  <div class="row">
-    <div class="col-12">
-      <h1>new book</h1>
+<section class="book-new container d-flex justify-content-center mb-4">
+  <div>
+    <div class="d-flex justify-content-center">
+      <h1>Create a book</h1>
     </div>
+
+    <h5>Your Book</h5>
     
-    <div class="co-12">
+    <div class=" w-100 border-white border-bottom"></div>
+    
+    <div>
       <%= render "form", book: @book %>
     </div>
   </div>
-</div>
+</section>

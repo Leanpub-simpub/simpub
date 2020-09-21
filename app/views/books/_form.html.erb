@@ -19,12 +19,12 @@
 
   <div>
     <%= f.label :title, "書籍標題" %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class:"w-100 mb-3"%>
   </div>
 
   <div>
     <%= f.label :about, "關於此書" %>
-    <%= f.text_area :about %>
+    <%= f.text_area :about, class:"w-100 mb-3" %>
   </div>
 
   <!--
@@ -38,24 +38,26 @@
 
   <div>
     <%= f.label :tag_items, "標籤" %>
-    <select class="form-control select optional" multiple="multiple" name="book[tag_items][]" id="book_tag_items">
-      <%= options_for_select(@tags) %>
-    </select>
+    <div class="mb-3">
+      <select class="form-control select optional" multiple="multiple" name="books[tag_items][]" id="book_tag_items">
+      <%= options_for_select(@tags = []) %>
+      </select>
+    </div>
   </div>
 
   <div>
     <%= f.label :completeness, "完成度" %>
-    <%= f.number_field :completeness %>
+    <%= f.number_field :completeness, class:"w-100 mb-3" %>
   </div>
 
   <!-- 編輯器另外做一個頁面 -->
   <div>
     <%= f.hidden_field :md, value: book.cached_md_data %>
     <%= f.label :md, "上傳檔案" %>
-    <%= f.file_field :md %>
+    <%= f.file_field :md, class:"mb-3" %>
   </div>
 
   <div>
-    <%= f.submit "完成" %>
+    <%= f.submit "完成", class:"btn w-50 text-white", style:"background-color: #e09a5f" %>
   </div>
 <% end %>
