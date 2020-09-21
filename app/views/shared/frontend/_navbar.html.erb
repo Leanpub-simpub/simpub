@@ -16,7 +16,7 @@
       
       <!-- 寫過的書 -->
       <% if current_user.pub_books.count > 0 %>
-      <a href="#" class="nav-item main-color mr-3 text-lg">My Writings</a>
+      <%= link_to "My Writings", dash_board_books_path, class: "nav-item main-color mr-3 text-lg" %>
       <% end %>
     
   <% end %>
