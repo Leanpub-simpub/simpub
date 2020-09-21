@@ -7,19 +7,6 @@ body {
 	color: #e09a5f;
 }
 
-
-.home {
-	min-height: 80vh;
-	p,
-	h1,
-	h2,
-	button,
-	span,
-	button,
-	.slogan {
-		color: #e09a5f;
-	}
-}
 .main-button {
 	background-color: #e09a5f;
 	color: white;
@@ -43,27 +30,12 @@ body {
 .cart-show,
 .book-index,
 .book-new,
-
-.profile-show {
-	min-height: 70vh;
-  color: #e09a5f;
-	i,
-	a,
-	div,
-	span {
-		color: #e09a5f;
-	}
-
-	button {
-		background-color: #e09a5f;
-		color: white;
-	}
-
+.profile-show,
 .author {
 	color: #e09a5f;
 }
-
-.notice,.alert {
+.notice,
+.alert {
 	padding: 0px;
 	margin: 0px;
 }
