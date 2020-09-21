@@ -1,5 +1,3 @@
-
-
 <div class="show container">
 	<div class="row">
 		<div class="col-4 d-flex flex-column">
@@ -12,7 +10,7 @@
         <!-- 書籍作者頭像 -->
         <div class="book-show-author-avatar">
           <%# if has_avatar?(@book.authors[0]) %>
-            <%#= image_tag @book.authors[0].avatar_url, class: "w-100" %>
+            <%#= image_tag @book.authors[0].avatar_url, class: "w-100 rounded-circle" %>
           <%# else %>
             <img src="https://www.nicepng.com/png/full/136-1366211_group-of-10-guys-login-user-icon-png.png" alt="" class="w-100">
           <%# end %>
@@ -39,12 +37,6 @@
           <span>#<%= tag %></span>
         <% end %>
       </div>
-
-      <div class="tags mb-3 d-flex">
-        <% @book.tag_items.each do |tag| %>
-          <span>#<%= tag %></span>
-        <% end %>
-      </div>
       
 			<div class="button-group">
         <%= link_to "#", class: "btn w-50 p-1 mb-2" do %>
@@ -59,11 +51,7 @@
     <!-- 書籍封面 -->
 		<div class="cover col-4">
       <div class="mb-2">
-        <%# if has_cover?(@book) %>
-          <%#= image_tag @book.cover(:large).url, class: "w-100" %>
-        <%# else %>
-          <img class="w-100" src="https://picsum.photos/400/600/?random=<%= rand(100) %>">
-        <%# end %>
+        <%= render "shared/frontend/book_cover", locals: {book: @book, size: :large} %>
       </div>
       <div class="completeness">
         <div class="progress mx-auto mb-2"></div>
@@ -88,16 +76,29 @@
       <!-- Slider -->
 			<div class="slider mb-4">
         <p class="mb-1">YOU PAY</p>
-        <input type="range" min="<%= @book.price %>" max="<%= @book.price * 3 %>" class="w-100 mb-3">
+        <div class="user-pay d-flex">
+          <div class="user-pay-box">
+            <span class="user-pay-show">$<%= @book.price * 2 %></span>
+          </div>
+          <input id="user-pay" class="w-100 mb-3" type="range" min="<%= @book.price %>" max="<%= @book.price * 3 %>" value="<%= @book.price * 2 %>">
+        </div>
+
         <p class="mb-1">AUTHOR EARNS</p>
-        <input type="range" min="<%= @book.price %>" max="<%= @book.price * 3 %>" value="<%= @book.price * 2 %>" class="w-100">
+        <div class="author-earns d-flex">
+          <div class="author-earns-box">
+            <span class="author-earns-show">$<%= @book.price * 2 * 0.8 %></span>
+          </div>
+          <input id="author-earns" class="w-100" type="range" min="<%= @book.price * 0.8 %>" max="<%= @book.price * 4 %>" value="<%= @book.price * 2 %>">
+        </div>
       </div>
 
       <div class="add-to-cart-price mb-4">
         <span>YOU PAY</span>
         <span class="hint">(US$)</span>
-        <div class="cart-price text-center mt-1 mb-4">$<%= @book.price %></div>
-        <%= link_to "Add Ebook to Cart", add_cart_path(@book), method: :post, class: "add-to-cart-btn btn-danger main-button" %>
+        <%= form_with(url: add_cart_path(@book)) do |f| %>
+          <%= f.text_field :cart_price, class: "cart-price text-center mt-1 mb-4" %>
+          <%= f.submit "Add Ebook to Cart", class: "add-to-cart-btn btn" %>
+        <% end %>
       </div>
 
       <%# <%= link_to "Add to Wish List", "#", class: "add-to-wishlist" %>

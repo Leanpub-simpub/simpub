@@ -1,12 +1,8 @@
-<div class="container">
+<div class="profile-show container">
   <div class="row d-flex justify-content-center">
     <div class="col-2">
-      <div class="square-img border rounded-circle">
-        <%# if has_avatar?(@user) %>
-          <%#= image_tag @user.avatar_url, class: "w-100 position-absolute" %>
-        <%# else %>
-          <img src="https://www.nicepng.com/png/full/136-1366211_group-of-10-guys-login-user-icon-png.png" class="w-100 position-absolute">
-        <%# end %>
+      <div>
+        <%= render "shared/frontend/user_avatar", user: @user %>
       </div>
     </div>
   </div>
@@ -24,11 +20,7 @@
     <div class="row justify-content-center">
       <% @user.pub_books.each do |book| %>
         <div class="col-2">
-          <%# if book.cover_data %>
-            <%#= image_tag book.cover_url %>
-          <%# else %>
-            <img class="w-100" src="https://picsum.photos/200/250/?random=<%= rand(100) %>">
-          <%# end %>
+          <%= render "shared/frontend/book_cover", locals: {book: book, size: :small} %>
           <%= book.title %>
           <%= book.authors[0].name %>
         </div>

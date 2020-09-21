@@ -1,9 +1,10 @@
 class CartItem
-  attr_reader :book_id, :quantity
+  attr_reader :book_id, :quantity, :cart_price
 
-  def initialize(book_id, quantity = 1)
+  def initialize(book_id, cart_price = 0, quantity = 1)
     @book_id = book_id
     @quantity = quantity
+    @cart_price = cart_price
   end
   
   def increment(n = 1)
@@ -15,6 +16,6 @@ class CartItem
   end
 
   def price
-    book.price * quantity
+    @cart_price * quantity
   end
 end
