@@ -9,7 +9,7 @@
   <% if user_signed_in?  %>
     <!-- 個人書櫃 -->
     <%= link_to "Library", :library, class: "nav-item mr-3 text-lg main-color" %>
-    <a href="#" class="nav-item main-color mr-3 text-lg">Purchase</a>
+    <a href="/purchase" class="nav-item main-color mr-3 text-lg">Purchase</a>
 
     <!-- 寫書 -->
     <%= link_to "Create a Book", :new_book, class: "nav-item mr-3 text-lg main-color" %>
