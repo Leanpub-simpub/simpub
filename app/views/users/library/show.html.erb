@@ -1,6 +1,5 @@
 <div class="container m-5">
-  <div class="text-4xl mb-4">Library</div>
-
+  <div class="h3 text-white library">Library</div>
   <div class="row">
     <% @books.each do |book| %>
     <div class="col-2">
@@ -11,7 +10,6 @@
             <%= render "shared/frontend/book_cover", locals: {book: book, size: :small} %>
           </a>
         </div>
-
         <div><%= book.title %></div>
         <!-- 加入判斷避免沒上傳檔案的書籍連結壞掉 -->
         <% if book.md_data %>
@@ -21,7 +19,6 @@
         <% end %>
       </div>
     </div>
-
     <% end %>
   </div>
 </div>
@@ -45,9 +42,3 @@
     </div>
   </div>
 </div>
-
-
-
-<script>
-
-</script>
