@@ -49,7 +49,6 @@ class BooksController < ApplicationController
         # 在 s3 做出書的資料夾，chapter1.md，與 structure.json(存章節結構)
         book_start(@book.title)
         redirect_to dash_board_books_path
-        # redirect_to editor_new_book_path(@book)
       end
     else
       render :new
@@ -160,6 +159,17 @@ class BooksController < ApplicationController
     end
   end
   
+  def sample
+
+  end
+
+  def table_of_contents
+
+  end
+
+  def read
+    
+  end
 
   private
   def book_params

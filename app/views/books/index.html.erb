@@ -1,7 +1,7 @@
 <div class="book-index container">
-	<%= form_with(url: :search_books, method: :get, class: "book-search form-inline d-flex justify-content-center md-form form-sm mt-0 my-6 mb-5", local: true) do |f| %>
+	<%= form_with(url: :search_books, method: :get, class: "book-search form-inline d-flex justify-content-center md-form form-sm mt-5 mb-5", local: true) do |f| %>
 		<i class="fas fa-search" aria-hidden="true"></i>
-		<%= f.search_field :search, class: "book-search-input form-control form-control-sm ml-3 w-75", placeholder: "Search" %>
+		<%= f.search_field :search, class: "book-search-input form-control-sm  w-75 rounded-left", placeholder: "Search" %>
 	<% end %>
 
 	<div class="row books-show">

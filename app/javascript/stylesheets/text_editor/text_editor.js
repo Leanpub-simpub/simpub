@@ -1,6 +1,7 @@
 import CodeMirror from "codemirror/lib/codemirror.js" // 引入 codemirror 套件 
 import "codemirror/lib/codemirror.css"
-import "codemirror/theme/abcdef"                      // 編輯器的主題，黑底的主題
+import "codemirror/theme/mdn-like"                    // 編輯器的主題，黑底的主題
+import "codemirror/theme/abcdef" 
 import "codemirror/mode/markdown/markdown"            // markdown 語法 hightlight 
 import "codemirror/mode/ruby/ruby"
 import "codemirror/mode/javascript/javascript"
@@ -16,7 +17,7 @@ import markdownit from "markdown-it/dist/markdown-it"
 import hljs from 'highlightjs/highlight.pack'
 import "highlightjs/styles/github"
 window.addEventListener('turbolinks:load',()=>{
-  if(document.querySelector('#sourceTA')){
+  if(document.querySelector('#sourceTA') && document.querySelector('#targetDiv')){
     let myCodeMirror //使mycodemirror變成變數
     let contentArea = document.querySelector('#sourceTA')
     let editorConfig = {

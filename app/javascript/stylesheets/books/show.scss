@@ -1,3 +1,4 @@
+
 .book-show-author-name > a {
 	color: #e09a5f;
 }
@@ -23,6 +24,7 @@
 }
 
 .button-group {
+
 	a.btn {
 		border: 1px solid rgba(225, 154, 96, 0.5);
 		font-size: 14px;
@@ -129,14 +131,10 @@
 		outline: none;
 	}
 	.add-to-cart-btn {
-		background-color: #e09a5f;
-		color: #111;
+		color: white;
 		font-size: 22px;
 		font-weight: 700;
 		transition: 0.3s;
-	}
-	.add-to-cart-btn:hover {
-		background-color: rgba(225, 154, 96, 0.8);
 	}
 }
 
@@ -145,7 +143,8 @@
 	text-decoration: underline;
 }
 
-.show {
+.book-show {
+	min-height: 80vh;
 	i,
 	h2,
 	p,
