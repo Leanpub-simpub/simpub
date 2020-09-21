@@ -38,9 +38,11 @@
 
   <div>
     <%= f.label :tag_items, "標籤" %>
-    <select class="form-control select optional" multiple="multiple" name="books[tag_items][]" id="book_tag_items">
+    <div class="mb-3">
+      <select class="form-control select optional" multiple="multiple" name="books[tag_items][]" id="book_tag_items">
       <%= options_for_select(@tags = []) %>
-    </select>
+      </select>
+    </div>
   </div>
 
   <div>
