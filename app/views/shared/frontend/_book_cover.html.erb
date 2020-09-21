@@ -1,0 +1,5 @@
+<%# if book.cover_data %>
+  <%#= image_tag book.cover_url(size), class: "w-100" %>
+<%# else %>
+  <%= image_pack_tag "open_book_cover.jpeg", class: "w-100" %>
+<%# end %>
