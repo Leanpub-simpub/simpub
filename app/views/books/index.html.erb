@@ -18,11 +18,9 @@
 				<% end %>
 				<div class="cover">
 					<%= link_to book_path(book) do %>
-						<%# if has_cover?(book) %>
-							<%#= image_tag book.cover_url(:small), class: "w-100" %>
-						<%# else %>
-							<%= image_pack_tag "open_book_cover.jpeg", class: "w-100" %>
-						<%# end %>
+						<div class="w-100">
+							<%= render "shared/frontend/book_cover", locals: {book: book, size: :small} %>
+						</div>
 					<% end %>
 				</div>
 				<div class="book-info">
