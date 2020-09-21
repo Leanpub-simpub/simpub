@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 <div class="container m-5">
   <div class="text-4xl mb-4">Library</div>
+=======
+<section class="library container">
+  <div class="">Library</div>
+>>>>>>> 更新 library 頁面
 
   <div class="row">
     <% @books.each do |book| %>
@@ -17,7 +22,7 @@
         <%# end %>
         <!-- 加入判斷避免沒上傳檔案的書籍連結壞掉 -->
         <% if book.md_data %>
-          <p><%= link_to "下載", book.md_url, target: "_blank" %></p>
+          <p><%= link_to "下載", book.md_url, target: "_blank", id: "download", class: "main-color" %></p>
         <% else %>
           <p>沒有上傳 PDF</p>
         <% end %>
@@ -26,6 +31,7 @@
 
     <% end %>
   </div>
+<<<<<<< HEAD
 </div>
 
 <div class="collapse" id="collapseBook">
@@ -47,5 +53,31 @@
     </div>
   </div>
 </div>
+=======
+</section>
+<section class="library-info container p-0">
+  <div class="library-info">
+    <div class="collapse" id="collapseBook">
+      <div class="card card-body mg-auto ">
+        <div class="info-group d-flex ">
+          <div>
+            <%#= image_tag book.cover_url(:medium), class: "w-52"%>
+            <img src="https://picsum.photos/id/684/500/400" alt=""/>
+          </div>
+          <div class="book-about mx-4" >
+            <h1 class="book-info ">title</h1>
+            <a href="#" class="author">John Doe</a>
+            <h1 class="Read this book">Read this book</h1>
+            <a href="#" class="PDF main-color"><i class="fas fa-laptop"></i>"PDF"<span>(For reading on a computer)</span></a><br>
+            <a href="#" class="EPUB main-color"><i class="fas fa-mobile-alt"></i>"EPUB"<span>(For reading on phones and tablets)</span></a><br>
+            <a href="#" class="MOBI main-color"><i class="fas fa-tablet-alt"></i>"MOBI"<span>(For reading on a Kindle)</span></a><br>
+            <a href="#" class="Leanpub main-color"><i class="fab fa-leanpub"></i>"Read on Leanpub"</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+>>>>>>> 更新 library 頁面
 
 
