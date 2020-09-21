@@ -20,10 +20,20 @@
       <% end %>
     
   <% end %>
+
+  <!-- navSearch -->
+  <%= form_with(url: :search_books, method: :get, class: "nav-search form-inline ml-auto", local: true) do |f| %>
+    <%= f.search_field :search, class: "search-input form-control mr-sm-2", placeholder: "Search" %>
+    <%= f.button :submit, class: "search-btn btn btn-outline-black my-2 my-sm-0" do %>
+      <i class="fas fa-search main-color"></i>
+    <% end %>
+  <% end %>
+  <!--
   <form class="form-inline ml-auto">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-black my-2 my-sm-0" type="submit"><i class="fas fa-search main-color"></i></button>
   </form>
+  -->
   <div class="mx-2 d-flex flex-row">
     <!-- 購物車 -->
     <%= link_to cart_path do %>
