@@ -1,6 +1,6 @@
 window.addEventListener('turbolinks:load',()=>{
   
-  if(document.querySelector('#targetDiv')){
+  if(document.querySelector('#targetDiv') && document.querySelector('#sourceTA')){
     let codemirror = document.querySelector('.CodeMirror-scroll')
     let markdownIt = document.querySelector('#targetDiv')
 

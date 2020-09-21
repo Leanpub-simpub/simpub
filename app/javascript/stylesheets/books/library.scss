@@ -1,0 +1,27 @@
+.library {
+  a#download:hover {
+    color: #e09a5f;
+  }
+}
+
+div#collapseBook {
+  background-color: black;
+
+  .card {
+    background-color: black;
+
+    .book-about {
+      .author {
+        color: #e09a5f;
+      }
+
+      a:hover {
+        color: #e09a5f;
+      }
+
+      span {
+        color: rgba(225, 154, 96, 0.5);
+      }
+    }
+  }
+}

@@ -7,6 +7,7 @@ body {
 	color: #e09a5f;
 }
 
+<<<<<<< HEAD
 .home {
 	min-height: 80vh;
 	p,
@@ -18,16 +19,23 @@ body {
 	.slogan {
 		color: #e09a5f;
 	}
+=======
+.main-button {
+	background-color: #e09a5f;
+	color: white;
+	border: none;
+>>>>>>> d48b725e573670824e9e93ceef0e4ce3e430cd40
 }
 
 .content-text {
 	margin-top: 30px;
 }
-.main-button {
-	background-color: #e09a5f;
-	color: white;
+
+.home {
+	margin-bottom: 50px;
 }
 
+.home,
 .sign-in,
 .sign-up,
 .cart-show,
@@ -36,6 +44,7 @@ body {
 .cart-show,
 .book-index,
 .book-new,
+<<<<<<< HEAD
 .profile-show {
 	min-height: 70vh;
 	i,
@@ -49,6 +58,16 @@ body {
 		background-color: #e09a5f;
 		color: white;
 	}
+=======
+.profile-show,
+.author {
+	color: #e09a5f;
+}
+.notice,
+.alert {
+	padding: 0px;
+	margin: 0px;
+>>>>>>> d48b725e573670824e9e93ceef0e4ce3e430cd40
 }
 
 .notice,.alert {

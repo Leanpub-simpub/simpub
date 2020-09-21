@@ -58,7 +58,7 @@
 	}
 
 	&.collapse.show {
-		display: block !important;
+		display: block;
 		> .layout-dropdown-child {
 			overflow-x: hidden;
 			opacity: 1;

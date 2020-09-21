@@ -15,17 +15,35 @@
     <%= link_to "Create a Book", :new_book, class: "nav-item mr-3 text-lg main-color" %>
       
       <!-- 寫過的書 -->
+<<<<<<< HEAD
     <% if current_user.pub_books.count > 0 %>
     <%= link_to "My Writings", dash_board_books_path, class: "nav-item main-color mr-3 text-lg" %>
     <% end %>
+=======
+
+    <% if current_user.pub_books.count > 0 %>
+    <%= link_to "My Writings", dash_board_books_path, class: "nav-item main-color mr-3 text-lg" %>
+    <% end %>
+
+>>>>>>> d48b725e573670824e9e93ceef0e4ce3e430cd40
     
   <% end %>
+
+  <!-- navSearch -->
+  <%= form_with(url: :search_books, method: :get, class: "nav-search form-inline ml-auto", local: true) do |f| %>
+    <%= f.search_field :search, class: "search-input form-control mr-sm-2", placeholder: "Search" %>
+    <%= f.button :submit, class: "search-btn btn btn-outline-black my-2 my-sm-0" do %>
+      <i class="fas fa-search main-color"></i>
+    <% end %>
+  <% end %>
+  <!--
   <form class="form-inline ml-auto">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     <%= link_to  books_path, class: "btn btn-outline-black my-2 my-sm-0" do  %>
       <i class="fas fa-search main-color"></i>
     <% end %>
   </form>
+  -->
   <div class="mx-2 d-flex flex-row">
     <!-- 購物車 -->
     <%= link_to cart_path do %>

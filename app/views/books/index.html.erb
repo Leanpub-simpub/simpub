@@ -1,4 +1,5 @@
 <div class="book-index container">
+<<<<<<< HEAD
 	<form class="form-inline d-flex justify-content-center md-form form-sm mt-5 mb-5">
 		<input
 			class=" form-control-sm  w-75 rounded-left"
@@ -8,14 +9,20 @@
 		/>
 		<i class="fas fa-search btn border-white rounded-0" aria-hidden="true"></i>
 	</form>
+=======
+	<%= form_with(url: :search_books, method: :get, class: "book-search form-inline d-flex justify-content-center md-form form-sm mt-5 mb-5", local: true) do |f| %>
+		<i class="fas fa-search" aria-hidden="true"></i>
+		<%= f.search_field :search, class: "book-search-input form-control-sm  w-75 rounded-left", placeholder: "Search" %>
+	<% end %>
+>>>>>>> d48b725e573670824e9e93ceef0e4ce3e430cd40
 
 	<div class="row books-show">
 		<% @books.each do |book| %>
 			<!-- 調整 RWD -->
 			<div class="col-6 col-sm-4 col-md-3 col-lg-2 mt-8 p-3 book-item">
-				<%= link_to add_cart_path(book), method: :post do %>
-				<i class="fas fa-cart-plus fa-2x"></i>
-				<% end %>
+				<%# <%= link_to add_cart_path(book), method: :post do %>
+				<%# <i class="fas fa-cart-plus fa-2x"></i> %>
+				<%# <% end %>
 				<div class="cover">
 					<%= link_to book_path(book) do %>
 						<div class="w-100">
@@ -37,3 +44,21 @@
 		<%= paginate @books %>
 	</div>
 </div>
+
+
+
+<template>
+  <div class="col-6 col-sm-4 col-md-3 col-lg-2 mt-8 p-3">
+    <div class="cover">
+			<div class="w-100">
+				<a href="">
+					<img src="" alt="" class="w-100">
+				</a>
+			</div>
+    </div>
+    <div class="d-flex flex-column">
+			<a href="" class="book-title"></a>
+			<a href="" class="book-author"></a>
+    </div>
+  </div>
+</template>

@@ -22,6 +22,14 @@ Rails.application.routes.draw do
       patch :publish
       post :add_chapter
       post :add_section
+      post :sample
+      post :table_of_contents
+      post :read
+      
+    end
+    
+    collection do
+      get :search
     end
   end
 

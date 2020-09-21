@@ -17,7 +17,7 @@ import markdownit from "markdown-it/dist/markdown-it"
 import hljs from 'highlightjs/highlight.pack'
 import "highlightjs/styles/github"
 window.addEventListener('turbolinks:load',()=>{
-  if(document.querySelector('#sourceTA')){
+  if(document.querySelector('#sourceTA') && document.querySelector('#targetDiv')){
     let myCodeMirror //使mycodemirror變成變數
     let contentArea = document.querySelector('#sourceTA')
     let editorConfig = {
