@@ -27,6 +27,10 @@ Rails.application.routes.draw do
       post :read
       
     end
+    
+    collection do
+      get :search
+    end
   end
 
   get "/purchase", to: "users/purchase#index"
