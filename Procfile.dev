@@ -1,2 +1,2 @@
-rails-s: bin/rails s -p 4000
+rails-s: bin/rails s -p 3000
 webpack-s: bin/webpack-dev-server

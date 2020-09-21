@@ -15,17 +15,9 @@
     <%= link_to "Create a Book", :new_book, class: "nav-item mr-3 text-lg main-color" %>
       
       <!-- 寫過的書 -->
-<<<<<<< HEAD
     <% if current_user.pub_books.count > 0 %>
     <%= link_to "My Writings", dash_board_books_path, class: "nav-item main-color mr-3 text-lg" %>
     <% end %>
-=======
-
-    <% if current_user.pub_books.count > 0 %>
-    <%= link_to "My Writings", dash_board_books_path, class: "nav-item main-color mr-3 text-lg" %>
-    <% end %>
-
->>>>>>> d48b725e573670824e9e93ceef0e4ce3e430cd40
     
   <% end %>
 

@@ -1,20 +1,8 @@
 <div class="book-index container">
-<<<<<<< HEAD
-	<form class="form-inline d-flex justify-content-center md-form form-sm mt-5 mb-5">
-		<input
-			class=" form-control-sm  w-75 rounded-left"
-			type="text"
-			placeholder="Search"
-			aria-label="Search"
-		/>
-		<i class="fas fa-search btn border-white rounded-0" aria-hidden="true"></i>
-	</form>
-=======
 	<%= form_with(url: :search_books, method: :get, class: "book-search form-inline d-flex justify-content-center md-form form-sm mt-5 mb-5", local: true) do |f| %>
 		<i class="fas fa-search" aria-hidden="true"></i>
 		<%= f.search_field :search, class: "book-search-input form-control-sm  w-75 rounded-left", placeholder: "Search" %>
 	<% end %>
->>>>>>> d48b725e573670824e9e93ceef0e4ce3e430cd40
 
 	<div class="row books-show">
 		<% @books.each do |book| %>

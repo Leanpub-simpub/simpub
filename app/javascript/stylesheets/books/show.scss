@@ -24,18 +24,11 @@
 }
 
 .button-group {
-<<<<<<< HEAD
 
 	a.btn {
 		border: 1px solid rgba(225, 154, 96, 0.5);
 		font-size: 14px;
 	}
-=======
-  a.btn {
-    border: 1px solid rgba(225, 154, 96, 0.5);
-    font-size: 14px;
-  }
->>>>>>> d48b725e573670824e9e93ceef0e4ce3e430cd40
 }
 
 .cover {
@@ -127,28 +120,6 @@
     color: rgba(225, 154, 96, 0.7);
   }
 
-<<<<<<< HEAD
-	.cart-price {
-		border: 2px solid rgba(225, 154, 96, .3);
-		width: 140px;
-		height: 44px;
-		line-height: 38px;
-		font-size: 22px;
-		background-color: #111;
-		color: white;
-	}
-	.cart-price:focus {
-		outline: none;
-	}
-	.add-to-cart-btn {
-		color: white;
-		font-size: 22px;
-		font-weight: 700;
-		transition: 0.3s;
-	}
-<<<<<<< HEAD
-=======
-=======
   .cart-price {
     border: 2px solid rgba(225, 154, 96, 0.3);
     width: 140px;
@@ -171,39 +142,21 @@
   .add-to-cart-btn:hover {
     background-color: rgba(225, 154, 96, 0.8);
   }
->>>>>>> 更新 library 頁面
->>>>>>> d48b725e573670824e9e93ceef0e4ce3e430cd40
-}
-
-.add-to-wishlist {
-  font-size: 14px;
-  text-decoration: underline;
-}
-
-<<<<<<< HEAD
-.show {
-	min-height: 80vh;
-
-=======
-<<<<<<< HEAD
-.book-show {
-	min-height: 80vh;
->>>>>>> d48b725e573670824e9e93ceef0e4ce3e430cd40
-	i,
-	h2,
-	p,
-	div,
-	span {
-		color: #e09a5f;
-	}
-=======
-.show {
-  i,
-  h2,
-  p,
-  div,
-  span {
-    color: #e09a5f;
+  
+  .add-to-wishlist {
+    font-size: 14px;
+    text-decoration: underline;
   }
->>>>>>> 更新 library 頁面
+  
+  
+  .book-show {
+  	min-height: 80vh;
+  	i,
+  	h2,
+  	p,
+  	div,
+  	span {
+  		color: #e09a5f;
+    }
+  }
 }
