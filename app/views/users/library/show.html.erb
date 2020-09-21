@@ -12,7 +12,9 @@
           </a>
         </div>
 
-        <div><%= book.title %></div>
+        <%#= link_to library_path(book), method: :get do %>
+          <div class="book-title"><%= book.title %></div>
+        <%# end %>
         <!-- 加入判斷避免沒上傳檔案的書籍連結壞掉 -->
         <% if book.md_data %>
           <p><%= link_to "下載", book.md_url, target: "_blank" %></p>
@@ -45,6 +47,11 @@
     </div>
   </div>
 </div>
+
+
+<%# if @show_book %>
+  <%#= render "library_info", book: @show_book %>
+<%# end %>
 
 
 
