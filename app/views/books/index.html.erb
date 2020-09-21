@@ -13,9 +13,9 @@
 		<% @books.each do |book| %>
 			<!-- 調整 RWD -->
 			<div class="col-6 col-sm-4 col-md-3 col-lg-2 mt-8 p-3 book-item">
-				<%= link_to add_cart_path(book), method: :post do %>
-				<i class="fas fa-cart-plus fa-2x"></i>
-				<% end %>
+				<%# <%= link_to add_cart_path(book), method: :post do %>
+				<%# <i class="fas fa-cart-plus fa-2x"></i> %>
+				<%# <% end %>
 				<div class="cover">
 					<%= link_to book_path(book) do %>
 						<div class="w-100">

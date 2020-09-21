@@ -312,8 +312,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    tailwindcss (1.0.3)
-      railties (>= 4.1.0, <= 6.1)
     thor (1.0.1)
     thread_safe (0.3.6)
     thread_safe (0.3.6-java)
@@ -393,7 +391,6 @@ DEPENDENCIES
   shrine (~> 3.2, >= 3.2.2)
   spring
   spring-watcher-listen (~> 2.0.0)
-  tailwindcss (~> 1.0.0)
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 3.3.0)
