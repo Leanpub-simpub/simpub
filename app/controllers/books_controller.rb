@@ -2,6 +2,7 @@ class BooksController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :editor_new, :editor_edit]
   before_action :find_book, except: [:index, :new, :create]
   require'aws-sdk-s3'
+
   def index
     @books = Book.published_books.page(params[:page]).per(24)
   end
@@ -12,6 +13,19 @@ class BooksController < ApplicationController
 
     # markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, filter_html: false, autolink: true, tables: true)
     # @md = markdown.render(md)
+  end
+
+  def search
+    search = 
+      Book.published_books
+          .left_joins(:authors, :tags)
+          .where("books.title ILIKE :query OR users.name ILIKE :query OR tags.name ILIKE :query", query: "%#{params[:search]}%")
+
+    @result = search.as_json(include: :authors)
+      
+    respond_to do |format|
+      format.json { render json: @result }
+    end
   end
 
   def new
@@ -29,6 +43,7 @@ class BooksController < ApplicationController
     if @book.save
       if @book.md_data
         @book.update(publish_state: "on-shelf")
+        current_user.update(as_author: true)
         redirect_to pricing_book_path(@book)
       else
         # 在 s3 做出書的資料夾，chapter1.md，與 structure.json(存章節結構)
@@ -61,6 +76,7 @@ class BooksController < ApplicationController
   def publish
     @book.update(book_params)
     @book.update(publish_state: "on-shelf")
+    current_user.update(as_author: true)
     
     redirect_to @book, notice: "書籍已上架囉～"
   end

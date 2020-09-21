@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 2020_09_08_083721) do
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.text "about"
-    t.float "price"
+    t.float "price", default: 0.0
     t.text "catalog"
     t.integer "pages"
     t.integer "words"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2020_09_08_083721) do
     t.text "sample_date"
     t.text "completed_content_data"
     t.text "md_data"
+    t.index ["title"], name: "index_books_on_title", unique: true
   end
 
   create_table "identities", force: :cascade do |t|
@@ -102,13 +103,13 @@ ActiveRecord::Schema.define(version: 2020_09_08_083721) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.bigint "book_user_id", null: false
+    t.bigint "user_id", null: false
     t.string "payment_term"
     t.string "state"
     t.float "total"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["book_user_id"], name: "index_orders_on_book_user_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -130,6 +131,7 @@ ActiveRecord::Schema.define(version: 2020_09_08_083721) do
     t.string "name"
     t.text "about"
     t.boolean "as_author"
+    t.integer "order"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "avatar_data"
@@ -156,7 +158,7 @@ ActiveRecord::Schema.define(version: 2020_09_08_083721) do
   add_foreign_key "identities", "users"
   add_foreign_key "order_items", "books"
   add_foreign_key "order_items", "orders"
-  add_foreign_key "orders", "book_users"
+  add_foreign_key "orders", "users"
   add_foreign_key "taggings", "books"
   add_foreign_key "taggings", "tags"
 end

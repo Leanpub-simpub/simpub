@@ -23,6 +23,10 @@ Rails.application.routes.draw do
       post :add_chapter
       post :add_section
     end
+    
+    collection do
+      get :search
+    end
   end
 
   get "/purchase", to: "users/purchase#index"
