@@ -1,24 +1,35 @@
 <div class="h3 text-white  pl-5 pt-5">Library</div>
-<div class="container m-5 library">
-  <div class="row">
-    <% @books.each do |book| %>
-    <div class="col-2">
-      <div class="library">
-        <div class="cover">
-          <!-- 加入判斷避免該欄位使用假圖壞掉的 bug -->
-          <a href="#collapseBook" data-toggle="collapse" data-target="#collapseBook">
-            <%= render "shared/frontend/book_cover", locals: {book: book, size: :small} %>
-          </a>
+<div class="container library">
+  <div class="row ">
+    <% if @books.count == 0 %>
+      <div class="container purchase d-flex text-white text-center">
+      <p class=" h2 mx-auto align-self-center">
+        <%= link_to "Get some books", books_path%> <br>
+        or <br>
+        <%= link_to "Is there any book in your shopping cart",cart_path %>
+      </p>
+
+</div>
+    <% else %>
+      <% @books.each do |book| %>
+      <div class="col-2">
+        <div class="library">
+          <div class="cover">
+            <!-- 加入判斷避免該欄位使用假圖壞掉的 bug -->
+            <a href="#collapseBook" data-toggle="collapse" data-target="#collapseBook">
+              <%= render "shared/frontend/book_cover", locals: {book: book, size: :small} %>
+            </a>
+          </div>
+          <div><%= book.title %></div>
+          <!-- 加入判斷避免沒上傳檔案的書籍連結壞掉 -->
+          <% if book.md_data %>
+            <p><%= link_to "下載", book.md_url, target: "_blank" %></p>
+          <% else %>
+            <p>沒有上傳 PDF</p>
+          <% end %>
         </div>
-        <div><%= book.title %></div>
-        <!-- 加入判斷避免沒上傳檔案的書籍連結壞掉 -->
-        <% if book.md_data %>
-          <p><%= link_to "下載", book.md_url, target: "_blank" %></p>
-        <% else %>
-          <p>沒有上傳 PDF</p>
-        <% end %>
       </div>
-    </div>
+      <% end %>
     <% end %>
   </div>
 </div>
