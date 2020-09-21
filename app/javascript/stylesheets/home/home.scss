@@ -8,6 +8,7 @@ body {
 }
 
 .home {
+	min-height: 80vh;
 	p,
 	h1,
 	h2,
@@ -36,6 +37,7 @@ body {
 .book-index,
 .book-new,
 .profile-show {
+	min-height: 70vh;
 	i,
 	a,
 	div,
