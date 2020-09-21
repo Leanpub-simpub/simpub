@@ -1,7 +1,4 @@
-<%# 測試用，應該是用單項商品 delete %>
-<%= link_to "清空購物車", cart_path, method: :delete, class: "btn btn-default btn-danger" %>
- 
-<section class="cart-show container">
+<section class="cart-show container mt-5">
   <div>
     <header class="checkout_header d-flex justify-content-center mb-5">
       <div class=" h-12 py-2 border w-25 d-flex justify-content-center align-items-center bg-secondary">
@@ -36,7 +33,6 @@
             <div style="font-size:large" class="text-white font-weight-bold" >
               <%= item.book.title %>
             </div>
-
             <div>
               <a href="">edit</a>
               <span class="mx-2">|</span>
@@ -70,7 +66,8 @@
 
   
   <div class="d-flex justify-content-center mt-5">
-    <div class="w-75 d-flex justify-content-end align-items-center">
+    <div class="w-75 d-flex justify-content-between">
+      <%= link_to "清空購物車", cart_path, method: :delete, class: "text-white w-25 d-flex justify-content-center btn btn-outline-danger" %>
       <%= link_to "結帳", payment_cart_path, class:"text-white w-25 d-flex justify-content-center btn", style:"background-color: #e09a5f" %>
     </div>
   </div>
