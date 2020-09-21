@@ -7,26 +7,21 @@ body {
 	color: #e09a5f;
 }
 
-.home {
-	p,
-	h1,
-	h2,
-	button,
-	span,
-	button,
-	.slogan {
-		color: #e09a5f;
-	}
+.main-button {
+	background-color: #e09a5f;
+	color: white;
+	border: none;
 }
 
 .content-text {
 	margin-top: 30px;
 }
-.main-button {
-	background-color: #e09a5f;
-	color: white;
+
+.home {
+	margin-bottom: 50px;
 }
 
+.home,
 .sign-in,
 .sign-up,
 .cart-show,
@@ -35,16 +30,7 @@ body {
 .cart-show,
 .book-index,
 .book-new,
-.profile-show {
-	i,
-	a,
-	div,
-	span {
-		color: #e09a5f;
-	}
-
-	button {
-		background-color: #e09a5f;
-		color: white;
-	}
+.profile-show,
+.author {
+	color: #e09a5f;
 }
