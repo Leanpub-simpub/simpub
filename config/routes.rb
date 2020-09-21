@@ -22,7 +22,10 @@ Rails.application.routes.draw do
       patch :publish
       post :add_chapter
       post :add_section
-      get :sample
+      post :sample
+      post :table_of_contents
+      post :read
+      
     end
   end
 

@@ -144,6 +144,14 @@ class BooksController < ApplicationController
   end
   
   def sample
+
+  end
+
+  def table_of_contents
+
+  end
+
+  def read
     
   end
 

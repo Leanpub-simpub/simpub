@@ -22,6 +22,9 @@
           </div>
           <div><%= book.title %></div>
           <!-- 加入判斷避免沒上傳檔案的書籍連結壞掉 -->
+          <%= link_to  read_book_path(book), method: 'POST',class:"Leanpub text-lg font-extrabold" do %>
+            <i class="fab fa-leanpub">Read on Leanpub</i>
+          <% end %>
           <% if book.md_data %>
             <p><%= link_to "下載", book.md_url, target: "_blank" %></p>
           <% else %>
