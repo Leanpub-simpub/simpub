@@ -22,7 +22,9 @@
   <% end %>
   <form class="form-inline ml-auto">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-black my-2 my-sm-0" type="submit"><i class="fas fa-search main-color"></i></button>
+    <%= link_to  :books, class: "btn btn-outline-black my-2 my-sm-0" do  %>
+      <i class="fas fa-search main-color"></i>
+    <% end %>
   </form>
   <div class="mx-2 d-flex flex-row">
     <!-- 購物車 -->
