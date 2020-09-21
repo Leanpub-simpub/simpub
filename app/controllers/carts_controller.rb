@@ -21,7 +21,11 @@ class CartsController < ApplicationController
 
 
   def payment
-    @token = gateway.client_token.generate
+    if user_signed_in?
+      @token = gateway.client_token.generate
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def checkout
