@@ -4,7 +4,7 @@
 	</div>
   
   <!-- 書搜尋頁 -->
-  <%= link_to "Books", :books, class: "nav-item main-color mr-3 text-lg" %>
+  <%= link_to "Books", books_path, class: "nav-item main-color mr-3 text-lg" %>
   
   <% if user_signed_in?  %>
     <!-- 個人書櫃 -->
@@ -22,7 +22,7 @@
   <% end %>
   <form class="form-inline ml-auto">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <%= link_to  :books, class: "btn btn-outline-black my-2 my-sm-0" do  %>
+    <%= link_to  books_path, class: "btn btn-outline-black my-2 my-sm-0" do  %>
       <i class="fas fa-search main-color"></i>
     <% end %>
   </form>
