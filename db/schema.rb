@@ -79,7 +79,6 @@ ActiveRecord::Schema.define(version: 2020_09_08_083721) do
     t.text "sample_date"
     t.text "completed_content_data"
     t.text "md_data"
-    t.index ["title"], name: "index_books_on_title", unique: true
   end
 
   create_table "identities", force: :cascade do |t|
