@@ -27,12 +27,14 @@ body {
 .cart-show,
 .cart-payment,
 .edit-profile,
-.cart-show,
 .book-index,
 .book-new,
 .profile-show,
 .author {
 	color: #e09a5f;
+}
+.cart-show {
+	min-height: 65vh;
 }
 .notice,
 .alert {

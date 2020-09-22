@@ -1,23 +1,25 @@
-<h1>設定書本價格</h1>
+<div class="container text-white text-center pricing d-flex flex-column justify-content-center">
+  <h1 class="h3">設定書本價格</h1>
 
-<h2>這邊預覽書籍</h2>
-<div class="cover col-3">
-  <% if @book.cover_data %>
-    <%= image_tag @book.cover_url(:small), class: "w-100" %>
-  <% else %>
-    <img class="w-100" src="https://picsum.photos/200/250/?random=<%= rand(100) %>">
+  <h2 class="h3">這邊預覽書籍</h2>
+  <div class="cover col-3 mx-auto">
+    <% if @book.cover_data %>
+      <%= image_tag @book.cover_url(:small), class: "w-100" %>
+    <% else %>
+      <img class="w-100" src="https://picsum.photos/200/250/? random=<%= rand(100) %>">
+    <% end %>
+  </div>
+
+  <br>
+
+  <%= form_for(@book, url: publish_book_path(@book)) do |f| %>
+    <div>
+      <%= f.label :price, "設定價格" %>
+      <%= f.number_field :price, :step => "0.01", data: {   required: "requred" } %>
+    </div>
+
+    <div>
+      <%= f.submit "上架" %>
+    </div>
   <% end %>
 </div>
-
-<br>
-
-<%= form_for(@book, url: publish_book_path(@book)) do |f| %>
-  <div>
-    <%= f.label :price, "設定價格" %>
-    <%= f.number_field :price, :step => "0.01", data: { required: "requred" } %>
-  </div>
-
-  <div>
-    <%= f.submit "上架" %>
-  </div>
-<% end %>

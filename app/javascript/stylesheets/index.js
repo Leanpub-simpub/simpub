@@ -14,3 +14,4 @@ import "./users";
 import "./library.scss"
 import "./purchase.scss"
 import "./book_search.scss";
+import "./edit_profile.scss"

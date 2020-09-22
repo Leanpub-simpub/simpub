@@ -12,7 +12,11 @@
 </div>
     <% else %>
       <% @books.each do |book| %>
+<<<<<<< HEAD
       <div class="col-2">
+=======
+      <div class="col-2 text-white">
+>>>>>>> d3e987ba0b79e8d230adeae470912d4ad0fda273
         <div class="library">
           <div class="cover">
             <!-- 加入判斷避免該欄位使用假圖壞掉的 bug -->
@@ -21,6 +25,10 @@
             </a>
           </div>
           <div><%= book.title %></div>
+<<<<<<< HEAD
+=======
+          <%= link_to "Read on Leanpub",read_book_path(book), method: "POST"%>
+>>>>>>> d3e987ba0b79e8d230adeae470912d4ad0fda273
           <!-- 加入判斷避免沒上傳檔案的書籍連結壞掉 -->
           <% if book.md_data %>
             <p><%= link_to "下載", book.md_url, target: "_blank" %></p>
