@@ -23,10 +23,11 @@
 }
 
 .button-group {
-  a.btn {
-    border: 1px solid rgba(225, 154, 96, 0.5);
-    font-size: 14px;
-  }
+
+	a.btn {
+		border: 1px solid rgba(225, 154, 96, 0.5);
+		font-size: 14px;
+	}
 }
 
 .cover {
@@ -117,7 +118,6 @@
     font-size: 12px;
     color: rgba(225, 154, 96, 0.7);
   }
-
 	.cart-price {
 		border: 2px solid rgba(225, 154, 96, .3);
 		width: 140px;

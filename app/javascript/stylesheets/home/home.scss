@@ -33,8 +33,16 @@ body {
 .author {
 	color: #e09a5f;
 }
+.cart-show {
+	min-height: 65vh;
+}
 .notice,
 .alert {
+	padding: 0px;
+	margin: 0px;
+}
+
+.notice,.alert {
 	padding: 0px;
 	margin: 0px;
 }
