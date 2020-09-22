@@ -1,5 +1,5 @@
 <div class="book-index container">
-	<%= form_with(url: :search_books, method: :get, class: "book-search form-inline d-flex justify-content-center md-form form-sm mt-5 mb-5", local: true) do |f| %>
+	<%= form_with(url: :books, method: :get, class: "book-search form-inline d-flex justify-content-center md-form form-sm mt-5 mb-5", local: true) do |f| %>
 		<%= f.search_field :search, class: "book-search-input form-control-sm  w-75 rounded-left", placeholder: "Search" %>
 		<i class="fas fa-search ml-2" aria-hidden="true"></i>
 	<% end %>
@@ -14,7 +14,7 @@
 				<div class="cover">
 					<%= link_to book_path(book) do %>
 						<div class="w-100">
-							<%= render "shared/frontend/book_cover", locals: {book: book, size: :small} %>
+							<%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
 						</div>
 					<% end %>
 				</div>

@@ -4,7 +4,11 @@ class BooksController < ApplicationController
   require'aws-sdk-s3'
 
   def index
-    @books = Book.published_books.page(params[:page]).per(24)
+    if params[:search].present?
+      @books = Book.published_books.with_search(params[:search]).page(params[:page]).per(24)
+    else
+      @books = Book.published_books.page(params[:page]).per(24)
+    end
   end
   
   def show
@@ -14,19 +18,7 @@ class BooksController < ApplicationController
     # markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, filter_html: false, autolink: true, tables: true)
     # @md = markdown.render(md)
   end
-
-  def search
-    search = 
-      Book.published_books
-          .left_joins(:authors, :tags)
-          .where("books.title ILIKE :query OR users.name ILIKE :query OR tags.name ILIKE :query", query: "%#{params[:search]}%")
-
-    @result = search.as_json(include: :authors)
-      
-    respond_to do |format|
-      format.json { render json: @result }
-    end
-  end
+  
 
   def new
     @book = Book.new

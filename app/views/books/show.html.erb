@@ -9,11 +9,7 @@
       <div class="d-flex  mb-4">
         <!-- 書籍作者頭像 -->
         <div class="book-show-author-avatar">
-          <%# if has_avatar?(@book.authors[0]) %>
-            <%#= image_tag @book.authors[0].avatar_url, class: "w-100 rounded-circle" %>
-          <%# else %>
-            <img src="https://www.nicepng.com/png/full/136-1366211_group-of-10-guys-login-user-icon-png.png" alt="" class="w-100">
-          <%# end %>
+          <%= render "shared/frontend/user_avatar", user: @book.authors[0] %>
         </div>
         <!-- 作者名稱 -->
         <div class="book-show-author-name pl-3">
@@ -51,7 +47,7 @@
     <!-- 書籍封面 -->
 		<div class="cover col-4 d-flex flex-column">
       <div class="mb-4">
-        <%= render "shared/frontend/book_cover", locals: {book: @book, size: :large} %>
+        <%= render partial: "shared/frontend/book_cover", locals: {book: @book, size: :large} %>
       </div>
       <div class="completeness mt-auto">
         <div class="progress mx-auto mb-2"></div>
