@@ -118,49 +118,6 @@
     font-size: 12px;
     color: rgba(225, 154, 96, 0.7);
   }
-<<<<<<< HEAD
-
-  .cart-price {
-    border: 2px solid rgba(225, 154, 96, 0.3);
-    width: 140px;
-    height: 44px;
-    line-height: 38px;
-    font-size: 22px;
-    background-color: #111;
-    color: white;
-  }
-  .cart-price:focus {
-    outline: none;
-  }
-  .add-to-cart-btn {
-    background-color: #e09a5f;
-    color: #111;
-    font-size: 22px;
-    font-weight: 700;
-    transition: 0.3s;
-  }
-  .add-to-cart-btn:hover {
-    background-color: rgba(225, 154, 96, 0.8);
-  }
-  
-  .add-to-wishlist {
-    font-size: 14px;
-    text-decoration: underline;
-  }
-  
-  
-  .book-show {
-  	min-height: 80vh;
-  	i,
-  	h2,
-  	p,
-  	div,
-  	span {
-  		color: #e09a5f;
-    }
-  }
-}
-=======
 	.cart-price {
 		border: 2px solid rgba(225, 154, 96, .3);
 		width: 140px;
@@ -190,4 +147,3 @@
 	min-height: 80vh;
   color: #e09a5f;
 }
->>>>>>> d3e987ba0b79e8d230adeae470912d4ad0fda273
