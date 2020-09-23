@@ -48,6 +48,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'hirb-unicode', '~> 0.0.5'
   gem 'foreman', '~> 0.87.2'
+  gem 'letter_opener', '~> 1.7'
+  gem 'letter_opener_web', '~> 1.4'
 end
 
 group :test do
