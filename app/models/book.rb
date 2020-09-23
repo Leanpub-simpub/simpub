@@ -18,11 +18,13 @@ class Book < ApplicationRecord
   
   # has_rich_text :content
 
-  scope :published_books, -> { where(publish_state: "on-shelf").order(id: :desc)}
-  scope :unpublish_books, -> { where(publish_state: "off-shelf")}
+  scope :published_books, -> { where(publish_state: "on-shelf").order(id: :desc) }
+  scope :unpublish_books, -> { where(publish_state: "off-shelf") }
 
   scope :with_search, -> (search) { left_joins(:authors, :tags).where("books.title ILIKE :query OR users.name ILIKE :query OR tags.name ILIKE :query", query: "%#{search}%") }
-
+  scope :book_search, -> (search) { where("books.title ILIKE ?", "%#{search}%") }
+  scope :author_search, -> (search) { joins(:authors).where("users.name ILIKE ?", "%#{search}%") }
+  scope :tag_search, -> (search) { joins(:tags).where("tags.name ILIKE ?", "%#{search}%") }
 
   
   # 可以用 Book.tagge_with(tagname) 來找到文章
