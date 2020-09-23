@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   root "home#index"
 
-  devise_for :users, controllers: { registrations: "users/registrations", omniauth_callbacks: "users/omniauth_callbacks" }
+  # devise_for :users, controllers: { registrations: "users/registrations", omniauth_callbacks: "users/omniauth_callbacks" }
+  devise_for :users, controllers: { registrations: "users/registrations", omniauth_callbacks: "users/omniauth_callbacks", confirmations: "users/confirmations" }
   
   devise_scope :user do
     get "/user_dashboard/settings", to: "users/registrations#edit", as: "user_dashboard"
@@ -37,4 +38,6 @@ Rails.application.routes.draw do
       post :checkout
     end
   end
+
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

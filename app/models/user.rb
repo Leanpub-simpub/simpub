@@ -2,7 +2,7 @@ class User < ApplicationRecord
   include AvatarUploader::Attachment(:avatar)
   
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
+         :recoverable, :rememberable, :validatable, :confirmable,
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
 
   validates :email, presence: true, uniqueness: true
