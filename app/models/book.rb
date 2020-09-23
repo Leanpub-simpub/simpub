@@ -21,6 +21,8 @@ class Book < ApplicationRecord
   scope :published_books, -> { where(publish_state: "on-shelf").order(id: :desc)}
   scope :unpublish_books, -> { where(publish_state: "off-shelf")}
 
+  scope :with_search, -> (search) { left_joins(:authors, :tags).where("books.title ILIKE :query OR users.name ILIKE :query OR tags.name ILIKE :query", query: "%#{search}%") }
+
 
   
   # 可以用 Book.tagge_with(tagname) 來找到文章

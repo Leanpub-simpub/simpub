@@ -2,6 +2,7 @@ class CoverUploader < ApplicationUploader
   plugin :derivatives
   plugin :default_url
   plugin :pretty_location, identifier: :title
+  plugin :remote_url, max_size: 20*1024*1024
   
   
   Attacher.validate do

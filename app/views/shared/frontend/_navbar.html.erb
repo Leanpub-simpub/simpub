@@ -22,7 +22,7 @@
   <% end %>
 
   <!-- navSearch -->
-  <%= form_with(url: :search_books, method: :get, class: "nav-search form-inline ml-auto", local: true) do |f| %>
+  <%= form_with(url: :books, method: :get, class: "nav-search form-inline ml-auto", local: true) do |f| %>
     <%= f.search_field :search, class: "search-input form-control mr-sm-2", placeholder: "Search" %>
     <%= f.button :submit, class: "search-btn btn btn-outline-black my-2 my-sm-0" do %>
       <i class="fas fa-search main-color"></i>

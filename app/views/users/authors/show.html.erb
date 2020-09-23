@@ -19,7 +19,7 @@
           <% published_books.each do |book| %>
             <div class="pubbook-item border col-2 p-0 m-3">
               <div class="w-100">
-                <%= render "shared/frontend/book_cover", locals: {book: book, size: :small} %>
+                <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
               </div>
               <p class="text-center"><%= link_to book.title, book_path(book) %></p>
             </div>
@@ -34,7 +34,7 @@
           <% unpublish_books.each do |book| %>
             <div class="pubbook-item border col-2 p-0 m-3">
               <div class="w-100">
-                <%= render "shared/frontend/book_cover", locals: {book: book, size: :small} %>
+                <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
               </div>
               <p class="text-center"><%= link_to book.title, book_path(book), class:"main-color" %></p>
               <div class="text-center">

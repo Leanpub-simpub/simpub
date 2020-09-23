@@ -25,11 +25,6 @@ Rails.application.routes.draw do
       post :sample
       post :table_of_contents
       post :read
-      
-    end
-    
-    collection do
-      get :search
     end
   end
 
