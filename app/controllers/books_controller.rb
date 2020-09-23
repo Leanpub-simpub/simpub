@@ -5,17 +5,19 @@ class BooksController < ApplicationController
   before_action :find_book, except: [:index, :new, :create]
 
   def index
+    @books = Book.published_books
+
     if params[:search].present?
-      @books = Book.published_books.with_search(params[:search]).page(params[:page]).per(24)
+      @books = @books.with_search(params[:search])
     elsif params[:book_search].present?
-      @books = Book.published_books.book_search(params[:book_search]).page(params[:page]).per(24)
+      @books = @books.book_search(params[:book_search])
     elsif params[:author_search].present?
-      @books = Book.published_books.author_search(params[:author_search]).page(params[:page]).per(24)
+      @books = @books.author_search(params[:author_search])
     elsif params[:tag_search].present?
-      @books = Book.published_books.tag_search(params[:tag_search]).page(params[:page]).per(24)
-    else
-      @books = Book.published_books.page(params[:page]).per(24)
+      @books = @books.tag_search(params[:tag_search])
     end
+
+    @books = @books.page(params[:page]).per(24)
   end
   
   def show
