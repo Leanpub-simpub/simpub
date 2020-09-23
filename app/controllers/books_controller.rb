@@ -1,11 +1,18 @@
 class BooksController < ApplicationController  
+  require'aws-sdk-s3'
+  
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :editor_new, :editor_edit]
   before_action :find_book, except: [:index, :new, :create]
-  require'aws-sdk-s3'
 
   def index
     if params[:search].present?
       @books = Book.published_books.with_search(params[:search]).page(params[:page]).per(24)
+    elsif params[:book_search].present?
+      @books = Book.published_books.book_search(params[:book_search]).page(params[:page]).per(24)
+    elsif params[:author_search].present?
+      @books = Book.published_books.author_search(params[:author_search]).page(params[:page]).per(24)
+    elsif params[:tag_search].present?
+      @books = Book.published_books.tag_search(params[:tag_search]).page(params[:page]).per(24)
     else
       @books = Book.published_books.page(params[:page]).per(24)
     end
