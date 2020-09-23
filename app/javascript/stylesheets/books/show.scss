@@ -30,10 +30,45 @@
 }
 
 .cover {
-  div:first-child {
-    border: 1px solid rgba(225, 154, 96, 0.5);
-  }
+	div:first-child {
+		border: 1px solid rgba(225, 154, 96, 0.5);
+		position: relative;
+		
+		.cover-bubble {
+			display: block;
+			border: 5px solid #e09a5f;
+			position: absolute;
+			top: 0;
+			left: 0;
+			animation: to-cart 2s linear 1;
+		}
+	}
 }
+	@keyframes to-cart {
+		0% {
+		}
+		// 50% {
+		// 	border-radius: 50%;
+		// 	transform: scale(.1);
+		// }
+		// 75% {
+		// 	border-radius: 50%;
+		// 	transform: scale(.1);
+		// 	// margin-top: 5em;
+		// 	top: -15em;
+		// 	right: -10rem;
+		// 	opacity: 1;
+		// }
+		100% {
+			border-radius: 50%;
+			transform: scale(.1);
+			top: -15em;
+			right: -40em;
+			opacity: 0;
+			// display: none;
+		}
+	}
+
 
 .completeness {
   .progress {
