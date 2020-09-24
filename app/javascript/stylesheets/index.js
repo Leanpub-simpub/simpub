@@ -11,7 +11,8 @@ import "./home";
 import "./shared";
 import "./text_editor";
 import "./users";
-import "./library.scss"
-import "./purchase.scss"
+import "./library.scss";
+import "./purchase.scss";
 import "./book_search.scss";
-import "./edit_profile.scss"
+import "./edit_profile.scss";
+import "./layout.scss";
