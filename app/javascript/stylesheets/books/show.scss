@@ -32,37 +32,18 @@
 .cover {
 	div:first-child {
 		border: 1px solid rgba(225, 154, 96, 0.5);
-		position: relative;
 	}
 }
 
+// 購物車動畫
 .cover-bubble {
   display: block;
   border: 5px solid #e09a5f;
   position: absolute;
   top: 0;
   left: 0;
-  animation: to-cart 1s linear 1 forwards;
-  // transition: left 1s linear, top 1s ease-in;
-  // transition-delay: 1s;
-}
-@keyframes to-cart {
-  0% {
-  }
-  50% {
-    border-radius: 50%;
-    transform: scale(.1);
-  }
-  75% {
-    border-radius: 50%;
-    transform: scale(.1);
-    opacity: 1;
-  }
-  100% {
-    border-radius: 50%;
-    transform: scale(.1);
-    // opacity: 0;
-  }
+  border-radius: 50%;
+  z-index: 100;
 }
 
 
