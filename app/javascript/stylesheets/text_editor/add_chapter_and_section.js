@@ -90,12 +90,11 @@ window.addEventListener('turbolinks:load',()=>{
       let sectionName=[]
       
       // 抓出屬於同 chapter 所有 section 的內容供後面比對
-      let section = sectionInsetTarget.nextElementSibling
-      while(section.className =="section"){
+      let chapter = sectionInsetTarget.querySelector('.chapter').textContent
+      document.querySelectorAll(`.chapter_list [data-chapter="${chapter}"]`).forEach(section=>{
         sectionName.push(section.textContent)
-        section = section.nextElementSibling
-      }
-
+      })
+      console.log(sectionName)
       if(sectionInput.value === "" ){
         // 如果沒填 section 名稱
         sectionInput.style.border = 'red 3px solid'

@@ -7,7 +7,7 @@
     </div>
       <% if chapter.values[0].length != 0 %>
         <% chapter.values[0].each do |section| %>
-        <div class="section"><%= section %></div>
+        <div class="section" data-chapter="<%= chapter.keys[0] %>"><%= section %></div>
         <% end %>
       <% end %>
     <% end %>
