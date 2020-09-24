@@ -50,21 +50,10 @@ window.addEventListener('turbolinks:load',()=>{
         chapterDOM.querySelector('.chapter').textContent = chapterInput.value
         let order = document.querySelectorAll('.chapter').length
         chapterDOM.querySelector('.chapter').dataset.order = order
-        
-        chapterDOM.querySelector('.addsection').addEventListener('click',(e)=>{
-          e.stopPropagation()
-          sectionform.classList.remove('x')
-          chapterform.classList.add('x')
-          let chapter = e.target.previousSibling.previousSibling
-          //  addSection 是 ＋ 前一個 DOM 是 chapter::before 再前一個才是 chapter 
-          document.querySelector('#chapterForSectionRecord').value = chapter.textContent
-          document.querySelector('#orderForSectionRecord').value = chapter.dataset.order
-          
-        })
         chapterList.insertBefore(chapterDOM,addChapter)
         setTimeout(function(){
           chapterInput.value = ""
-        },5000)
+        },1)
       }
     }) 
 
@@ -75,9 +64,8 @@ window.addEventListener('turbolinks:load',()=>{
     })
 
     // add-section-form control
-    addSection.forEach((addSectionBtn)=>{
-      addSectionBtn.addEventListener('click',(e)=>{
-        e.stopPropagation()
+    chapterList.addEventListener('click',(e)=>{
+      if(e.target.className == 'addsection'){
         sectionform.classList.remove('x')
         chapterform.classList.add('x')
         let chapter = e.target.previousSibling.previousSibling
@@ -85,7 +73,11 @@ window.addEventListener('turbolinks:load',()=>{
         document.querySelector('#chapterForSectionRecord').value = chapter.textContent
         document.querySelector('#orderForSectionRecord').value = chapter.dataset.order
         sectionInsetTarget = e.target.parentElement
-      })
+        console.log(e.target)
+        console.log(e.target.parentElement)
+        console.log(sectionInsetTarget)
+        //為什麼抓不到新增的＋
+      }
     })
 
     let sectionAgree = document.querySelector('#sectionAgreeBtn')

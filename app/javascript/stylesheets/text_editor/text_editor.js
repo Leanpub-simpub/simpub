@@ -67,6 +67,9 @@ window.addEventListener('turbolinks:load',()=>{
     
     // 點擊到對應章節可以找到該檔案的資料並呈現
     chapterList.addEventListener('click',(e)=>{
+      if(e.target.className =="addsection"){
+        return
+      }
       let token = document.querySelector("meta[name=csrf-token]").content
       axios.defaults.headers.common['X-CSRF-Token']= token  
       
