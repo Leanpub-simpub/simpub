@@ -28,7 +28,8 @@ window.addEventListener('turbolinks:load',()=>{
     let bookName = document.querySelector('.book_name')
     let target = document.querySelector('.active')
     let chapterList = document.querySelector('.chapter_list')
-
+    let temp //判斷是否有編輯文字用
+    let save = document.querySelector('#save')
     //從前端 fetch 到 server 的 get_content action 取得第一章節的內容並印出
     let token = document.querySelector("meta[name=csrf-token]").content
     axios.defaults.headers.common['X-CSRF-Token']= token
@@ -102,10 +103,38 @@ window.addEventListener('turbolinks:load',()=>{
       })
     })
     
-    // 判斷內容是否改動，有改動就做事
-    let temp
+    
+    // 手動存檔
+    save.addEventListener('click',()=>{
+      let content = myCodeMirror.getValue()
+
+      let token = document.querySelector("meta[name=csrf-token]").content
+      axios.defaults.headers.common['X-CSRF-Token']= token
+      let params = { bookName:bookName.textContent , target:target.textContent, content: content }
+
+      axios({
+        method: 'post',
+        url: '/books/update_content',
+        data: params
+      })
+      .then( (result)=>{
+
+      })
+      .catch(function(err){
+        console.log(err)
+      })
+
+    })
+    
+    
+    setInterval(mdToHTML,500) //模擬即時顯示 // 重複執行時間拉開，避免被圖片連結的網站認為是攻擊
+
+
+
+
     function mdToHTML(){
       let text = myCodeMirror.getValue()
+      // 判斷內容是否改動，有改動就做事
       if(text !== temp){
         temp = text
         let target = document.getElementById('targetDiv')
@@ -142,6 +171,5 @@ window.addEventListener('turbolinks:load',()=>{
         return
       }
     }
-    setInterval(mdToHTML,500) //模擬即時顯示 // 重複執行時間拉開，避免被圖片連結的網站認為是攻擊
   }
 })

@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     collection do
       get :search
       post :get_content
+      post :update_content
     end
   end
 

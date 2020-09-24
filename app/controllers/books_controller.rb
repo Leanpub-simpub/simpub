@@ -171,6 +171,16 @@ class BooksController < ApplicationController
     end
   end
 
+  def update_content
+    book_name = params[:bookName]
+    target = params[:target]
+    content = params[:content]
+    s3 = Aws::S3::Resource.new
+    bucket = s3.bucket(ENV['bucket'])
+    chapter = bucket.object("store/book/#{book_name}/#{target}.md")
+    chapter.upload_stream{|ws| ws << content}
+  end
+
   def sample
 
   end
