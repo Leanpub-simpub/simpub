@@ -1,16 +1,32 @@
 body {
-	background-color: black;
+	// background-color: black;
 }
 
 // 網站主視覺色
 .main-color {
-	color: #e09a5f;
+	color: #333333;
 }
 
+// 單頁面主要按鈕
 .main-button {
 	background-color: #e09a5f;
 	color: white;
 	border: none;
+}
+
+// 各頁面文字顏色
+.home,
+.sign-in,
+.sign-up,
+.cart-show,
+.cart-payment,
+.edit-profile,
+.book-index,
+.book-new,
+.profile-show,
+.author,
+.library {
+	color: #333333;
 }
 
 .content-text {
@@ -21,18 +37,6 @@ body {
 	margin-bottom: 50px;
 }
 
-.home,
-.sign-in,
-.sign-up,
-.cart-show,
-.cart-payment,
-.edit-profile,
-.book-index,
-.book-new,
-.profile-show,
-.author {
-	color: #e09a5f;
-}
 .cart-show {
 	min-height: 65vh;
 }
@@ -42,7 +46,8 @@ body {
 	margin: 0px;
 }
 
-.notice,.alert {
+.notice,
+.alert {
 	padding: 0px;
 	margin: 0px;
 }

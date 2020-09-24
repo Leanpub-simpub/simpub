@@ -44,12 +44,12 @@
       </i>
     <% end %>
     <% if user_signed_in? %>
-      <a href="#">
+      <%# <a href="#">
         <i class="nav-icon mg-auto mx-2 fas fa-heart main-color"></i>
       </a>
       <a href="#">
         <i class="nav-icon mg-auto mx-2 fas fa-bell main-color"></i>
-      </a>
+      </a> %>
     <% else %>
       <%= link_to "Sign up", new_user_registration_path ,class: "mx-2 main-color" %>
       <%= link_to "Sign in", new_user_session_path ,class: "mx-2 main-color" %>
