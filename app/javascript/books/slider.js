@@ -59,33 +59,24 @@ document.addEventListener("turbolinks:load", () => {
       const cover = document.querySelector(".cover-img");
       const coverBubble = cover.cloneNode(true);
 
+      let startW = cover.getBoundingClientRect().width;
+      let startH = cover.getBoundingClientRect().height;
+      let startX = startW / 2 + cover.getBoundingClientRect().x
+      let startY = startH / 2 + cover.getBoundingClientRect().y;
+      let endX = cart.getBoundingClientRect().x;
+      let endY = cart.getBoundingClientRect().y;
+
       coverBubble.classList.add("cover-bubble");
       cover.parentElement.appendChild(coverBubble);
 
-      let endX = cart.offsetLeft;
-      let endY = cart.offsetTop;
-      
-      
-      // let startX = cover.offsetLeft;
-      // let startY = cover.offsetTop;
-      // coverBubble.style.transition = "left 0s, top 0s";
-      // coverBubble.style.top = `${startY}px`;
-      // coverBubble.style.left = `${startX}px`;
-      
-      
+      gsap.to(".cover-bubble", {duration: 1, scale: .08, x: `${endX - startX}px`, y: `${endY - startY}px`, opacity: .5})
+
+      // 動畫結束後刪除該物件
       setTimeout(() => {
-        coverBubble.animate([
-          // keyframes
-          { transform: 'translate(0px)' }, 
-          { transform: `translate(${endX}px,${endY}px)` }
-        ], { 
-          // timing options
-          duration: 2000,
-          fill: "forwards"
-          // iterations: Infinity
-        });
+        cover.parentElement.removeChild(coverBubble);
       }, 1000);
     }
+
 
 
     function setPricePay() {
