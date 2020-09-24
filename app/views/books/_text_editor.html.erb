@@ -22,6 +22,7 @@
 <%# add chapter form %>
 <%= form_with url: add_chapter_book_path(book),class: "chapterCreate x" do |f| %>
   <div>Add New Chapter</div>
+  <p class="text-center text-danger" id="chapterErr"></p>
   <div>
     <%= f.label :chapter, "Chapter" %>
     <%= f.text_field :chapter %>
@@ -35,11 +36,10 @@
 <%# add section form %>
 <%= form_with url: add_section_book_path(book),class: "sectionCreate x" do |f| %>
   <div>Add New Section</div>
+  <p class="text-center text-danger" id="sectionErr"></p>
   <div>
     <%= f.text_field :chapter ,class: 'x', id:'chapterForSectionRecord'%>
     <%= f.text_field :order ,class: 'x', id:'orderForSectionRecord'%>  
-  </div>
-  <div>
   </div>
   <div>
     <%= f.label :section, "Section" %>
