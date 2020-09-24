@@ -54,15 +54,37 @@ document.addEventListener("turbolinks:load", () => {
 
     // 按下加入購物車按鈕後顯示動畫
     addCartForm.onsubmit = bookToCart.bind(addCartForm);
-    function bookToCart(event) {
+    function bookToCart() {
+      const cart = document.querySelector(".fa-shopping-cart");
       const cover = document.querySelector(".cover-img");
       const coverBubble = cover.cloneNode(true);
-      let x = cover.offsetLeft;
-      let y = cover.offsetTop;
-      console.log(x, y);
-      // coverBubble.classList.remove("w-100");
+
       coverBubble.classList.add("cover-bubble");
       cover.parentElement.appendChild(coverBubble);
+
+      let endX = cart.offsetLeft;
+      let endY = cart.offsetTop;
+      
+      
+      // let startX = cover.offsetLeft;
+      // let startY = cover.offsetTop;
+      // coverBubble.style.transition = "left 0s, top 0s";
+      // coverBubble.style.top = `${startY}px`;
+      // coverBubble.style.left = `${startX}px`;
+      
+      
+      setTimeout(() => {
+        coverBubble.animate([
+          // keyframes
+          { transform: 'translate(0px)' }, 
+          { transform: `translate(${endX}px,${endY}px)` }
+        ], { 
+          // timing options
+          duration: 2000,
+          fill: "forwards"
+          // iterations: Infinity
+        });
+      }, 1000);
     }
 
 
