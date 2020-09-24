@@ -104,13 +104,14 @@ class BooksController < ApplicationController
     structure_json = JSON.parse(structure_json)
 
     # 檢查 chapter 是否重複
+    chapter = "#{params[:chapter]}".gsub(/\s/, '_')
     structure_json.each do |obj|
-      if obj["#{params[:chapter]}"] != nil
+      if obj["#{chapter}"] != nil
         return
       end
     end     
     
-    chapter = { "#{params[:chapter]}": []}
+    chapter = { "#{chapter}": []}
     structure_json.push(chapter)     
     structure_json = structure_json.to_json
     
@@ -119,7 +120,7 @@ class BooksController < ApplicationController
     structure = bucket.object("store/book/#{@book.title}/structure.json")
     structure.put(body: structure_json)
     # 將新的結構存到 structure.json檔案
-    chapter = bucket.object("store/book/#{@book.title}/#{params[:chapter]}.md")
+    chapter = bucket.object("store/book/#{@book.title}/#{chapter}.md")
     chapter.upload_stream{|ws| ws << '# NewChapter'}
     # 做出章節
     
@@ -139,13 +140,14 @@ class BooksController < ApplicationController
     structure_json = JSON.parse(structure_json)
     
     # 檢查 section 是否重複
+    section = "#{params[:section]}".gsub(/\s/, '_')
     structure_json[params[:order].to_i][params[:chapter]].each do |obj|
-      if obj["#{params[:section]}"] != nil
+      if obj["#{section}"] != nil
         return
       end
     end  
     
-    structure_json[params[:order].to_i][params[:chapter]].push(params[:section])
+    structure_json[params[:order].to_i][params[:chapter]].push(section)
     structure_json = structure_json.to_json
     
     s3 = Aws::S3::Resource.new
@@ -153,7 +155,7 @@ class BooksController < ApplicationController
     structure = bucket.object("store/book/#{@book.title}/structure.json")
     structure.put(body: structure_json)
     # 將新的結構存到 structure.json檔案
-    chapter = bucket.object("store/book/#{@book.title}/#{params[:section]}.md")
+    chapter = bucket.object("store/book/#{@book.title}/#{section}.md")
     chapter.upload_stream{|ws| ws << '# New section'}    # 做出 section 檔案
   end
   

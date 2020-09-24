@@ -1,7 +1,7 @@
 <div class="wrap">
   <div class="chapter_list">
     <% json.each_with_index do |chapter,index| %>
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between" >
       <div class="chapter" data-order=<%= index%>><%= chapter.keys[0] %></div>
       <div class="addsection">+</div>
     </div>

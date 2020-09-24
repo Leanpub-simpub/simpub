@@ -32,15 +32,17 @@ window.addEventListener('turbolinks:load',()=>{
     let chapterAgree = document.querySelector('#chapterAgreeBtn')
     let chapterInput = document.querySelector('[name="chapter"]')
     chapterAgree.addEventListener('click',()=>{
+      // 先收集所有 chapter 所有的內容供後續比對
       let chapterName = []
       document.querySelectorAll('.chapter').forEach(chapter =>{
         chapterName.push(chapter.textContent)
       })
+      console.log(chapterName)
       if(chapterInput.value === "" ){
         // 如果沒填 chapter 名稱
         chapterInput.style.border = 'red 3px solid'
         chapterInput.placeholder = 'Chapter name is blank'
-      }else if(!chapterName.includes(chapterInput.textContent)){
+      }else if(chapterName.includes(chapterInput.value)){
         chapterInput.style.border = 'red 3px solid'
         chapterErr.textContent = 'Chapter name is repeated'
       }
@@ -50,7 +52,8 @@ window.addEventListener('turbolinks:load',()=>{
         chapterform.classList.add('x')
         //將新增的 chapter 在加到 chapter_list
         let chapterDOM = document.importNode(chapterTemplate.content,true)
-        chapterDOM.querySelector('.chapter').textContent = chapterInput.value
+        chapterDOM.querySelector('.chapter').textContent = chapterInput.value.replace(new RegExp(" ","g"),"_")
+        // 將空白鍵換成底線
         let order = document.querySelectorAll('.chapter').length
         chapterDOM.querySelector('.chapter').dataset.order = order
         chapterList.insertBefore(chapterDOM,addChapter)
@@ -77,10 +80,6 @@ window.addEventListener('turbolinks:load',()=>{
         document.querySelector('#chapterForSectionRecord').value = chapter.textContent
         document.querySelector('#orderForSectionRecord').value = chapter.dataset.order
         sectionInsetTarget = e.target.parentElement
-        console.log(e.target)
-        console.log(e.target.parentElement)
-        console.log(sectionInsetTarget)
-        //為什麼抓不到新增的＋
       }
     })
 
@@ -89,9 +88,14 @@ window.addEventListener('turbolinks:load',()=>{
     
     sectionAgree.addEventListener('click',()=>{
       let sectionName=[]
-      sectionInsetTarget.querySelectorAll('.section').forEach(section=>{
+      
+      // 抓出屬於同 chapter 所有 section 的內容供後面比對
+      let section = sectionInsetTarget.nextElementSibling
+      while(section.className =="section"){
         sectionName.push(section.textContent)
-      })
+        section = section.nextElementSibling
+      }
+
       if(sectionInput.value === "" ){
         // 如果沒填 section 名稱
         sectionInput.style.border = 'red 3px solid'
@@ -100,7 +104,7 @@ window.addEventListener('turbolinks:load',()=>{
           sectionInput.style.border = 'black 1px solid'
           sectionInput.placeholder = ''
         },5000)
-      }else if(!sectionName.includes(sectionInput.value)){
+      }else if(sectionName.includes(sectionInput.value)){
         sectionInput.style.border = 'red 3px solid'
         sectionErr.textContent = 'Section name is repeat'
       }
@@ -109,14 +113,10 @@ window.addEventListener('turbolinks:load',()=>{
         sectionform.submit()
         sectionform.classList.add('x')
         let sectionDOM = document.importNode(sectionTemplate.content,true)
-        sectionDOM.querySelector('.section').textContent = sectionInput.value
-        
-        // sectionDOM sectionInsetTarget
+        sectionDOM.querySelector('.section').textContent = sectionInput.value.replace(new RegExp(" ","g"),"_")
         
         chapterList.insertBefore(sectionDOM,sectionInsetTarget.nextElementSibling)
        
-
-        // addSectionBtn.previousSibling.previousSibling.insertAdjacentElement("afterend",sectionDOM)
         setTimeout(function(){
           sectionInput.value = ""
           sectionErr.textContent = ""
