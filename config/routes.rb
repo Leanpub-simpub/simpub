@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     
     collection do
       get :search
+      post :get_content
     end
   end
 

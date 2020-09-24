@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :editor_new, :editor_edit]
   before_action :find_book, except: [:index, :new, :create]
   require'aws-sdk-s3'
-
+  require 'json'
   def index
     @books = Book.published_books.page(params[:page]).per(24)
   end
@@ -81,14 +81,6 @@ class BooksController < ApplicationController
   end
 
   # 線上編輯 action
-  def editor_new
-
-  end
-
-  def editor_create
-    @book = Book.find(params[:id])
-  end
-
   def editor_edit
     @book = Book.find(params[:id])
     s3 = Aws::S3::Client.new
@@ -98,67 +90,85 @@ class BooksController < ApplicationController
     @json = JSON.parse(structure_json)
   end
 
-  def editor_update
-  
-  end
-
   def add_chapter
-    if params[:chapter] != ""  
-      @book = Book.find(params[:id])
-      # 後來考慮把打 s3 做成一個 service
-      # storage = BookStorage.find(book.id)
-      # # render error if not find storage
-      # if storage.add_chapter("name")
-      #   # success
-      # else
-      #   # errors
-      #   storage.errors
-      
-      # 取到結構json檔資料
-      s3 = Aws::S3::Client.new
-      object = s3.get_object(bucket: ENV['bucket'], key:"store/book/#{@book.title}/structure.json")    
-      structure_json = object.body.read
-      # 將新增的章節加入結構中
-      structure_json = JSON.parse(structure_json)
-      chapter = { "#{params[:chapter]}": []}
-      structure_json.push(chapter)     
-      structure_json = structure_json.to_json
-      
-      s3 = Aws::S3::Resource.new
-      bucket = s3.bucket(ENV['bucket'])
-      structure = bucket.object("store/book/#{@book.title}/structure.json")
-      structure.put(body: structure_json)
-      # 將新的結構存到 structure.json檔案
-      chapter = bucket.object("store/book/#{@book.title}/#{params[:chapter]}.md")
-      chapter.put(body:'# New Chapter')
-      # 做出章節
+    if params[:chapter] == ""  
+      return
     end
+    @book = Book.find(params[:id])
+    
+    # 取到結構json檔資料
+    s3 = Aws::S3::Client.new
+    object = s3.get_object(bucket: ENV['bucket'], key:"store/book/#{@book.title}/structure.json")    
+    structure_json = object.body.read
+    # 將新增的章節加入結構中
+    structure_json = JSON.parse(structure_json)
+
+    # 檢查 chapter 是否重複
+    structure_json.each do |obj|
+      if obj["#{params[:chapter]}"] != nil
+        return
+      end
+    end     
+    
+    chapter = { "#{params[:chapter]}": []}
+    structure_json.push(chapter)     
+    structure_json = structure_json.to_json
+    
+    s3 = Aws::S3::Resource.new
+    bucket = s3.bucket(ENV['bucket'])
+    structure = bucket.object("store/book/#{@book.title}/structure.json")
+    structure.put(body: structure_json)
+    # 將新的結構存到 structure.json檔案
+    chapter = bucket.object("store/book/#{@book.title}/#{params[:chapter]}.md")
+    chapter.upload_stream{|ws| ws << '# NewChapter'}
+    # 做出章節
+    
   end
 
   def add_section
-    @book = Book.find(params[:id])
-    
-    if params[:section] != ""
-      # 取到結構json檔資料
-      s3 = Aws::S3::Client.new
-      object = s3.get_object(bucket: ENV['bucket'], key:"store/book/#{@book.title}/structure.json")    
-      structure_json = object.body.read
-      # 將新增的 section 加入結構中
-      structure_json = JSON.parse(structure_json)
-      structure_json[params[:order].to_i][params[:chapter]].push(params[:section])
-      structure_json = structure_json.to_json
-      
-      s3 = Aws::S3::Resource.new
-      bucket = s3.bucket(ENV['bucket'])
-      structure = bucket.object("store/book/#{@book.title}/structure.json")
-      structure.put(body: structure_json)
-      # 將新的結構存到 structure.json檔案
-      chapter = bucket.object("store/book/#{@book.title}/#{params[:section]}.md")
-      chapter.put(body:'# New section')
-      # 做出 section 檔案
+    if params[:section] == ""
+      return
     end
+    @book = Book.find(params[:id])
+
+    # 取到結構json檔資料
+    s3 = Aws::S3::Client.new
+    object = s3.get_object(bucket: ENV['bucket'], key:"store/book/#{@book.title}/structure.json")    
+    structure_json = object.body.read
+    # 將新增的 section 加入結構中
+    structure_json = JSON.parse(structure_json)
+    
+    # 檢查 section 是否重複
+    structure_json[params[:order].to_i][params[:chapter]].each do |obj|
+      if obj["#{params[:section]}"] != nil
+        return
+      end
+    end  
+    
+    structure_json[params[:order].to_i][params[:chapter]].push(params[:section])
+    structure_json = structure_json.to_json
+    
+    s3 = Aws::S3::Resource.new
+    bucket = s3.bucket(ENV['bucket'])
+    structure = bucket.object("store/book/#{@book.title}/structure.json")
+    structure.put(body: structure_json)
+    # 將新的結構存到 structure.json檔案
+    chapter = bucket.object("store/book/#{@book.title}/#{params[:section]}.md")
+    chapter.upload_stream{|ws| ws << '# New section'}    # 做出 section 檔案
   end
   
+  def get_content  
+    title = params[:bookName]
+    target = params[:target]
+    s3 = Aws::S3::Client.new
+    object = s3.get_object(bucket: ENV['bucket'], key:"store/book/#{title}/#{target}.md")    
+    content = object.body.read
+
+    respond_to do |format|
+      format.json{ render json: {content: content} }
+    end
+  end
+
   def sample
 
   end
@@ -188,7 +198,7 @@ class BooksController < ApplicationController
     a = a.to_json
     structure.put(body: a )
     chapter = bucket.object("store/book/#{title}/Chapter_1.md")
-    chapter.put(body:'# Chapter_1')
+    chapter.upload_stream{|ws| ws << '# Chapter_1'}
   end
   
 end

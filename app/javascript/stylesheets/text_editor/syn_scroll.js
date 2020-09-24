@@ -1,6 +1,4 @@
-window.addEventListener('turbolinks:load',()=>{
-  
-  if(document.querySelector('#targetDiv') && document.querySelector('#sourceTA')){
+export  function syn_scroll(){
     let codemirror = document.querySelector('.CodeMirror-scroll')
     let markdownIt = document.querySelector('#targetDiv')
 
@@ -22,4 +20,5 @@ window.addEventListener('turbolinks:load',()=>{
         codemirror.scrollTo(currentX,leftMoveTo)
     })
   }
-})
+
+  export default syn_scroll

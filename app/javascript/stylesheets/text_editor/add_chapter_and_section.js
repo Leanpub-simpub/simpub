@@ -20,18 +20,8 @@ window.addEventListener('turbolinks:load',()=>{
     let addSection = document.querySelectorAll('.addsection')
     let sectionform = document.querySelector('.sectionCreate')
     let sectionInsetTarget // 之後新增 section 要當作位置參照
-    let current = document.querySelector('.book_name span')
 
-
-    chapterList.addEventListener('click',(e)=>{
-      chapterList.querySelectorAll('div').forEach((div)=>{
-        div.classList.remove('active')
-      })
-      if(e.target.className == 'chapter' || e.target.className == 'section'){
-        e.target.classList.add('active')
-        current.textContent = `----${e.target.textContent}`
-      }
-    })
+ 
 
     // add-chapter-form control
     addChapter.addEventListener('click',(e)=>{
@@ -60,11 +50,12 @@ window.addEventListener('turbolinks:load',()=>{
         chapterDOM.querySelector('.chapter').textContent = chapterInput.value
         let order = document.querySelectorAll('.chapter').length
         chapterDOM.querySelector('.chapter').dataset.order = order
+        
         chapterDOM.querySelector('.addsection').addEventListener('click',(e)=>{
           e.stopPropagation()
           sectionform.classList.remove('x')
           chapterform.classList.add('x')
-          let chapter = addSectionBtn.previousSibling.previousSibling
+          let chapter = e.target.previousSibling.previousSibling
           //  addSection 是 ＋ 前一個 DOM 是 chapter::before 再前一個才是 chapter 
           document.querySelector('#chapterForSectionRecord').value = chapter.textContent
           document.querySelector('#orderForSectionRecord').value = chapter.dataset.order
@@ -89,11 +80,11 @@ window.addEventListener('turbolinks:load',()=>{
         e.stopPropagation()
         sectionform.classList.remove('x')
         chapterform.classList.add('x')
-        let chapter = addSectionBtn.previousSibling.previousSibling
+        let chapter = e.target.previousSibling.previousSibling
         //  addSection 是 ＋ 前一個 DOM 是 chapter::before 再前一個才是 chapter 
         document.querySelector('#chapterForSectionRecord').value = chapter.textContent
         document.querySelector('#orderForSectionRecord').value = chapter.dataset.order
-        sectionInsetTarget = addSectionBtn.parentElement
+        sectionInsetTarget = e.target.parentElement
       })
     })
 
