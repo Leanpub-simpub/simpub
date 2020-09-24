@@ -1,8 +1,8 @@
 <section class="book-show container library">
-  <div class="h3 text-white pl-5 pt-5">Library</div>
+  <div class="h3  pl-5 pt-5">Library</div>
   <div class="row  align-self-center">
     <% if @books.count == 0 %>
-      <div class="container purchase d-flex text-white text-center">
+      <div class="container purchase d-flex  text-center">
         <p class=" h2 mx-auto align-self-center">
           <%= link_to "Get some books", books_path%> <br>
           or <br>
@@ -11,7 +11,7 @@
       </div>
     <% else %>
       <% @books.each do |book| %>
-      <div class="col-2 text-white">
+      <div class="col-2 ">
         <div class="library">
           <div class="cover">
             <!-- 加入判斷避免該欄位使用假圖壞掉的 bug -->
