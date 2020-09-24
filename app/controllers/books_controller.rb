@@ -179,6 +179,10 @@ class BooksController < ApplicationController
     bucket = s3.bucket(ENV['bucket'])
     chapter = bucket.object("store/book/#{book_name}/#{target}.md")
     chapter.upload_stream{|ws| ws << content}
+    
+    respond_to do |format|
+      format.json{ render json: {message: 'ok'} }
+    end
   end
 
   def sample

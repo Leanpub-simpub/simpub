@@ -114,14 +114,17 @@ window.addEventListener('turbolinks:load',()=>{
 
       axios({
         method: 'post',
-        url: '/books/update_content',
+        url: '/books/update_content.json',
         data: params
       })
       .then( (result)=>{
-
+        if(result.data['message'] === "ok" ){
+          alert('Success to Save')
+        }
       })
       .catch(function(err){
         console.log(err)
+        alert('Fail to Save')
       })
 
     })
