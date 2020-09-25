@@ -1,4 +1,4 @@
-<nav class="layout-navbar navbar navbar-dark bg-black px-5">
+<nav class="layout-navbar navbar px-5">
   <div class="col-1">
     <a href="/" class="navbar-brand d-flex"><%= image_pack_tag "logo.png", class: "w-100 img-responsive" %></a>
 	</div>
@@ -7,24 +7,24 @@
   <%= link_to "Books", books_path, class: "nav-item main-color mr-3 " %>
   
   <% if user_signed_in?  %>
-    <!-- 個人書櫃 -->
+  <!-- 個人書櫃 -->
     <%= link_to "Library", :library, class: "nav-item mr-3  main-color" %>
     <a href="/purchase" class="nav-item main-color mr-3 ">Purchase</a>
 
-    <!-- 寫書 -->
+  <!-- 寫書 -->
     <%= link_to "Create a Book", :new_book, class: "nav-item mr-3  main-color" %>
       
-      <!-- 寫過的書 -->
+  <!-- 寫過的書 -->
     <% if current_user.pub_books.count > 0 %>
-    <%= link_to "My Writings", dash_board_books_path, class: "nav-item main-color mr-3 " %>
+      <%= link_to "My Writings", dash_board_books_path, class: "nav-item main-color mr-3 " %>
     <% end %>
     
   <% end %>
 
   <!-- navSearch -->
   <%= form_with(url: :books, method: :get, class: "nav-search form-inline ml-auto", local: true) do |f| %>
-    <%= f.search_field :search, class: "search-input form-control mr-sm-2", placeholder: "Search" %>
-    <%= f.button :submit, class: "search-btn btn btn-outline-black my-2 my-sm-0" do %>
+    <%= f.search_field :search, class: "search-input form-control", placeholder: "Search" %>
+    <%= f.button :submit, class: "search-btn btn btn-outline-black my-2" do %>
       <i class="fas fa-search main-color"></i>
     <% end %>
   <% end %>
@@ -39,7 +39,7 @@
   <div class="mx-2 d-flex flex-row">
     <!-- 購物車 -->
     <%= link_to cart_path do %>
-      <i class="nav-icon mg-auto mx-2 fas fa-shopping-cart main-color">
+      <i class="nav-icon mg-auto mx-2 fas fa-shopping-cart fa-2x main-color">
         <div class="x"></div>
       </i>
     <% end %>
@@ -61,19 +61,16 @@
     <div class="fix-down">
       <nav class="navbar navbar-dark bg-black">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          <div class="nav-avatar">
+            <%= render "shared/frontend/user_avatar", user: current_user %>
+          </div>
         </button>
       </nav>
     </div>
     
     <div class="layout-dropdown collapse position-absolute w-100 ml-auto" id="navbarToggleExternalContent">
-      <div class="layout-dropdown-child position-absolute bg-black px-4 py-1 ml-auto col-2 col-lg-2">
-        <div class="row mx-auto align-items-center">
-          <div class="nav-avatar">
-            <div>
-              <%= render "shared/frontend/user_avatar", user: current_user %>
-            </div>
-          </div>
+      <div class="layout-dropdown-child position-absolute px-4 py-1 ml-auto col-2 col-lg-2">
+        <div class="row mx-auto align-items-center account-info">
           <div>
             <p class= "nav-user-info my-0 px-2"><%= current_user.name %></p> 
             <p class= "nav-user-info my-0 px-2"><%= current_user.email %></p> 

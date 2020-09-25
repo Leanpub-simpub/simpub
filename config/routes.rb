@@ -2,8 +2,11 @@ Rails.application.routes.draw do
 
   root "home#index"
 
-  # devise_for :users, controllers: { registrations: "users/registrations", omniauth_callbacks: "users/omniauth_callbacks" }
-  devise_for :users, controllers: { registrations: "users/registrations", omniauth_callbacks: "users/omniauth_callbacks", confirmations: "users/confirmations" }
+  # 測試用
+  devise_for :users, controllers: { registrations: "users/registrations", omniauth_callbacks: "users/omniauth_callbacks" }
+  
+  # 正式用
+  # devise_for :users, controllers: { registrations: "users/registrations", omniauth_callbacks: "users/omniauth_callbacks", confirmations: "users/confirmations" }
   
   devise_scope :user do
     get "/user_dashboard/settings", to: "users/registrations#edit", as: "user_dashboard"

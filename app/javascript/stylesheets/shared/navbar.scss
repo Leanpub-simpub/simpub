@@ -44,7 +44,7 @@
 	left: 0;
 	> .layout-dropdown-child {
 		right: 0px;
-		background-color: black;
+		background-color: white;
 		transform: translateX(100%);
 		transition: transform 0.35s ease, opacity 0.7s ease;
 		z-index: 100;
@@ -52,6 +52,7 @@
 	}
 
 	&.collapsing {
+		padding-top: 5px;
 		height: auto;
 		overflow: visible;
 		transition: none;
@@ -75,11 +76,11 @@
 	width: 100%;
 }
 .nav-user-info {
-	color: white;
+	// color: white;
 	font-size: 14px;
 }
 .nav-drop-item {
-	color: white;
+	// color: white;
 	text-decoration: none;
 	font-size: 14px;
 }
@@ -93,7 +94,7 @@
 }
 .sign_out_btn:hover {
 	text-decoration: none;
-	color: white;
+	// color: white;
 }
 @keyframes shaking {
 	0% {
@@ -143,4 +144,8 @@
 	span:hover {
 		color: gold;
 	}
+}
+
+.account-info {
+	padding-top: 10px;
 }
