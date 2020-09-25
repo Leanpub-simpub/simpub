@@ -111,10 +111,10 @@ class BooksController < ApplicationController
       end
     end     
     
-    chapter = { "#{chapter}": []}
+    chapter = { "#{chapter_name}": []}
     structure_json.push(chapter)     
     structure_json = structure_json.to_json
-    
+
     s3 = Aws::S3::Resource.new
     bucket = s3.bucket(ENV['bucket'])
     structure = bucket.object("store/book/#{@book.title}/structure.json")

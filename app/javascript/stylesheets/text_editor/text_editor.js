@@ -26,13 +26,17 @@ window.addEventListener('turbolinks:load',()=>{
     let myCodeMirror //使mycodemirror變成變數
     let contentArea = document.querySelector('#sourceTA')
     let bookName = document.querySelector('.book_name')
-    let target = document.querySelector('.active')
     let chapterList = document.querySelector('.chapter_list')
-    let temp //判斷是否有編輯文字用
+    let tempForMdToHtml //判斷是否有編輯文字用
     let save = document.querySelector('#save')
+    let startText
     //從前端 fetch 到 server 的 get_content action 取得第一章節的內容並印出
     let token = document.querySelector("meta[name=csrf-token]").content
     axios.defaults.headers.common['X-CSRF-Token']= token
+    
+    // 預設打開第一章節
+    document.querySelector('.chapter').classList.add('active')
+    let target = document.querySelector('.active')
 
     let params = { bookName:bookName.textContent , target:target.textContent }
 
@@ -58,7 +62,7 @@ window.addEventListener('turbolinks:load',()=>{
 
       // 把 codemirror 的編輯器塞到 contentArea 裡面，格式要求就依照 editorConfig
       myCodeMirror = CodeMirror(contentArea, editorConfig);
-      
+      startText = myCodeMirror.getValue()
       //把左右同步滑動功能加上 
       syn_scroll()
     })
@@ -73,7 +77,7 @@ window.addEventListener('turbolinks:load',()=>{
       }
       let token = document.querySelector("meta[name=csrf-token]").content
       axios.defaults.headers.common['X-CSRF-Token']= token  
-      
+      //紀錄書本名稱，要看哪一個章節
       let params = { bookName: bookName.textContent , target: e.target.textContent }    
       
       axios({
@@ -95,6 +99,7 @@ window.addEventListener('turbolinks:load',()=>{
         }
         contentArea.innerHTML = "" //清空原先的 codemirror 內容
         myCodeMirror = CodeMirror(contentArea, editorConfig);
+        startText = myCodeMirror.getValue()
         // 把 codemirror 的編輯器塞到 contentArea 裡面，格式要求就依照 editorConfig
         syn_scroll()
       })
@@ -107,38 +112,76 @@ window.addEventListener('turbolinks:load',()=>{
     // 手動存檔
     save.addEventListener('click',()=>{
       let content = myCodeMirror.getValue()
+      if(startText != content){
+        startText = content
+        let target = document.querySelector('.active')
+        let token = document.querySelector("meta[name=csrf-token]").content
+        axios.defaults.headers.common['X-CSRF-Token']= token
+        let params = { bookName:bookName.textContent , target:target.textContent, content: content }
 
-      let token = document.querySelector("meta[name=csrf-token]").content
-      axios.defaults.headers.common['X-CSRF-Token']= token
-      let params = { bookName:bookName.textContent , target:target.textContent, content: content }
-
-      axios({
-        method: 'post',
-        url: '/books/update_content.json',
-        data: params
-      })
-      .then( (result)=>{
-        if(result.data['message'] === "ok" ){
-          alert('Success to Save')
-        }
-      })
-      .catch(function(err){
-        console.log(err)
-        alert('Fail to Save')
-      })
+        axios({
+          method: 'post',
+          url: '/books/update_content.json',
+          data: params
+        })
+        .then( (result)=>{
+          if(result.data['message'] === "ok" ){
+            alert('Success to Save')
+          }
+        })
+        .catch(function(err){
+          console.log(err)
+          alert('Fail to Save')
+        })
+      }
     })
     
-    
+   
+
+    // 切換書本頁面時判斷是否要存檔
+    chapterList.addEventListener('click',(e)=>{      
+      if(e.target.className == 'chapter' || e.target.className == 'section'){
+        let content = myCodeMirror.getValue()
+        console.log('通過 classname check')
+        // 如果內容有更動才存檔
+        if(content!=startText){
+          console.log('內容有更新')
+          startText = content
+          let target = document.querySelector('.active')
+          let token = document.querySelector("meta[name=csrf-token]").content
+          axios.defaults.headers.common['X-CSRF-Token']= token
+          let params = { bookName:bookName.textContent , target:target.textContent, content: content }
+
+          axios({
+            method: 'post',
+            url: '/books/update_content.json',
+            data: params
+          })
+          .then( (result)=>{
+            if(result.data['message'] === "ok" ){
+              alert('Success to Save')
+            }
+          })
+          .catch(function(err){
+            console.log(err)
+            alert('Fail to Save')
+          })
+        }
+        chapterList.querySelector('.active').classList.remove('active')
+        e.target.classList.add('active')
+        let current = document.querySelector('.currentTarget')
+        current.textContent = `----${e.target.textContent}`
+      }
+    })
+
+
     setInterval(mdToHTML,500) //模擬即時顯示 // 重複執行時間拉開，避免被圖片連結的網站認為是攻擊
-
-
-
 
     function mdToHTML(){
       let text = myCodeMirror.getValue()
       // 判斷內容是否改動，有改動就做事
-      if(text !== temp){
-        temp = text
+      if(text !== tempForMdToHtml){
+        tempForMdToHtml = text
         let target = document.getElementById('targetDiv')
         let md = markdownit(({
           html:           false,
