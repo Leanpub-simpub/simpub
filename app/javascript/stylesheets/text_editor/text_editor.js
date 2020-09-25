@@ -126,7 +126,6 @@ window.addEventListener('turbolinks:load',()=>{
         console.log(err)
         alert('Fail to Save')
       })
-
     })
     
     

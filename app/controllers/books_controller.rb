@@ -104,9 +104,9 @@ class BooksController < ApplicationController
     structure_json = JSON.parse(structure_json)
 
     # 檢查 chapter 是否重複
-    chapter = "#{params[:chapter]}".gsub(/\s/, '_')
+    chapter_name = params[:chapter].gsub(/\s/, '_')
     structure_json.each do |obj|
-      if obj["#{chapter}"] != nil
+      if obj["#{chapter_name}"] != nil
         return
       end
     end     
@@ -120,7 +120,7 @@ class BooksController < ApplicationController
     structure = bucket.object("store/book/#{@book.title}/structure.json")
     structure.put(body: structure_json)
     # 將新的結構存到 structure.json檔案
-    chapter = bucket.object("store/book/#{@book.title}/#{chapter}.md")
+    chapter = bucket.object("store/book/#{@book.title}/#{chapter_name}.md")
     chapter.upload_stream{|ws| ws << '# NewChapter'}
     # 做出章節
     
@@ -155,8 +155,8 @@ class BooksController < ApplicationController
     structure = bucket.object("store/book/#{@book.title}/structure.json")
     structure.put(body: structure_json)
     # 將新的結構存到 structure.json檔案
-    chapter = bucket.object("store/book/#{@book.title}/#{section}.md")
-    chapter.upload_stream{|ws| ws << '# New section'}    # 做出 section 檔案
+    section = bucket.object("store/book/#{@book.title}/#{section}.md")
+    section.upload_stream{|ws| ws << '# New section'}    # 做出 section 檔案
   end
   
   def get_content  
