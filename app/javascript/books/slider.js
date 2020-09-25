@@ -5,19 +5,23 @@ document.addEventListener("turbolinks:load", () => {
     const authorEarns = document.querySelector("#author-earns");
     const authorEarnsShow = document.querySelector(".author-earns-show");
     const cartPrice = document.querySelector(".cart-price");
+    const addCartForm = document.forms[1];
 
+    // 設定初始化價格
     setPricePay();
 
+    // "User Pay" slider 拖動時呼叫
     userPay.addEventListener("input", () => {
       setPricePay();
     });
-
+    
+    // "Author Earns"" slider 拖動時呼叫
     authorEarns.addEventListener("input", () => {
       setPriceEarns();
     });
 
+    // 使用者自行在 input 輸入時呼叫
     cartPrice.addEventListener("keypress", e => {
-      
       if (e.key === "Enter") {
         e.preventDefault();
         // 驗證輸入框的輸入格式為 數字 或 $ 開頭
@@ -47,6 +51,32 @@ document.addEventListener("turbolinks:load", () => {
         }
       }
     });
+
+    // 按下加入購物車按鈕後顯示動畫
+    addCartForm.onsubmit = bookToCart.bind(addCartForm);
+    function bookToCart() {
+      const cart = document.querySelector(".fa-shopping-cart");
+      const cover = document.querySelector(".cover-img");
+      const coverBubble = cover.cloneNode(true);
+
+      let startW = cover.getBoundingClientRect().width;
+      let startH = cover.getBoundingClientRect().height;
+      let startX = startW / 2 + cover.getBoundingClientRect().x
+      let startY = startH / 2 + cover.getBoundingClientRect().y;
+      let endX = cart.getBoundingClientRect().x;
+      let endY = cart.getBoundingClientRect().y;
+
+      coverBubble.classList.add("cover-bubble");
+      cover.parentElement.appendChild(coverBubble);
+
+      gsap.to(".cover-bubble", {duration: 1, scale: .08, x: `${endX - startX}px`, y: `${endY - startY}px`, opacity: .5})
+
+      // 動畫結束後刪除該物件
+      setTimeout(() => {
+        cover.parentElement.removeChild(coverBubble);
+      }, 1000);
+    }
+
 
 
     function setPricePay() {
