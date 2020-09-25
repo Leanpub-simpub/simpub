@@ -1,0 +1,27 @@
+html {
+	--bg: #ffffff;
+	--txt: #333333;
+
+	// 主視覺色
+	.main-color {
+		color: #e09a5f;
+	}
+
+	// 主要按鈕
+	.main-button {
+		background-color: #e09a5f;
+		color: white;
+		border: none;
+	}
+}
+
+body {
+	background-color: var(--bg);
+
+	// 文字顏色
+	[class*="title"],
+	[class*="text"],
+	[class*="author"] {
+		color: var(--txt);
+	}
+}

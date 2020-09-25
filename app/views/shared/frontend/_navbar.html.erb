@@ -39,10 +39,22 @@
   <div class="mx-2 d-flex flex-row">
     <!-- 購物車 -->
     <%= link_to cart_path do %>
-      <i class="nav-icon mg-auto mx-2 fas fa-shopping-cart fa-2x main-color">
+      <i class="nav-icon fas fa-shopping-cart fa-2x mx-2 main-color">
         <div class="x"></div>
       </i>
     <% end %>
+
+    <!-- 開燈/關燈 -->
+    <div class="toggle">
+      <input id="switch" type="checkbox" name="theme">
+      <label for="switch">Toggle</label>
+    </div>
+    <!---
+    <button id="toggler" onclick="openLight.toggleMode()">
+      <i class="fas fa-lightbulb fa-2x mx-2 main-color"></i>
+    </button>
+    --->
+
     <% if user_signed_in? %>
       <%# <a href="#">
         <i class="nav-icon mg-auto mx-2 fas fa-heart main-color"></i>
