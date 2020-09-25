@@ -72,40 +72,39 @@ window.addEventListener('turbolinks:load',()=>{
     
     // 點擊到對應章節可以找到該檔案的資料並呈現
     chapterList.addEventListener('click',(e)=>{
-      if(e.target.className =="addsection"){
-        return
+      if((e.target.className =="chapter"||e.target.className =="section") && e.target != document.querySelector('.active')){
+        let token = document.querySelector("meta[name=csrf-token]").content
+        axios.defaults.headers.common['X-CSRF-Token']= token  
+        //紀錄書本名稱，要看哪一個章節
+        let params = { bookName: bookName.textContent , target: e.target.textContent }    
+        
+        axios({
+          method: 'post',
+          url: '/books/get_content.json',
+          data: params
+        })
+        .then( (result)=>{
+          let content = result.data['content']
+        
+          let editorConfig = {
+            mode: "markdown",
+            lint: true,
+            lineNumbers: true,
+            theme: 'abcdef',
+            lineWrapping: true,
+            autoRefresh: true,
+            value: content
+          }
+          contentArea.innerHTML = "" //清空原先的 codemirror 內容
+          myCodeMirror = CodeMirror(contentArea, editorConfig);
+          startText = myCodeMirror.getValue()
+          // 把 codemirror 的編輯器塞到 contentArea 裡面，格式要求就依照 editorConfig
+          syn_scroll()
+        })
+        .catch(function(err){
+          console.log(err)
+        })
       }
-      let token = document.querySelector("meta[name=csrf-token]").content
-      axios.defaults.headers.common['X-CSRF-Token']= token  
-      //紀錄書本名稱，要看哪一個章節
-      let params = { bookName: bookName.textContent , target: e.target.textContent }    
-      
-      axios({
-        method: 'post',
-        url: '/books/get_content.json',
-        data: params
-      })
-      .then( (result)=>{
-        let content = result.data['content']
-       
-        let editorConfig = {
-          mode: "markdown",
-          lint: true,
-          lineNumbers: true,
-          theme: 'abcdef',
-          lineWrapping: true,
-          autoRefresh: true,
-          value: content
-        }
-        contentArea.innerHTML = "" //清空原先的 codemirror 內容
-        myCodeMirror = CodeMirror(contentArea, editorConfig);
-        startText = myCodeMirror.getValue()
-        // 把 codemirror 的編輯器塞到 contentArea 裡面，格式要求就依照 editorConfig
-        syn_scroll()
-      })
-      .catch(function(err){
-        console.log(err)
-      })
     })
     
     
@@ -131,6 +130,9 @@ window.addEventListener('turbolinks:load',()=>{
     
     
     function mdToHTML(){
+      if(!document.querySelector('.CodeMirror')){
+        return
+      }
       let text = myCodeMirror.getValue()
       // 判斷內容是否改動，有改動就做事
       if(text !== tempForMdToHtml){
