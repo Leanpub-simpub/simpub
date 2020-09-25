@@ -110,63 +110,14 @@ window.addEventListener('turbolinks:load',()=>{
     
     
     // 手動存檔
-    save.addEventListener('click',()=>{
-      let content = myCodeMirror.getValue()
-      if(startText != content){
-        startText = content
-        let target = document.querySelector('.active')
-        let token = document.querySelector("meta[name=csrf-token]").content
-        axios.defaults.headers.common['X-CSRF-Token']= token
-        let params = { bookName:bookName.textContent , target:target.textContent, content: content }
-
-        axios({
-          method: 'post',
-          url: '/books/update_content.json',
-          data: params
-        })
-        .then( (result)=>{
-          if(result.data['message'] === "ok" ){
-            alert('Success to Save')
-          }
-        })
-        .catch(function(err){
-          console.log(err)
-          alert('Fail to Save')
-        })
-      }
-    })
+    save.addEventListener('click',saveContent)
     
-   
-
     // 切換書本頁面時判斷是否要存檔
     chapterList.addEventListener('click',(e)=>{      
       if(e.target.className == 'chapter' || e.target.className == 'section'){
-        let content = myCodeMirror.getValue()
-        console.log('通過 classname check')
-        // 如果內容有更動才存檔
-        if(content!=startText){
-          console.log('內容有更新')
-          startText = content
-          let target = document.querySelector('.active')
-          let token = document.querySelector("meta[name=csrf-token]").content
-          axios.defaults.headers.common['X-CSRF-Token']= token
-          let params = { bookName:bookName.textContent , target:target.textContent, content: content }
-
-          axios({
-            method: 'post',
-            url: '/books/update_content.json',
-            data: params
-          })
-          .then( (result)=>{
-            if(result.data['message'] === "ok" ){
-              alert('Success to Save')
-            }
-          })
-          .catch(function(err){
-            console.log(err)
-            alert('Fail to Save')
-          })
-        }
+        
+        saveContent()  //存檔
+        
         chapterList.querySelector('.active').classList.remove('active')
         e.target.classList.add('active')
         let current = document.querySelector('.currentTarget')
@@ -176,7 +127,9 @@ window.addEventListener('turbolinks:load',()=>{
 
 
     setInterval(mdToHTML,500) //模擬即時顯示 // 重複執行時間拉開，避免被圖片連結的網站認為是攻擊
-
+    // setInterval(saveContent,1000*60*5) //每五分鐘自動存檔
+    
+    
     function mdToHTML(){
       let text = myCodeMirror.getValue()
       // 判斷內容是否改動，有改動就做事
@@ -216,5 +169,33 @@ window.addEventListener('turbolinks:load',()=>{
         return
       }
     }
+
+    // 手動存檔的code
+    function saveContent(){
+      let content = myCodeMirror.getValue()
+      if(startText != content){
+        startText = content
+        let target = document.querySelector('.active')
+        let token = document.querySelector("meta[name=csrf-token]").content
+        axios.defaults.headers.common['X-CSRF-Token']= token
+        let params = { bookName:bookName.textContent , target:target.textContent, content: content }
+
+        axios({
+          method: 'post',
+          url: '/books/update_content.json',
+          data: params
+        })
+        .then( (result)=>{
+          if(result.data['message'] === "ok" ){
+            alert('Success to Save')
+          }
+        })
+        .catch(function(err){
+          console.log(err)
+          alert('Fail to Save')
+        })
+      }
+    }
+
   }
 })
