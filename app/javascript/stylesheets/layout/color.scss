@@ -16,11 +16,12 @@ body {
 
 	// 關燈後能看到內容
 	[class*="title"],
-	[class*="text"],
+	[class*="txt"],
 	[class*="author"],
-	[class*="btn"],
 	[class*="item"],
-	[class*="icon"] {
+	[class*="cover"],
+	[class*="icon"],
+	[class*="tag"] {
 		color: var(--txt);
 	}
 }
@@ -29,6 +30,7 @@ input[id="switch"] {
 	color: var(--main);
 }
 
-.nav-icon {
-	color: #222222;
+.nav-item:hover,
+.navbar-brand:hover {
+	color: #e09a5f;
 }

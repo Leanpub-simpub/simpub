@@ -1,13 +1,10 @@
 .layout-navbar {
-	.navbar-brand:hover {
-		color: gold;
-	}
+	border-bottom: 1px solid;
+
 	.nav-item {
 		text-decoration: none;
 	}
-	.nav-item:hover {
-		color: gold;
-	}
+
 	div .nav-icon:hover {
 		animation: shaking 1s infinite;
 	}
