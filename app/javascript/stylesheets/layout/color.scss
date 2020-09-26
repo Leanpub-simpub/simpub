@@ -2,11 +2,6 @@ html {
 	--bg: #ffffff;
 	--txt: #333333;
 
-	// 主視覺色
-	.main-color {
-		color: #e09a5f;
-	}
-
 	// 主要按鈕
 	.main-button {
 		background-color: #e09a5f;
@@ -15,13 +10,25 @@ html {
 	}
 }
 
+// 關燈後背景
 body {
 	background-color: var(--bg);
 
-	// 文字顏色
+	// 關燈後能看到內容
 	[class*="title"],
 	[class*="text"],
-	[class*="author"] {
+	[class*="author"],
+	[class*="btn"],
+	[class*="item"],
+	[class*="icon"] {
 		color: var(--txt);
 	}
+}
+
+input[id="switch"] {
+	color: var(--main);
+}
+
+.nav-icon {
+	color: #222222;
 }
