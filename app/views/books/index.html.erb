@@ -1,25 +1,30 @@
 <div class="book-index container">
-	<select name="" id="search-selector">
-		<option value="book-search">搜尋書名</option>
-		<option value="author-search">搜尋作者</option>
-		<option value="tag-search">搜尋 tag</option>
-	</select>
-	<!-- book search 表單 -->
-	<%= form_with(url: :books, method: :get, class: "book-search x form-inline d-flex justify-content-center md-form form-sm mt-5 mb-5", local: true) do |f| %>
-		<%= f.search_field :book_search, class: "book-search-input form-control-sm  w-75 rounded-left", placeholder: "Search" %>
-		<i class="fas fa-search ml-2" aria-hidden="true"></i>
-	<% end %>
-	<!-- author search 表單 -->
-	<%= form_with(url: :books, method: :get, class: "author-search x form-inline justify-content-center md-form form-sm mt-5 mb-5", local: true) do |f| %>
-		<%= f.search_field :author_search, class: "book-search-input form-control-sm  w-75 rounded-left", placeholder: "Search" %>
-		<i class="fas fa-search ml-2" aria-hidden="true"></i>
-	<% end %>
-	<!-- tag search 表單 -->
-	<%= form_with(url: :books, method: :get, class: "tag-search x form-inline justify-content-center md-form form-sm mt-5 mb-5", local: true) do |f| %>
-		<%= f.search_field :tag_search, class: "tag-search-input form-control-sm  w-75 rounded-left", placeholder: "Search" %>
-		<i class="fas fa-search ml-2" aria-hidden="true"></i>
-	<% end %>
-
+	<!--- 移到 navbar
+	<div class="book-search-filter text-center">
+		<select name="" id="search-selector" class="mr-3">
+			<option value="book-search">搜尋書名</option>
+			<option value="author-search">搜尋作者</option>
+			<option value="tag-search">搜尋 tag</option>
+		</select>
+		<div class="row search-bar">
+			<%# book search 表單 %>
+			<%= form_with(url: :books, method: :get, class: "book-search x form-inline d-flex justify-content-center md-form form-sm mt-5 mb-5", local: true) do |f| %>
+				<%= f.search_field :book_search, class: "book-search-input form-control-sm", placeholder: "Search" %>
+				<i class="fas fa-search ml-2" aria-hidden="true"></i>
+			<% end %>
+			<%# author search 表單 %>
+			<%= form_with(url: :books, method: :get, class: "author-search x form-inline justify-content-center md-form form-sm mt-5 mb-5", local: true) do |f| %>
+				<%= f.search_field :author_search, class: "book-search-input form-control-sm", placeholder: "Search" %>
+				<i class="fas fa-search ml-2" aria-hidden="true"></i>
+			<% end %>
+			<%# tag search 表單 %>
+			<%= form_with(url: :books, method: :get, class: "tag-search x form-inline justify-content-center md-form form-sm mt-5 mb-5", local: true) do |f| %>
+				<%= f.search_field :tag_search, class: "tag-search-input form-control-sm", placeholder: "Search" %>
+				<i class="fas fa-search ml-2" aria-hidden="true"></i>
+			<% end %>
+		</div>
+	</div>
+	--->
 	<div class="row books-show">
 		<% @books.each do |book| %>
 			<!-- 調整 RWD -->

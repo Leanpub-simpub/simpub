@@ -1,7 +1,7 @@
 <nav class="layout-navbar navbar px-5 txt">
   <div class="col-1">
     <a href="/" class="navbar-brand d-flex">  
-      <%= image_pack_tag "logo.png", class: "w-100 img-responsive" %>
+      <%= image_pack_tag "logo.png", class: "w-100 img-responsive icon" %>
     </a>
 	</div>
 
@@ -22,14 +22,18 @@
   <% end %>
 
   <!-- navSearch -->
-  <%= form_with(url: :books, method: :get, class: "nav-search form-inline ml-auto", local: true) do |f| %>
+  <select name="" id="search-selector" class="ml-auto">
+    <option value="book-search">搜尋書名</option>
+    <option value="author-search">搜尋作者</option>
+    <option value="tag-search">搜尋 tag</option>
+  </select>
+  <%= form_with(url: :books, method: :get, class: "nav-search form-inline mx-2", local: true) do |f| %>
     <%= f.search_field :search, class: "search-input form-control", placeholder: "Search" %>
     <%= f.button :submit, class: "search-btn btn btn-outline-black my-2" do %>
       <i class="fas fa-search "></i>
     <% end %>
   <% end %>
  
-
   <!-- 購物車 -->
   <%= link_to cart_path, class:"nav-icon" do%>
     <i class="fas fa-shopping-cart mx-2">
@@ -51,8 +55,8 @@
   <% else %>
   
   <!-- 註冊&登入 -->
-    <%= link_to "Sign up", new_user_registration_path ,class: "mx-2 " %>
-    <%= link_to "Sign in", new_user_session_path ,class: "mx-2 " %>
+    <%= link_to "Sign up", new_user_registration_path ,class: "mx-2 txt" %>
+    <%= link_to "Sign in", new_user_session_path ,class: "mx-2 txt" %>
   <% end %>
 
   <!-- 開燈/關燈 -->

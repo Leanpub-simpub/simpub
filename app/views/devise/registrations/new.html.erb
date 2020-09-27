@@ -1,10 +1,10 @@
 <section class="sign-up container d-flex justify-content-center my-10">
   <div class="mx-4">
-    <h4 class="font-weight-normal">
-        PUBLISH EARLY,<br />
-        PUBLISH OFTEN.
+    <h4 class="font-weight-normal title">
+      PUBLISH EARLY,<br />
+      PUBLISH OFTEN.
     </h4>
-    <div >
+    <div class="txt">
       <p>
         Authors, companies and universities use Simpub to<br />easily <strong>write,
         publish and sell</strong> amazing <strong>in-progress<br />and completed ebooks and online courses.</strong>
@@ -30,20 +30,20 @@
   </div> 
 
   <div class="mx-4"> 
-    <h3 class="font-weight-light">Sign up</h3>
+    <h3 class="title">Sign up</h3>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
         
         <%= f.label :name %><br />
-        <%= f.text_field :name, autofocus: true, class:"col-10 mb-3" %>
+        <%= f.text_field :name, autofocus: true, class:"col-12 mb-3" %>
         <div class="w-100"></div>
 
         <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-10 mb-3" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-12 mb-3" %>
         <div class="w-100"></div>
 
         <%= f.label :username %><br />
-        <%= f.text_field :username, autofocus: true, class:"col-10 mb-3" %>
+        <%= f.text_field :username, autofocus: true, class:"col-12 mb-3" %>
         <div class="w-100"></div>
 
         <%= f.label :password %>
@@ -51,24 +51,26 @@
         <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %><br />
 
-        <%= f.password_field :password, autocomplete: "new-password", class:"col-10 mb-3" %>
+        <%= f.password_field :password, autocomplete: "new-password", class:"col-12 mb-3" %>
         <div class="w-100"></div>
 
         <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"col-10 mb-3" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"col-12 mb-3" %>
         <div class="w-100"></div>
       
-        <input class="mr-2 leading-tight" type="checkbox">
-        <span class="text-base">
+        <input class="mr-2" type="checkbox">
+        <span class="text-base txt">
           I accept the Simpub <a href="" class="">Terms of Service</a> and <a href="#" class="">Privacy Policy</a>
         </span>
 
-        <div class="my-3" >
-          <%= f.submit "Create Account", class: "col-4 btn btn-dark main-btn border-0 py-2 " %>
+        <div class="my-3">
+          <%= f.submit "Create Account", class: "btn btn-danger main-btn border-0 py-2 " %>
         </div>
         <% end %>
         
-        <%= render "devise/shared/links" %>
+        <div class="text-start">
+          <%= render "devise/shared/links" %>
+        </div>
    </div>
 </section>
 
