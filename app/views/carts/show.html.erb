@@ -1,13 +1,13 @@
 <section class="cart-show container mt-5">
   <div>
     <header class="checkout_header d-flex justify-content-center mb-5">
-      <div class=" h-12 py-2 border w-25 d-flex justify-content-center align-items-center bg-secondary">
+      <div class="py-2 border w-25 d-flex justify-content-center align-items-center bg-primary">
         Preview
       </div>
-      <div class=" h-12 py-2 border w-25 d-flex justify-content-center align-items-center">
+      <div class="py-2 border w-25 d-flex justify-content-center align-items-center">
         Checkout
       </div>
-      <div class=" h-12 py-2 border w-25 d-flex justify-content-center align-items-center">
+      <div class="py-2 border w-25 d-flex justify-content-center align-items-center">
         Settings & Download
       </div>
     </header>
@@ -67,8 +67,9 @@
   
   <div class="d-flex justify-content-center mt-5">
     <div class="w-75 d-flex justify-content-between">
-      <%= link_to "清空購物車", cart_path, method: :delete, class: " w-25 d-flex justify-content-center btn btn-outline-danger" %>
-      <%= link_to "結帳", payment_cart_path, class:" w-25 d-flex justify-content-center btn btn-dark main-button" %>
+      <!-- 做出單向刪除功能後，一次清空購物車的按鈕可考慮刪除 --->
+      <%= link_to "清空購物車", cart_path, method: :delete, class: " w-25 d-flex justify-content-center btn btn-danger" %>
+      <%= link_to "結帳", payment_cart_path, class:" w-25 d-flex justify-content-center btn main-btn" %>
     </div>
   </div>
   

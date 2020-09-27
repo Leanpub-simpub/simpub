@@ -1,4 +1,4 @@
-<div class="author container">
+<section class="author-publishing container">
   <div class="row">
   
     <div class="author-avatar col-2 d-flex flex-column">
@@ -6,15 +6,15 @@
         <%= render "shared/frontend/user_avatar", user: current_user %>
       </div>
       <p class="text-center"><%= current_user.name %></p>
-      <%= button_to "Create a Book", :new_book, method: :get, class: "btn btn-primary w-100" %>
+      <%= button_to "Create a Book", :new_book, method: :get, class: "btn btn-danger main-btn w-100" %>
     </div>
     
     <div class="author-books col-10">
       <h2>Your Books</h2>
       <div>
         <p>You can edit your books by clicking on the <i class="fas fa-cog"></i>. <br> You can also choose which books show up on your profile page by using the <i class="far fa-eye"></i>.
-        <h5 class="text-center">Published (<%= published_books.count %>)</h5>
-        <div class="publish-book row justify-content-center">
+        <h5>Published (<%= published_books.count %>)</h5>
+        <div class="publish-book row">
           <% published_books.each do |book| %>
             <div class="pubbook-item border col-2 p-0 m-3">
               <div class="w-100">
@@ -24,8 +24,8 @@
             </div>
           <% end %>
         </div>
-        <h5 class="text-center">Unpublished (<%= unpublish_books.count %>)</h5>
-        <div class="unpublish-book row justify-content-center">
+        <h5>Unpublished (<%= unpublish_books.count %>)</h5>
+        <div class="unpublish-book row">
           <% unpublish_books.each do |book| %>
             <div class="pubbook-item border col-2 p-0 m-3">
               <div class="w-100">
@@ -34,13 +34,13 @@
               <p class="text-center"><%= link_to book.title, book_path(book), class:"title" %></p>
               <div class="text-center">
                 <%= link_to edit_book_path(book) do %>
-                  <i class="fas fa-pencil-alt "></i>
+                  <i class="fas fa-pencil-alt icon"></i>
                 <% end %>
                 <%= link_to pricing_book_path(book) do %>
-                  <i class="far fa-eye-slash "></i>
+                  <i class="far fa-eye-slash icon"></i>
                 <% end %>
                 <%= link_to editor_edit_book_path(book) do %>
-                  <i class="fas fa-cog "></i>
+                  <i class="fas fa-cog icon"></i>
                 <% end %>
               </div>
             </div>

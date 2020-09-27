@@ -23,22 +23,17 @@
 	<div class="row books-show">
 		<% @books.each do |book| %>
 			<!-- 調整 RWD -->
-			<div class="col-6 col-sm-4 col-md-3 col-lg-2 mt-8 p-3 book-item">
-				<%# <%= link_to add_cart_path(book), method: :post do %>
-				<%# <i class="fas fa-cart-plus fa-2x"></i> %>
-				<%# <% end %>
-				<div class="cover">
+			<div class="book-item col-6 col-sm-4 col-md-3 col-lg-2 mt-8 p-3">
+				<div class="book-cover">
 					<%= link_to book_path(book) do %>
 						<div class="w-100">
 							<%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
 						</div>
 					<% end %>
 				</div>
-				<div class="book-info">
-					<div class="d-flex flex-column">
-						<%= link_to book.title, book_path(book), class: "book-title" %>
-						<%= link_to book.authors[0].name, profile_path(book.authors[0].username), class: "book-author" %>
-					</div>
+				<div class="book-info row">
+					<%= link_to book.title, book_path(book), class: "book-title col-12" %>
+					<%= link_to book.authors[0].name, profile_path(book.authors[0].username), class: "book-author col-12 mt-auto" %>
 				</div>
 			</div>
 		<% end %>
