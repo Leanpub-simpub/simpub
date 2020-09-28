@@ -1,10 +1,28 @@
 class BooksController < ApplicationController  
+  require'aws-sdk-s3'
+  
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :editor_new, :editor_edit]
   before_action :find_book, except: [:index, :new, :create]
+<<<<<<< HEAD
   require'aws-sdk-s3'
   require 'json'
+=======
+
+>>>>>>> master
   def index
-    @books = Book.published_books.page(params[:page]).per(24)
+    @books = Book.published_books
+
+    if params[:search].present?
+      @books = @books.with_search(params[:search])
+    elsif params[:book_search].present?
+      @books = @books.book_search(params[:book_search])
+    elsif params[:author_search].present?
+      @books = @books.author_search(params[:author_search])
+    elsif params[:tag_search].present?
+      @books = @books.tag_search(params[:tag_search])
+    end
+
+    @books = @books.page(params[:page]).per(24)
   end
   
   def show
@@ -14,19 +32,7 @@ class BooksController < ApplicationController
     # markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, filter_html: false, autolink: true, tables: true)
     # @md = markdown.render(md)
   end
-
-  def search
-    search = 
-      Book.published_books
-          .left_joins(:authors, :tags)
-          .where("books.title ILIKE :query OR users.name ILIKE :query OR tags.name ILIKE :query", query: "%#{params[:search]}%")
-
-    @result = search.as_json(include: :authors)
-      
-    respond_to do |format|
-      format.json { render json: @result }
-    end
-  end
+  
 
   def new
     @book = Book.new

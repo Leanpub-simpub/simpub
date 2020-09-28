@@ -1,60 +1,53 @@
 <div class="author container">
   <div class="row">
   
-    <div class="col-2 d-flex flex-column">
+    <div class="author-avatar col-2 d-flex flex-column">
       <div>
         <%= render "shared/frontend/user_avatar", user: current_user %>
       </div>
       <p class="text-center"><%= current_user.name %></p>
-      <%= button_to "Create a Book", :new_book, method: :get, class: "btn btn-danger main-button w-100" %>
+      <%= button_to "Create a Book", :new_book, method: :get, class: "btn btn-primary w-100" %>
     </div>
     
-    <div class="col-10">
+    <div class="author-books col-10">
       <h2>Your Books</h2>
-      <div class="author-book">
+      <div>
         <p>You can edit your books by clicking on the <i class="fas fa-cog"></i>. <br> You can also choose which books show up on your profile page by using the <i class="far fa-eye"></i>.
-        <p class="text-center">Published (<%= published_books.count %>)</p>
-
+        <h5 class="text-center">Published (<%= published_books.count %>)</h5>
         <div class="publish-book row justify-content-center">
           <% published_books.each do |book| %>
             <div class="pubbook-item border col-2 p-0 m-3">
               <div class="w-100">
-                <%= render "shared/frontend/book_cover", locals: {book: book, size: :small} %>
+                <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
               </div>
-              <p class="text-center"><%= link_to book.title, book_path(book) %></p>
+              <p class="text-center"><%= link_to book.title, book_path(book), class:"title" %></p>
             </div>
           <% end %>
         </div>
-
-        <div>
-          <p class="text-center">Unpublished (<%= unpublish_books.count %>)</p>
-        </div>
-        
+        <h5 class="text-center">Unpublished (<%= unpublish_books.count %>)</h5>
         <div class="unpublish-book row justify-content-center">
           <% unpublish_books.each do |book| %>
             <div class="pubbook-item border col-2 p-0 m-3">
               <div class="w-100">
-                <%= render "shared/frontend/book_cover", locals: {book: book, size: :small} %>
+                <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
               </div>
-              <p class="text-center"><%= link_to book.title, book_path(book), class:"main-color" %></p>
+              <p class="text-center"><%= link_to book.title, book_path(book), class:"title" %></p>
               <div class="text-center">
                 <%= link_to edit_book_path(book) do %>
-                  <i class="fas fa-pencil-alt text-white"></i>
+                  <i class="fas fa-pencil-alt "></i>
                 <% end %>
                 <%= link_to pricing_book_path(book) do %>
-                  <i class="far fa-eye-slash text-white"></i>
+                  <i class="far fa-eye-slash "></i>
                 <% end %>
                 <%= link_to editor_edit_book_path(book) do %>
-                  <i class="fas fa-cog text-white"></i>
+                  <i class="fas fa-cog "></i>
                 <% end %>
               </div>
             </div>
           <% end %>
         </div>
-        
       </div>
     </div>
-
   </div>
 </div>
 

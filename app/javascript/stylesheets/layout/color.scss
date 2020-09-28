@@ -1,0 +1,36 @@
+html {
+	--bg: #ffffff;
+	--txt: #333333;
+
+	// 主要按鈕
+	.main-button {
+		background-color: #e09a5f;
+		color: white;
+		border: none;
+	}
+}
+
+// 關燈後背景
+body {
+	background-color: var(--bg);
+
+	// 關燈後能看到內容
+	[class*="title"],
+	[class*="txt"],
+	[class*="author"],
+	[class*="item"],
+	[class*="cover"],
+	[class*="icon"],
+	[class*="tag"] {
+		color: var(--txt);
+	}
+}
+
+input[id="switch"] {
+	color: var(--main);
+}
+
+.nav-item:hover,
+.navbar-brand:hover {
+	color: #e09a5f;
+}

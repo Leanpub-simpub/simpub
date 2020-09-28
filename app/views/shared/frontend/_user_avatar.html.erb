@@ -1,5 +1,5 @@
-<%# if has_avatar?(user) %>
-  <%#= image_tag user.avatar_url, class: "w-100 rounded-circle" %>
-<%# else %>
+<% if has_avatar?(user) %>
+  <%= image_tag user.avatar_url, class: "w-100 rounded-circle" %>
+<% else %>
   <img src="https://www.nicepng.com/png/full/136-1366211_group-of-10-guys-login-user-icon-png.png" alt="" class="w-100">
-<%# end %>
+<% end %>
