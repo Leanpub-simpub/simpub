@@ -28,30 +28,29 @@
       </p>
     </div>
   </div> 
-
   <div class="mx-4"> 
     <h3 class="title">Sign up</h3>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
         
-        <%= f.label :name %><br />
+        <%= f.label :name, class:"txt" %><br />
         <%= f.text_field :name, autofocus: true, class:"col-12 mb-3" %>
         <div class="w-100"></div>
 
-        <%= f.label :email %><br />
+        <%= f.label :email, class:"txt" %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-12 mb-3" %>
         <div class="w-100"></div>
 
-        <%= f.label :username %><br />
+        <%= f.label :username, class:"txt" %><br />
         <%= f.text_field :username, autofocus: true, class:"col-12 mb-3" %>
         <div class="w-100"></div>
 
-        <%= f.label :password %>
+        <%= f.label :password, class:"txt" %>
         <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %><br />
 
-        <%= f.password_field :password, autocomplete: "new-password", class:"col-12 mb-3" %>
+        <%= f.password_field :password, autocomplete: "new-password", class:"col-12 mb-3 txt" %>
         <div class="w-100"></div>
 
         <%= f.label :password_confirmation %><br />
@@ -59,16 +58,16 @@
         <div class="w-100"></div>
       
         <input class="mr-2" type="checkbox">
-        <span class="text-base txt">
-          I accept the Simpub <a href="" class="">Terms of Service</a> and <a href="#" class="">Privacy Policy</a>
-        </span>
+        <p class="text-base txt">
+          I accept the Simpub Terms of Service and Privacy Policy
+        </p>
 
         <div class="my-3">
-          <%= f.submit "Create Account", class: "btn btn-danger main-btn border-0 py-2 " %>
+          <%= f.submit "Create Account", class: "btn btn-danger main-btn border-0 py-2" %>
         </div>
         <% end %>
         
-        <div class="text-start">
+        <div class="text-start txt">
           <%= render "devise/shared/links" %>
         </div>
    </div>

@@ -1,6 +1,4 @@
 .layout-navbar {
-	border-bottom: 1px solid;
-
 	.nav-item {
 		text-decoration: none;
 	}
@@ -24,9 +22,7 @@
 			border-radius: 50%;
 			height: 16px;
 			width: 16px;
-			color: #e09a5f;
-			border: 1px solid #e09a5f;
-			background-color: black;
+			border: 1px solid;
 			position: absolute;
 			top: -10px;
 			right: -10px;
@@ -43,7 +39,6 @@
 		text-indent: -9999px;
 		width: 52px;
 		height: 27px;
-		background: grey;
 		float: right;
 		border-radius: 100px;
 		position: relative;
@@ -56,13 +51,8 @@
 		left: 3px;
 		width: 20px;
 		height: 20px;
-		background-color: white;
 		border-radius: 90px;
 		transition: 0.3s;
-	}
-
-	input:checked + label {
-		background-color: var(--color-headings);
 	}
 
 	input:checked + label::after {
@@ -182,5 +172,3 @@
 		color: gold;
 	}
 }
-
-// @media;

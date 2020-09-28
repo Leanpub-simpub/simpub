@@ -1,4 +1,4 @@
-<section class="cart-payment">
+<section class="cart-payment txt">
 <!--- header 是否要留?
   <div>
     <header class="checkout_header d-flex justify-content-center mb-5">
@@ -20,13 +20,13 @@
   <div class="checkoutstage_checkout d-flex justify-content-center">
     <table class="w-75 table table-borderless"> 
       <thead class="mb-5">
-        <tr class=""> 
+        <tr class="confirm-details-title"> 
           <td class="">商品名稱</td> 
           <td class="text-right">數量</td> 
           <td class="text-right">小計</td>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="confirm-details-item">
         <% current_cart.items.each do |item| %> 
           <tr class="">
             <td style="font-size:large" class="font-weight-bold">

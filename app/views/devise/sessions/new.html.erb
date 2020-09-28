@@ -1,26 +1,24 @@
 <section class="sign-in container">
   <div class="w-50 mx-auto">
-    <h3>Sign in</h3>
+    <h3 class="title">Sign in</h3>
     
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     
-    <%= f.label :email %><br />
+    <%= f.label :email, class:"txt" %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col mb-3"%> 
     <div class="w-100"></div>
 
-    <%= f.label :password %><br />
+    <%= f.label :password, class:"txt" %><br />
     <%= f.password_field :password, autocomplete: "current-password", class:"col mb-3" %>
     
     <% if devise_mapping.rememberable? %>
-    <div class="field">
+    <div class="field txt">
     <%= f.check_box :remember_me %>
     <%= f.label :remember_me %>
     </div>
     <% end %>
 
-    <p>
-      This site is protected by reCAPTCHA and the Google<br/>  <a href="#" class="">Privacy Policy</a> and  <a href="#" class="">Terms of Service</a> apply.
-    </p>
+    <p class="txt">This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</p>
     
     <%= f.submit "Sign In", class: "col-4 btn btn-dark main-btn border-0"%>
     <% end %>

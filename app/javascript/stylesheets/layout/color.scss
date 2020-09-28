@@ -37,6 +37,22 @@ input[id="switch"] {
 	color: var(--main);
 }
 
+.layout-navbar {
+	border-bottom: 1px solid #e09a5f;
+
+	label {
+		background: grey;
+	}
+
+	label::after {
+		background-color: white;
+	}
+
+	input:checked + label {
+		background-color: var(--color-headings);
+	}
+}
+
 .nav-item:hover,
 .navbar-brand:hover {
 	color: #e09a5f;
@@ -44,4 +60,13 @@ input[id="switch"] {
 
 .slider-content {
 	color: white;
+}
+
+.cart-bubble {
+	background-color: var(--bg);
+	color: var(--txt);
+}
+
+.footer {
+	border-top: 1px solid #e09a5f;
 }
