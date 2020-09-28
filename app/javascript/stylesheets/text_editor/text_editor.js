@@ -72,7 +72,7 @@ window.addEventListener('turbolinks:load',()=>{
     
     // 點擊到對應章節可以找到該檔案的資料並呈現
     chapterList.addEventListener('click',(e)=>{
-      if((e.target.className =="chapter"||e.target.className =="section") && e.target != document.querySelector('.active')){
+      if((e.target.className.match("chapter") != null ||e.target.className.match("section") != null ) && e.target != document.querySelector('.active')){
         let token = document.querySelector("meta[name=csrf-token]").content
         axios.defaults.headers.common['X-CSRF-Token']= token  
         //紀錄書本名稱，要看哪一個章節
