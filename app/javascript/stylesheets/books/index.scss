@@ -16,3 +16,14 @@
 form.x {
 	display: none;
 }
+#carouselExampleControls {
+	position: relative;
+}
+
+.slider-content {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: auto;
+	transform: translate(-50%, -50%);
+}
