@@ -11,20 +11,20 @@
     <img src="#" alt="" class="w-100">
   </div>
 
-  <div>
+  <div class="form-item">
+    <%= f.label :cover, "The Book Cover", class: "cover w-100" %>
     <%= f.hidden_field :cover, value: book.cached_cover_data %>
-    <%= f.label :cover, "封面" %>
     <%= f.file_field :cover, id: "cover-input" %>
   </div>
 
-  <div>
-    <%= f.label :title, "書籍標題" %>
+  <div class="form-item">
+    <%= f.label :title, "The Book Title", class: "book-title" %>
     <%= f.text_field :title, class:"w-100 mb-3"%>
   </div>
 
-  <div>
-    <%= f.label :about, "關於此書" %>
-    <%= f.text_area :about, class:"w-100 mb-3" %>
+  <div class="form-item">
+    <%= f.label :about, "About This Book", class: "about txt" %>
+    <%= f.text_field :about, class:"w-100 mb-3" %>
   </div>
 
   <!--
@@ -36,8 +36,8 @@
 
   <!-- 目錄我們自己產生 -->
 
-  <div>
-    <%= f.label :tag_items, "標籤" %>
+  <div class="form-item">
+    <%= f.label :tag_items, "Tags", class: "tags" %>
     <div class="mb-3">
       <select class="form-control select optional" multiple="multiple" name="book[tag_items][]" id="book_tag_items">
       <%= options_for_select(@tags = []) %>
@@ -45,19 +45,19 @@
     </div>
   </div>
 
-  <div>
-    <%= f.label :completeness, "完成度" %>
+  <div class="form-item">
+    <%= f.label :completeness, "Completeness", class:"txt" %>
     <%= f.number_field :completeness, class:"w-100 mb-3" %>
   </div>
 
   <!-- 編輯器另外做一個頁面 -->
-  <div>
+  <div class="form-item">
+    <%= f.label :md, "Upload Files", class:"txt w-100" %>
     <%= f.hidden_field :md, value: book.cached_md_data %>
-    <%= f.label :md, "上傳檔案" %>
     <%= f.file_field :md, class:"mb-3" %>
   </div>
 
   <div>
-    <%= f.submit "完成", class:"btn w-50 text-white", style:"background-color: #e09a5f" %>
+    <%= f.submit "Finish", class:"btn btn-primary w-50" %>
   </div>
 <% end %>

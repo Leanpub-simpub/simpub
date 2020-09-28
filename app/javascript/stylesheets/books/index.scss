@@ -1,28 +1,25 @@
-.book-title,
-.book-author {
-	color: #e09a5f;
-}
+.book-index {
+	.book-title {
+		font-weight: bold;
+		height: 60px;
+		font-size: 14px;
+		margin: 10px 0px;
+	}
 
-.book-title {
-	font-weight: bold;
-	height: 60px;
-	font-size: 14px;
-	margin: 10px 0px;
-}
+	.book-author {
+		font-size: 13px;
+		margin: 10px 0px;
+	}
 
-.book-author {
-	font-size: 13px;
-	margin: 10px 0px;
-}
+	.fa-cart-plus {
+		position: absolute;
+		right: 0px;
+		top: 0px;
+	}
 
-.fa-cart-plus {
-	position: absolute;
-	right: 0px;
-	top: 0px;
-}
-
-.book-item {
-	position: relative;
+	.book-item {
+		position: relative;
+	}
 }
 
 form.x {
