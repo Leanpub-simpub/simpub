@@ -8,6 +8,7 @@
 		"@rails/activestorage": "^6.0.0",
 		"@rails/ujs": "^6.0.0",
 		"@rails/webpacker": "4.3.0",
+		"axios": "^0.20.0",
 		"bootstrap": "^4.5.2",
 		"braintree-web": "^3.65.0",
 		"braintree-web-drop-in": "^1.24.0",

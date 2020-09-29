@@ -69,6 +69,7 @@
   font-size: 20px;
   text-align: center;
   position: absolute;
+  z-index: 10;
   top: 0px;
   bottom: 0px;
   right: 0px;
@@ -90,6 +91,9 @@
   border: 1px solid black;
   background-color: cornsilk;
 }
+.formBtn:hover{
+  color: red;
+}
 
 .x {
   display: none;
@@ -98,3 +102,103 @@
 .active {
   color: mediumblue;
 }
+
+#tableOfContent {
+  width: 120px;
+  font-size: 22px;
+  background-color: #e09a5f;
+  color: black;
+  position: absolute;
+  z-index: 20;
+
+  #rename {
+    border-bottom: 3px solid rgba(85,85,85,0.5);
+    padding-top: 5px;
+    padding-left: 15px;
+  }
+  #rename:hover {
+    color: red;
+  }
+  #delete {
+    padding-bottom:5px;
+    padding-left: 15px;
+  }
+  #delete:hover {
+    color: red;
+  }
+}
+
+#renameform {
+  width: 320px;
+  height:200px;
+  border: 1px solid red;
+  font-size: 18px;
+  background-color: wheat;
+  text-align:center;
+  padding:20px 20px 20px 20px;
+  color: black;
+  text-align:left;
+  position: absolute;
+  margin: auto;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  z-index: 10;
+
+  p{
+    margin-top: 0px;
+    margin-bottom:5px;
+  }
+
+  #currentName {
+    color:red;
+  }
+  #newName {
+    width:100%;
+  }
+}
+
+
+
+#deleteform {
+  width: 300px;
+  height:220px;
+  border: 1px solid red;
+  font-size: 18px;
+  background-color: wheat;
+  text-align:center;
+  padding:20px 20px 20px 20px;
+  color: black;
+  text-align:left;
+  position: absolute;
+  margin: auto;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  z-index: 10;
+
+  p{
+    margin-top: 0px;
+    margin-bottom:5px;
+  }
+
+  div {
+    margin-bottom:5px;
+    #deleteTarget {
+      color:red;
+    }
+
+    label {
+      b {
+        color:red;
+      }
+    }
+  }
+  #deleteinput {
+    width:100%;
+  }
+}
+
+

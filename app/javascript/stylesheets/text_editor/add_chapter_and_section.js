@@ -17,21 +17,10 @@ window.addEventListener('turbolinks:load',()=>{
     let chapterList = document.querySelector('.chapter_list')
     let addChapter =document.querySelector('#addChapter')
     let chapterform = document.querySelector('.chapterCreate')
-    let addSection = document.querySelectorAll('.addsection')
     let sectionform = document.querySelector('.sectionCreate')
     let sectionInsetTarget // 之後新增 section 要當作位置參照
-    let current = document.querySelector('.book_name span')
-
-
-    chapterList.addEventListener('click',(e)=>{
-      chapterList.querySelectorAll('div').forEach((div)=>{
-        div.classList.remove('active')
-      })
-      if(e.target.className == 'chapter' || e.target.className == 'section'){
-        e.target.classList.add('active')
-        current.textContent = `----${e.target.textContent}`
-      }
-    })
+    let chapterErr = document.querySelector('#chapterErr')
+    let sectionErr = document.querySelector('#sectionErr')
 
     // add-chapter-form control
     addChapter.addEventListener('click',(e)=>{
@@ -43,37 +32,35 @@ window.addEventListener('turbolinks:load',()=>{
     let chapterAgree = document.querySelector('#chapterAgreeBtn')
     let chapterInput = document.querySelector('[name="chapter"]')
     chapterAgree.addEventListener('click',()=>{
+      // 先收集所有 chapter 所有的內容供後續比對
+      let chapterName = []
+      document.querySelectorAll('.chapter').forEach(chapter =>{
+        chapterName.push(chapter.textContent)
+      })
+      console.log(chapterName)
       if(chapterInput.value === "" ){
         // 如果沒填 chapter 名稱
         chapterInput.style.border = 'red 3px solid'
         chapterInput.placeholder = 'Chapter name is blank'
-        setTimeout(function(){
-          chapterInput.style.border = 'black 1px solid'
-        chapterInput.placeholder = ''
-        },5000)
-      }else{
+      }else if(chapterName.includes(chapterInput.value)){
+        chapterInput.style.border = 'red 3px solid'
+        chapterErr.textContent = 'Chapter name is repeated'
+      }
+      else{
         // 有填寫 chapter 名稱即可送出
         chapterform.submit()
         chapterform.classList.add('x')
         //將新增的 chapter 在加到 chapter_list
         let chapterDOM = document.importNode(chapterTemplate.content,true)
-        chapterDOM.querySelector('.chapter').textContent = chapterInput.value
+        chapterDOM.querySelector('.chapter').textContent = chapterInput.value.replace(new RegExp(" ","g"),"_")
+        // 將空白鍵換成底線
         let order = document.querySelectorAll('.chapter').length
         chapterDOM.querySelector('.chapter').dataset.order = order
-        chapterDOM.querySelector('.addsection').addEventListener('click',(e)=>{
-          e.stopPropagation()
-          sectionform.classList.remove('x')
-          chapterform.classList.add('x')
-          let chapter = addSectionBtn.previousSibling.previousSibling
-          //  addSection 是 ＋ 前一個 DOM 是 chapter::before 再前一個才是 chapter 
-          document.querySelector('#chapterForSectionRecord').value = chapter.textContent
-          document.querySelector('#orderForSectionRecord').value = chapter.dataset.order
-          
-        })
         chapterList.insertBefore(chapterDOM,addChapter)
         setTimeout(function(){
+          chapterErr.textContent =""
           chapterInput.value = ""
-        },5000)
+        },1)
       }
     }) 
 
@@ -84,23 +71,30 @@ window.addEventListener('turbolinks:load',()=>{
     })
 
     // add-section-form control
-    addSection.forEach((addSectionBtn)=>{
-      addSectionBtn.addEventListener('click',(e)=>{
-        e.stopPropagation()
+    chapterList.addEventListener('click',(e)=>{
+      if(e.target.className == 'addsection'){
         sectionform.classList.remove('x')
         chapterform.classList.add('x')
-        let chapter = addSectionBtn.previousSibling.previousSibling
+        let chapter = e.target.previousSibling.previousSibling
         //  addSection 是 ＋ 前一個 DOM 是 chapter::before 再前一個才是 chapter 
         document.querySelector('#chapterForSectionRecord').value = chapter.textContent
         document.querySelector('#orderForSectionRecord').value = chapter.dataset.order
-        sectionInsetTarget = addSectionBtn.parentElement
-      })
+        sectionInsetTarget = e.target.parentElement
+      }
     })
 
     let sectionAgree = document.querySelector('#sectionAgreeBtn')
     let sectionInput = document.querySelector('[name="section"]')
     
     sectionAgree.addEventListener('click',()=>{
+      let sectionName=[]
+      
+      // 抓出屬於同 chapter 所有 section 的內容供後面比對
+      let chapter = sectionInsetTarget.querySelector('.chapter').textContent
+      document.querySelectorAll(`.chapter_list [data-chapter="${chapter}"]`).forEach(section=>{
+        sectionName.push(section.textContent)
+      })
+      console.log(sectionName)
       if(sectionInput.value === "" ){
         // 如果沒填 section 名稱
         sectionInput.style.border = 'red 3px solid'
@@ -109,22 +103,23 @@ window.addEventListener('turbolinks:load',()=>{
           sectionInput.style.border = 'black 1px solid'
           sectionInput.placeholder = ''
         },5000)
-      }else{
+      }else if(sectionName.includes(sectionInput.value)){
+        sectionInput.style.border = 'red 3px solid'
+        sectionErr.textContent = 'Section name is repeat'
+      }
+      else{
         // 有填寫 section 名稱即可送出
         sectionform.submit()
         sectionform.classList.add('x')
         let sectionDOM = document.importNode(sectionTemplate.content,true)
-        sectionDOM.querySelector('.section').textContent = sectionInput.value
-        
-        // sectionDOM sectionInsetTarget
+        sectionDOM.querySelector('.section').textContent = sectionInput.value.replace(new RegExp(" ","g"),"_")
         
         chapterList.insertBefore(sectionDOM,sectionInsetTarget.nextElementSibling)
        
-
-        // addSectionBtn.previousSibling.previousSibling.insertAdjacentElement("afterend",sectionDOM)
         setTimeout(function(){
           sectionInput.value = ""
-        },5000)
+          sectionErr.textContent = ""
+        },10)
       }
     })
 

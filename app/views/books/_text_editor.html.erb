@@ -1,14 +1,13 @@
-<h1 class="book_name"><%=  @book.title %><span></span></h1>
 <div class="wrap">
   <div class="chapter_list">
     <% json.each_with_index do |chapter,index| %>
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between" >
       <div class="chapter" data-order=<%= index%>><%= chapter.keys[0] %></div>
       <div class="addsection">+</div>
     </div>
       <% if chapter.values[0].length != 0 %>
         <% chapter.values[0].each do |section| %>
-        <div class="section"><%= section %></div>
+        <div class="section" data-chapter="<%= chapter.keys[0] %>"><%= section %></div>
         <% end %>
       <% end %>
     <% end %>
@@ -23,8 +22,9 @@
 <%# add chapter form %>
 <%= form_with url: add_chapter_book_path(book),class: "chapterCreate x" do |f| %>
   <div>Add New Chapter</div>
+  <p class="text-center text-danger" id="chapterErr"></p>
   <div>
-    <%= f.label :chapter, "Chapter" %>
+    <%= f.label :chapter, "Chapter Name" %>
     <%= f.text_field :chapter %>
   </div>
   <div>
@@ -36,14 +36,13 @@
 <%# add section form %>
 <%= form_with url: add_section_book_path(book),class: "sectionCreate x" do |f| %>
   <div>Add New Section</div>
+  <p class="text-center text-danger" id="sectionErr"></p>
   <div>
     <%= f.text_field :chapter ,class: 'x', id:'chapterForSectionRecord'%>
     <%= f.text_field :order ,class: 'x', id:'orderForSectionRecord'%>  
   </div>
   <div>
-  </div>
-  <div>
-    <%= f.label :section, "Section" %>
+    <%= f.label :section, "Section Name" %>
     <%= f.text_field :section %>
   </div>
   <div>
@@ -53,5 +52,39 @@
 <% end %>
 
 
+<div class="x" id="tableOfContent">
+  <div id="rename">Rename</div>
+  <div id="delete">Delete</div>
+</div>
 
+<div class="x" id="renameform">
+  <p>Rename Your Chapter or Section</p>
+  <div>
+    <span>Current Name</span>
+    <span id="currentName"></span>
+  </div>
+  <div>
+    <label for="newName">New name</label>
+    <input id="newName" type="text" name='newName' placeholder='New name'>
+  </div>
+  <div class="text-center">
+    <span id="renameAgree"class="btn formBtn">OK</span> 
+    <span id="renameDisAgree" class="btn formBtn">X</span>
+  </div>
+</div>
  
+<div class="x" id="deleteform">
+  <p>Delete Your Chapter or Section</p>
+  <div>
+    <span>Delete Item</span>
+    <span id="deleteTarget"></span>
+  </div>
+  <div>
+  <label for="delete">Please type <b>DELETE</b> to confirm</label>
+  <input id="deleteinput" type="text" name='delete' placeholder='Delete item name'>
+  </div>
+  <div class="text-center my-2">
+    <span id="deleteAgree" class="btn formBtn">OK</span> 
+    <span id="deleteDisAgree" class="btn formBtn">X</span>
+  </div>
+</div>
