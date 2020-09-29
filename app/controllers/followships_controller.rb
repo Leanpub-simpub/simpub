@@ -8,16 +8,24 @@ class FollowshipsController < ApplicationController
 
   def create
     @user = User.find_by(id: params[:follower_id])
-    current_user.followers << @user
-    @user.followees << current_user
 
-    redirect_to followship_path(current_user), notice: "已追蹤作者"
+    if is_following?(@user)
+      render js: "alert('已經追蹤該作者')"
+    else
+      current_user.followers << @user
+      redirect_to followship_path(current_user), notice: "已追蹤作者"
+    end
   end
 
   def destroy
     @followship = Followship.find_by(id: params[:id])
     @followship.destroy
     redirect_to :root, notice: "已取消追蹤"
+  end
+
+  private
+  def is_following?(user)
+    current_user.followers.include?(user)
   end
 
 end
