@@ -1,24 +1,20 @@
 window.addEventListener("turbolinks:load", function () {
   if (document.querySelector("section.library")) {
-    const bookInfo = document.querySelector("section.library")
-      .firstElementChild;
+    const bookInfo = document.querySelector("section.library").firstElementChild;
 
-    bookInfo.addEventListener("click", (e) => {
-      if (e.target.classList.contains("book-cover")) {
-        console.log(e.target);
-      }
-      // if (!e.target.classList.contains("cover-link")) {
-      //   return;
-      // }
-      // document.querySelectorAll(".cover-link");
-      console.log(e.target.dataset.key);
-      // console.log(cover - link[0].dataset.link);
+    bookInfo.addEventListener("click", e => {
+      let classes = e.target.classList;
+      if (classes.contains("book-cover") || classes.contains("book-title")) {
+        let bookKey = e.target.parentElement.dataset.key;
 
-      // TODO
+        fetch(`http://localhost:3000/dash_board/library.json?id=${bookKey}`)
+        .then((response) => response.json())
+        .then(book => {
+          document.querySelector("book-about");
+
+        });
+      };
     });
-  }
-
-  // document.querySelectorAll(".cover").addEventListener("click", function () {
-  //   console.log(1111);
-  // });
+  };
 });
+ 

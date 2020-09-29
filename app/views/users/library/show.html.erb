@@ -24,8 +24,9 @@
         <div class="book-item col-6 col-sm-4 col-md-3 col-lg-2 d-flex flex-column justify-content-between">
           <div class="cover">
             <!-- 加入判斷避免該欄位使用假圖壞掉的 bug -->
-            <a class="cover-link" data-key="<%= book.title %>" href="#collapseBook" data-toggle="collapse" data-target="#collapseBook">
+            <a class="cover-link" data-key="<%= book.id %>" href="#collapseBook" data-toggle="collapse" data-target="#collapseBook">
               <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
+              <div class="book-title"><%= book.title %></div>
             </a>
             <!-- 書本標題-->
             <div class="book-title"><%= book.title %></div> 
