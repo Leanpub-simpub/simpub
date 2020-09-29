@@ -1,4 +1,4 @@
 class Followship < ApplicationRecord
-  belongs_to :follower, class_name: :user
-  belongs_to :followed, class_name: :user
+  belongs_to :follower, class_name: "User"
+  belongs_to :followee, class_name: "User"
 end
