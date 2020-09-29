@@ -49,5 +49,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :followships, only: [:show, :create, :destroy]
+
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
