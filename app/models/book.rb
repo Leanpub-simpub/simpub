@@ -44,6 +44,6 @@ class Book < ApplicationRecord
   end
 
   def to_param
-    "#{id}-#{title.parameterize}"
+    "#{id}-#{title.gsub(/[\+\#]/, "+" => "p", "#" => "sharp").parameterize}"
   end
 end
