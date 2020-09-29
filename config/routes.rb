@@ -29,7 +29,6 @@ Rails.application.routes.draw do
       post :sample
       post :table_of_contents
       post :read
-<<<<<<< HEAD
       
     end
     
@@ -37,8 +36,6 @@ Rails.application.routes.draw do
       get :search
       post :get_content
       post :update_content
-=======
->>>>>>> master
     end
   end
 
