@@ -3,12 +3,8 @@ class BooksController < ApplicationController
   
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :editor_new, :editor_edit]
   before_action :find_book, except: [:index, :new, :create]
-<<<<<<< HEAD
   require'aws-sdk-s3'
   require 'json'
-=======
-
->>>>>>> master
   def index
     @books = Book.published_books
 
