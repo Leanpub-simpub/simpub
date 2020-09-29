@@ -2,6 +2,8 @@ class Book < ApplicationRecord
   include CoverUploader::Attachment(:cover) # adds an `image` virtual attribute
   include MdUploader::Attachment(:md) # adds an `image` virtual attribute
 
+  before_save :update_slug
+
   validates :title, presence: true, uniqueness: true
   # validates :price, presence: true
 
@@ -43,7 +45,11 @@ class Book < ApplicationRecord
       Tag.where(name: item.strip).first_or_create! unless item.blank?}.compact
   end
 
+  def update_slug
+    self.slug = title.gsub(/[\+\#]/, "+" => "p", "#" => "sharp").parameterize
+  end
+
   def to_param
-    "#{id}-#{title.gsub(/[\+\#]/, "+" => "p", "#" => "sharp").parameterize}"
+    slug
   end
 end
