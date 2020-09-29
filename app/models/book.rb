@@ -42,4 +42,8 @@ class Book < ApplicationRecord
     self.tags = names.map{|item|
       Tag.where(name: item.strip).first_or_create! unless item.blank?}.compact
   end
+
+  def to_param
+    "#{id}-#{title.parameterize}"
+  end
 end
