@@ -9,6 +9,10 @@ class Cart
   def add_item(book_id, cart_price)
     @items << CartItem.new(book_id, cart_price)
   end
+
+  def delete_item(items)
+    @items = items
+  end
   
   def empty? 
     @items.empty?

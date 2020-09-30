@@ -66,4 +66,18 @@
     </div>
   </div>
   <% end %>
+
+
+  <div id="depot-form">
+    <fieldset>
+    <legend>Please Enter Your Details</legend>
+
+    <%form_for :order do |f|%>
+      
+
+      <%= submit_tag "Place Order",:class => "submit" %>
+    <%end%>
+    </fieldset>
+  </div>
+  
 </section>

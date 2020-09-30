@@ -15,6 +15,14 @@ class CartsController < ApplicationController
   end
 
   def delete
+    cart = current_cart.items
+    @items = cart.select.with_index { |item, index|
+      item if index != params[:index].to_i
+    }
+    current_cart.delete_item(@items)
+    session[Cart::SessionKey] = current_cart.serialize
+
+    flash[:notice] = "成功移出購物車"
   end
 
   def destroy

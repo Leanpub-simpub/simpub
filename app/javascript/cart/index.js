@@ -1,1 +1,1 @@
-import "./cart_count.js"
+import "./cart_count.js";

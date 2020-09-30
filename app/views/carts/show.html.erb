@@ -26,8 +26,8 @@
         </tr>
       </thead>
       <tbody>
-      <% current_cart.items.each do |item| %>
-        <tr class="row">
+      <% current_cart.items.each.with_index do |item, index| %>
+        <tr class="row" data-controller="cart" data-cart-index="<%= index %>">
           <td class="col-2">
             <div style="font-size:large" class="font-weight-bold" >
               <%= render partial: "shared/frontend/book_cover", locals: {book: item.book, size: :small} %>
@@ -42,7 +42,7 @@
               <span class="mx-2">|</span>
               <a href="">Move to Wishlist</a>
               <span class="mx-2">|</span>
-              <%= link_to "Delete", delete_cart_path(item.book_id), method: :patch, remote: true %>
+              <button data-action="cart#delete">Delete</button>
             </div>
           </td>
           <td style="font-size: large" class="col-2">
