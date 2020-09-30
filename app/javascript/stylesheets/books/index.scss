@@ -1,27 +1,29 @@
-.book-index {
-	.book-title {
-		font-weight: bold;
-		height: 60px;
-		font-size: 14px;
-		margin: 10px 0px;
-	}
+.book-info {
+	min-height: 30%;
+}
 
-	.book-author {
-		font-size: 13px;
-		margin: 10px 0px;
-	}
+.book-title {
+	font-weight: bold;
+	font-size: 15px;
+	// margin: 5px 0px;
+}
 
-	.fa-cart-plus {
-		position: absolute;
-		right: 0px;
-		top: 0px;
-	}
-
-	.book-item {
-		position: relative;
-	}
+.book-author {
+	font-size: 13px;
+	// margin: 5px 0px;
 }
 
 form.x {
 	display: none;
+}
+#carouselExampleControls {
+	position: relative;
+}
+
+.slider-content {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: auto;
+	transform: translate(-50%, -50%);
 }

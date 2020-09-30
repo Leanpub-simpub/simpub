@@ -1,62 +1,77 @@
-<section class="book-show container library">
-  <div class="h3  pl-5 pt-5">Library</div>
-  <div class="row  align-self-center">
-    <% if @books.count == 0 %>
-      <div class="container purchase d-flex  text-center">
-        <p class=" h2 mx-auto align-self-center">
-          <%= link_to "Get some books", books_path%> <br>
-          or <br>
-          <%= link_to "Is there any book in your shopping cart",cart_path %>
-        </p>
+<section class="library container">
+  <div class="row align-self-center">
+
+    <div class="user-avatar col-2 d-flex flex-column">
+      <div>
+        <%= render "shared/frontend/user_avatar", user: current_user %>
       </div>
-    <% else %>
-      <% @books.each do |book| %>
-      <div class="col-2 ">
-        <div class="library">
+      <p class="user-name text-center"><%= current_user.name %></p>
+    </div>
+
+    <div class="user-books col-10">
+      <h2>Library</h2>
+      <div class="row">
+      <% if @books.count == 0 %>
+        <div class="container purchase d-flex text-center">
+          <p class="h2 mx-auto align-self-center">
+            <%= link_to "Get some books", books_path%> <br>
+            or <br>
+            <%= link_to "Is there any book in your shopping cart",cart_path %>
+          </p>
+        </div>
+      <% else %>
+        <% @books.each do |book| %>
+        <div class="book-item col-6 col-sm-4 col-md-3 col-lg-2 d-flex flex-column justify-content-between">
           <div class="cover">
             <!-- 加入判斷避免該欄位使用假圖壞掉的 bug -->
             <a href="#collapseBook" data-toggle="collapse" data-target="#collapseBook">
               <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
             </a>
+            <!-- 書本標題-->
+            <div class="book-title"><%= book.title %></div> 
           </div>
-          <div><%= book.title %></div>
-
-          <%= link_to "Read on Leanpub",read_book_path(book), method: "POST"%>
-          <!-- 加入判斷避免沒上傳檔案的書籍連結壞掉 -->
-          <% if book.md_data %>
-            <p><%= link_to "下載", book.md_url, target: "_blank" %></p>
-          <% else %>
-            <p>沒有上傳 PDF</p>
-          <% end %>
+          <div class="book-info"">
+            <!-- 線上閱讀 -->
+            <%= link_to "Read on Simpub",read_book_path(book), method: "POST", class:"txt" %>
+            <!-- 加入判斷避免沒上傳檔案的書籍連結壞掉 -->
+            <% if book.md_data %>
+            <!-- 下載功能-->
+              <p><%= link_to "下載", book.md_url, target: "_blank" %></p>
+            <% else %>
+              <p>尚未上傳 PDF</p> 
+              <!-- production: 已上傳 PDF 才能允許上架 -->
+            <% end %>
+          </div>
         </div>
-      </div>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+      </div>
+    </div>
+  </div>   
 </section>
-<section class="library-info container p-0 ">
-  <div class="library-info">
-    <div class="collapse" id="collapseBook">
-      <div class="card card-body mg-auto p-0">
-        <div class="info-group d-flex ">
-          <div>
-            <%#= image_tag book.cover_url(:medium), class: "w-52"%>
-            <img src="https://picsum.photos/id/684/500/400" alt=""/>
+
+<div class="library-info">
+  <div class="collapse" id="collapseBook">
+    <div class="card card-body mg-auto p-0">
+      <div class="info-group d-flex ">
+        <div>
+          <%#= image_tag book.cover_url(:medium), class: "w-52"%>
+          <img src="https://picsum.photos/id/684/500/400" alt=""/>
+        </div>
+        <div class="book-about mx-4" >
+          <h2 class="book-title">Book Title</h2>
+          <div class="book-author d-flex align-items-center">
+            <img class="rounded-circle mr-2" src="https://picsum.photos/50/50/?random=3" />
+            <span class="name mx-2">John Doe</span>
           </div>
-          <div class="book-about mx-4" >
-            <h1 class="title h1 ">Book Title</h1>
-	      		<div class="author-info d-flex align-items-center">
-				      <img class="rounded-circle mr-2" src="https://picsum.photos/50/50/?random=3" />
-				      <span class="name mx-2">John Doe</span>
-			      </div>
-            <h1 class="Read this book ">Read this book</h1>
-            <a href="#" class="PDF "><i class="fas fa-laptop"></i>"PDF"<span>(For reading on a computer)</span></a><br>
-            <a href="#" class="EPUB "><i class="fas fa-mobile-alt"></i>"EPUB"<span>(For reading on phones and tablets)</span></a><br>
-            <a href="#" class="MOBI "><i class="fas fa-tablet-alt"></i>"MOBI"<span>(For reading on a Kindle)</span></a><br>
-            <a href="#" class="Leanpub "><i class="fab fa-leanpub"></i>"Read on Leanpub"</a>
-          </div>
+          <h2 class="Read this book ">Read this book</h2>
+          <a href="#" class="PDF "><i class="fas fa-laptop"></i>"PDF"<span>(For reading on a computer)</span></a><br>
+          <a href="#" class="EPUB "><i class="fas fa-mobile-alt"></i>"EPUB"<span>(For reading on phones and tablets)</span></a><br>
+          <a href="#" class="MOBI "><i class="fas fa-tablet-alt"></i>"MOBI"<span>(For reading on a Kindle)</span></a><br>
+          <a href="#" class="Leanpub "><i class="fab fa-leanpub"></i>"Read on Leanpub"</a>
         </div>
       </div>
     </div>
   </div>
 </div>
+

@@ -1,10 +1,14 @@
 html {
-	.cart-show {
+	.library,
+	.purchase,
+	.cart-show,
+	.author-books {
 		min-height: 65vh;
 	}
 	.notice,
 	.alert {
 		padding: 0px;
 		margin: 0px;
+		max-width: 576px;
 	}
 }

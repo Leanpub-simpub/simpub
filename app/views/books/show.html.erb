@@ -35,10 +35,10 @@
       </div>
       
 			<div class="button-group mt-auto">
-        <%= link_to sample_book_path(@book), method: 'POST',class: "btn w-50 p-1 mb-2" do %>
+        <%= link_to sample_book_path(@book), method: 'POST',class: "btn w-50 p-1 mb-2 main-btn" do %>
           <span class="mr-2 ">Read Free Sample</span><i class="far fa-file-pdf "></i>
         <% end %> 
-        <%= link_to table_of_contents_book_path(@book), method: 'POST', class: "btn w-50 p-1" do %>
+        <%= link_to table_of_contents_book_path(@book), method: 'POST', class: "btn w-50 p-1 main-btn" do %>
           <span class="mr-2 ">Table Of Contents</span><i class="fas fa-list-ol "></i>
         <% end %>
 			</div>
@@ -93,7 +93,7 @@
         <span class="hint">(US$)</span>
         <%= form_with(url: add_cart_path(@book)) do |f| %>
           <%= f.text_field :cart_price, class: "cart-price text-center mt-1 mb-4" %>
-          <%= f.submit "Add Ebook to Cart", class: "add-to-cart-btn btn btn-dark main-button" %>
+          <%= f.submit "Add Ebook to Cart", class: "add-to-cart-btn btn btn-danger main-btn" %>
         <% end %>
       </div>
 
