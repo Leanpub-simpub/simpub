@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       get :search
       post :get_content
       post :update_content
+      post :rename
     end
   end
 

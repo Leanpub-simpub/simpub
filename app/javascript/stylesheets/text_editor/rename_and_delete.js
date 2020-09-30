@@ -1,4 +1,4 @@
-
+import axios from "axios"
 window.addEventListener('turbolinks:load',()=>{
   if(document.querySelector('#sourceTA') && document.querySelector('#targetDiv')){
     let chapterList = document.querySelector('.chapter_list')
@@ -12,6 +12,13 @@ window.addEventListener('turbolinks:load',()=>{
     let newName = document.querySelector('#newName')
     let deleteDisAgree = document.querySelector('#deleteDisAgree')
     let deleteinput = document.querySelector('#deleteinput')
+    let renameAgree = document.querySelector('#renameAgree')
+    let bookName = document.querySelector('.book_name').textContent
+    document.addEventListener('click',(e)=>{
+      if(document.querySelector('#tableOfContent')&& e.target != tableOfContent){
+        tableOfContent.classList.add('x')
+      }
+    })
     
     //關掉瀏覽器預設的contextmenu
     chapterList.addEventListener('contextmenu',(e)=>{
@@ -26,17 +33,23 @@ window.addEventListener('turbolinks:load',()=>{
       // 使用者必須在class是 chapter or section 的物件上按右鍵 才可以叫出contextmenu
       if(e.button==2 && ( e.target.className.match('chapter') != null || e.target.className.match('section') != null ) && e.target.className != 'chapter_list'){
         tableOfContent.classList.remove('x')
-        tableOfContent.style.top = `${e.clientY}px`
-        tableOfContent.style.left = `${e.clientX}px`
+        let position = e.target.getBoundingClientRect()
+        tableOfContent.style.top = `${position.y+20}px`
+        tableOfContent.style.left = `${position.x+100}px`
 
         // 點擊contextmenu 的 rename，顯示renameform
         renamebtn.addEventListener('click',()=>{
           renameform.classList.remove('x')
           deleteform.classList.add('x')
           renameform.querySelector('#currentName').textContent = target.textContent
+          if(target.className.match('chapter') != null){
+            renameform.querySelector('p span').textContent ='Chapter'
+          }else if(target.className.match('section') != null){
+            renameform.querySelector('p span').textContent ='Section'
+          }
           tableOfContent.classList.add('x')
         })
-        
+
         // 點擊contextmenu 的 delete，顯示deleteform
         deletebtn.addEventListener('click',()=>{
           renameform.classList.add('x')
@@ -59,39 +72,64 @@ window.addEventListener('turbolinks:load',()=>{
           deleteinput.value = ""
         })
 
-{/* <div class="x" id="deleteform">
-  <p>Delete Your Chapter or Section</p>
-  <div>
-    <span>Delete Item</span>
-    <span id="deleteTarget"></span>
-  </div>
-  <div>
-  <label for="delete">Please type <b>DELETE</b> to confirm</label>
-  <input id="deleteinput" type="text" name='delete' placeholder='Delete item name'>
-  </div>
-  <div class="text-center my-2">
-    <span id="deleteAgree" class="btn formBtn">OK</span> 
-    <span id="deleteDisAgree" class="btn formBtn">X</span>
-  </div>
-</div> */}
+        // 同意更改章節名稱
+        renameAgree.addEventListener('click',(e)=>{
+          e.preventDefault()
+          e.stopPropagation()
+          if(newName.value == ""){
+            // 使用者沒填寫名稱就按送出
+            newName.style.border = '1px solid red'
+            newName.placeholder = 'New name can not be blank'
+            setTimeout(function(){
+              newName.style.border = '1px solid black'
+              newName.placeholder = 'New name'
+            }, 3000);
+          }else{
+            // 判斷目標是 chapter or section
+            let chapterOrder
+            let chapter
+            let section
+            let chapterName
+            if(target.className.match('chapter') != null ){
+              chapterOrder = target.dataset.order
+              chapter = true
+              section = false
+              chapterName = target.textContent
+            }else if (target.className.match('section') != null ){
+              chapterOrder = target.dataset.chapterOrder
+              chapter = false
+              section = true
+              chapterName= document.querySelector(`[data-order="${chapterOrder}"]`).textContent
+            }
+            let currentName = target.textContent
+            let newName = document.querySelector('#newName').value
+            // 收集好新增 chapter section 相關訊息朝後端打
+            let params = {bookName:bookName,chapterOrder:chapterOrder,chapterName:chapterName,chapter:chapter,section:section,currentName:currentName,newName:newName}
+            let token = document.querySelector("meta[name=csrf-token]").content
+            axios.defaults.headers.common['X-CSRF-Token']= token
+            
+            axios({
+              method: 'post',
+              url: '/books/rename.json',
+              data: params
+            })
+            .then( result=>{
+              if(result.data['message']=="ok"){
+                target.textContent = newName
+                // 隱藏renameform
+                renameform.classList.add('x')
+                alert('Success to change name')
+              }
+            })
+            .catch(function(err){
+              console.log(err)
+            })
 
-// <div class="x" id="renameform">
-//   <p>Rename Your Chapter or Section</p>
-//   <div>
-//     <span>Current Name</span>
-//     <span id="currentName"></span>
-//   </div>
-//   <div>
-//     <label for="newName">New name</label>
-//     <input id="newName" type="text" name='newName' placeholder='New name'>
-//   </div>
-//   <div class="text-center">
-//     <span id="renameAgree"class="btn formBtn">OK</span> 
-//     <span id="renameDisAgree" class="btn formBtn">X</span>
-//   </div>
-// </div> 
+          }
+        })
 
 
+        
       }
     })
   }
