@@ -1,10 +1,10 @@
 class BooksController < ApplicationController  
-  require'aws-sdk-s3'
+  require "aws-sdk-s3"
+  require "json"
   
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :editor_new, :editor_edit]
   before_action :find_book, except: [:index, :new, :create]
-  require'aws-sdk-s3'
-  require 'json'
+
   def index
     @books = Book.published_books
 
@@ -205,7 +205,7 @@ class BooksController < ApplicationController
   end
 
   def find_book
-    @book = Book.find_by(id: params[:id])
+    @book = Book.find_by_slug(params[:id])
   end
 
   def book_start(title)
