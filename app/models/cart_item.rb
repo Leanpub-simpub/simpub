@@ -1,9 +1,8 @@
 class CartItem
   attr_reader :book_id, :quantity, :cart_price
 
-  def initialize(book_id, cart_price = 0, quantity = 1)
+  def initialize(book_id, cart_price = 0)
     @book_id = book_id
-    @quantity = quantity
     @cart_price = cart_price
   end
   

@@ -18,20 +18,22 @@
   <div class="checkoutstage_review d-flex justify-content-center">
     <table class="table w-75">
       <thead class="txt">
-        <tr>
-          <th>商品</th>
-          <th></th>
-          <th>數量</th>
-          <th>小計</th>
+        <tr class="row">
+          <th class="col-2">商品</th>
+          <th class="col-6"></th>
+          <th class="col-2">數量</th>
+          <th class="col-2">小計</th>
         </tr>
       </thead>
       <tbody>
       <% current_cart.items.each do |item| %>
-        <tr class="">
-          <td>
-            <div></div>
+        <tr class="row">
+          <td class="col-2">
+            <div style="font-size:large" class="font-weight-bold" >
+              <%= render partial: "shared/frontend/book_cover", locals: {book: item.book, size: :small} %>
+            </div>
           </td>
-          <td>
+          <td class="col-6">
             <div style="font-size:large" class=" font-weight-bold" >
               <%= item.book.title %>
             </div>
@@ -43,10 +45,10 @@
               <a href="">Delete</a>
             </div>
           </td>
-          <td style="font-size: large">
-          <%= item.quantity %>
+          <td style="font-size: large" class="col-2">
+            1
           </td>
-          <td style="font-size: large">
+          <td style="font-size: large" class="col-2">
           <%= item.price %>
           </td>
         </tr>
