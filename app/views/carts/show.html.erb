@@ -42,7 +42,7 @@
               <span class="mx-2">|</span>
               <a href="">Move to Wishlist</a>
               <span class="mx-2">|</span>
-              <a href="">Delete</a>
+              <%= link_to "Delete", delete_cart_path(item.book_id), method: :patch, remote: true %>
             </div>
           </td>
           <td style="font-size: large" class="col-2">

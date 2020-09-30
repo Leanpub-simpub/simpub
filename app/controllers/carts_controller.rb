@@ -14,6 +14,9 @@ class CartsController < ApplicationController
     end
   end
 
+  def delete
+  end
+
   def destroy
     session[Cart::SessionKey] = nil
     redirect_to :cart, notice: "購物車已清空"
