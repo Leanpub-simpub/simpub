@@ -8,6 +8,7 @@ class FollowshipsController < ApplicationController
 
   def create
     @user = User.find_by(id: params[:follower_id])
+    current_user.followers << @user
 
     if is_following?(@user)
       render js: "alert('已經追蹤該作者')"
