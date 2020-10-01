@@ -10,6 +10,10 @@ class Cart
     @items << CartItem.new(book_id, cart_price)
   end
 
+  def update_price(item, price)
+    item.cart_price = price
+  end
+
   def delete_item(items)
     @items = items
   end

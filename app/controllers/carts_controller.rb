@@ -1,7 +1,7 @@
 class CartsController < ApplicationController
 
   def add
-    cart_price = params[:cart_price][1..-1].to_i
+    cart_price = params[:cart_price][1..-1].to_f
     
     current_cart.add_item(params[:id], cart_price) 
     session[Cart::SessionKey] = current_cart.serialize
@@ -13,6 +13,16 @@ class CartsController < ApplicationController
       format.json { @cart = session[Cart::SessionKey] }
     end
   end
+
+
+  def update
+    index = params[:index].to_i
+    price = params[:price][1..-1].to_f
+
+    current_cart.update_price(current_cart.items[index], price)
+    session[Cart::SessionKey] = current_cart.serialize
+  end
+  
 
   def delete
     cart = current_cart.items
