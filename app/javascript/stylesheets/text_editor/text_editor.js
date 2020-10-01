@@ -30,6 +30,7 @@ window.addEventListener('turbolinks:load',()=>{
     let tempForMdToHtml //判斷是否有編輯文字用
     let save = document.querySelector('#save')
     let startText
+    let md2html
     //從前端 fetch 到 server 的 get_content action 取得第一章節的內容並印出
     let token = document.querySelector("meta[name=csrf-token]").content
     axios.defaults.headers.common['X-CSRF-Token']= token
@@ -166,6 +167,7 @@ window.addEventListener('turbolinks:load',()=>{
           }
         }))
         var result = md.render(text);
+        md2html=result
         target.innerHTML=result
       }else{
         return
@@ -198,6 +200,8 @@ window.addEventListener('turbolinks:load',()=>{
         })
       }
     }
+
+    
 
   }
 })
