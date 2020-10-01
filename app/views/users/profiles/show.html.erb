@@ -8,6 +8,10 @@
   </div>
   
   <div class="container">
+    <div>
+      <%= link_to "Follow", followships_path(follower_id: @user), method: :post, remote: true %>
+    </div>
+  
     <div class="row justify-content-center">
       <p class="col-12 text-center h3"><%= @user.name %></p>
     </div>
@@ -28,4 +32,3 @@
     </div>
   </div>
 </div>
-
