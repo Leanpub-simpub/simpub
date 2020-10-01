@@ -45,11 +45,12 @@ class CartsController < ApplicationController
     if current_cart.empty?
       redirect_to :root, notice: "購物車空空"
     else
-      @order = Order.create(
-        user_id: current_user,
+      @order = current_user.orders.create(
         payment_term: "credit card",
         state: "pending",
+        total: "current_cart.total_price"
       )
+      # @order.order_items
     end
 
     if user_signed_in?
