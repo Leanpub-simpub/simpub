@@ -38,11 +38,11 @@
               <%= item.book.title %>
             </div>
             <div>
-              <a href="">edit</a>
+              <%= link_to "edit", "#", remote: true, data: {toggle: "modal", target: "#slider-modal"} %>
               <span class="mx-2">|</span>
               <a href="">Move to Wishlist</a>
               <span class="mx-2">|</span>
-              <button data-action="cart#delete">Delete</button>
+              <a href="" data-action="cart#delete">Delete</a>
             </div>
           </td>
           <td style="font-size: large" class="col-2">
@@ -52,6 +52,20 @@
           <%= item.price %>
           </td>
         </tr>
+
+        <div id="slider-modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <div class="modal-body">
+                <%= render partial: "shared/frontend/price_slider", locals: {book: item.book} %>
+              </div>
+            </div>
+          </div>
+        </div>
+
       <% end %>
       </tbody>
     </table>
