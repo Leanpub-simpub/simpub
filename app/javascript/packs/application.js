@@ -25,3 +25,5 @@ import "controllers";
 require("../stylesheets");
 require("../cart");
 require("../books");
+
+import "controllers"
