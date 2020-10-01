@@ -56,11 +56,35 @@
         <div id="slider-modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+              <div class="modal-header">
+                <h3 class="modal-title">Edit Purchase</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              
               <div class="modal-body">
-                <%= render partial: "shared/frontend/price_slider", locals: {book: item.book} %>
+                <div class="row">
+                  <!-- 書本封面 -->
+                  <div class="col-6">
+                    <%= render partial: "shared/frontend/book_cover", locals: {book: item.book, size: :large} %>
+                  </div>
+
+                  <div class="col-6">
+                    <!-- Slider -->
+                    <%= render partial: "shared/frontend/price_slider", locals: {book: item.book} %>
+    
+                    <!-- 更新價格按鈕 -->
+                    <div class="update-price mt-auto">
+                      <span>YOU PAY</span>
+                      <span class="hint">(US$)</span>
+                      <%= form_with url: add_cart_path(item.book.id), class: "update-price-form" do |f| %>
+                        <%= f.text_field :cart_price, class: "cart-price text-center mt-1 mb-4" %>
+                        <%= f.submit "Update", class: "update-price-btn btn btn-danger main-btn" %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
