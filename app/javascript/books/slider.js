@@ -5,7 +5,7 @@ document.addEventListener("turbolinks:load", () => {
     const authorEarns = document.querySelector("#author-earns");
     const authorEarnsShow = document.querySelector(".author-earns-show");
     const cartPrice = document.querySelector(".cart-price");
-    const addCartForm = document.forms[1];
+    const addCartForm = document.querySelector(".add-cart-form");
 
     // 設定初始化價格
     setPricePay();
@@ -42,7 +42,7 @@ document.addEventListener("turbolinks:load", () => {
           if (inputPrice < minPrice) {
             setCartPrice(minPrice.toFixed(2));
           } else if (inputPrice > maxPrice) {
-            setCartPrice(maxPrice.toFixed(2));
+            setCartPrice(100.00.toFixed(2));
           } else {
             setCartPrice(inputPrice.toFixed(2));
           }
