@@ -87,7 +87,7 @@
             1
           </td>
           <td style="font-size: large" class="col-2">
-          <%= item.price %>
+          $<%= sprintf("%.2f", item.price) %>
           </td>
         </tr>
 
@@ -103,7 +103,7 @@
 
   <div class="check-out d-flex justify-content-center">
     <div class="w-75 d-flex justify-content-end align-items-center">
-    	<%= current_cart.total_price %>
+    	$<%= sprintf("%.2f", current_cart.total_price) %>
     </div>
   </div>
 
