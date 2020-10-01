@@ -30,12 +30,14 @@
         <tr class="row" data-controller="cart" data-cart-index="<%= index %>">
           <td class="col-2">
             <div style="font-size:large" class="font-weight-bold" >
-              <%= render partial: "shared/frontend/book_cover", locals: {book: item.book, size: :small} %>
+              <%= link_to book_path(item.book) do %>
+                <%= render partial: "shared/frontend/book_cover", locals: {book: item.book, size: :small} %>
+              <% end %>
             </div>
           </td>
           <td class="col-6">
             <div style="font-size:large" class=" font-weight-bold" >
-              <%= item.book.title %>
+              <%= link_to item.book.title, book_path(item.book) %>
             </div>
             <div>
               <%= link_to "edit", "#slider-modal", remote: true, data: {toggle: "modal", index: index, action: "cart#edit"}, class: "item-edit" %>
@@ -55,6 +57,8 @@
                         <!-- 書本封面 -->
                         <div class="col-6">
                           <%= render partial: "shared/frontend/book_cover", locals: {book: item.book, size: :large} %>
+                          <div><%= item.book.title %></div>
+                          <div><%= item.book.authors[0].name %></div>
                         </div>
 
                         <div class="col-6">
@@ -65,7 +69,7 @@
                             <span>YOU PAY</span>
                             <span class="hint">(US$)</span>
                             <form action="" class="update-price-form">
-                              <input type="text", class="cart-price text-center mt-1 mb-4">
+                              <input type="text", class="cart-price text-center d-block mt-1 mb-4">
                               <input type="submit" value="Update" class="update-btn btn btn-danger main-btn">
                             </form>
                           </div>
