@@ -19,7 +19,8 @@
 		"popper.js": "^1.16.1",
 		"select2": "^4.0.13",
 		"trix": "^1.2.0",
-		"turbolinks": "^5.2.0"
+		"turbolinks": "^5.2.0",
+		"typed.js": "^2.0.11"
 	},
 	"version": "0.1.0",
 	"devDependencies": {

@@ -5,15 +5,15 @@
     </div>
 
     <div class="col-12">
-      <%= link_to "Follow", followships_path(follower_id: @user), method: :post, remote: true %>
+      <%= link_to "Follow", followships_path(follower_id: @user), method: :post, remote: true, class:"txt" %>
     </div>
   
-    <div class="col-12 h3"><%= @user.name %></div>
-    <div class="col-12 h3"><%= @user.about %></div>
+    <div class="col-12 h3 txt"><%= @user.name %></div>
+    <div class="col-12 h3 txt"><%= @user.about %></div>
    
     <%# 出版過的書 %>
     <div>
-      <h3 class="col-12">Published Books</h3>
+      <h3 class="col-12 title">Published Books</h3>
       <% @user.pub_books.each do |book| %>
         <div class="col-12">
           <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
@@ -25,9 +25,8 @@
 
     <%# 編輯個人資料 %>
     <div class="col-12">
-      <%= link_to "Edit Profile", user_dashboard_path %>
+      <%= link_to "Edit Profile", user_dashboard_path, class:"txt" %>
     </div>
-
 
   </div>
 </div>

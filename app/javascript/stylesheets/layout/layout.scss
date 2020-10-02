@@ -1,15 +1,16 @@
 html {
-	.library,
-	.purchase,
-	.cart-show,
-	.author-books
-	.profile-show {
-		min-height: 65vh;
-	}
-	.notice,
-	.alert {
-		padding: 0px;
-		margin: 0px;
-		max-width: 576px;
-	}
+  .library,
+  .purchase,
+  .cart-show,
+  .author-books,
+  .profile-show,
+  .book-index {
+    min-height: 65vh;
+  }
+  .notice,
+  .alert {
+    padding: 0px;
+    margin: 0px;
+    max-width: 576px;
+  }
 }

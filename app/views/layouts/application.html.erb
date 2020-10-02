@@ -15,11 +15,15 @@
 		
 		<!-- 編輯個人資料 & 書籍封面的圖片預覽 JS 檔 -->
 	  <%= javascript_pack_tag "image_preview", "data-turbolinks-track": "reload" if (params[:controller] == "users/registrations" && params[:action] == "edit") or (params[:controller] == "books") %>
-		<!-- 購物車動畫使用的套件 cdn -->
+		
+		<!-- 購物車動畫使用的套件 CDN -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
 
 		<!-- 網站深色/淺色模式開關 -->
 		<%= javascript_pack_tag "open_light", "data-turbolinks-track": "reload" %>
+
+		<!-- Typed.js -->
+		<%= javascript_pack_tag "typed.js", "data-turbolinks-track": "reload" %>
 	</head>
 
 	<body>

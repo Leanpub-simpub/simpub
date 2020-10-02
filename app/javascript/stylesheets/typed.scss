@@ -1,0 +1,12 @@
+@keyframes blink {
+  from,
+  to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
+#my_string span {
+  animation: blink 1s step-end infinite;
+}
