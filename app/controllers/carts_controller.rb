@@ -43,24 +43,30 @@ class CartsController < ApplicationController
 
   def payment
     if current_cart.empty?
-      redirect_to :root, notice: "購物車空空"
+      redirect_to :books, notice: "購物車空空"
     else
-      @order = current_user.orders.create(
-        payment_term: "credit card",
-        state: "pending",
-        total: "current_cart.total_price"
-      )
-      # @order.order_items
-    end
-
-    if user_signed_in?
-      @token = gateway.client_token.generate
-    else
-      redirect_to new_user_session_path
+      if user_signed_in?
+        @token = gateway.client_token.generate
+      else
+        redirect_to new_user_session_path
+      end
     end
   end
 
   def checkout
+    @order = current_user.orders.create(
+      payment_term: "credit card",
+      state: "pending",
+      total: "#{current_cart.total_price}"
+    )
+    current_cart.items.each do |item|
+      @order.order_items.create(
+        book_id: item.book_id,
+        price: item.cart_price,
+        amount: 1
+      )
+    end
+
     result = gateway.transaction.sale(
       amount: current_cart.total_price,
       payment_method_nonce: params[:nonce],
