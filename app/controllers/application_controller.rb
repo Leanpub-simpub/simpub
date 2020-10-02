@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
   include CartsHelper
 
-  helper_method :published_books, :unpublish_books, :has_avatar?, :has_cover?
+  helper_method :published_books, :unpublish_books, :has_avatar?, :has_cover?,
+                :any_purchase?
   
   
 
@@ -20,5 +21,9 @@ class ApplicationController < ActionController::Base
 
   def has_cover?(book)
     book.cover_data
+  end
+
+  def any_purchase?(user)
+    user.orders.count > 0
   end
 end
