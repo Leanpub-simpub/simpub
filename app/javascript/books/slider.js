@@ -63,8 +63,11 @@ document.addEventListener("turbolinks:load", () => {
       let startH = cover.getBoundingClientRect().height;
       let startX = startW / 2 + cover.getBoundingClientRect().x
       let startY = startH / 2 + cover.getBoundingClientRect().y;
-      let endX = cart.getBoundingClientRect().x;
-      let endY = cart.getBoundingClientRect().y;
+      
+      let endW = cart.getBoundingClientRect().width;
+      let endH = cart.getBoundingClientRect().height;
+      let endX = endW / 2 + cart.getBoundingClientRect().x;
+      let endY = endH / 2 + cart.getBoundingClientRect().y;
 
       coverBubble.classList.add("cover-bubble");
       cover.parentElement.appendChild(coverBubble);
