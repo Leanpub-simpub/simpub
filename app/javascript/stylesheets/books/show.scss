@@ -1,143 +1,144 @@
 .book-show-author-avatar {
-	width: 40px;
-	height: 40px;
+  width: 40px;
+  height: 40px;
 }
 
 .book-show-author-name {
-	font-size: 16px;
-	text-decoration: underline;
+  font-size: 16px;
+  text-decoration: underline;
 }
 
 .tags {
-	span {
-		margin-right: 10px;
-	}
+  span {
+    margin-right: 10px;
+  }
 }
 
 .button-group {
-	a.btn {
-		border: 1px solid rgba(225, 154, 96, 0.5);
-		font-size: 14px;
-	}
+  a.btn {
+    border: 1px solid rgba(225, 154, 96, 0.5);
+    font-size: 14px;
+  }
 }
 
 .cover {
-	div:first-child {
-		border: 1px solid rgba(225, 154, 96, 0.5);
-	}
+  div:first-child {
+    border: 1px solid rgba(225, 154, 96, 0.5);
+  }
 }
 
 // 購物車動畫
 .cover-bubble {
-	display: block;
-	border: 5px solid #e09a5f;
-	position: absolute;
-	top: 0;
-	left: 0;
-	border-radius: 50%;
-	z-index: 100;
+  display: block;
+  border: 5px solid #e09a5f;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  z-index: 100;
 }
 
 .completeness {
-	.progress {
-		height: 8px;
-		width: 95%;
-	}
-	p {
-		font-size: 14px;
-	}
+  .progress {
+    height: 8px;
+    width: 95%;
+  }
+  p {
+    font-size: 14px;
+  }
 }
 
 .book-price {
-	p:first-child {
-		font-size: 24px;
-	}
-	p:last-child {
-		font-size: 12px;
-	}
+  p:first-child {
+    font-size: 24px;
+  }
+  p:last-child {
+    font-size: 12px;
+  }
 }
 
 .slider {
-	p {
-		font-size: 16px;
-		font-weight: 200;
-	}
+  p {
+    font-size: 16px;
+    font-weight: 200;
+  }
 
-	.user-pay-box,
-	.author-earns-box {
-		height: 28px;
-		width: 90px;
-		border-top: 2px solid #333333;
-		border-left: 2px solid #333333;
-		border-bottom: 2px solid #333333;
-		position: relative;
+  .user-pay-box,
+  .author-earns-box {
+    height: 28px;
+    width: 90px;
+    border-top: 2px solid #333333;
+    border-left: 2px solid #333333;
+    border-bottom: 2px solid #333333;
+    position: relative;
+    background-color: white;
 
-		span.user-pay-show,
-		span.author-earns-show {
-			color: #333333;
-			font-weight: 500;
-			position: absolute;
-			top: 0;
-			left: 5px;
-		}
-	}
-	.author-earns-box {
-		width: 80px;
-	}
-	input[type="range"] {
-		-webkit-appearance: none;
-		height: 28px;
-		outline: none;
-		border-top: 2px solid #333333;
-		border-right: 2px solid #333333;
-		border-bottom: 2px solid #333333;
-	}
-	input[type="range"]::-webkit-slider-thumb {
-		-webkit-appearance: none;
-		cursor: grabbing;
-		width: 12px;
-		height: 40px;
-		background-color: #333333;
-		border-radius: 12px;
-		box-shadow: 0 2px 10px 0 #333333;
-	}
+    span.user-pay-show,
+    span.author-earns-show {
+      color: #999999;
+      font-weight: 500;
+      position: absolute;
+      top: 0;
+      left: 5px;
+    }
+  }
+  .author-earns-box {
+    width: 80px;
+  }
+  input[type="range"] {
+    -webkit-appearance: none;
+    height: 28px;
+    outline: none;
+    border-top: 2px solid #333333;
+    border-right: 2px solid #333333;
+    border-bottom: 2px solid #333333;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    cursor: grabbing;
+    width: 12px;
+    height: 40px;
+    background-color: #666666;
+    border-radius: 25%;
+    box-shadow: 0 2px 5px 0 #666666;
+  }
 }
 
 .add-to-cart-price {
-	span {
-		font-size: 16px;
-		font-weight: 200;
-	}
-	span.hint {
-		font-size: 12px;
-	}
-	.cart-price {
-		width: 140px;
-		height: 44px;
-		line-height: 38px;
-		font-size: 22px;
-	}
-	.cart-price:focus {
-		outline: none;
-	}
-	.add-to-cart-btn {
-		font-size: 22px;
-		font-weight: 700;
-		transition: 0.3s;
-	}
+  span {
+    font-size: 16px;
+    font-weight: 200;
+  }
+  span.hint {
+    font-size: 12px;
+  }
+  .cart-price {
+    width: 140px;
+    height: 44px;
+    line-height: 38px;
+    font-size: 22px;
+  }
+  .cart-price:focus {
+    outline: none;
+  }
+  .add-to-cart-btn {
+    font-size: 22px;
+    font-weight: 700;
+    transition: 0.3s;
+  }
 }
 
 .add-to-wishlist {
-	font-size: 14px;
-	text-decoration: underline;
+  font-size: 14px;
+  text-decoration: underline;
 }
 
 .book-show {
-	min-height: 80vh;
+  min-height: 80vh;
 }
 
 .tag {
-	border: 1px solid #333333;
-	border-radius: 5%;
-	padding: 2px;
+  border: 1px solid #333333;
+  border-radius: 5%;
+  padding: 2px;
 }

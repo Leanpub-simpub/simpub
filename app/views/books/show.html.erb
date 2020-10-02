@@ -1,4 +1,4 @@
-<div class="book-show container d-flex" >
+<div class="book-show container d-flex txt" >
 	<div class="row align-self-center">
 		<div class="col-4 d-flex flex-column">
       <!-- 書本標題 -->
@@ -12,8 +12,8 @@
           <%= render "shared/frontend/user_avatar", user: @book.authors[0] %>
         </div>
         <!-- 作者名稱 -->
-        <div class="book-show-author-name pl-3">
-          <%= link_to link_to @book.authors[0].name, profile_path(@book.authors[0].username) %>
+        <div class="book-show-author-name pl-3 d-flex align-items-center">
+          <%= link_to link_to @book.authors[0].name, profile_path(@book.authors[0].username), class:"txt" %>
         </div>
       </div>
 
@@ -35,11 +35,11 @@
       </div>
       
 			<div class="button-group mt-auto">
-        <%= link_to sample_book_path(@book), method: 'POST',class: "btn w-50 p-1 mb-2 main-btn" do %>
-          <span class="mr-2 ">Read Free Sample</span><i class="far fa-file-pdf "></i>
+        <%= link_to sample_book_path(@book), method: 'POST',class: "btn w-50 p-1 my-2 main-btn" do %>
+          <span class="mr-2 ">Read Free Sample</span><i class="far fa-file-pdf"></i>
         <% end %> 
         <%= link_to table_of_contents_book_path(@book), method: 'POST', class: "btn w-50 p-1 main-btn" do %>
-          <span class="mr-2 ">Table Of Contents</span><i class="fas fa-list-ol "></i>
+          <span class="mr-2 ">Table Of Contents</span><i class="fas fa-list-ol"></i>
         <% end %>
 			</div>
 		</div>
