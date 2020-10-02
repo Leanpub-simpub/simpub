@@ -54,18 +54,7 @@ class CartsController < ApplicationController
   end
 
   def checkout
-    @order = current_user.orders.create(
-      payment_term: "credit card",
-      state: "pending",
-      total: "#{current_cart.total_price}"
-    )
-    current_cart.items.each do |item|
-      @order.order_items.create(
-        book_id: item.book_id,
-        price: item.cart_price,
-        amount: 1
-      )
-    end
+    
 
     result = gateway.transaction.sale(
       amount: current_cart.total_price,
@@ -80,6 +69,9 @@ class CartsController < ApplicationController
         current_user.bought_books << Book.find_by(id: item.book_id)
       end
 
+      # 成功付款建立訂單
+      create_order(current_user)
+             
       session[Cart::SessionKey] = nil
       redirect_to root_path, notice: "付款成功"
     else
@@ -97,5 +89,26 @@ class CartsController < ApplicationController
       public_key: ENV["public_key"],
       private_key: ENV["private_key"],
     )
+  end
+
+  def create_order(user)
+    order = user.orders.create(
+      payment_term: "credit card",
+      state: "success",
+      total: "#{current_cart.total_price}"
+    )
+    
+    # 建立訂單項目
+    create_order_items(order)
+  end
+
+  def create_order_items(order)
+    current_cart.items.each do |item|
+      order.order_items.create(
+        book_id: item.book_id,
+        price: item.cart_price,
+        amount: 1
+      )
+    end
   end
 end
