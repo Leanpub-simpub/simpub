@@ -31,14 +31,13 @@
       <option value="author-search">搜尋作者</option>
       <option value="tag-search">搜尋標籤</option>
     </select>
-    <%= form_with(url: :books, method: :get, class: "nav-search form-inline ml-1", local: true) do |f| %>
+    <%= form_with(url: :books, method: :get, class: "nav-search form-inline ml-1 d-flex flex-nowrap", local: true) do |f| %>
       <%= f.search_field :search, class: "search-input form-control", placeholder: "Search" %>
       <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
         <i class="fas fa-search icon"></i>
       <% end %>
     <% end %>
   </div>
-  
   
   <div class="icon-group d-flex align-items-center">
       <!-- 購物車 -->
