@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   get "/u/:username", to: "users/profiles#show", as: "profile"
   post "/u/:username", to: "users/profiles#follow", as: "follow"
+  
   get "/dash_board/followship", to: "users/profiles#followship", as: "followship"
   get "/dash_board/books", to: "users/authors#show"
   get "/dash_board/library", to: "users/library#show", as: "library"
@@ -42,6 +43,7 @@ Rails.application.routes.draw do
   end
 
   get "/purchase", to: "users/purchase#index"
+  get "/purchase_show", to: "users/purchase#show"
 
   resource :cart, only:[:show, :update, :destroy] do
     collection do
