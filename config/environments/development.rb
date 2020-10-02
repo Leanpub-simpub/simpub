@@ -45,7 +45,8 @@ Rails.application.configure do
     user_name: ENV['SENDMAIL_USERNAME'],
     password: ENV['SENDMAIL_PASSWORD'],
     authentication: 'plain',
-    enable_starttls_auto: true
+    enable_starttls_auto: true,
+    openssl_verify_mode: 'none'
   }
 
   config.action_mailer.perform_caching = false
