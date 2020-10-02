@@ -22,10 +22,13 @@
 		<!-- 網站深色/淺色模式開關 -->
 		<%= javascript_pack_tag "open_light", "data-turbolinks-track": "reload" %>
 
-		<!-- Typed.js -->
-		<%= javascript_pack_tag "typed.js", "data-turbolinks-track": "reload" %>
-	</head>
+		<!-- jquery -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
 
+		<!-- Typed.js -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.1/typed.min.js"></script>
+		<%= javascript_pack_tag "typed", "data-turbolinks-track": "reload" %>
+	</head>
 	<body>
 		<%= render "shared/frontend/navbar" %>
 		<p class="notice text-center"><%= notice %></p>
