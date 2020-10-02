@@ -7,6 +7,7 @@
     </div>
   <div class="btn-group">
     <button class="btn dropdown-toggle txt" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      BookShelf
     </button>
     <div class="dropdown-menu">
       <%# 書搜尋頁 %>
@@ -42,7 +43,7 @@
   
   <!-- 購物車 -->
     <%= link_to cart_path, class:"nav-icon" do%>
-      <i class="fas fa-shopping-cart fa-2x mx-2">
+      <i class="fas fa-shopping-cart mx-2">
         <div class="x"></div>
       </i>
     <% end %>
@@ -50,11 +51,11 @@
   <% if user_signed_in? %>
   <!-- 願望清單 -->
     <div class="nav-icon">
-      <i class="fas fa-heart fa-2x mx-2"></i>
+      <i class="fas fa-heart mx-2"></i>
     </div>
   <!-- 通知 -->
     <div class="nav-icon">
-      <i class="fas fa-bell fa-2x mx-2"></i>
+      <i class="fas fa-bell mx-2"></i>
     </div>
   <% else %>
   <!-- 註冊&登入 -->
@@ -79,12 +80,6 @@
       </div>
       <div class="layout-dropdown collapse position-absolute w-100 ml-auto" id="navbarToggleExternalContent">
         <div class="layout-dropdown-child position-absolute px-4 py-1 ml-auto col-2 col-lg-2">
-          <div class="row mx-auto align-items-center account-info">
-            <div>
-              <p class= "nav-user-info my-0 px-2"><%= current_user.name %></p> 
-              <p class= "nav-user-info my-0 px-2"><%= current_user.email %></p> 
-            </div>
-          </div>
 
           <%# 作者主頁 (有創建過書籍才會顯示) %>
           <% if current_user.pub_books.count > 0 %>
@@ -108,15 +103,10 @@
           <div class="py-2 d-flex">
             <a href="/purchase" class="nav-drop-item container-fluid">Purchase</a>
           </div>
-
-          <%# 編輯個人資料 %>
-          <div class="py-2 d-flex">
-            <%= link_to "Edit Profile", user_dashboard_path, class: "nav-drop-item container-fluid"%>
-          </div>
           
           <%# 檢視個人主頁 %>
           <div class="py-2 d-flex">
-            <%= link_to "View Profile", profile_path(current_user.username), class: "nav-drop-item container-fluid"%>
+            <%= link_to "Profile", profile_path(current_user.username), class: "nav-drop-item container-fluid"%>
           </div>
 
           <%# 追隨 %>
@@ -126,7 +116,7 @@
           
           <%# 登出 %>
           <div class="py-2 d-flex">
-            <%= link_to "Sign Out", :destroy_user_session, method: :delete, class: "sign_out_btn container-fluid"%>
+            <%= link_to "Sign Out", :destroy_user_session, method: :delete, class: "sign_out_btn nav-drop-item container-fluid"%>
           </div>
         </div>
       </div>
