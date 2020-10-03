@@ -7,12 +7,12 @@
       <p class="text-center"><%= current_user.name %></p>
     </div>
     
-    <div class="col-10">
-      <div class="h3 pl-5 pt-5">Purchase</div>
+    <div id="order-info" class="col-10 border">
+      <div class="h3 pl-5 pt-5">Purchases</div>
       <span class="pl-5 pt-5">These are all the purchases you have made on Leanpub.</span>
       
       <% if any_purchase?(current_user) %>
-        <div class="ml-5 mt-5 w-100">
+        <div class="pl-5 pt-5 w-100">
           <div class="row border-bottom py-3">
             <div class="col-5">Purchase ID</div>
             <div class="col-3">Purchase Date</div>
@@ -21,12 +21,12 @@
           </div>
 
           <% @orders.each do |order| %>
-            <div class="border-bottom py-2">
-              <%= link_to "#", class: "row" do %>
+            <div class="row border-bottom py-2">
+              <%= link_to "/purchases_show?uuid=#{order.uuid}", class: "d-flex w-100", data: {controller: "order", action: "order#show", order_uuid: order.uuid} do %>
                 <div class="col-5"><%= order.order_items[0].book.title %></div>
-                <div class="col-3"><%= order.updated_at.strftime("%y-%m-%d") %></div>
+                <div class="col-3"><%= order.updated_at.strftime("%Y-%m-%d") %></div>
                 <div class="col-2"><%= order.order_items.count %></div>
-                <div class="col-2">$<%= sprintf("%.2f", order.total) %></div>
+                <div class="col-2">$<%= order.total %></div>
               <% end %>
             </div>
           <% end %>
