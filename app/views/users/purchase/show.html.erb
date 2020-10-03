@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-2">
+      <div>
+        <%= render "shared/frontend/user_avatar", user: current_user %>
+      </div>
+      <p class="text-center"><%= current_user.name %></p>
+    </div>
+
+    <div id="order-items" class="col-10 border">
+      <div id="purchased-time" class="h3 pl-5 pt-5">
+        <%= link_to :purchases do %>
+          <i class="fas fa-angle-left"></i>
+        <% end %>
+        Purchased on <%= @order.updated_at.strftime("%Y-%m-%d") %>
+      </div>
+        
+        <div class="pl-5 pt-5 w-100">
+          <div class="row border-bottom py-3">
+            <div class="col-5">Item</div>
+            <div class="col-2">Total</div>
+            <div class="col-5">Refund Days left</div>
+          </div>
+        </div>
+
+        <div class="pl-5 py-3 w-100">
+          <% @order_items.each do |item| %>
+            <div class="row border-bottom">
+              <div class="col-5"><%= item.book.title %></div>
+              <div class="col-2">$<%= sprintf("%.2f", item.price) %></div>
+              <div class="col-2"><%= @refund_time %></div>
+              <div class="col-3">Request Refund</div>
+            </div>
+          <% end %>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+</div>
