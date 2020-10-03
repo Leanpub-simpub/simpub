@@ -42,8 +42,8 @@ Rails.application.routes.draw do
     end
   end
 
-  get "/purchase", to: "users/purchase#index"
-  get "/purchase_show", to: "users/purchase#show"
+  get "/purchases", to: "users/purchase#index"
+  get "/purchases_show", to: "users/purchase#show"
 
   resource :cart, only:[:show, :update, :destroy] do
     collection do
