@@ -21,7 +21,7 @@ window.addEventListener("turbolinks:load", function () {
           document.querySelector(".book-info-title").textContent = book.title
           document.querySelector(".name").textContent = book.authors[0].name
           document.querySelector(".name").image = book.authors[0].avatar_data
-          document.querySelector(".Leanpub").href = `/books/${book.id}/read`
+          document.querySelector(".Leanpub").href = `/books/${book.slug}/read`
 
         });
       };

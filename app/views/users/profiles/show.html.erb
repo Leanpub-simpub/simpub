@@ -5,9 +5,19 @@
     </div>
 
     <div class="col-12">
-      <%= link_to "Follow", followships_path(follower_id: @user), method: :post, remote: true, class:"txt" %>
+      <div class="row justify-content-center" data-controller="follow" data-follow-user="<%= @user.username %>">
+        <p class="text-center h3">
+          <button class="follow-btn btn btn-danger main-btn txt" data-action="follow#followship">
+            <% if @user.followed_by?(current_user) %>
+              Following
+            <% else %>
+              Follow
+            <% end %>
+          </button>
+        </p>
+      </div>
     </div>
-  
+
     <div class="col-12 h3 txt"><%= @user.name %></div>
     <div class="col-12 h3 txt"><%= @user.about %></div>
    
