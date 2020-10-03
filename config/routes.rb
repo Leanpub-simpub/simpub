@@ -37,6 +37,7 @@ Rails.application.routes.draw do
       post :get_content
       post :update_content
       post :rename
+      post :delete_chapter_or_section
     end
   end
 

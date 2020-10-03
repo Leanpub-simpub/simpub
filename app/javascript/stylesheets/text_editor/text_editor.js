@@ -47,7 +47,6 @@ window.addEventListener('turbolinks:load',()=>{
       data: params
     })
     .then( (result)=>{
-      // console.log(result.data['content'])
       let content = result.data['content']
      
       let editorConfig = {
@@ -67,7 +66,7 @@ window.addEventListener('turbolinks:load',()=>{
       syn_scroll()
     })
     .catch(function(err){
-      console.log(err)
+      alert('Fail to get content')
     })
     
     // 點擊到對應章節可以找到該檔案的資料並呈現
@@ -103,7 +102,7 @@ window.addEventListener('turbolinks:load',()=>{
           syn_scroll()
         })
         .catch(function(err){
-          console.log(err)
+          alert('Fail to get content')
         })
       }
     })
@@ -194,7 +193,6 @@ window.addEventListener('turbolinks:load',()=>{
           }
         })
         .catch(function(err){
-          console.log(err)
           alert('Fail to Save')
         })
       }

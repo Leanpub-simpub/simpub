@@ -16,7 +16,6 @@ document.addEventListener("turbolinks:load", () => {
     const coverInput = document.querySelector("#cover-input");
 
     coverInput.addEventListener("change", (e) => {
-      console.log(e.target);
       coverImage.src = URL.createObjectURL(e.target.files[0])
     });
   }

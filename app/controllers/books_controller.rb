@@ -162,10 +162,8 @@ class BooksController < ApplicationController
   end
   
   def get_content  
-    title = params[:bookName]
-    target = params[:target]
     s3_client = Aws::S3::Client.new
-    object = s3_client.get_object(bucket: ENV['bucket'], key:"store/book/#{title}/#{target}.md")    
+    object = s3_client.get_object(bucket: ENV['bucket'], key:"store/book/#{params[:bookName]}/#{params[:target]}.md")    
     content = object.body.read
 
     respond_to do |format|
@@ -174,59 +172,99 @@ class BooksController < ApplicationController
   end
 
   def update_content
-    book_name = params[:bookName]
-    target = params[:target]
-    content = params[:content]
     s3_resource = Aws::S3::Resource.new
     bucket = s3_resource.bucket(ENV['bucket'])
-    chapter = bucket.object("store/book/#{book_name}/#{target}.md")
-    chapter.upload_stream{|ws| ws << content}
+    chapter = bucket.object("store/book/#{params[:bookName]}/#{params[:target]}.md")
+    chapter.upload_stream{|ws| ws << params[:content]}
     
     respond_to do |format|
       format.json{ render json: {message: 'ok'} }
     end
   end
 
-  def rename
-    book_name = params[:bookName]
-    chapter_order = params[:chapterOrder]
-    chapter_name = params[:chapterName]
-    chapter = params[:chapter]
-    section= params[:section]
-    current_name = params[:currentName]
-    new_name = params[:newName]
-    
-    # 改 json 
+  def rename    
     # 取到結構json檔資料
     s3_client = Aws::S3::Client.new
-    object = s3_client.get_object(bucket: ENV['bucket'], key:"store/book/#{book_name}/structure.json")    
+    object = s3_client.get_object(bucket: ENV['bucket'], key:"store/book/#{params[:bookName]}/structure.json")    
     structure_json = object.body.read
     structure_json = JSON.parse(structure_json)
     
     # 修改json 內容
-    if chapter
-      structure_json[chapter_order.to_i][new_name] = structure_json[chapter_order.to_i].delete(current_name)
-    elsif section
-      index = structure_json[chapter_order.to_i][chapter_name].find_index(current_name)
-      structure_json[chapter_order.to_i][chapter_name][index] = new_name
+    if params[:chapter]
+      structure_json[params[:chapterOrder].to_i][params[:newName]] = structure_json[params[:chapterOrder].to_i].delete(params[:currentName])
+    elsif params[:section]
+      index = structure_json[params[:chapterOrder].to_i][params[:chapterName]].find_index(params[:currentName])
+      structure_json[params[:chapterOrder].to_i][params[:chapterName]][index] = params[:newName]
     end
-   
     # 存回 json 檔
     s3_resource = Aws::S3::Resource.new
     bucket = s3_resource.bucket(ENV['bucket'])
-    structure = bucket.object("store/book/#{book_name}/structure.json")
+    structure = bucket.object("store/book/#{params[:bookName]}/structure.json")
     structure_json = structure_json.to_json
     structure.put(body: structure_json)
     
     # 改 檔案名稱
     bucket = Aws::S3::Bucket.new("#{ENV['bucket']}")
-    object = bucket.object("store/book/#{book_name}/#{current_name}.md")
-    object.copy_to(bucket: "#{ENV['bucket']}", key: "store/book/#{book_name}/#{new_name}.md") 
-    object.delete(bucket: "#{ENV['bucket']}",key: "store/book/#{book_name}/#{current_name}.md")
+    object = bucket.object("store/book/#{params[:bookName]}/#{params[:currentName]}.md")
+    object.copy_to(bucket: "#{ENV['bucket']}", key: "store/book/#{params[:bookName]}/#{params[:newName]}.md") 
+    object.delete(bucket: "#{ENV['bucket']}",key: "store/book/#{params[:bookName]}/#{params[:currentName]}.md")
 
     # 回應
     respond_to do |format|
       format.json{ render json: {message: 'ok'} }
+    end
+  end
+  
+  def delete_chapter_or_section
+    book_name = params[:bookName]
+    chapter_order = params[:chapterOrder]
+    chapter_name = params[:chapterName]
+    chapter = params[:chapter]
+    section= params[:section]
+    target = params[:target]
+    allSection = params[:allSection]
+    # 取到結構json檔資料
+    s3_client = Aws::S3::Client.new
+    object = s3_client.get_object(bucket: ENV['bucket'], key:"store/book/#{params[:bookName]}/structure.json")    
+    structure_json = object.body.read
+    structure_json = JSON.parse(structure_json)
+    
+    # 移除檔案
+    bucket = Aws::S3::Bucket.new("#{ENV['bucket']}")
+    if params[:section]
+      # 刪除 section
+      object = bucket.object("store/book/#{params[:bookName]}/#{params[:target]}.md")
+      object.delete(bucket: "#{ENV['bucket']}",key: "store/book/#{params[:bookName]}/#{params[:target]}.md")
+    elsif params[:chapter]
+      # 刪除 chapter
+      # 先刪 section
+      params[:allSection].each do |section|
+        object = bucket.object("store/book/#{params[:bookName]}/#{section}.md")
+        object.delete(bucket: "#{ENV['bucket']}",key: "store/book/#{params[:bookName]}/#{section}.md")
+      end
+      # 再刪除 chapter
+      object = bucket.object("store/book/#{params[:bookName]}/#{params[:target]}.md")
+      object.delete(bucket: "#{ENV['bucket']}",key: "store/book/#{params[:bookName]}/#{params[:target]}.md")
+    end
+
+    # 修改json 內容
+    if params[:chapter]
+      structure_json.delete_at(params[:chapterOrder].to_i)
+    elsif params[:section]
+      index = structure_json[params[:chapterOrder].to_i][params[:chapterName]].find_index(params[:target])
+      structure_json[params[:chapterOrder].to_i][params[:chapterName]].delete_at(index)
+    end
+
+    # 存回 json 檔
+    s3_resource = Aws::S3::Resource.new
+    bucket = s3_resource.bucket(ENV['bucket'])
+    structure = bucket.object("store/book/#{params[:bookName]}/structure.json")
+    json = structure_json
+    structure_json = structure_json.to_json
+    structure.put(body: structure_json)
+
+    respond_to do |format|
+      format.json{ render json: {message: 'ok', structure_json: structure_json} }
     end
   end
 

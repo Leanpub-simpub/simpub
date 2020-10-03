@@ -1,3 +1,15 @@
+// const chapterTemplate = document.createElement('template')
+// chapterTemplate.innerHTML=`
+// <div class="d-flex justify-content-between" >
+//   <div class="chapter"></div>
+//   <div class="addsection">+</div>
+// </div>
+// `
+// const sectionTemplate = document.createElement('template')
+// sectionTemplate.innerHTML=`
+// <div class="section"></div>
+// `
+
 import axios from "axios"
 window.addEventListener('turbolinks:load',()=>{
   if(document.querySelector('#sourceTA') && document.querySelector('#targetDiv')){
@@ -8,12 +20,19 @@ window.addEventListener('turbolinks:load',()=>{
     let deletebtn = document.querySelector('#delete')
     let deleteform = document.querySelector('#deleteform')
     let renameform = document.querySelector('#renameform')
-    let renameDisAgree = document.querySelector('#renameDisAgree')
-    let newName = document.querySelector('#newName')
-    let deleteDisAgree = document.querySelector('#deleteDisAgree')
-    let deleteinput = document.querySelector('#deleteinput')
     let renameAgree = document.querySelector('#renameAgree')
+    let renameDisAgree = document.querySelector('#renameDisAgree')
+    let renameformErr = document.querySelector('#renameformErr')
+    let newName = document.querySelector('#newName')
+    let deleteAgree = document.querySelector('#deleteAgree')
+    let deleteDisAgree = document.querySelector('#deleteDisAgree')
+    let deleteformErr = document.querySelector('#deleteformErr')
+    let deleteinput = document.querySelector('#deleteinput')
     let bookName = document.querySelector('.book_name').textContent
+    let chapterOrder
+    let chapter
+    let section
+    let chapterName
     document.addEventListener('click',(e)=>{
       if(document.querySelector('#tableOfContent')&& e.target != tableOfContent){
         tableOfContent.classList.add('x')
@@ -23,6 +42,7 @@ window.addEventListener('turbolinks:load',()=>{
     //關掉瀏覽器預設的contextmenu
     chapterList.addEventListener('contextmenu',(e)=>{
       e.preventDefault();
+      // 紀錄點選到的目標是誰，後續表單操作會用到
       target = e.target
 
       //叫出contextmenu後，點擊contextmenu以外的地方就清除掉
@@ -68,7 +88,7 @@ window.addEventListener('turbolinks:load',()=>{
         //  deleteform 的 x 就把表單隱藏
         deleteDisAgree.addEventListener('click',()=>{
           deleteform.classList.add('x')
-          renameform.querySelector('#deleteTarget').textContent = ""
+          deleteform.querySelector('#deleteTarget').textContent = ""
           deleteinput.value = ""
         })
 
@@ -79,17 +99,13 @@ window.addEventListener('turbolinks:load',()=>{
           if(newName.value == ""){
             // 使用者沒填寫名稱就按送出
             newName.style.border = '1px solid red'
-            newName.placeholder = 'New name can not be blank'
+            renameformErr.textContent = 'New name can not be blank'
             setTimeout(function(){
               newName.style.border = '1px solid black'
-              newName.placeholder = 'New name'
+              renameformErr.textContent =""
             }, 3000);
           }else{
             // 判斷目標是 chapter or section
-            let chapterOrder
-            let chapter
-            let section
-            let chapterName
             if(target.className.match('chapter') != null ){
               chapterOrder = target.dataset.order
               chapter = true
@@ -118,17 +134,104 @@ window.addEventListener('turbolinks:load',()=>{
                 target.textContent = newName
                 // 隱藏renameform
                 renameform.classList.add('x')
+                renameformErr.textContent =""
                 alert('Success to change name')
               }
             })
             .catch(function(err){
-              console.log(err)
+              alert('Fail to change name')
             })
-
           }
         })
 
+        // 確認刪除
+        deleteAgree.addEventListener('click',(e)=>{
+          e.preventDefault()
+          e.stopPropagation()
+          if(deleteinput.value == ""){
+            // 當使用者沒有填寫輸入框
+            deleteinput.style.border = '1px solid red'
+            deleteformErr.textContent = 'Please type DELETE'
+            setTimeout(function(){
+              deleteinput.style.border = '1px solid black'
+              deleteformErr.textContent = ''
+            },5000)
+          }else if(deleteinput.value != "DELETE"){
+            // 使用者填寫錯誤
+            deleteinput.style.border = '1px solid red'
+            deleteformErr.textContent = 'Please comfirm again'
+            setTimeout(function(){
+              deleteinput.style.border = '1px solid black'
+              deleteformErr.textContent = ''
+            },5000)
+          }else{
+            // 使用者正確填寫輸入框
+            let sectionBelongToChapter=[]
+            if(target.className.match('chapter') != null ){
+              // 使用者要修改的是 chapter
+              chapterOrder = target.dataset.order
+              chapter = true
+              section = false
+              chapterName = target.textContent
+              document.querySelectorAll(`[data-chapter-order="${chapterOrder}"]`).forEach((section)=>{
+                sectionBelongToChapter.push(section.textContent)
+              })
+            }else if (target.className.match('section') != null ){
+              // 使用者要修改的是 section
+              chapterOrder = target.dataset.chapterOrder
+              chapter = false
+              section = true
+              chapterName= document.querySelector(`[data-order="${chapterOrder}"]`).textContent
+            }
+            let token = document.querySelector("meta[name=csrf-token]").content
+            axios.defaults.headers.common['X-CSRF-Token']= token
+            // 收集刪除所需相關資料
+            let params = {bookName:bookName,chapterOrder:chapterOrder,chapterName:chapterName,chapter:chapter,section:section,target:target.textContent,allSection:sectionBelongToChapter}
 
+            axios({
+              method: 'post',
+              url: '/books/delete_chapter_or_section.json',
+              data: params
+            })
+            .then( result=>{
+              // 隱藏renameform
+              deleteform.classList.add('x')
+              deleteformErr.textContent =""
+              if (target.className.match('section') != null ){
+                target.remove()
+              }else if(target.className.match('chapter') != null ){
+                document.querySelectorAll(`[data-chapter-order="${chapterOrder}"]`).forEach((section)=>{
+                  section.remove()
+                })
+                target.parentElement.remove()
+              }
+              
+              alert('Success to delete ')
+            })
+            .catch(function(err){
+              // alert('Fail to delete ')
+            })
+            // 更改 chapter and section 編號
+            let allChapter = document.querySelectorAll('.chapter')
+            let collet = []
+            for(let i = 0; i< allChapter.length;i++){
+              if(allChapter[i]!=target){
+                collet.push(allChapter[i])
+              }
+            }
+            for(let i = 0; i < collet.length; i++){
+              let index =  collet[i].dataset.order
+              collet[i].dataset.order = i
+              let allSection = document.querySelectorAll(`[data-chapter-order='${index}']`)
+              
+              if(allSection.length!=0 ){
+                allSection.forEach(section =>{
+                  section.dataset.chapterOrder = i
+                })
+              }
+            }
+          }
+        })
         
       }
     })
