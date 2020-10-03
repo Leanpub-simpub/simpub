@@ -1,4 +1,11 @@
 .carousel-inner {
-	max-height: 75vh;
-	margin-top: -2px;
+  max-height: 75vh;
+  margin-top: -2px;
+}
+
+@media screen and (max-width: 576px) {
+  .slider-content {
+    max-height: 0px;
+    overflow: hidden;
+  }
 }

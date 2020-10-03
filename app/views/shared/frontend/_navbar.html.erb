@@ -1,74 +1,74 @@
-<nav class="layout-navbar navbar px-5 txt">
+<nav class="layout-navbar navbar txt">
   <!-- 品牌 logo -->
-    <div class="col-1">
-      <a href="/" class="navbar-brand">  
-        <%= image_pack_tag "logo.png", class: "w-100" %>
-      </a>
-    </div>
-  <div class="btn-group">
-    <button class="btn dropdown-toggle txt" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    </button>
-    <div class="dropdown-menu">
-      <%# 書搜尋頁 %>
-        <%= link_to "Books", books_path, class: "nav-item mr-3 dropdown-item" %>
-    
-      <% if user_signed_in?  %>
-      <%# 個人書櫃 %>
-        <%= link_to "Library", :library, class: "nav-item mr-3 dropdown-item " %>
+  <div class="col-1">
+    <a href="/" class="navbar-brand">  
+      <%= image_pack_tag "logo.png", class: "img-fluid" %>
+    </a>
+  </div>
+  
+  <div class="d-flex align-items-center mr-auto">
+    <%# 書搜尋頁 %>
+      <%= link_to "Books", books_path, class: "nav-item mx-2" %>
 
-      <%# 寫書 %>
-        <%= link_to "Create a Book", :new_book, class: "nav-item mr-3 dropdown-item  " %>
-          
-      <%# 寫過的書 %>
-        <% if current_user.pub_books.count > 0 %>
-          <%= link_to "My Writings", dash_board_books_path, class: "nav-item mr-3 dropdown-item " %>
-        <% end %>  
-      <% end %>
-    </div>
+    <% if user_signed_in?  %>
+    <%# 個人書櫃 %>
+      <%= link_to "Library", :library, class: "nav-item mx-2" %>
+
+    <%# 寫書 %>
+      <%= link_to "Create a Book", :new_book, class: "nav-item mx-2" %>
+        
+    <%# 寫過的書 %>
+      <% if current_user.pub_books.count > 0 %>
+        <%= link_to "My Writings", dash_board_books_path, class: "nav-item mx-2" %>
+      <% end %>  
+    <% end %>
   </div>
 
   <!-- Search Filter -->
-    <select name="" id="search-selector" class="ml-auto btn txt">
+  <div class="search-filter d-flex flex-nowrap ml-auto">
+    <select name="" id="search-selector" class="btn txt">
       <option value="book-search">搜尋書名</option>
       <option value="author-search">搜尋作者</option>
       <option value="tag-search">搜尋標籤</option>
     </select>
-    <%= form_with(url: :books, method: :get, class: "nav-search form-inline ml-1 mr-auto", local: true) do |f| %>
+    <%= form_with(url: :books, method: :get, class: "nav-search form-inline ml-1 d-flex flex-nowrap", local: true) do |f| %>
       <%= f.search_field :search, class: "search-input form-control", placeholder: "Search" %>
       <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
         <i class="fas fa-search icon"></i>
       <% end %>
     <% end %>
+  </div>
   
-  <!-- 購物車 -->
-    <%= link_to cart_path, class:"nav-icon" do%>
-      <i class="fas fa-shopping-cart fa-2x mx-2">
-        <div class="x"></div>
-      </i>
-    <% end %>
+  <div class="icon-group d-flex align-items-center">
+      <!-- 購物車 -->
+      <%= link_to cart_path, class:"nav-icon" do%>
+        <i class="fas fa-shopping-cart mx-2">
+          <div class="x"></div>
+        </i>
+      <% end %>
+      <% if user_signed_in? %>
+      <!-- 願望清單 -->
+        <div class="nav-icon">
+          <i class="fas fa-heart mx-2"></i>
+        </div>
+      <!-- 通知 -->
+        <div class="nav-icon">
+          <i class="fas fa-bell mx-2"></i>
+        </div>
+      <% else %>
+      <!-- 註冊&登入 -->
+        <%= link_to "Sign up", new_user_registration_path ,class: "mx-2 txt" %>
+        <%= link_to "Sign in", new_user_session_path ,class: "mx-2 txt" %>
+      <% end %>
+      <!-- 開燈/關燈 -->
+      <div class="toggle mx-2">
+        <input id="switch" type="checkbox" name="theme" >
+        <label for="switch"></label>
+      </div>
+    </div>
 
-  <% if user_signed_in? %>
-  <!-- 願望清單 -->
-    <div class="nav-icon">
-      <i class="fas fa-heart fa-2x mx-2"></i>
-    </div>
-  <!-- 通知 -->
-    <div class="nav-icon">
-      <i class="fas fa-bell fa-2x mx-2"></i>
-    </div>
-  <% else %>
-  <!-- 註冊&登入 -->
-    <%= link_to "Sign up", new_user_registration_path ,class: "mx-2 txt" %>
-    <%= link_to "Sign in", new_user_session_path ,class: "mx-2 txt" %>
-  <% end %>
-  <!-- 開燈/關燈 -->
-    <div class="toggle mx-2">
-      <input id="switch" type="checkbox" name="theme" >
-      <label for="switch"></label>
-    </div>
-
-  
   <!-- 下拉選單 -->
+  <div>
     <% if user_signed_in?  %>
       <div class="fix-down">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" >
@@ -79,12 +79,6 @@
       </div>
       <div class="layout-dropdown collapse position-absolute w-100 ml-auto" id="navbarToggleExternalContent">
         <div class="layout-dropdown-child position-absolute px-4 py-1 ml-auto col-2 col-lg-2">
-          <div class="row mx-auto align-items-center account-info">
-            <div>
-              <p class= "nav-user-info my-0 px-2"><%= current_user.name %></p> 
-              <p class= "nav-user-info my-0 px-2"><%= current_user.email %></p> 
-            </div>
-          </div>
 
           <%# 作者主頁 (有創建過書籍才會顯示) %>
           <% if current_user.pub_books.count > 0 %>
@@ -108,27 +102,23 @@
           <div class="py-2 d-flex">
             <a href="/purchase" class="nav-drop-item container-fluid">Purchase</a>
           </div>
-
-          <%# 編輯個人資料 %>
-          <div class="py-2 d-flex">
-            <%= link_to "Edit Profile", user_dashboard_path, class: "nav-drop-item container-fluid"%>
-          </div>
           
           <%# 檢視個人主頁 %>
           <div class="py-2 d-flex">
-            <%= link_to "View Profile", profile_path(current_user.username), class: "nav-drop-item container-fluid"%>
+            <%= link_to "Profile", profile_path(current_user.username), class: "nav-drop-item container-fluid"%>
           </div>
 
           <%# 追隨 %>
           <div class="py-2 d-flex">
-            <%= link_to "Follows", followship_path(current_user), class: "nav-drop-item container-fluid" %>
+            <%= link_to "Follows", followship_path, class: "nav-drop-item container-fluid" %>
           </div>
           
           <%# 登出 %>
           <div class="py-2 d-flex">
-            <%= link_to "Sign Out", :destroy_user_session, method: :delete, class: "sign_out_btn container-fluid"%>
+            <%= link_to "Sign Out", :destroy_user_session, method: :delete, class: "sign_out_btn nav-drop-item container-fluid"%>
           </div>
         </div>
       </div>
     <% end %>
+  </div>
 </nav>
