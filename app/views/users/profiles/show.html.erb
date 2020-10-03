@@ -1,34 +1,32 @@
-<div class="profile-show container d-flex flex-column justify-content-center">
-  <div class="row d-flex justify-content-center">
+<div class="profile-show container text-center">
+  <div class="row justify-content-center">
     <div class="col-2">
-      <div>
-        <%= render "shared/frontend/user_avatar", user: @user %>
-      </div>
+      <%= render "shared/frontend/user_avatar", user: @user %>
     </div>
-  </div>
+
+    <div class="col-12">
+      <%= link_to "Follow", followships_path(follower_id: @user), method: :post, remote: true, class:"txt" %>
+    </div>
   
-  <div class="container">
+    <div class="col-12 h3 txt"><%= @user.name %></div>
+    <div class="col-12 h3 txt"><%= @user.about %></div>
+   
+    <%# 出版過的書 %>
     <div>
-      <%= link_to "Follow", followships_path(follower_id: @user), method: :post, remote: true %>
-    </div>
-  
-    <div class="row justify-content-center">
-      <p class="col-12 text-center h3"><%= @user.name %></p>
-    </div>
-  
-    <div class="row justify-content-center">
-      <p class="col-2 text-center h3"><%= @user.about %></p>
-    </div>
-  
-    <h3 class="text-center">Published Books</h3>
-    <div class="row justify-content-center">
+      <h3 class="col-12 title">Published Books</h3>
       <% @user.pub_books.each do |book| %>
-        <div class="col-2">
+        <div class="col-12">
           <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
           <%= book.title %>
           <%= book.authors[0].name %>
         </div>
       <% end %>
     </div>
+
+    <%# 編輯個人資料 %>
+    <div class="col-12">
+      <%= link_to "Edit Profile", user_dashboard_path, class:"txt" %>
+    </div>
+
   </div>
 </div>
