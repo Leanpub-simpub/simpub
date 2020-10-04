@@ -1,7 +1,7 @@
 <% if book.errors.any? %>
   <ul>
     <% book.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+      <li>Error: <%= msg %></li>
     <% end %>
   </ul>
 <% end %>
@@ -54,7 +54,7 @@
   <div class="form-item">
     <%= f.label :md, "Upload Files", class:"txt w-100" %>
     <%= f.hidden_field :md, value: book.cached_md_data %>
-    <%= f.file_field :md, class:"mb-3" %>
+    <%= f.file_field :md, class:"mb-3", id: "file_input" %>
   </div>
 
   <div>
