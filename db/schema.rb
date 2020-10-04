@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_04_044416) do
+ActiveRecord::Schema.define(version: 2020_10_04_052626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,8 @@ ActiveRecord::Schema.define(version: 2020_10_04_044416) do
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "uuid", null: false
     t.string "transaction_id"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_orders_on_deleted_at"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 

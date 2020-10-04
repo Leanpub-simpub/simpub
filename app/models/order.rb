@@ -1,5 +1,7 @@
 class Order < ApplicationRecord
   require 'securerandom'
+  
+  acts_as_paranoid
 
   before_create :generate_uuid
 
