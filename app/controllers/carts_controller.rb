@@ -79,7 +79,26 @@ class CartsController < ApplicationController
 
 
   def refund
-    result = gateway.transaction.refund("the_transaction_id")
+    result = gateway.transaction.find(params[:trans_id])
+    order = current_user.orders.find_by(uuid: params[:uuid])
+
+    if result.status == "settled"
+      refund = gateway.transaction.refund(result.id)
+    else
+      refund = gateway.transaction.void(result.id)
+    end
+
+    if refund.success?
+      order.state = "refund"
+      order.order_items.each do |item|
+        current_user.bought_books.destroy(item.book)
+      end
+      order.destroy
+
+      redirect_to purchases_path, notice: "已成功申請退款"
+    else
+      redirect_to purchases_path, notice: "退款失敗，請重新申請"
+    end
   end
 
 
@@ -94,11 +113,12 @@ class CartsController < ApplicationController
     )
   end
 
-  def create_order(user)
+  def create_order(user, id)
     order = user.orders.create(
       payment_term: "credit card",
       state: "success",
-      total: "#{current_cart.total_price}"
+      total: "#{current_cart.total_price}",
+      transaction_id: id
     )
     
     # 建立訂單項目

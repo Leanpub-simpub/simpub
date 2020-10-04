@@ -29,7 +29,9 @@
               <div class="col-5"><%= item.book.title %></div>
               <div class="col-2">$<%= sprintf("%.2f", item.price) %></div>
               <div class="col-2"><%= @refund_time %></div>
-              <div class="col-3">Request Refund</div>
+              <div class="col-3">
+                <%= link_to "Request Refund", refund_cart_path(trans_id: @order.transaction_id, uuid: @order.uuid), method: :post %>
+              </div>
             </div>
           <% end %>
         </div>
