@@ -70,10 +70,10 @@
         <% end %>
       </div>
       
-      <%= link_to 'Add to Wish list', add_wishlist_path(@book), method: "post", class:"add-to-wishlist" %>
-       <%# <%= form_with(url: add_wishlist_path(@book)) do |f| %>
-       <%# <%= f.submit "Add to Wish List" %> 
-       <%# <% end %> 
+      <%= link_to 'Add to Wish list', add_wishlist_path(@book.id), method: "post", class:"add-to-wishlist" %>
+       <%# <%= form_with url: add_wishlist_path(@book) do |f| %>
+       <%# <%= f.submit "Add to Wish List" %>
+       <%# <% end %>   
 		</div>
 	</div>
 </div>

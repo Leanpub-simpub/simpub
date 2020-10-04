@@ -8,7 +8,6 @@ document.addEventListener("turbolinks:load", () => {
 
     addWishlist.addEventListener("click", e => {
       if (e.target.classList.contains("add-to-wishlist")) {
-        // 加入 setTimeout 避免後端資料還沒寫入，前端就先去抓資料
         setTimeout(() => { getWishlistItems(); }, 1000);
       }
     })
@@ -21,9 +20,7 @@ document.addEventListener("turbolinks:load", () => {
         let wishlistBubble = document.querySelector(".fa-heart").firstElementChild;
 
         if (wishlistItems.length !== 0) {
-          let wishlistCount = wishlistItems[0][1].reduce((sum, item) => {
-            return sum += item.quantity;
-          }, 0).toString();
+          let wishlistCount = wishlistItems[0][1].length;
         
           wishlistBubble.classList.add("wishlist-bubble");
           wishlistBubble.textContent = wishlistCount;

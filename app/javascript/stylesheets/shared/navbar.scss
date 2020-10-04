@@ -30,6 +30,27 @@
       right: -10px;
     }
   }
+  .fa-heart {
+		position: relative;
+	}
+	.fa-heart{
+		.x {
+			display: none;
+		}
+		.wishlist-bubble {
+			text-align: center;
+			line-height: 16px;
+			font-size: 8px;
+			display: block;
+			border-radius: 50%;
+			height: 16px;
+			width: 16px;
+			border: 1px solid;
+			position: absolute;
+			top: -10px;
+			right: -10px;
+		}
+	}
   input[type="checkbox"] {
     height: 0;
     width: 0;
@@ -57,28 +78,6 @@
     transition: 0.3s;
   }
 
-
-	.fa-heart {
-		position: relative;
-	}
-	.fa-heart{
-		.x {
-			display: none;
-		}
-		.wishlist-bubble {
-			text-align: center;
-			line-height: 16px;
-			font-size: 8px;
-			display: block;
-			border-radius: 50%;
-			height: 16px;
-			width: 16px;
-			border: 1px solid;
-			position: absolute;
-			top: -10px;
-			right: -10px;
-		}
-	}
 
   input:checked + label::after {
     left: calc(100% - 5px);

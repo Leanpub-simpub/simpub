@@ -79,7 +79,6 @@ ActiveRecord::Schema.define(version: 2020_09_29_160918) do
     t.text "sample_date"
     t.text "completed_content_data"
     t.text "md_data"
-<<<<<<< HEAD
     t.string "slug"
     t.index ["title"], name: "index_books_on_title", unique: true
   end
@@ -91,9 +90,6 @@ ActiveRecord::Schema.define(version: 2020_09_29_160918) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["followee_id"], name: "index_followships_on_followee_id"
     t.index ["follower_id"], name: "index_followships_on_follower_id"
-=======
-    t.index ["title"], name: "index_books_on_title", unique: true
->>>>>>> 86d56b7... 點選add to wish list 書本放入wishlist
   end
 
   create_table "identities", force: :cascade do |t|
@@ -149,16 +145,16 @@ ActiveRecord::Schema.define(version: 2020_09_29_160918) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "avatar_data"
-    t.string "username"
-    t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "username"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true

@@ -24,7 +24,7 @@ import "select2/dist/css/select2.css";
 import "controllers";
 require("../stylesheets");
 require("../cart");
-require("../wishlist");
 require("../books");
-
+require("../wishlist");
 import "controllers"
+
