@@ -1,7 +1,7 @@
 class CartsController < ApplicationController
 
   def add
-    cart_price = params[:cart_price][1..-1].to_i
+    cart_price = params[:cart_price][1..-1].to_f
     
     current_cart.add_item(params[:id], cart_price) 
     session[Cart::SessionKey] = current_cart.serialize
@@ -14,6 +14,27 @@ class CartsController < ApplicationController
     end
   end
 
+
+  def update
+    index = params[:index].to_i
+    price = params[:price][1..-1].to_f
+
+    current_cart.update_price(current_cart.items[index], price)
+    session[Cart::SessionKey] = current_cart.serialize
+  end
+  
+
+  def delete
+    cart = current_cart.items
+    @items = cart.select.with_index { |item, index|
+      item if index != params[:index].to_i
+    }
+    current_cart.delete_item(@items)
+    session[Cart::SessionKey] = current_cart.serialize
+
+    flash[:notice] = "成功移出購物車"
+  end
+
   def destroy
     session[Cart::SessionKey] = nil
     redirect_to :cart, notice: "購物車已清空"
@@ -21,6 +42,16 @@ class CartsController < ApplicationController
 
 
   def payment
+    if current_cart.empty?
+      redirect_to :root, notice: "購物車空空"
+    else
+      @order = Order.create(
+        user_id: current_user,
+        payment_term: "credit card",
+        state: "pending",
+      )
+    end
+
     if user_signed_in?
       @token = gateway.client_token.generate
     else

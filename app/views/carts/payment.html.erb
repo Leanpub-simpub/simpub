@@ -33,10 +33,10 @@
               <%= item.book.title %>
             </td>
             <td class="text-right">
-              <%= item.quantity %>
+              1
             </td>
             <td class="text-right">
-              <%= item.price %>
+              $<%= sprintf("%.2f", item.price) %>
             </td>
           </tr>
         <% end %>
@@ -47,7 +47,7 @@
   <div class="check-out d-flex justify-content-center mt-3 ">
     <div class="w-75 d-flex justify-content-end" >
       <span class="mx-5">總計</span>
-      <%= current_cart.total_price %>
+      $<%= sprintf("%.2f", current_cart.total_price) %>
     </div>
   </div>
   <hr class="border-bottom border-white w-75">
@@ -66,4 +66,18 @@
     </div>
   </div>
   <% end %>
+
+
+  <div id="depot-form">
+    <fieldset>
+    <legend>Please Enter Your Details</legend>
+
+    <%form_for :order do |f|%>
+      
+
+      <%= submit_tag "Place Order",:class => "submit" %>
+    <%end%>
+    </fieldset>
+  </div>
+  
 </section>
