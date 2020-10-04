@@ -54,8 +54,6 @@ class CartsController < ApplicationController
   end
 
   def checkout
-    
-
     result = gateway.transaction.sale(
       amount: current_cart.total_price,
       payment_method_nonce: params[:nonce],
@@ -70,13 +68,18 @@ class CartsController < ApplicationController
       end
 
       # 成功付款建立訂單
-      create_order(current_user)
+      create_order(current_user, result.transaction.id)
              
       session[Cart::SessionKey] = nil
       redirect_to root_path, notice: "付款成功"
     else
       redirect_to root_path, notice: "付款發生錯誤"
     end
+  end
+
+
+  def refund
+    result = gateway.transaction.refund("the_transaction_id")
   end
 
 
