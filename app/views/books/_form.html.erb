@@ -1,3 +1,4 @@
+<!--
 <% if book.errors.any? %>
   <ul>
     <% book.errors.full_messages.each do |msg| %>
@@ -5,8 +6,9 @@
     <% end %>
   </ul>
 <% end %>
+-->
 
-<%= form_for(book, remote: true) do |f| %>
+<%= form_for book, data: {controller: "book", book_error: book.errors.full_messages} do |f| %>
   <div id="cover-preview" class="w-50">
     <img src="#" alt="" class="w-100">
   </div>
@@ -17,9 +19,10 @@
     <%= f.file_field :cover, id: "cover-input" %>
   </div>
 
-  <div class="form-item">
+  <div class="form-item mb-3">
     <%= f.label :title, "The Book Title", class: "book-title" %>
-    <%= f.text_field :title, class:"w-100 mb-3"%>
+    <%= f.text_field :title, class: "w-100", data: {action: "book#input", target: "book.title"}, required: true%>
+    <span id="error_msg" class="text-danger" data-target="book.error_msg"></span>
   </div>
 
   <div class="form-item">
@@ -58,6 +61,6 @@
   </div>
 
   <div>
-    <%= f.submit "Finish", class:"btn btn-danger w-50 main-btn" %>
+    <%= f.submit "Finish", class:"btn btn-danger w-50 main-btn", data: {action: "book#create"} %>
   </div>
 <% end %>
