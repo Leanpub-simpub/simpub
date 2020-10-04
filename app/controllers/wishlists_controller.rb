@@ -1,5 +1,5 @@
 class WishlistsController < ApplicationController
-
+  
   def show
     respond_to do |format|
       format.html
@@ -15,10 +15,10 @@ class WishlistsController < ApplicationController
   end
 
   def destroy
-    current_wishlist = nil
+    session[Wishlist::SessionKey] = nil
     redirect_to :wishlist, notice: "已清空"
   end
-
+  
 end
   
   

@@ -28,7 +28,7 @@ class Wishlist
 
   def serialize
     all_items = items.map { |item|
-      { "book_id" => item.book_id}
+      { "book_id" => item.book_id, "quantity" => item.quantity}
     }
 
     { "items" => all_items }
@@ -39,7 +39,7 @@ class Wishlist
       new []
     else
       new hash["items"].map { |item_hash| 
-      @wishlist_item = WishlistItem.new(item_hash["book_id"])
+      @wishlist_item = WishlistItem.new(item_hash["book_id"], item_hash["quantity"])
       }
     end
     

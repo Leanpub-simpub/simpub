@@ -2,22 +2,33 @@
   <div class="container">
     <div>
       <h1 class="text-center">Wish list</h1>
-      <ul class="wishlist-book d-flex justify-content-center">
-          <div>
-            <div></div>
+      <ul>
+        <div>
+          <% current_wishlist.items.each do |item| %>
+          <div style="font-size:medium" class="text-white font-weight-bold mb-2 d-flex justify-content-center">
+            <div class="col-2">
+              <%= render partial: "shared/frontend/book_cover", locals: {book: @book, size: :small} %>
+            </div>
+
             <div>
-             <% current_wishlist.items.each do |item| %>
-              <div style="font-size:large" class="text-white font-weight-bold mb-2" >
-                <%= item.book.title %>
+              <div>
+                <%= item.book.title%>
               </div>
               <div>
-                <a class="text-white col-6 btn btn-danger main-button">Move to cart</a>
-                <div class=" w-100 border-white border-bottom my-2"></div>
+                <a class="text-white btn btn-danger main-button mt-4">Move to cart</a>
               </div>
-              <% end %>
-              <%= link_to "Remove from your wish list", wishlist_path, method: :delete, class: "text-white col-8 d-flex justify-content-center btn btn-outline-danger" %>
             </div>
           </div>
+
+          <div class="d-flex justify-content-center" >
+            <div class="col-5 border-white border-bottom my-2"></div>
+          </div>     
+          <% end %>
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <%= link_to "Remove from your wish list", wishlist_path, method: :delete, class: "text-white col-3 d-flex justify-content-center btn btn-outline-danger" %>
+        </div>
       </ul>
     </div>
   </div>
