@@ -31,6 +31,18 @@ body {
 		background-color: var(--txt);
 		border: 0px;
 	}
+	// 服務下拉選單
+	.dropdown-menu{
+		background-color: var(--bg);
+	}
+
+	// 個人資訊下拉選單
+	.layout-dropdown {
+		> .layout-dropdown-child {
+			background-color: var(--bg);
+			border: 1px solid #e09a5f;
+		}
+	}
 }
 
 input[id="switch"] {
@@ -54,7 +66,8 @@ input[id="switch"] {
 }
 
 .nav-item:hover,
-.navbar-brand:hover {
+.navbar-brand:hover,
+.nav-drop-item:hover {
 	color: #e09a5f;
 }
 
@@ -69,4 +82,13 @@ input[id="switch"] {
 
 .footer {
 	border-top: 1px solid #e09a5f;
+}
+
+.pagination {
+	span {
+		border: 1px solid #e09a5f;
+	}
+	span:hover {
+		color: #e09a5f;
+	}
 }

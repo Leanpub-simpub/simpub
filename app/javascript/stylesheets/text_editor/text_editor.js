@@ -17,7 +17,7 @@ import markdownit from "markdown-it/dist/markdown-it"
 import hljs from 'highlightjs/highlight.pack'
 import "highlightjs/styles/github"
 
-import axios from  'axios'
+import axios from 'axios'
 import syn_scroll from "./syn_scroll.js"
 
 
