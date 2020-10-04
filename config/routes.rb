@@ -51,6 +51,7 @@ Rails.application.routes.draw do
       get :payment
       post :checkout
       patch :delete
+      post :refund
     end
   end
 
