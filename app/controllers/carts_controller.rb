@@ -63,12 +63,12 @@ class CartsController < ApplicationController
     )
 
     if result.success?
+      # 成功付款建立訂單
+      create_order(current_user, result.transaction.id)
+
       current_cart.items.each do |item|
         current_user.bought_books << Book.find_by(id: item.book_id)
       end
-
-      # 成功付款建立訂單
-      create_order(current_user, result.transaction.id)
              
       session[Cart::SessionKey] = nil
       redirect_to root_path, notice: "付款成功"
@@ -79,18 +79,21 @@ class CartsController < ApplicationController
 
 
   def refund
-    result = gateway.transaction.find(params[:trans_id])
+    transaction = gateway.transaction.find(params[:trans_id])
     order = current_user.orders.find_by(uuid: params[:uuid])
 
-    if result.status == "settled"
-      refund = gateway.transaction.refund(result.id)
+    if transaction.status == "settled" or transaction.status == "settling"
+      refund = gateway.transaction.refund(transaction.id)
+    elsif transaction.status == "submitted_for_settlement"
+      refund = gateway.transaction.void(transaction.id)
     else
-      refund = gateway.transaction.void(result.id)
+      redirect_to purchases_path, notice: "退款發生錯誤，請聯絡客服人員"
     end
 
     if refund.success?
       order.state = "refund"
       order.order_items.each do |item|
+        BookUser.find_by(user_id: current_user, book_id: item.book).destroy
         current_user.bought_books.destroy(item.book)
       end
       order.destroy

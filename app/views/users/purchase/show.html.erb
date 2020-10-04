@@ -19,7 +19,10 @@
           <div class="row border-bottom py-3">
             <div class="col-5">Item</div>
             <div class="col-2">Total</div>
-            <div class="col-5">Refund Days left</div>
+            <div class="col-2">Refund Days left</div>
+            <div class="col-3">
+              <%= link_to "Request Refund", refund_cart_path(trans_id: @order.transaction_id, uuid: @order.uuid), method: :post %>
+            </div>
           </div>
         </div>
 
@@ -28,10 +31,7 @@
             <div class="row border-bottom">
               <div class="col-5"><%= item.book.title %></div>
               <div class="col-2">$<%= sprintf("%.2f", item.price) %></div>
-              <div class="col-2"><%= @refund_time %></div>
-              <div class="col-3">
-                <%= link_to "Request Refund", refund_cart_path(trans_id: @order.transaction_id, uuid: @order.uuid), method: :post %>
-              </div>
+              <div class="col-5"><%= @refund_time %></div>
             </div>
           <% end %>
         </div>
