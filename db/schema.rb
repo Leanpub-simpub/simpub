@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2020_09_29_160918) do
     t.text "sample_date"
     t.text "completed_content_data"
     t.text "md_data"
+<<<<<<< HEAD
     t.string "slug"
     t.index ["title"], name: "index_books_on_title", unique: true
   end
@@ -90,6 +91,9 @@ ActiveRecord::Schema.define(version: 2020_09_29_160918) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["followee_id"], name: "index_followships_on_followee_id"
     t.index ["follower_id"], name: "index_followships_on_follower_id"
+=======
+    t.index ["title"], name: "index_books_on_title", unique: true
+>>>>>>> 86d56b7... 點選add to wish list 書本放入wishlist
   end
 
   create_table "identities", force: :cascade do |t|

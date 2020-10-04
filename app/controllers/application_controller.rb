@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include CartsHelper
+  include WishlistsHelper
 
   helper_method :published_books, :unpublish_books, :has_avatar?, :has_cover?
   

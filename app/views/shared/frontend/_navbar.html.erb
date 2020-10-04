@@ -22,8 +22,7 @@
         <%= link_to "My Writings", dash_board_books_path, class: "nav-item mx-2" %>
       <% end %>  
     <% end %>
-  </div>
-
+</div>
   <!-- Search Filter -->
   <div class="search-filter d-flex flex-nowrap ml-auto">
     <select name="" id="search-selector" class="btn txt">
@@ -48,9 +47,11 @@
       <% end %>
       <% if user_signed_in? %>
       <!-- 願望清單 -->
-        <div class="nav-icon">
-          <i class="fas fa-heart mx-2"></i>
-        </div>
+      <%= link_to wishlist_path, class:"nav-icon" do %>
+        <i class="fas fa-heart mx-2"></i>
+          <div class="x"></div>
+        </i>
+      <% end %>
       <!-- 通知 -->
         <div class="nav-icon">
           <i class="fas fa-bell mx-2"></i>

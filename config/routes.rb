@@ -50,7 +50,14 @@ Rails.application.routes.draw do
       post :checkout
       patch :delete
     end
+  end 
+
+  resource :wishlist, only:[:show, :destroy] do
+    collection do
+      post :add, path:'add/:id'
+    end
   end
+    
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

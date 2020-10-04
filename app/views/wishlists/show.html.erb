@@ -1,0 +1,24 @@
+<section class="wishlist">
+  <div class="container">
+    <div>
+      <h1 class="text-center">Wish list</h1>
+      <ul class="wishlist-book d-flex justify-content-center">
+          <div>
+            <div></div>
+            <div>
+             <% current_wishlist.items.each do |item| %>
+              <div style="font-size:large" class="text-white font-weight-bold mb-2" >
+                <%= item.book.title %>
+              </div>
+              <div>
+                <a class="text-white col-6 btn btn-danger main-button">Move to cart</a>
+                <div class=" w-100 border-white border-bottom my-2"></div>
+              </div>
+              <% end %>
+              <%= link_to "Remove from your wish list", wishlist_path, method: :delete, class: "text-white col-8 d-flex justify-content-center btn btn-outline-danger" %>
+            </div>
+          </div>
+      </ul>
+    </div>
+  </div>
+</section>

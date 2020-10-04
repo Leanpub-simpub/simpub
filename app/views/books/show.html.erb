@@ -69,8 +69,10 @@
           <%= f.submit "Add Ebook to Cart", class: "add-to-cart-btn btn btn-danger main-btn" %>
         <% end %>
       </div>
-
-      <%# <%= link_to "Add to Wish List", "#", class: "add-to-wishlist" %>
+      
+      <%= link_to 'Add to Wish list', add_wishlist_path(@book), method: "post" %>
+      <%# <%= form_with(url: add_wishlist_path(@book)) do |f| %>
+      <%# <%= f.submit "Add to Wish List" %> 
 		</div>
 	</div>
 </div>
