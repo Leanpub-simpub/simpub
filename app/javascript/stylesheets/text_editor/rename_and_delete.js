@@ -1,15 +1,3 @@
-// const chapterTemplate = document.createElement('template')
-// chapterTemplate.innerHTML=`
-// <div class="d-flex justify-content-between" >
-//   <div class="chapter"></div>
-//   <div class="addsection">+</div>
-// </div>
-// `
-// const sectionTemplate = document.createElement('template')
-// sectionTemplate.innerHTML=`
-// <div class="section"></div>
-// `
-
 import axios from "axios"
 window.addEventListener('turbolinks:load',()=>{
   if(document.querySelector('#sourceTA') && document.querySelector('#targetDiv')){
@@ -33,6 +21,7 @@ window.addEventListener('turbolinks:load',()=>{
     let chapter
     let section
     let chapterName
+    
     document.addEventListener('click',(e)=>{
       if(document.querySelector('#tableOfContent')&& e.target != tableOfContent){
         tableOfContent.classList.add('x')
@@ -205,15 +194,15 @@ window.addEventListener('turbolinks:load',()=>{
                 })
                 target.parentElement.remove()
               }
-              
-              alert('Success to delete ')
+              // alert('Success to delete ')
             })
             .catch(function(err){
               // alert('Fail to delete ')
             })
-            // 更改 chapter and section 編號
+            // // 更改 chapter and section 編號
             let allChapter = document.querySelectorAll('.chapter')
             let collet = []
+            
             for(let i = 0; i< allChapter.length;i++){
               if(allChapter[i]!=target){
                 collet.push(allChapter[i])
@@ -232,7 +221,6 @@ window.addEventListener('turbolinks:load',()=>{
             }
           }
         })
-        
       }
     })
   }
