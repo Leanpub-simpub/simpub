@@ -9,7 +9,7 @@ namespace :dev do
     puts "-" * 20
     puts "開始建立開發用假資料"
 
-    users_limit = 50
+    users_limit = 0
 
     (users_limit - User.count).times do
       name = Faker::Name.name
@@ -29,7 +29,7 @@ namespace :dev do
       book.title = Faker::Book.unique.title
       book.price = rand(50)
       book.publish_state = "on-shelf"
-      book.completeness = 100
+      book.completeness = rand(50..100)
       # 下面這行打開會自動將假圖上傳至 S3，請慎用
       # book.cover_remote_url = Faker::LoremFlickr.image
       

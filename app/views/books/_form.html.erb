@@ -22,18 +22,18 @@
 
   <!-- 目錄我們自己產生 -->
 
-  <div class="form-item">
+  <div class="form-item" data-controller="tag" data-tag-list="<%= book.tag_items %>">
     <%= f.label :tag_items, "Tags", class: "tags" %>
     <div class="mb-3">
       <select class="form-control select optional" multiple="multiple" name="book[tag_items][]" id="book_tag_items">
-      <%= options_for_select(@tags = []) %>
+        <%= options_for_select(@tags) %>
       </select>
     </div>
   </div>
 
   <div class="form-item">
-    <%= f.label :completeness, "Completeness", class:"txt" %>
-    <%= f.number_field :completeness, class:"w-100 mb-3" %>
+    <%= f.label :completeness, "Completeness", class:"txt" %> (%)
+    <%= f.number_field :completeness, class:"w-100 mb-3", min: "0", max: "100" %>
   </div>
 
   <!-- 編輯器另外做一個頁面 -->
