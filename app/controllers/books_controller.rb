@@ -50,7 +50,7 @@ class BooksController < ApplicationController
 
     if @book.save
       if @book.md_data
-        @book.update(publish_state: "on-shelf")
+        @book.update(publish_state: "on_shelf")
         current_user.update(as_author: true)
         redirect_to pricing_book_path(@book)
       else
@@ -82,7 +82,7 @@ class BooksController < ApplicationController
   
   def publish
     @book.update(book_params)
-    @book.update(publish_state: "on-shelf")
+    @book.update(publish_state: "on_shelf")
     current_user.update(as_author: true)
     
     redirect_to @book, notice: "書籍已上架囉～"

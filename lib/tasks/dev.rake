@@ -28,7 +28,7 @@ namespace :dev do
       book = Book.new
       book.title = Faker::Book.unique.title
       book.price = rand(50)
-      book.publish_state = "on-shelf"
+      book.publish_state = "on_shelf"
       book.completeness = rand(50..100)
       # 下面這行打開會自動將假圖上傳至 S3，請慎用
       # book.cover_remote_url = Faker::LoremFlickr.image
