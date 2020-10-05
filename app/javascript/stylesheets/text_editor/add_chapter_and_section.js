@@ -37,11 +37,10 @@ window.addEventListener('turbolinks:load',()=>{
       document.querySelectorAll('.chapter').forEach(chapter =>{
         chapterName.push(chapter.textContent)
       })
-      console.log(chapterName)
       if(chapterInput.value === "" ){
         // 如果沒填 chapter 名稱
         chapterInput.style.border = 'red 3px solid'
-        chapterInput.placeholder = 'Chapter name is blank'
+        chapterErr.textContent = 'Chapter name is blank'
       }else if(chapterName.includes(chapterInput.value)){
         chapterInput.style.border = 'red 3px solid'
         chapterErr.textContent = 'Chapter name is repeated'
@@ -79,7 +78,7 @@ window.addEventListener('turbolinks:load',()=>{
         //  addSection 是 ＋ 前一個 DOM 是 chapter::before 再前一個才是 chapter 
         document.querySelector('#chapterForSectionRecord').value = chapter.textContent
         document.querySelector('#orderForSectionRecord').value = chapter.dataset.order
-        sectionInsetTarget = e.target.parentElement
+        sectionInsetTarget = e.target.previousSibling.previousSibling
       }
     })
 
@@ -90,18 +89,17 @@ window.addEventListener('turbolinks:load',()=>{
       let sectionName=[]
       
       // 抓出屬於同 chapter 所有 section 的內容供後面比對
-      let chapter = sectionInsetTarget.querySelector('.chapter').textContent
-      document.querySelectorAll(`.chapter_list [data-chapter="${chapter}"]`).forEach(section=>{
+      let chapterOrder = sectionInsetTarget.dataset.order
+      document.querySelectorAll(`.chapter_list [data-chapter-order="${chapterOrder}"]`).forEach(section=>{
         sectionName.push(section.textContent)
       })
-      console.log(sectionName)
       if(sectionInput.value === "" ){
         // 如果沒填 section 名稱
         sectionInput.style.border = 'red 3px solid'
-        sectionInput.placeholder = 'Section name is blank'
+        sectionErr.textContent = 'Section name is blank'
         setTimeout(function(){
           sectionInput.style.border = 'black 1px solid'
-          sectionInput.placeholder = ''
+          sectionErr.textContent = ''
         },5000)
       }else if(sectionName.includes(sectionInput.value)){
         sectionInput.style.border = 'red 3px solid'
@@ -114,7 +112,14 @@ window.addEventListener('turbolinks:load',()=>{
         let sectionDOM = document.importNode(sectionTemplate.content,true)
         sectionDOM.querySelector('.section').textContent = sectionInput.value.replace(new RegExp(" ","g"),"_")
         
-        chapterList.insertBefore(sectionDOM,sectionInsetTarget.nextElementSibling)
+        // 判斷新增sction 所屬的 chapter 後方是 + 按鈕 還是其他章節
+        let order =parseInt(sectionInsetTarget.dataset.order)
+        sectionDOM.querySelector('.section').dataset.chapterOrder = order
+        if(document.querySelector(`[data-order="${order+1}"]`)){
+          chapterList.insertBefore(sectionDOM,document.querySelector(`[data-order="${order+1}"]`).parentElement)
+        }else{
+          chapterList.insertBefore(sectionDOM,addChapter)
+        }
        
         setTimeout(function(){
           sectionInput.value = ""

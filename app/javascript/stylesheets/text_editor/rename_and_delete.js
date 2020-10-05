@@ -1,4 +1,4 @@
-
+import axios from "axios"
 window.addEventListener('turbolinks:load',()=>{
   if(document.querySelector('#sourceTA') && document.querySelector('#targetDiv')){
     let chapterList = document.querySelector('.chapter_list')
@@ -8,14 +8,30 @@ window.addEventListener('turbolinks:load',()=>{
     let deletebtn = document.querySelector('#delete')
     let deleteform = document.querySelector('#deleteform')
     let renameform = document.querySelector('#renameform')
+    let renameAgree = document.querySelector('#renameAgree')
     let renameDisAgree = document.querySelector('#renameDisAgree')
+    let renameformErr = document.querySelector('#renameformErr')
     let newName = document.querySelector('#newName')
+    let deleteAgree = document.querySelector('#deleteAgree')
     let deleteDisAgree = document.querySelector('#deleteDisAgree')
+    let deleteformErr = document.querySelector('#deleteformErr')
     let deleteinput = document.querySelector('#deleteinput')
+    let bookName = document.querySelector('.book_name').textContent
+    let chapterOrder
+    let chapter
+    let section
+    let chapterName
+    
+    document.addEventListener('click',(e)=>{
+      if(document.querySelector('#tableOfContent')&& e.target != tableOfContent){
+        tableOfContent.classList.add('x')
+      }
+    })
     
     //關掉瀏覽器預設的contextmenu
     chapterList.addEventListener('contextmenu',(e)=>{
       e.preventDefault();
+      // 紀錄點選到的目標是誰，後續表單操作會用到
       target = e.target
 
       //叫出contextmenu後，點擊contextmenu以外的地方就清除掉
@@ -26,17 +42,23 @@ window.addEventListener('turbolinks:load',()=>{
       // 使用者必須在class是 chapter or section 的物件上按右鍵 才可以叫出contextmenu
       if(e.button==2 && ( e.target.className.match('chapter') != null || e.target.className.match('section') != null ) && e.target.className != 'chapter_list'){
         tableOfContent.classList.remove('x')
-        tableOfContent.style.top = `${e.clientY}px`
-        tableOfContent.style.left = `${e.clientX}px`
+        let position = e.target.getBoundingClientRect()
+        tableOfContent.style.top = `${position.y+20}px`
+        tableOfContent.style.left = `${position.x+100}px`
 
         // 點擊contextmenu 的 rename，顯示renameform
         renamebtn.addEventListener('click',()=>{
           renameform.classList.remove('x')
           deleteform.classList.add('x')
           renameform.querySelector('#currentName').textContent = target.textContent
+          if(target.className.match('chapter') != null){
+            renameform.querySelector('p span').textContent ='Chapter'
+          }else if(target.className.match('section') != null){
+            renameform.querySelector('p span').textContent ='Section'
+          }
           tableOfContent.classList.add('x')
         })
-        
+
         // 點擊contextmenu 的 delete，顯示deleteform
         deletebtn.addEventListener('click',()=>{
           renameform.classList.add('x')
@@ -55,43 +77,150 @@ window.addEventListener('turbolinks:load',()=>{
         //  deleteform 的 x 就把表單隱藏
         deleteDisAgree.addEventListener('click',()=>{
           deleteform.classList.add('x')
-          renameform.querySelector('#deleteTarget').textContent = ""
+          deleteform.querySelector('#deleteTarget').textContent = ""
           deleteinput.value = ""
         })
 
-{/* <div class="x" id="deleteform">
-  <p>Delete Your Chapter or Section</p>
-  <div>
-    <span>Delete Item</span>
-    <span id="deleteTarget"></span>
-  </div>
-  <div>
-  <label for="delete">Please type <b>DELETE</b> to confirm</label>
-  <input id="deleteinput" type="text" name='delete' placeholder='Delete item name'>
-  </div>
-  <div class="text-center my-2">
-    <span id="deleteAgree" class="btn formBtn">OK</span> 
-    <span id="deleteDisAgree" class="btn formBtn">X</span>
-  </div>
-</div> */}
+        // 同意更改章節名稱
+        renameAgree.addEventListener('click',(e)=>{
+          e.preventDefault()
+          e.stopPropagation()
+          if(newName.value == ""){
+            // 使用者沒填寫名稱就按送出
+            newName.style.border = '1px solid red'
+            renameformErr.textContent = 'New name can not be blank'
+            setTimeout(function(){
+              newName.style.border = '1px solid black'
+              renameformErr.textContent =""
+            }, 3000);
+          }else{
+            // 判斷目標是 chapter or section
+            if(target.className.match('chapter') != null ){
+              chapterOrder = target.dataset.order
+              chapter = true
+              section = false
+              chapterName = target.textContent
+            }else if (target.className.match('section') != null ){
+              chapterOrder = target.dataset.chapterOrder
+              chapter = false
+              section = true
+              chapterName= document.querySelector(`[data-order="${chapterOrder}"]`).textContent
+            }
+            let currentName = target.textContent
+            let newName = document.querySelector('#newName').value
+            // 收集好新增 chapter section 相關訊息朝後端打
+            let params = {bookName:bookName,chapterOrder:chapterOrder,chapterName:chapterName,chapter:chapter,section:section,currentName:currentName,newName:newName}
+            let token = document.querySelector("meta[name=csrf-token]").content
+            axios.defaults.headers.common['X-CSRF-Token']= token
+            
+            axios({
+              method: 'post',
+              url: '/books/rename.json',
+              data: params
+            })
+            .then( result=>{
+              if(result.data['message']=="ok"){
+                target.textContent = newName
+                // 隱藏renameform
+                renameform.classList.add('x')
+                renameformErr.textContent =""
+                alert('Success to change name')
+              }
+            })
+            .catch(function(err){
+              alert('Fail to change name')
+            })
+          }
+        })
 
-// <div class="x" id="renameform">
-//   <p>Rename Your Chapter or Section</p>
-//   <div>
-//     <span>Current Name</span>
-//     <span id="currentName"></span>
-//   </div>
-//   <div>
-//     <label for="newName">New name</label>
-//     <input id="newName" type="text" name='newName' placeholder='New name'>
-//   </div>
-//   <div class="text-center">
-//     <span id="renameAgree"class="btn formBtn">OK</span> 
-//     <span id="renameDisAgree" class="btn formBtn">X</span>
-//   </div>
-// </div> 
+        // 確認刪除
+        deleteAgree.addEventListener('click',(e)=>{
+          e.preventDefault()
+          e.stopPropagation()
+          if(deleteinput.value == ""){
+            // 當使用者沒有填寫輸入框
+            deleteinput.style.border = '1px solid red'
+            deleteformErr.textContent = 'Please type DELETE'
+            setTimeout(function(){
+              deleteinput.style.border = '1px solid black'
+              deleteformErr.textContent = ''
+            },5000)
+          }else if(deleteinput.value != "DELETE"){
+            // 使用者填寫錯誤
+            deleteinput.style.border = '1px solid red'
+            deleteformErr.textContent = 'Please comfirm again'
+            setTimeout(function(){
+              deleteinput.style.border = '1px solid black'
+              deleteformErr.textContent = ''
+            },5000)
+          }else{
+            // 使用者正確填寫輸入框
+            let sectionBelongToChapter=[]
+            if(target.className.match('chapter') != null ){
+              // 使用者要修改的是 chapter
+              chapterOrder = target.dataset.order
+              chapter = true
+              section = false
+              chapterName = target.textContent
+              document.querySelectorAll(`[data-chapter-order="${chapterOrder}"]`).forEach((section)=>{
+                sectionBelongToChapter.push(section.textContent)
+              })
+            }else if (target.className.match('section') != null ){
+              // 使用者要修改的是 section
+              chapterOrder = target.dataset.chapterOrder
+              chapter = false
+              section = true
+              chapterName= document.querySelector(`[data-order="${chapterOrder}"]`).textContent
+            }
+            let token = document.querySelector("meta[name=csrf-token]").content
+            axios.defaults.headers.common['X-CSRF-Token']= token
+            // 收集刪除所需相關資料
+            let params = {bookName:bookName,chapterOrder:chapterOrder,chapterName:chapterName,chapter:chapter,section:section,target:target.textContent,allSection:sectionBelongToChapter}
 
-
+            axios({
+              method: 'post',
+              url: '/books/delete_chapter_or_section.json',
+              data: params
+            })
+            .then( result=>{
+              // 隱藏renameform
+              deleteform.classList.add('x')
+              deleteformErr.textContent =""
+              if (target.className.match('section') != null ){
+                target.remove()
+              }else if(target.className.match('chapter') != null ){
+                document.querySelectorAll(`[data-chapter-order="${chapterOrder}"]`).forEach((section)=>{
+                  section.remove()
+                })
+                target.parentElement.remove()
+              }
+              // alert('Success to delete ')
+            })
+            .catch(function(err){
+              // alert('Fail to delete ')
+            })
+            // // 更改 chapter and section 編號
+            let allChapter = document.querySelectorAll('.chapter')
+            let collet = []
+            
+            for(let i = 0; i< allChapter.length;i++){
+              if(allChapter[i]!=target){
+                collet.push(allChapter[i])
+              }
+            }
+            for(let i = 0; i < collet.length; i++){
+              let index =  collet[i].dataset.order
+              collet[i].dataset.order = i
+              let allSection = document.querySelectorAll(`[data-chapter-order='${index}']`)
+              
+              if(allSection.length!=0 ){
+                allSection.forEach(section =>{
+                  section.dataset.chapterOrder = i
+                })
+              }
+            }
+          }
+        })
       }
     })
   }
