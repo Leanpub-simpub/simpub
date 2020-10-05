@@ -5,31 +5,33 @@ export default class extends Controller {
   static targets = [ "title", "error_msg" ];
 
   connect() {
-    let error = this.data.get("error")
-    error = error.slice(2, -2)
-    if (error == "") return;
-    this.error_msgTarget.textContent = error;
-    this.titleTarget.classList.add("border", "border-danger", "rounded");
-    // this.titleTarget.classList.add("border-danger");
-    // console.log(this.titleTarget.value);
-    
-    // let username = this.data.get("user");
-    // let followBtn = document.querySelector(".follow-btn");
+    const token = document.querySelector("meta[name=csrf-token]").content;
+    axios.defaults.headers.common["X-CSRF-Token"] = token;
 
-    // const token = document.querySelector("meta[name=csrf-token]").content;
-    // axios.defaults.headers.common["X-CSRF-Token"] = token;
+    // 檢查書籍的狀態使否為草稿，非草稿狀態不能改 title
+    let publishState = this.data.get("state");
+    if (publishState != "draft") {
+      this.titleTarget.disabled = true;
+    }
     
-    // axios.post(`/u/${username}.json`)
-    //      .then(function(result) {
-    //        if (result.data["status"] === true) {
-    //          followBtn.textContent = "Following";
-    //        } else {
-    //         followBtn.textContent = "Follow";
-    //        }
-    //      })
-    //      .catch(function(error) {
-    //        console.log(error);
-    //      });
+    // title 欄位 unfocus 後檢查該 titlte 是否已經被使用
+    this.titleTarget.addEventListener("blur", () => {
+      let title = this.titleTarget.value;
+      let titleInput = this.titleTarget;
+      let titleError = this.error_msgTarget;
+      
+      axios.get(`/books/new.json`)
+           .then(function(result) {
+              if (result.data.includes(title)) {
+                titleInput.setAttribute("style", "border: 2px solid red; border-radius: 0.25em;");
+                titleError.textContent = "Title has already been taken";
+              } else {
+                titleInput.removeAttribute("style");
+                titleError.textContent = "";
+              }
+            })
+            .catch(function(error) {});
+    });
   }
 
   input() {

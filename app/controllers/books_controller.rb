@@ -33,6 +33,12 @@ class BooksController < ApplicationController
   def new
     @book = Book.new
     @tags = Tag.all.map(&:name)
+    titles = Book.pluck(:title)
+
+    respond_to do |format|
+      format.html
+      format.json { render json: titles }
+    end
   end
   
   def create
