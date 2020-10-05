@@ -10,7 +10,7 @@ class Users::ProfilesController < ApplicationController
     followship = Followship.find_by(follower_id: @user, followee_id: current_user)
     
     # create the notification
-    create_notification(@user, followship) if followship
+    create_notification(@user, current_user, "starts following", followship) if followship
     
     render json: {status: @user.followed_by?(current_user)}
   end
