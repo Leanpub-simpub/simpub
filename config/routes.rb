@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   # devise_for :users, controllers: { registrations: "users/registrations", omniauth_callbacks: "users/omniauth_callbacks", confirmations: "users/confirmations" }
   
   devise_scope :user do
+    get "/users", to: "users/registrations#new"
+    get "/users/password", to: "users/passwords#new"
     get "/user_dashboard/settings", to: "users/registrations#edit", as: "user_dashboard"
   end
 
