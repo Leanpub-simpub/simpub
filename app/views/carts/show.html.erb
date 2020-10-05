@@ -27,26 +27,26 @@
       </thead>
       <tbody>
       <% current_cart.items.each do |item| %>
-        <tr class="">
+        <tr>
           <td>
             <div></div>
           </td>
           <td>
-            <div style="font-size:large" class=" font-weight-bold" >
+            <div style="font-size:large" class="font-weight-bold txt" >
               <%= item.book.title %>
             </div>
             <div>
-              <a href="">edit</a>
+              <a href="" class="txt">Edit</a>
               <span class="mx-2">|</span>
-              <a href="">Move to Wishlist</a>
+              <a href="" class="txt">Move to Wishlist</a>
               <span class="mx-2">|</span>
-              <a href="">Delete</a>
+              <a href="" class="txt">Delete</a>
             </div>
           </td>
-          <td style="font-size: large">
+          <td style="font-size: large" class="txt">
           <%= item.quantity %>
           </td>
-          <td style="font-size: large">
+          <td style="font-size: large" class="txt">
           <%= item.price %>
           </td>
         </tr>

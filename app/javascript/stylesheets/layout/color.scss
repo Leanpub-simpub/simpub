@@ -1,94 +1,94 @@
 html {
-	--bg: #ffffff;
-	--txt: #333333;
+  --bg: #ffffff;
+  --txt: #333333;
 
-	// 主要按鈕
-	.main-button {
-		background-color: #e09a5f;
-		color: white;
-		border: none;
-	}
+  // 主要按鈕
+  .main-button {
+    background-color: #e09a5f;
+    color: white;
+    border: none;
+  }
 }
 
 // 關燈後背景
 body {
-	background-color: var(--bg);
+  background-color: var(--bg);
 
-	// 關燈後能看到內容
-	[class*="title"],
-	[class*="txt"],
-	[class*="author"],
-	[class*="item"],
-	[class*="cover"],
-	[class*="name"],
-	[class*="icon"],
-	[class*="tag"] {
-		color: var(--txt);
-	}
-	// 按鈕的顏色配置和其他元件相反
-	[class*="main-btn"] {
-		color: var(--bg);
-		background-color: var(--txt);
-		border: 0px;
-	}
-	// 服務下拉選單
-	.dropdown-menu{
-		background-color: var(--bg);
-	}
+  // 關燈後能看到內容
+  [class*="title"],
+  [class*="txt"],
+  [class*="author"],
+  [class*="item"],
+  [class*="cover"],
+  [class*="name"],
+  [class*="icon"],
+  [class*="tag"] {
+    color: var(--txt);
+  }
+  // 按鈕的顏色配置和其他元件相反
+  [class*="main-btn"] {
+    color: var(--bg);
+    background-color: var(--txt);
+    border: 0px;
+  }
+  // 服務下拉選單
+  .dropdown-menu {
+    background-color: var(--bg);
+  }
 
-	// 個人資訊下拉選單
-	.layout-dropdown {
-		> .layout-dropdown-child {
-			background-color: var(--bg);
-			border: 1px solid #e09a5f;
-		}
-	}
+  // 個人資訊下拉選單
+  .layout-dropdown {
+    > .layout-dropdown-child {
+      background-color: var(--bg);
+      border: 1px solid #e09a5f;
+    }
+  }
 }
 
 input[id="switch"] {
-	color: var(--main);
+  color: var(--main);
 }
 
 .layout-navbar {
-	border-bottom: 1px solid #e09a5f;
+  border-bottom: 1px solid #e09a5f;
 
-	label {
-		background: grey;
-	}
+  label {
+    background: grey;
+  }
 
-	label::after {
-		background-color: white;
-	}
+  label::after {
+    background-color: white;
+  }
 
-	input:checked + label {
-		background-color: var(--color-headings);
-	}
+  input:checked + label {
+    background-color: var(--color-headings);
+  }
 }
 
 .nav-item:hover,
 .navbar-brand:hover,
 .nav-drop-item:hover {
-	color: #e09a5f;
+  color: #e09a5f;
 }
 
 .slider-content {
-	color: white;
+  color: white;
 }
 
 .cart-bubble {
-	background-color: var(--bg);
-	color: var(--txt);
+  background-color: var(--bg);
+  color: var(--txt);
 }
 
 .footer {
-	border-top: 1px solid #e09a5f;
+  border-top: 1px solid #e09a5f;
 }
 
 .pagination {
-	span {
-		border: 1px solid #e09a5f;
-	}
-	span:hover {
-		color: #e09a5f;
-	}
+  span {
+    border: 1px solid #e09a5f;
+  }
+  span:hover {
+    color: #e09a5f;
+  }
 }
