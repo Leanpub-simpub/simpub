@@ -7,13 +7,13 @@
     <div class="col-12">
       <div class="row justify-content-center" data-controller="follow" data-follow-user="<%= @user.username %>">
         <p class="text-center h3">
-          <%= link_to follow_path, method: :post, class: "follow-btn btn btn-danger main-btn txt", data: {action: "follow#followship"} do %>
+          <button class="follow-btn btn btn-danger main-btn txt", data-action="follow#followship">
             <% if @user.followed_by?(current_user) %>
               Following
             <% else %>
               Follow
             <% end %>
-          <% end %>
+          </button>
         </p>
       </div>
     </div>

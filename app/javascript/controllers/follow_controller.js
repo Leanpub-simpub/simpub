@@ -11,7 +11,7 @@ export default class extends Controller {
     const token = document.querySelector("meta[name=csrf-token]").content;
     axios.defaults.headers.common["X-CSRF-Token"] = token;
     
-    axios.get(`/u/${username}.json`)
+    axios.post(`/u/${username}.json`)
          .then(function(result) {
            if (result.data["status"] === true) {
              followBtn.textContent = "Following";

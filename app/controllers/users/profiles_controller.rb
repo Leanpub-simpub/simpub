@@ -7,12 +7,8 @@ class Users::ProfilesController < ApplicationController
 
   def follow
     current_user.toggle_following(@user)
-
-    # create the notification
-    respond_to do |format|
-      format.html { redirect_to profile_path }
-      format.json { render json: {status: @user.followed_by?(current_user)} }
-    end
+    
+    render json: {status: @user.followed_by?(current_user)}
   end
 
   def followship
