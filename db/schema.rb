@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_04_131346) do
+ActiveRecord::Schema.define(version: 2020_10_05_090328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 2020_10_04_131346) do
     t.text "catalog"
     t.integer "pages"
     t.integer "words"
-    t.integer "completeness"
+    t.integer "completeness", default: 0
     t.string "publish_state", default: "draft"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
