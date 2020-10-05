@@ -13,16 +13,19 @@ export default class extends Controller {
     if (publishState != "draft") {
       this.titleTarget.disabled = true;
     }
-    
+  }
+
+  input() {
     // title 欄位 unfocus 後檢查該 titlte 是否已經被使用
     this.titleTarget.addEventListener("blur", () => {
+      let bookTittle = this.data.get("title");
       let title = this.titleTarget.value;
       let titleInput = this.titleTarget;
       let titleError = this.error_msgTarget;
       
       axios.get(`/books/new.json`)
            .then(function(result) {
-              if (result.data.includes(title)) {
+              if (bookTittle != title && result.data.includes(title)) {
                 titleInput.setAttribute("style", "border: 2px solid red; border-radius: 0.25em;");
                 titleError.textContent = "Title has already been taken";
               } else {
@@ -32,11 +35,5 @@ export default class extends Controller {
             })
             .catch(function(error) {});
     });
-  }
-
-  input() {
-  }
-  
-  create() {
   }
 }
