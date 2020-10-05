@@ -7,17 +7,17 @@
   </div>
   
   <div class="d-flex align-items-center mr-auto">
-    <%# 書搜尋頁 %>
+    <!-- 書搜尋頁 -->
       <%= link_to "Books", books_path, class: "nav-item mx-2" %>
 
     <% if user_signed_in?  %>
-    <%# 個人書櫃 %>
+    <!-- 個人書櫃 -->
       <%= link_to "Library", :library, class: "nav-item mx-2" %>
 
-    <%# 寫書 %>
+    <!-- 寫書 -->
       <%= link_to "Create a Book", :new_book, class: "nav-item mx-2" %>
         
-    <%# 寫過的書 %>
+    <!-- 寫過的書 -->
       <% if current_user.pub_books.count > 0 %>
         <%= link_to "My Writings", dash_board_books_path, class: "nav-item mx-2" %>
       <% end %>  
@@ -32,21 +32,24 @@
       <option value="tag-search">搜尋標籤</option>
     </select>
 		<div class="row search-bar">
-			<%# book search 表單 %>
+
+			<!-- book search 表單 -->
 			<%= form_with url: :books, method: :get, class: "nav-search x form-inline d-flex ml-4", local: true, data: {target: "search.book_search"} do |f| %>
 				<%= f.search_field :book_search, class: "search-input book-search-input form-control", placeholder: "Search" %>
         <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
           <i class="fas fa-search icon"></i>
         <% end %>
 			<% end %>
-			<%# author search 表單 %>
+
+			<!-- author search 表單 -->
 			<%= form_with url: :books, method: :get, class: "nav-search author-search x form-inline d-flex ml-4", local: true, data: {target: "search.author_search"} do |f| %>
 				<%= f.search_field :author_search, class: "search-input author-search-input form-control", placeholder: "Search" %>
         <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
           <i class="fas fa-search icon"></i>
         <% end %>
 			<% end %>
-			<%# tag search 表單 %>
+
+			<!-- tag search 表單 -->
 			<%= form_with url: :books, method: :get, class: "nav-search tag-search x form-inline d-flex ml-4", local: true, data: {target: "search.tag_search"} do |f| %>
 				<%= f.search_field :tag_search, class: "search-input tag-search-input form-control", placeholder: "Search" %>
         <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
@@ -63,6 +66,7 @@
           <div class="x"></div>
         </i>
       <% end %>
+
       <% if user_signed_in? %>
         <!-- 願望清單 -->
         <div class="nav-icon" data-controller="wish" data-wish-username="<%= current_user.username %>">
@@ -85,8 +89,10 @@
             <% end %>
           </div>
         </div>
+
       <% else %>
-      <!-- 註冊&登入 -->
+
+        <!-- 註冊&登入 -->
         <%= link_to "Sign up", new_user_registration_path ,class: "mx-2 txt" %>
         <%= link_to "Sign in", new_user_session_path ,class: "mx-2 txt" %>
       <% end %>
@@ -110,40 +116,40 @@
       <div class="layout-dropdown collapse position-absolute w-100 ml-auto" id="navbarToggleExternalContent">
         <div class="layout-dropdown-child position-absolute px-4 py-1 ml-auto col-2 col-lg-2">
 
-          <%# 作者主頁 (有創建過書籍才會顯示) %>
-          <% if current_user.pub_books.count > 0 %>
-          <%# 作者寫書區 %>
+          <!-- 作者主頁 (有創建過書籍才會顯示) -->
+          <% if current_user.as_author %>
+          <!-- 作者寫書區 -->
             <div class="py-2 d-flex">
               <%= link_to "My Writings", dash_board_books_path, class: "nav-drop-item container-fluid" %>
             </div>
           <% end %>
 
-          <%# 寫書 %>
+          <!-- 寫書 -->
           <div class="py-2 d-flex">
             <%= link_to "Create a Book", :new_book, class: "nav-drop-item container-fluid" %>
           </div>
 
-          <%# 個人書櫃 %>
+          <!-- 個人書櫃 -->
           <div class="py-2 d-flex">
             <%= link_to "Library", :library, class: "nav-drop-item container-fluid" %>
           </div>
 
-          <%# 購買紀錄 %>
+          <!-- 購買紀錄 -->
           <div class="py-2 d-flex">
             <a href="/purchases" class="nav-drop-item container-fluid">Purchases</a>
           </div>
           
-          <%# 檢視個人主頁 %>
+          <!-- 檢視個人主頁 -->
           <div class="py-2 d-flex">
             <%= link_to "Profile", profile_path(current_user.username), class: "nav-drop-item container-fluid"%>
           </div>
 
-          <%# 追隨 %>
+          <!-- 追隨 -->
           <div class="py-2 d-flex">
             <%= link_to "Follows", followship_path, class: "nav-drop-item container-fluid" %>
           </div>
           
-          <%# 登出 %>
+          <!-- 登出 -->
           <div class="py-2 d-flex">
             <%= link_to "Sign Out", :destroy_user_session, method: :delete, class: "sign_out_btn nav-drop-item container-fluid"%>
           </div>
