@@ -11,7 +11,11 @@
         <i class="fas fa-pencil-alt icon"></i>
       <% end %>
       <%= link_to pricing_book_path(book) do %>
-        <i class="far fa-eye-slash icon"></i>
+        <% if has_published?(book) %>
+          <i class="far fa-eye icon"></i>
+        <% else %>
+          <i class="far fa-eye-slash icon"></i>
+        <% end %>
       <% end %>
       <%= link_to editor_edit_book_path(book.id) do %>
         <i class="fas fa-cog icon"></i>
