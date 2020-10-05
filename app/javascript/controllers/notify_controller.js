@@ -26,12 +26,18 @@ export default class extends Controller {
            notifyBubble.textContent = notifyCount;
            
            if (notifyCount === menuItems) return;
-           result.data.map(({actor, action, url}) => {
+           result.data.map(({actor, action, notifiable}) => {
              let anchor = document.createElement("a");
-             anchor.href = url;
              anchor.classList.add("dropdown-item");
-             anchor.textContent = `${actor} ${action} you`;
-
+             
+             if (action == "starts following") {
+               anchor.href = "/dash_board/followship";
+               anchor.textContent = `${actor} ${action} you`;
+              } else {
+               anchor.href = `/books/${notifiable.slug}`;
+               anchor.textContent = `${actor} ${action} ${notifiable.title}`;
+             }
+  
              menu.appendChild(anchor)
            });
          })

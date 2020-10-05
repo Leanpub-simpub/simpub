@@ -45,6 +45,9 @@ class BooksController < ApplicationController
       if @book.md_data
         @book.update(publish_state: "on_shelf")
         current_user.update(as_author: true)
+
+        publish_notify
+        
         redirect_to pricing_book_path(@book)
       else
         # 在 s3 做出書的資料夾，chapter1.md，與 structure.json(存章節結構)
@@ -78,6 +81,8 @@ class BooksController < ApplicationController
     @book.update(book_params)
     @book.update(publish_state: "on_shelf")
     current_user.update(as_author: true)
+
+    publish_notify
     
     redirect_to @book, notice: "書籍已上架囉～"
   end
@@ -370,6 +375,12 @@ class BooksController < ApplicationController
     structure.put(body: a )
     chapter = bucket.object("store/book/#{title}/Chapter_1.md")
     chapter.upload_stream{|ws| ws << '# Chapter_1'}
+  end
+
+  def publish_notify
+    (current_user.followees.uniq).each do |followee|
+      create_notification(followee, current_user, "published a book", @book)
+    end
   end
   
 end
