@@ -38,6 +38,7 @@ namespace :dev do
       print "."
     end
 
+    puts ""
     puts "資料建立完成!"
     puts "-" * 20
   end

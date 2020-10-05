@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   end
 
   get "/u/:username", to: "users/profiles#show", as: "profile"
+  post "/u/:username", to: "users/profiles#follow", as: "follow"
+  get "/dash_board/followship", to: "users/profiles#followship", as: "followship"
   get "/dash_board/books", to: "users/authors#show"
   get "/dash_board/library", to: "users/library#show", as: "library"
 
@@ -41,15 +43,14 @@ Rails.application.routes.draw do
 
   get "/purchase", to: "users/purchase#index"
 
-  resource :cart, only:[:show, :destroy] do
+  resource :cart, only:[:show, :update, :destroy] do
     collection do
       post :add, path:'add/:id'
       get :payment
       post :checkout
+      patch :delete
     end
   end
-
-  resources :followships, only: [:show, :create, :destroy]
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

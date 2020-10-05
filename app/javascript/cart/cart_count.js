@@ -21,9 +21,7 @@ document.addEventListener("turbolinks:load", () => {
         let cartBubble = document.querySelector(".fa-shopping-cart").firstElementChild;
 
         if (cartItems.length !== 0) {
-          let cartCount = cartItems[0][1].reduce((sum, item) => {
-            return sum += item.quantity;
-          }, 0).toString();
+          let cartCount = cartItems[0][1].length;
           
           cartBubble.classList.add("cart-bubble");
           cartBubble.textContent = cartCount;

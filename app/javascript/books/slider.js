@@ -5,7 +5,7 @@ document.addEventListener("turbolinks:load", () => {
     const authorEarns = document.querySelector("#author-earns");
     const authorEarnsShow = document.querySelector(".author-earns-show");
     const cartPrice = document.querySelector(".cart-price");
-    const addCartForm = document.forms[1];
+    const addCartForm = document.querySelector(".add-cart-form");
 
     // 設定初始化價格
     setPricePay();
@@ -42,7 +42,7 @@ document.addEventListener("turbolinks:load", () => {
           if (inputPrice < minPrice) {
             setCartPrice(minPrice.toFixed(2));
           } else if (inputPrice > maxPrice) {
-            setCartPrice(maxPrice.toFixed(2));
+            setCartPrice(100.00.toFixed(2));
           } else {
             setCartPrice(inputPrice.toFixed(2));
           }
@@ -63,8 +63,11 @@ document.addEventListener("turbolinks:load", () => {
       let startH = cover.getBoundingClientRect().height;
       let startX = startW / 2 + cover.getBoundingClientRect().x
       let startY = startH / 2 + cover.getBoundingClientRect().y;
-      let endX = cart.getBoundingClientRect().x;
-      let endY = cart.getBoundingClientRect().y;
+      
+      let endW = cart.getBoundingClientRect().width;
+      let endH = cart.getBoundingClientRect().height;
+      let endX = endW / 2 + cart.getBoundingClientRect().x;
+      let endY = endH / 2 + cart.getBoundingClientRect().y;
 
       coverBubble.classList.add("cover-bubble");
       cover.parentElement.appendChild(coverBubble);
