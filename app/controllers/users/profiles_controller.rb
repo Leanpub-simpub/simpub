@@ -7,6 +7,10 @@ class Users::ProfilesController < ApplicationController
 
   def follow
     current_user.toggle_following(@user)
+    followship = Followship.find_by(follower_id: @user, followee_id: current_user)
+    
+    # create the notification
+    create_notification(@user, followship) if followship
     
     render json: {status: @user.followed_by?(current_user)}
   end
@@ -34,5 +38,14 @@ class Users::ProfilesController < ApplicationController
   private
   def find_user
     @user = User.find_by(username: params[:username])
+  end
+
+  def create_notification(user, followship)
+    Notification.create(
+        recipient: @user,
+        actor: current_user,
+        action: "starts following",
+        notifiable: followship
+      )
   end
 end
