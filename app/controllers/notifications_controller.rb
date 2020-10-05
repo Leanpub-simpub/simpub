@@ -2,7 +2,6 @@ class NotificationsController < ApplicationController
   before_action :authenticate_user!, :find_unread_notif
   
   def index
-    @notifications = Notification.where(recipient: current_user)
   end
   
   def mark_as_read
