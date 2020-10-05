@@ -11,12 +11,12 @@ export default class extends Controller {
     const token = document.querySelector("meta[name=csrf-token]").content;
     axios.defaults.headers.common["X-CSRF-Token"] = token;
     
-    axios.post(`/u/${username}.json`)
+    axios.get(`/u/${username}.json`)
          .then(function(result) {
            if (result.data["status"] === true) {
              followBtn.textContent = "Following";
            } else {
-            followBtn.textContent = "Follow";
+             followBtn.textContent = "Follow";
            }
          })
          .catch(function(error) {
