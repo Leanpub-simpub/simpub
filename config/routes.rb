@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       post :sample
       post :table_of_contents
       post :read
-      
+      patch :unpublish
     end
     
     collection do

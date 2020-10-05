@@ -88,6 +88,11 @@ class BooksController < ApplicationController
     redirect_to @book, notice: "書籍已上架囉～"
   end
 
+  def unpublish
+    @book.remove!
+    redirect_to dash_board_books_path, notice: "#{@book.title} 已下架"
+  end
+
   # 線上編輯 action
   def editor_edit
     @book = Book.find(params[:id])
