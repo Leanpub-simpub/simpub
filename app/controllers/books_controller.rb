@@ -340,7 +340,7 @@ class BooksController < ApplicationController
   end
 
   def find_book
-    @book = Book.find_by_slug(params[:id])
+    @book = Book.friendly.find(params[:id])
   end
 
   def book_start(title)

@@ -1,8 +1,9 @@
 class Book < ApplicationRecord
-  include CoverUploader::Attachment(:cover) # adds an `image` virtual attribute
+  extend FriendlyId
+  include AASM
   include MdUploader::Attachment(:md) # adds an `image` virtual attribute
+  include CoverUploader::Attachment(:cover) # adds an `image` virtual attribute
 
-  before_save :update_slug
 
   validates :title, presence: true, uniqueness: true
   # validates :price, presence: true
@@ -17,6 +18,8 @@ class Book < ApplicationRecord
   has_many :readers, through: :book_users, source: :user
 
   has_one :order_items
+
+  friendly_id :title, use: :slugged
   
   # has_rich_text :content
 
@@ -42,18 +45,11 @@ class Book < ApplicationRecord
   # tag_items 的 setter
   def tag_items=(names)
     self.tags = names.map{|item|
-      Tag.where(name: item.strip).first_or_create! unless item.blank?}.compact
+      Tag.where(name: item.strip).first_or_create! unless item.blank?
+    }.compact
   end
 
-  def update_slug
-    self.slug = title.gsub(/[\+\#]/, "+" => "p", "#" => "sharp").parameterize
-  end
 
-  def to_param
-    slug
-  end
-
-  include AASM
   aasm(column: "publish_state") do
     state :draft, initial: true
     state :on_shelf, :off_shelf
