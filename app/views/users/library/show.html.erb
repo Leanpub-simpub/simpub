@@ -9,22 +9,25 @@
 
     <div class="user-books col-10">
       <h2>Library</h2>
-      <div class="row">
-      <% if @books.count == 0 %>
-        <div class="container purchase d-flex text-center">
-          <p class="h2 mx-auto align-self-center">
-            <%= link_to "Get some books", books_path%> <br>
-            or <br>
-            <%= link_to "Is there any book in your shopping cart",cart_path %>
-          </p>
-        </div>
-      <% else %>
+      <div class="book-box row">
+        <% if @books.count == 0 %>
+          <div class="container purchase d-flex text-center">
+            <p class="h2 mx-auto align-self-center">
+              <%= link_to "Get some books", books_path%> <br>
+              or <br>
+              <%= link_to "Is there any book in your shopping cart",cart_path %>
+            </p>
+          </div>
+        <% else %>
         <% @books.each do |book| %>
         <div class="book-item col-6 col-sm-4 col-md-3 col-lg-2 d-flex flex-column justify-content-between">
           <div class="cover">
-            <!-- 加入判斷避免該欄位使用假圖壞掉的 bug -->
             <a class="cover-link" data-key="<%= book.id %>" href="#collapseBook" data-toggle="collapse" data-target="#collapseBook">
+              <!-- 加入判斷避免該欄位使用假圖壞掉的 bug -->
               <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
+              <div class="x">
+                <%= render "shared/frontend/user_avatar", user: book.authors[0] %>
+              </div>
               <!-- 書本標題-->
               <div class="book-title"><%= book.title %></div>
             </a>
@@ -57,7 +60,8 @@
         <div class="book-about mx-4" >
           <h2 class="book-info-title">Book Title</h2>
           <div class="book-author d-flex align-items-center">
-            <img class="rounded-circle mr-2" src="https://picsum.photos/50/50/?random=3" />
+            <div class="book-info-avatar">
+            </div>
             <span class="name mx-2">John Doe</span>
           </div>
           <h2 class="Read this book ">Read this book</h2>
