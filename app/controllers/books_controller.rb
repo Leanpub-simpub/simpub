@@ -22,11 +22,6 @@ class BooksController < ApplicationController
   end
   
   def show
-    require "open-uri"
-    # md = open(@book.md_url).read
-
-    # markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, filter_html: false, autolink: true, tables: true)
-    # @md = markdown.render(md)
   end
   
 
@@ -95,7 +90,7 @@ class BooksController < ApplicationController
 
   # 線上編輯 action
   def editor_edit
-    @book = Book.find(params[:id])
+    # @book = Book.find(params[:id])
     s3_client = Aws::S3::Client.new
     object = s3_client.get_object(bucket: ENV['bucket'], key:"store/book/#{@book.title}/structure.json")    
     structure_json = object.body.read
@@ -107,7 +102,7 @@ class BooksController < ApplicationController
     if params[:chapter] == ""  
       return
     end
-    @book = Book.find_by_slug(params[:id])
+    # @book = Book.find_by_slug(params[:id])
     
     # 取到結構json檔資料
     s3_client = Aws::S3::Client.new
@@ -143,7 +138,7 @@ class BooksController < ApplicationController
     if params[:section] == ""
       return
     end
-    @book = Book.find_by_slug(params[:id])
+    # @book = Book.find_by_slug(params[:id])
 
     # 取到結構json檔資料
     s3_client = Aws::S3::Client.new
