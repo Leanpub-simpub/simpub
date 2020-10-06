@@ -8,19 +8,19 @@
     </p>
     <div class="text-center">
       <%= link_to edit_book_path(book) do %>
-        <i class="fas fa-pencil-alt icon"></i>
+        <i class="fas fa-cog icon"></i>
       <% end %>
       <% if has_published?(book) %>
-        <%= link_to unpublish_book_path(book), method: :patch, remote: true, data: {confirm: "真的要下架嗎？"} do %>
-          <i class="far fa-eye icon"></i>
+        <%= link_to unpublish_book_path(book), method: :patch, remote: true, data: {confirm: "真的要下架嗎？"}, class: "btn" do %>
+          下架
         <% end %>
       <% else %>
-        <%= link_to pricing_book_path(book) do %>
-          <i class="far fa-eye-slash icon"></i>
+        <%= link_to pricing_book_path(book), data: {confirm: "確定發佈？"}, class: "btn" do %>
+          發佈
         <% end %>
       <% end %>
       <%= link_to editor_edit_book_path(book) do %>
-        <i class="fas fa-cog icon"></i>
+        <i class="fas fa-pencil-alt icon"></i>
       <% end %>
     </div>
   </div>
