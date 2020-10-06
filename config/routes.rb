@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   get "/u/:username", to: "users/profiles#show", as: "profile"
   post "/u/:username", to: "users/profiles#follow", as: "follow"
+  
   get "/dash_board/followship", to: "users/profiles#followship", as: "followship"
   get "/dash_board/books", to: "users/authors#show"
   get "/dash_board/library", to: "users/library#show", as: "library"
@@ -31,7 +32,7 @@ Rails.application.routes.draw do
       post :sample
       post :table_of_contents
       post :read
-      
+      patch :unpublish
     end
     
     collection do
@@ -44,7 +45,8 @@ Rails.application.routes.draw do
     end
   end
 
-  get "/purchase", to: "users/purchase#index"
+  get "/purchases", to: "users/purchase#index"
+  get "/purchases_show", to: "users/purchase#show"
 
   resource :cart, only:[:show, :update, :destroy] do
     collection do
@@ -52,6 +54,7 @@ Rails.application.routes.draw do
       get :payment
       post :checkout
       patch :delete
+      post :refund
     end
   end
 

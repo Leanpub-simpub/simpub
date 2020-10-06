@@ -33,6 +33,12 @@ class BooksController < ApplicationController
   def new
     @book = Book.new
     @tags = Tag.all.map(&:name)
+    titles = Book.pluck(:title)
+
+    respond_to do |format|
+      format.html
+      format.json { render json: titles }
+    end
   end
   
   def create
@@ -44,7 +50,7 @@ class BooksController < ApplicationController
 
     if @book.save
       if @book.md_data
-        @book.update(publish_state: "on-shelf")
+        @book.update(publish_state: "on_shelf")
         current_user.update(as_author: true)
         redirect_to pricing_book_path(@book)
       else
@@ -76,10 +82,15 @@ class BooksController < ApplicationController
   
   def publish
     @book.update(book_params)
-    @book.update(publish_state: "on-shelf")
+    @book.update(publish_state: "on_shelf")
     current_user.update(as_author: true)
     
     redirect_to @book, notice: "書籍已上架囉～"
+  end
+
+  def unpublish
+    @book.remove!
+    redirect_to dash_board_books_path, notice: "#{@book.title} 已下架"
   end
 
   # 線上編輯 action

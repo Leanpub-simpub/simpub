@@ -51,7 +51,7 @@
       </div>
       <div class="completeness mt-auto">
         <div class="progress mx-auto mb-2"></div>
-        <p class="text-center mb-0">This book is 100% complete</p>
+        <p class="text-center mb-0">This book is <%= @book.completeness %>% complete</p>
         <p class="text-center mb-0">COMPLETED ON <%= @book.updated_at.to_date %></p>
       </div>
 		</div>

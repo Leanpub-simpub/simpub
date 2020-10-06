@@ -20,10 +20,10 @@ class Book < ApplicationRecord
   
   # has_rich_text :content
 
-  scope :published_books, -> { where(publish_state: "on-shelf").order(id: :desc) }
-  scope :unpublish_books, -> { where(publish_state: "off-shelf") }
+  scope :published_books, -> { where(publish_state: "on_shelf").order(id: :desc) }
+  scope :unpublish_books, -> { where.not(publish_state: "on_shelf") }
 
-  scope :with_search, -> (search) { left_joins(:authors, :tags).where("books.title ILIKE :query OR users.name ILIKE :query OR tags.name ILIKE :query", query: "%#{search}%") }
+  # scope :with_search, -> (search) { left_joins(:authors, :tags).where("books.title ILIKE :query OR users.name ILIKE :query OR tags.name ILIKE :query", query: "%#{search}%") }
   scope :book_search, -> (search) { where("books.title ILIKE ?", "%#{search}%") }
   scope :author_search, -> (search) { joins(:authors).where("users.name ILIKE ?", "%#{search}%") }
   scope :tag_search, -> (search) { joins(:tags).where("tags.name ILIKE ?", "%#{search}%") }
@@ -51,5 +51,19 @@ class Book < ApplicationRecord
 
   def to_param
     slug
+  end
+
+  include AASM
+  aasm(column: "publish_state") do
+    state :draft, initial: true
+    state :on_shelf, :off_shelf
+
+    event :publish do
+      transitions from: [:draft, :off_shelf], to: :on_shelf
+    end
+
+    event :remove do
+      transitions from: :on_shelf, to: :off_shelf
+    end
   end
 end

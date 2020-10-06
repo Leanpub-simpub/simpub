@@ -20,11 +20,13 @@ document.addEventListener("turbolinks:load", () => {
       .then(cartItems => {
         let cartBubble = document.querySelector(".fa-shopping-cart").firstElementChild;
 
-        if (cartItems.length !== 0) {
+        if (cartItems[0] && cartItems[0][1].length !== 0) {
           let cartCount = cartItems[0][1].length;
           
           cartBubble.classList.add("cart-bubble");
           cartBubble.textContent = cartCount;
+        } else {
+          cartBubble.classList.remove("cart-bubble");
         }
       });
   }
