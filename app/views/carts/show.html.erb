@@ -16,40 +16,85 @@
 --->
 
   <div class="checkoutstage_review d-flex justify-content-center">
-    <table class="table w-75">
+    <table id="cart-items" class="table w-75">
       <thead class="txt">
-        <tr>
-          <th>商品</th>
-          <th></th>
-          <th>數量</th>
-          <th>小計</th>
+        <tr class="row">
+          <th class="col-2">商品</th>
+          <th class="col-6"></th>
+          <th class="col-2">數量</th>
+          <th class="col-2">小計</th>
         </tr>
       </thead>
       <tbody>
-      <% current_cart.items.each do |item| %>
-        <tr class="">
-          <td>
-            <div></div>
+      <% current_cart.items.each.with_index do |item, index| %>
+        <tr class="row" data-controller="cart" data-cart-index="<%= index %>">
+          <td class="col-2">
+            <div style="font-size:large" class="font-weight-bold" >
+              <%= link_to book_path(item.book) do %>
+                <%= render partial: "shared/frontend/book_cover", locals: {book: item.book, size: :small} %>
+              <% end %>
+            </div>
           </td>
-          <td>
+          <td class="col-6">
             <div style="font-size:large" class=" font-weight-bold" >
-              <%= item.book.title %>
+              <%= link_to item.book.title, book_path(item.book) %>
             </div>
             <div>
-              <a href="">edit</a>
+              <%= link_to "edit", "#slider-modal", remote: true, data: {toggle: "modal", index: index, action: "cart#edit"}, class: "item-edit" %>
+
+              <div id="slider-modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h3 class="modal-title">Edit Purchase</h3>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    
+                    <div class="modal-body">
+                      <div class="row">
+                        <!-- 書本封面 -->
+                        <div class="col-6">
+                          <%= render partial: "shared/frontend/book_cover", locals: {book: item.book, size: :large} %>
+                          <div><%= item.book.title %></div>
+                          <div><%= item.book.authors[0].name %></div>
+                        </div>
+
+                        <div class="col-6">
+                          <!-- Slider -->
+                          <%= render partial: "shared/frontend/price_slider", locals: {book: item.book} %>
+                          <!-- 更新價格按鈕 -->
+                          <div class="update-price mt-auto">
+                            <span>YOU PAY</span>
+                            <span class="hint">(US$)</span>
+                            <form action="" class="update-price-form">
+                              <input type="text", class="cart-price text-center d-block mt-1 mb-4">
+                              <input type="submit" value="Update" class="update-btn btn btn-danger main-btn">
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              
               <span class="mx-2">|</span>
               <a href="">Move to Wishlist</a>
               <span class="mx-2">|</span>
-              <a href="">Delete</a>
+              <a href="" data-action="cart#delete">Delete</a>
             </div>
           </td>
-          <td style="font-size: large">
-          <%= item.quantity %>
+          <td style="font-size: large" class="col-2">
+            1
           </td>
-          <td style="font-size: large">
-          <%= item.price %>
+          <td style="font-size: large" class="col-2">
+          $<%= sprintf("%.2f", item.price) %>
           </td>
         </tr>
+
       <% end %>
       </tbody>
     </table>
@@ -62,7 +107,7 @@
 
   <div class="check-out d-flex justify-content-center">
     <div class="w-75 d-flex justify-content-end align-items-center">
-    	<%= current_cart.total_price %>
+    	$<%= sprintf("%.2f", current_cart.total_price) %>
     </div>
   </div>
 
@@ -70,8 +115,8 @@
   <div class="d-flex justify-content-center mt-5">
     <div class="w-75 d-flex justify-content-between">
       <!-- 做出單向刪除功能後，一次清空購物車的按鈕可考慮刪除 --->
-      <%= link_to "清空購物車", cart_path, method: :delete, class: " w-25 d-flex justify-content-center btn btn-danger" %>
-      <%= link_to "結帳", payment_cart_path, class:" w-25 d-flex justify-content-center btn main-btn" %>
+      <%#= link_to "清空購物車", cart_path, method: :delete, class: " w-25 d-flex justify-content-center btn btn-danger" %>
+      <%= link_to "結帳", payment_cart_path, class:"ml-auto w-25 d-flex justify-content-center btn main-btn" %>
     </div>
   </div>
   

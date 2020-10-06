@@ -2,12 +2,12 @@
   <div class="chapter_list">
     <% json.each_with_index do |chapter,index| %>
     <div class="d-flex justify-content-between" >
-      <div class="chapter" data-order=<%= index%>><%= chapter.keys[0] %></div>
+      <div class="chapter" data-order="<%= index%>"><%= chapter.keys[0] %></div>
       <div class="addsection">+</div>
     </div>
       <% if chapter.values[0].length != 0 %>
         <% chapter.values[0].each do |section| %>
-        <div class="section" data-chapter="<%= chapter.keys[0] %>"><%= section %></div>
+        <div class="section" data-chapter-order="<%= index %>"><%= section %></div>
         <% end %>
       <% end %>
     <% end %>
@@ -58,14 +58,15 @@
 </div>
 
 <div class="x" id="renameform">
-  <p>Rename Your Chapter or Section</p>
+  <p>Rename Your <span class="text-danger"></span></p>
   <div>
     <span>Current Name</span>
     <span id="currentName"></span>
   </div>
-  <div>
+  <p class="my-1 text-danger" id="renameformErr"></p>
+  <div class="mb-1">
     <label for="newName">New name</label>
-    <input id="newName" type="text" name='newName' placeholder='New name'>
+    <input id="newName" type="text" name='newName' placeholder='New Name'>
   </div>
   <div class="text-center">
     <span id="renameAgree"class="btn formBtn">OK</span> 
@@ -79,6 +80,7 @@
     <span>Delete Item</span>
     <span id="deleteTarget"></span>
   </div>
+  <p class="my-1 text-danger" id="deleteformErr"></p>
   <div>
   <label for="delete">Please type <b>DELETE</b> to confirm</label>
   <input id="deleteinput" type="text" name='delete' placeholder='Delete item name'>

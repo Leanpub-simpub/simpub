@@ -8,7 +8,6 @@ document.addEventListener("turbolinks:load", () => {
     const dropinContainer = document.querySelector("#dropin-container");
     const token = dropinContainer.dataset.token;
     
-    console.log(token)
     braintreeDropIn.create(
       {
         authorization: token,
@@ -16,7 +15,6 @@ document.addEventListener("turbolinks:load", () => {
       }, 
       
       function(createErr, instance) {
-        console.log({ createErr, instance })
         button.addEventListener("click", function(e) {
           e.preventDefault();
           instance.requestPaymentMethod(function(err, payload) {
