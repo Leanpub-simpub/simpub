@@ -7,3 +7,6 @@ import "./text_editor.scss"
 import "./chapter_list.scss"
 
 import "./rename_and_delete.js"
+
+import "./generate_pdf.js"
+

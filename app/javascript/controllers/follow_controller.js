@@ -20,7 +20,7 @@ export default class extends Controller {
            }
          })
          .catch(function(error) {
-           console.log(error);
+           
          });
   }
 }

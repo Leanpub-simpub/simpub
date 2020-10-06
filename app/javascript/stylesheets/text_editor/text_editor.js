@@ -30,6 +30,7 @@ window.addEventListener('turbolinks:load',()=>{
     let tempForMdToHtml //判斷是否有編輯文字用
     let save = document.querySelector('#save')
     let startText
+    let chapterName
     //從前端 fetch 到 server 的 get_content action 取得第一章節的內容並印出
     let token = document.querySelector("meta[name=csrf-token]").content
     axios.defaults.headers.common['X-CSRF-Token']= token
@@ -82,7 +83,7 @@ window.addEventListener('turbolinks:load',()=>{
           chapter = false
           section = true
           let index = e.target.dataset.chapterOrder
-          chapterName = document.querySelector(`[data-order="${index}"]`)
+          chapterName = document.querySelector(`[data-order="${index}"]`).textContent
         }
         let token = document.querySelector("meta[name=csrf-token]").content
         axios.defaults.headers.common['X-CSRF-Token']= token  
@@ -199,9 +200,9 @@ window.addEventListener('turbolinks:load',()=>{
           chapter = false
           section = true
           let index = target.dataset.chapterOrder
-          chapterName = document.querySelector(`[data-order="${index}"]`)
+          chapterName = document.querySelector(`[data-order="${index}"]`).textContent
         }
-        let params = { bookName: bookName.textContent, target:target.textContent, chapter:chapter,section:section, chapterName:chapterName}
+        let params = { bookName: bookName.textContent, target:target.textContent, chapter:chapter,section:section, chapterName:chapterName, content:content}
 
         axios({
           method: 'post',

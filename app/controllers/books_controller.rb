@@ -96,7 +96,7 @@ class BooksController < ApplicationController
     if params[:chapter] == ""  
       return
     end
-    @book = Book.find(params[:id])
+    @book = Book.find_by_slug(params[:id])
     
     # 取到結構json檔資料
     s3_client = Aws::S3::Client.new
@@ -132,7 +132,7 @@ class BooksController < ApplicationController
     if params[:section] == ""
       return
     end
-    @book = Book.find(params[:id])
+    @book = Book.find_by_slug(params[:id])
 
     # 取到結構json檔資料
     s3_client = Aws::S3::Client.new
@@ -157,8 +157,8 @@ class BooksController < ApplicationController
     structure = bucket.object("store/book/#{@book.title}/structure.json")
     structure.put(body: structure_json)
     # 將新的結構存到 structure.json檔案
-    section = bucket.object("store/book/#{@book.title}/#{params[:chapter]}_#{section}.md")
-    section.upload_stream{|ws| ws << "# #{section}"}    # 做出 section 檔案
+    section_obj = bucket.object("store/book/#{@book.title}/#{params[:chapter]}_#{section}.md")
+    section_obj.upload_stream{|ws| ws << "# #{section}"}    # 做出 section 檔案
   end
   
   def get_content  
@@ -231,13 +231,6 @@ class BooksController < ApplicationController
   end
   
   def delete_chapter_or_section
-    book_name = params[:bookName]
-    chapter_order = params[:chapterOrder]
-    chapter_name = params[:chapterName]
-    chapter = params[:chapter]
-    section= params[:section]
-    target = params[:target]
-    allSection = params[:allSection]
     # 取到結構json檔資料
     s3_client = Aws::S3::Client.new
     object = s3_client.get_object(bucket: ENV['bucket'], key:"store/book/#{params[:bookName]}/structure.json")    
@@ -280,6 +273,45 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       format.json{ render json: {message: 'ok', structure_json: structure_json} }
+    end
+  end
+
+  def all_content
+    # 取到結構json檔資料
+    s3_client = Aws::S3::Client.new
+    object = s3_client.get_object(bucket: ENV['bucket'], key:"store/book/#{params[:bookName]}/structure.json")    
+    structure_json = object.body.read
+    structure_json = JSON.parse(structure_json)
+
+    # all_content=[]
+    # structure_json.each do |obj|
+    #   chapter = obj.keys[0].to_s
+    #   object = s3_client.get_object(bucket: ENV['bucket'], key:"store/book/#{params[:bookName]}/#{chapter}.md")
+    #   chapter_content = object.body.read
+    #   all_content.push(chapter_content)
+    #   obj.values[0].each do |section|
+    #     object = s3_client.get_object(bucket: ENV['bucket'], key:"store/book/#{params[:bookName]}/#{chapter}_#{section}.md")
+    #     section_content = object.body.read
+    #     all_content.push(section_content)
+    #   end
+    # end
+    all_content=""
+    structure_json.each do |obj|
+      chapter = obj.keys[0].to_s
+      object = s3_client.get_object(bucket: ENV['bucket'], key:"store/book/#{params[:bookName]}/#{chapter}.md")
+      chapter_content = object.body.read
+      all_content << chapter_content
+      all_content << "\n"
+      obj.values[0].each do |section|
+        object = s3_client.get_object(bucket: ENV['bucket'], key:"store/book/#{params[:bookName]}/#{chapter}_#{section}.md")
+        section_content = object.body.read
+        all_content << section_content 
+        all_content << "\n"
+      end
+    end
+    
+    respond_to do |format|
+      format.json{ render json: {all_content: all_content} }
     end
   end
 
