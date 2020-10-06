@@ -95,7 +95,7 @@ class BooksController < ApplicationController
 
   # 線上編輯 action
   def editor_edit
-    @book = Book.find(params[:id])
+    @book = Book.find_by_slug(params[:id])
     s3_client = Aws::S3::Client.new
     object = s3_client.get_object(bucket: ENV['bucket'], key:"store/book/#{@book.title}/structure.json")    
     structure_json = object.body.read
@@ -319,6 +319,7 @@ class BooksController < ApplicationController
         all_content << section_content 
         all_content << "\n"
       end
+      all_content << " spaceishere "
     end
     
     respond_to do |format|

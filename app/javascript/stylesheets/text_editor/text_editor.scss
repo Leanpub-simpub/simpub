@@ -110,8 +110,16 @@
 	left: 0;
 	top: 0;
 }
-#pdf_container {
+.pdf_container{
+  padding-left: 35px;
   background-color: white;
   margin-left: auto;
   margin-right: auto;
+  word-wrap: break-word;
+  // width: 595px;
+  height: 1000px;
+  column-fill: auto;
+  column-width: 595px;
+  column-gap: 70px;
+  overflow-x: scroll;
 }
