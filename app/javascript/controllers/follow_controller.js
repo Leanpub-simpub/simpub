@@ -16,11 +16,11 @@ export default class extends Controller {
            if (result.data["status"] === true) {
              followBtn.textContent = "Following";
            } else {
-            followBtn.textContent = "Follow";
+             followBtn.textContent = "Follow";
            }
          })
          .catch(function(error) {
-           console.log(error);
+           
          });
   }
 }

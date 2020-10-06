@@ -15,36 +15,11 @@
         <p>You can edit your books by clicking on the <i class="fas fa-cog"></i>. <br> You can also choose which books show up on your profile page by using the <i class="far fa-eye"></i>.
         <h5>Published (<%= published_books.count %>)</h5>
         <div class="publish-book row">
-          <% published_books.each do |book| %>
-            <div class="pubbook-item border col-2 p-0 m-3">
-              <div class="w-100">
-                <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
-              </div>
-              <p class="text-center"><%= link_to book.title, book_path(book), class:"title" %></p>
-            </div>
-          <% end %>
+          <%= render "books", books: published_books %>
         </div>
         <h5>Unpublished (<%= unpublish_books.count %>)</h5>
         <div class="unpublish-book row">
-          <% unpublish_books.each do |book| %>
-            <div class="pubbook-item border col-2 p-0 m-3">
-              <div class="w-100">
-                <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
-              </div>
-              <p class="text-center"><%= link_to book.title, book_path(book), class:"title" %></p>
-              <div class="text-center">
-                <%= link_to edit_book_path(book) do %>
-                  <i class="fas fa-pencil-alt icon"></i>
-                <% end %>
-                <%= link_to pricing_book_path(book) do %>
-                  <i class="far fa-eye-slash icon"></i>
-                <% end %>
-                <%= link_to editor_edit_book_path(book.id) do %>
-                  <i class="fas fa-cog icon"></i>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
+          <%= render "books", books: unpublish_books %>
         </div>
       </div>
     </div>

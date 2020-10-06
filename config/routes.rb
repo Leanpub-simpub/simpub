@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       post :sample
       post :table_of_contents
       post :read
-      
+      patch :unpublish
     end
     
     collection do
@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       post :update_content
       post :rename
       post :delete_chapter_or_section
+      post :all_content
     end
   end
 

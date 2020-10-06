@@ -25,18 +25,35 @@
   </div>
 
   <!-- Search Filter -->
-  <div class="search-filter d-flex flex-nowrap ml-auto">
-    <select name="" id="search-selector" class="btn txt">
+  <div class="search-filter d-flex flex-nowrap ml-auto mr-3" data-controller="search">
+    <select name="" id="search-selector" class="btn txt" data-target="search.select">
       <option value="book-search">搜尋書名</option>
       <option value="author-search">搜尋作者</option>
       <option value="tag-search">搜尋標籤</option>
     </select>
-    <%= form_with(url: :books, method: :get, class: "nav-search form-inline ml-1 d-flex flex-nowrap", local: true) do |f| %>
-      <%= f.search_field :search, class: "search-input form-control", placeholder: "Search" %>
-      <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
-        <i class="fas fa-search icon"></i>
-      <% end %>
-    <% end %>
+		<div class="row search-bar">
+			<%# book search 表單 %>
+			<%= form_with url: :books, method: :get, class: "nav-search x form-inline d-flex ml-4", local: true, data: {target: "search.book_search"} do |f| %>
+				<%= f.search_field :book_search, class: "search-input book-search-input form-control", placeholder: "Search" %>
+        <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
+          <i class="fas fa-search icon"></i>
+        <% end %>
+			<% end %>
+			<%# author search 表單 %>
+			<%= form_with url: :books, method: :get, class: "nav-search author-search x form-inline d-flex ml-4", local: true, data: {target: "search.author_search"} do |f| %>
+				<%= f.search_field :author_search, class: "search-input author-search-input form-control", placeholder: "Search" %>
+        <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
+          <i class="fas fa-search icon"></i>
+        <% end %>
+			<% end %>
+			<%# tag search 表單 %>
+			<%= form_with url: :books, method: :get, class: "nav-search tag-search x form-inline d-flex ml-4", local: true, data: {target: "search.tag_search"} do |f| %>
+				<%= f.search_field :tag_search, class: "search-input tag-search-input form-control", placeholder: "Search" %>
+        <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
+          <i class="fas fa-search icon"></i>
+        <% end %>
+			<% end %>
+		</div>
   </div>
   
   <div class="icon-group d-flex align-items-center">

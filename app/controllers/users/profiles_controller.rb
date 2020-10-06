@@ -7,6 +7,7 @@ class Users::ProfilesController < ApplicationController
 
   def follow
     current_user.toggle_following(@user)
+    
     render json: {status: @user.followed_by?(current_user)}
   end
 
