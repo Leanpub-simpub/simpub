@@ -54,6 +54,7 @@ class BooksController < ApplicationController
         redirect_to dash_board_books_path
       end
     else
+      @tags = Tag.all.map(&:name)
       render :new
     end
   end
