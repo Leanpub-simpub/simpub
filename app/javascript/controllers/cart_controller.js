@@ -2,14 +2,13 @@ import { Controller } from "stimulus";
 import axios from "axios";
 
 export default class extends Controller {
-  static targets = [ "cover" ];
+  static targets = ["cover"];
 
   connect() {
     const token = document.querySelector("meta[name=csrf-token]").content;
     axios.defaults.headers.common["X-CSRF-Token"] = token;
   }
 
-  
   edit() {
     // 禁止視窗捲動
     document.documentElement.style.overflow = "hidden";
@@ -19,7 +18,7 @@ export default class extends Controller {
     // 隱藏加入購物車的按鈕
     const addBtn = document.querySelector(".add-to-cart-price");
     addBtn.classList.add("x");
-    
+
     // 建立 modal cover
     const itemCover = this.coverTarget.firstElementChild;
     const modalCover = itemCover.cloneNode(true);
@@ -41,32 +40,33 @@ export default class extends Controller {
     const cartPrice = document.querySelector(".modal-cart-price");
 
     const bookId = this.data.get("book");
-    axios.get(`/cart/edit.json?id=${bookId}`)
-         .then(function(result) {
-           const bookInfo = result.data;
-           title.textContent = bookInfo.title;
-           author.textContent = bookInfo.author;
-           min.textContent = `$${bookInfo.price}`;
-           max.textContent = `$${bookInfo.price * 2}`;
-           userPay.min = `${bookInfo.price}`;
-           userPay.max = `${bookInfo.price * 3}`;
-           authorEarns.min = `${bookInfo.price * 0.8}`;
-           authorEarns.max = `${bookInfo.price * 4}`;
+    axios
+      .get(`/cart/edit.json?id=${bookId}`)
+      .then(function (result) {
+        const bookInfo = result.data;
+        title.textContent = bookInfo.title;
+        author.textContent = bookInfo.author;
+        min.textContent = `$${bookInfo.price}`;
+        max.textContent = `$${bookInfo.price * 2}`;
+        userPay.min = `${bookInfo.price}`;
+        userPay.max = `${bookInfo.price * 3}`;
+        authorEarns.min = `${bookInfo.price * 0.8}`;
+        authorEarns.max = `${bookInfo.price * 4}`;
 
-           axios.get(`/cart.json`)
-                .then(function(result) {
-                  const cartInfo = result.data[0][1];
-                  const cartPrice = cartInfo[index].cart_price;
-                  userPay.value = `${cartPrice}`;
+        axios
+          .get(`/cart.json`)
+          .then(function (result) {
+            const cartInfo = result.data[0][1];
+            const cartPrice = cartInfo[index].cart_price;
+            userPay.value = `${cartPrice}`;
 
-                  // 設定初始化價格
-                  setPricePay();
-                })
-                .then(function(error) {});
+            // 設定初始化價格
+            setPricePay();
+          })
+          .then(function (error) {});
+      })
+      .then(function (error) {});
 
-         })
-         .then(function(error) {});
-      
     // "User Pay" slider 拖動時呼叫
     userPay.addEventListener("input", () => {
       setPricePay();
@@ -77,7 +77,7 @@ export default class extends Controller {
       setPriceEarns();
     });
 
-    cartPrice.addEventListener("keypress", e => {
+    cartPrice.addEventListener("keypress", (e) => {
       if (e.key === "Enter") {
         e.preventDefault();
         // 驗證輸入框的輸入格式為 數字 或 $ 開頭
@@ -98,7 +98,7 @@ export default class extends Controller {
           if (inputPrice < minPrice) {
             setCartPrice(minPrice.toFixed(2));
           } else if (inputPrice > maxPrice) {
-            setCartPrice(100.00.toFixed(2));
+            setCartPrice((100.0).toFixed(2));
           } else {
             setCartPrice(inputPrice.toFixed(2));
           }
@@ -108,14 +108,13 @@ export default class extends Controller {
       }
     });
 
-
     function setPricePay() {
       let userPayDrag = parseFloat(userPay.value).toFixed(2);
       let authorEarnsDrag = (userPayDrag * 0.8).toFixed(2);
-    
+
       userPayShow.textContent = `$${userPayDrag}`;
       cartPrice.value = `$${userPayDrag}`;
-    
+
       authorEarnsShow.textContent = `$${authorEarnsDrag}`;
       authorEarns.value = authorEarnsDrag;
     }
@@ -142,26 +141,18 @@ export default class extends Controller {
     }
   }
 
-
   delete() {
-    if (window.confirm("Are you sure you want to remove this from your cart?")) {
-    let itemIndex = this.data.get("index");
-    
-<<<<<<< HEAD
-    axios.patch(`http://localhost:3000/cart/delete?index=${itemIndex}`)
-         .then(function(result) {
-          // 使用 axois 跳轉頁面
-           location.href = "/cart";
-         })
-         .catch(function(error) {});
+    if (
+      window.confirm("Are you sure you want to remove this from your cart?")
+    ) {
+      let itemIndex = this.data.get("index");
+
+      axios
+        .patch(`/cart/delete?index=${itemIndex}`)
+        .then(function (result) {
+          location.reload();
+        })
+        .catch(function (error) {});
     }
   }
 }
-=======
-    axios.patch(`/cart/delete?index=${itemIndex}`)
-         .then(function(result) { location.reload(); })
-         .catch(function(error) {});
-    }
-  }
-}
->>>>>>> c28fb008b2bdac7b7e71e0296e27152f6a680fa7

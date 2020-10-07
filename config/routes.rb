@@ -54,20 +54,13 @@ Rails.application.routes.draw do
   get "/purchases", to: "users/purchase#index"
   get "/purchases_show", to: "users/purchase#show"
 
-<<<<<<< HEAD
-  resource :cart, only:[:show, :update, :destroy] do
-=======
   resource :cart, only:[:show, :edit, :update, :destroy] do
->>>>>>> c28fb008b2bdac7b7e71e0296e27152f6a680fa7
     collection do
       post :add, path:'add/:id'
       get :payment
       post :checkout
       patch :delete
-<<<<<<< HEAD
-=======
       post :refund
->>>>>>> c28fb008b2bdac7b7e71e0296e27152f6a680fa7
     end
   end
 
