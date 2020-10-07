@@ -1,15 +1,15 @@
-<h1 class="book_name"><%=  @book.title %><span></span></h1>
+<h1 class="book_name text-center"><%=  @book.title %><span></span></h1>
 <div class="wrap ">
   <div class="chapter_list w-50 mx-auto pl-4">
-    <div class="chapter">chapter_1</div>
-    <div class="section">section_1_1</div>
-    <div class="section">section_1_3</div>
-    <div class="section">section_1_2</div>
-    <div class="chapter">chapter_2</div>
-    <div class="section">section_2_1</div>
-    <div class="section">section_2_2</div>
-    <div class="section">section_2_3</div>
-    <div class="chapter">chapter_3</div>
-    <div class="chapter">chapter_4</div>
+  <% @json.each_with_index do |chapter,index| %>
+    <div class="d-flex justify-content-between" >
+      <div class="chapter" data-order="<%= index%>"><%= chapter.keys[0] %></div>
+    </div>
+      <% if chapter.values[0].length != 0 %>
+        <% chapter.values[0].each do |section| %>
+        <div class="section" data-chapter-order="<%= index %>"><%= section %></div>
+        <% end %>
+      <% end %>
+    <% end %>
   </div>
 </div>
