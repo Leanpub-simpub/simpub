@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       post :table_of_contents
       post :read
       patch :unpublish
+      post :wish
     end
     
     collection do

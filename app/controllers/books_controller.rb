@@ -87,6 +87,12 @@ class BooksController < ApplicationController
     redirect_to dash_board_books_path, notice: "#{@book.title} 已下架"
   end
 
+  def wish
+    current_user.wish_books << @book
+    flash.now[:notice] = "書籍已加入願望清單"
+    render :show
+  end
+
   # 線上編輯 action
   def editor_edit
     # @book = Book.find(params[:id])
