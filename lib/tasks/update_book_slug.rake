@@ -1,7 +1,7 @@
 namespace :db do
 
   desc "更新書名 slug"
-  task :update_book_slug => :environment do
+  task update_book_slug: :environment do
     
     slug_nil = Book.where(slug: nil)
     

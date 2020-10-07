@@ -1,7 +1,17 @@
-.book_name,.currentTarget,#save {
+.book_name,.currentTarget,#save,#sample {
   font-size: 30px;
-  color: #e09a5f;
+  // color: #e09a5f;
 }
+#sampleshow {
+  border: 1px solid #333333;
+  width: 80%;
+  height: 100vh;
+  padding: 20px 20px 20px 20px;
+  overflow-y: scroll;
+  background-color: #fff8dc;
+  margin-left: 5px;
+}
+
 .wrap {
   display: flex;
   width: 100%;
@@ -105,3 +115,24 @@
   }
 }
 
+.pdf{
+	position:fixed;
+	left: 0;
+	top: 0;
+}
+.pdf_container{
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  word-wrap: break-word;
+  // width: 595px;
+  height: 1000px;
+  column-fill: auto;
+  column-width: 595px;
+  column-gap: 100px;
+  overflow-x: scroll;
+}

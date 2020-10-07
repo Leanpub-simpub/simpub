@@ -14,14 +14,14 @@ document.addEventListener("turbolinks:load", () => {
     userPay.addEventListener("input", () => {
       setPricePay();
     });
-    
+
     // "Author Earns"" slider 拖動時呼叫
     authorEarns.addEventListener("input", () => {
       setPriceEarns();
     });
 
     // 使用者自行在 input 輸入時呼叫
-    cartPrice.addEventListener("keypress", e => {
+    cartPrice.addEventListener("keypress", (e) => {
       if (e.key === "Enter") {
         e.preventDefault();
         // 驗證輸入框的輸入格式為 數字 或 $ 開頭
@@ -42,7 +42,7 @@ document.addEventListener("turbolinks:load", () => {
           if (inputPrice < minPrice) {
             setCartPrice(minPrice.toFixed(2));
           } else if (inputPrice > maxPrice) {
-            setCartPrice(100.00.toFixed(2));
+            setCartPrice((100.0).toFixed(2));
           } else {
             setCartPrice(inputPrice.toFixed(2));
           }
@@ -53,6 +53,19 @@ document.addEventListener("turbolinks:load", () => {
     });
 
     // 按下加入購物車按鈕後顯示動畫
+    if (!addCartForm) return;
+    if (document.querySelector("#wish-to-cart")) {
+      const wishToCart = document.querySelector("#wish-to-cart");
+      const waitBtn = document.querySelector(".wait-btn");
+      wishToCart.addEventListener("click", () => {
+        wishToCart.parentElement.removeChild(wishToCart);
+        waitBtn.classList.remove("x");
+        setTimeout(() => {
+          location.href = "/cart";
+        }, 500);
+      });
+    }
+
     addCartForm.onsubmit = bookToCart.bind(addCartForm);
     function bookToCart() {
       const cart = document.querySelector(".fa-shopping-cart");
@@ -61,26 +74,33 @@ document.addEventListener("turbolinks:load", () => {
 
       let startW = cover.getBoundingClientRect().width;
       let startH = cover.getBoundingClientRect().height;
-      let startX = startW / 2 + cover.getBoundingClientRect().x
+      let startX = startW / 2 + cover.getBoundingClientRect().x;
       let startY = startH / 2 + cover.getBoundingClientRect().y;
-      
-      let endW = cart.getBoundingClientRect().width;
-      let endH = cart.getBoundingClientRect().height;
-      let endX = endW / 2 + cart.getBoundingClientRect().x;
-      let endY = endH / 2 + cart.getBoundingClientRect().y;
+
+      // let endW = cart.getBoundingClientRect().width;
+      // let endH = cart.getBoundingClientRect().height;
+      // let endX = endW / 2 + cart.getBoundingClientRect().x;
+      // let endY = endH / 2 + cart.getBoundingClientRect().y;
+      let endX = cart.getBoundingClientRect().x;
+      let endY = cart.getBoundingClientRect().y;
 
       coverBubble.classList.add("cover-bubble");
       cover.parentElement.appendChild(coverBubble);
 
-      gsap.to(".cover-bubble", {duration: 1, scale: .08, x: `${endX - startX}px`, y: `${endY - startY}px`, opacity: .5})
+      gsap.to(".cover-bubble", { duration: 0.5, scaleX: 0.05, scaleY: 0.05 });
+      gsap.to(".cover-bubble", {
+        delay: 0.5,
+        duration: 0.5,
+        x: `${endX - startX}px`,
+        y: `${endY - startY}px`,
+        opacity: 0.5,
+      });
 
       // 動畫結束後刪除該物件
       setTimeout(() => {
         cover.parentElement.removeChild(coverBubble);
       }, 1000);
     }
-
-
 
     function setPricePay() {
       let userPayDrag = parseFloat(userPay.value).toFixed(2);

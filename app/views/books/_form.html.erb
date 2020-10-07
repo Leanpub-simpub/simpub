@@ -1,12 +1,4 @@
-<% if book.errors.any? %>
-  <ul>
-    <% book.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<%= form_for(book, remote: true) do |f| %>
+<%= form_for book, data: {controller: "book", book_error: book.errors.full_messages, book_title: book.title, book_state: book.publish_state}, class: "w-100" do |f| %>
   <div id="cover-preview" class="w-50">
     <img src="#" alt="" class="w-100">
   </div>
@@ -17,9 +9,10 @@
     <%= f.file_field :cover, id: "cover-input" %>
   </div>
 
-  <div class="form-item">
+  <div class="form-item mb-3">
     <%= f.label :title, "The Book Title", class: "book-title" %>
-    <%= f.text_field :title, class:"w-100 mb-3"%>
+    <%= f.text_field :title, class: "w-100", data: {action: "book#input", target: "book.title"}, required: true %>
+    <span id="error_msg" class="text-danger d-block" data-target="book.error_msg"></span>
   </div>
 
   <div class="form-item">
@@ -27,34 +20,27 @@
     <%= f.text_field :about, class:"w-100 mb-3" %>
   </div>
 
-  <!--
-  <div>
-    <%= f.label :price, "價格" %>
-    <%= f.number_field :price, :step => "0.01" %>
-  </div>
-  -->
-
   <!-- 目錄我們自己產生 -->
-
-  <div class="form-item">
+  
+  <div class="form-item" data-controller="tag" data-tag-list="<%= book.tag_items %>">
     <%= f.label :tag_items, "Tags", class: "tags" %>
     <div class="mb-3">
       <select class="form-control select optional" multiple="multiple" name="book[tag_items][]" id="book_tag_items">
-      <%= options_for_select(@tags = []) %>
+        <%= options_for_select(@tags) %>
       </select>
     </div>
   </div>
 
   <div class="form-item">
-    <%= f.label :completeness, "Completeness", class:"txt" %>
-    <%= f.number_field :completeness, class:"w-100 mb-3" %>
+    <%= f.label :completeness, "Completeness", class:"txt" %> (%)
+    <%= f.number_field :completeness, class:"w-100 mb-3", min: "0", max: "100" %>
   </div>
 
   <!-- 編輯器另外做一個頁面 -->
   <div class="form-item">
     <%= f.label :md, "Upload Files", class:"txt w-100" %>
     <%= f.hidden_field :md, value: book.cached_md_data %>
-    <%= f.file_field :md, class:"mb-3" %>
+    <%= f.file_field :md, class:"mb-3", id: "file_input" %>
   </div>
 
   <div>

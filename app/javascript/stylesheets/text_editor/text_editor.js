@@ -30,6 +30,7 @@ window.addEventListener('turbolinks:load',()=>{
     let tempForMdToHtml //判斷是否有編輯文字用
     let save = document.querySelector('#save')
     let startText
+    let chapterName
     //從前端 fetch 到 server 的 get_content action 取得第一章節的內容並印出
     let token = document.querySelector("meta[name=csrf-token]").content
     axios.defaults.headers.common['X-CSRF-Token']= token
@@ -37,8 +38,9 @@ window.addEventListener('turbolinks:load',()=>{
     // 預設打開第一章節
     document.querySelector('.chapter').classList.add('active')
     let target = document.querySelector('.active')
-
-    let params = { bookName:bookName.textContent , target:target.textContent }
+    let chapter = true
+    let section = false
+    let params = { bookName:bookName.textContent, target:target.textContent , chapter:chapter,section:section, chapterName:target.textContent}
 
     // 到server 拿第一章的內容
     axios({
@@ -47,7 +49,6 @@ window.addEventListener('turbolinks:load',()=>{
       data: params
     })
     .then( (result)=>{
-      // console.log(result.data['content'])
       let content = result.data['content']
      
       let editorConfig = {
@@ -67,17 +68,28 @@ window.addEventListener('turbolinks:load',()=>{
       syn_scroll()
     })
     .catch(function(err){
-      console.log(err)
+      alert('Fail to get content')
     })
     
     // 點擊到對應章節可以找到該檔案的資料並呈現
     chapterList.addEventListener('click',(e)=>{
-      if((e.target.className.match("chapter") != null ||e.target.className.match("section") != null ) && e.target != document.querySelector('.active')){
+      if((e.target.className.match("chapter") != null ||e.target.className.match("section") != null ) && e.target != document.querySelector('.active') && e.target.className.match('addsection') == null){
+        e.stopPropagation()
+        if(e.target.className.match('chapter')!=null){
+          chapter = true
+          section = false
+          chapterName = e.target.textContent
+        }else if(e.target.className.match('section')!=null){
+          chapter = false
+          section = true
+          let index = e.target.dataset.chapterOrder
+          chapterName = document.querySelector(`[data-order="${index}"]`).textContent
+        }
         let token = document.querySelector("meta[name=csrf-token]").content
         axios.defaults.headers.common['X-CSRF-Token']= token  
-        //紀錄書本名稱，要看哪一個章節
-        let params = { bookName: bookName.textContent , target: e.target.textContent }    
-        
+        //紀錄書本名稱，要看哪一個章節   
+        let params = { bookName: bookName.textContent, target: e.target.textContent , chapter:chapter,section:section, chapterName: chapterName}
+
         axios({
           method: 'post',
           url: '/books/get_content.json',
@@ -102,7 +114,7 @@ window.addEventListener('turbolinks:load',()=>{
           syn_scroll()
         })
         .catch(function(err){
-          console.log(err)
+          alert('Fail to get content')
         })
       }
     })
@@ -180,7 +192,17 @@ window.addEventListener('turbolinks:load',()=>{
         let target = document.querySelector('.active')
         let token = document.querySelector("meta[name=csrf-token]").content
         axios.defaults.headers.common['X-CSRF-Token']= token
-        let params = { bookName:bookName.textContent , target:target.textContent, content: content }
+        if(target.className.match('chapter')!=null){
+          chapter = true
+          section = false
+          chapterName = target.textContent
+        }else if(target.className.match('section')!=null){
+          chapter = false
+          section = true
+          let index = target.dataset.chapterOrder
+          chapterName = document.querySelector(`[data-order="${index}"]`).textContent
+        }
+        let params = { bookName: bookName.textContent, target:target.textContent, chapter:chapter,section:section, chapterName:chapterName, content:content}
 
         axios({
           method: 'post',
@@ -193,7 +215,6 @@ window.addEventListener('turbolinks:load',()=>{
           }
         })
         .catch(function(err){
-          console.log(err)
           alert('Fail to Save')
         })
       }

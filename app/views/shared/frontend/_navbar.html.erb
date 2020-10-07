@@ -1,4 +1,4 @@
-<nav class="layout-navbar navbar txt">
+<nav class="layout-navbar navbar txt sticky-top">
   <!-- 品牌 logo -->
   <div class="col-1">
     <a href="/" class="navbar-brand">  
@@ -25,18 +25,35 @@
   </div>
 
   <!-- Search Filter -->
-  <div class="search-filter d-flex flex-nowrap ml-auto">
-    <select name="" id="search-selector" class="btn txt">
+  <div class="search-filter d-flex flex-nowrap ml-auto mr-3" data-controller="search">
+    <select name="" id="search-selector" class="btn txt" data-target="search.select">
       <option value="book-search">搜尋書名</option>
       <option value="author-search">搜尋作者</option>
       <option value="tag-search">搜尋標籤</option>
     </select>
-    <%= form_with(url: :books, method: :get, class: "nav-search form-inline ml-1 d-flex flex-nowrap", local: true) do |f| %>
-      <%= f.search_field :search, class: "search-input form-control", placeholder: "Search" %>
-      <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
-        <i class="fas fa-search icon"></i>
-      <% end %>
-    <% end %>
+		<div class="row search-bar">
+			<%# book search 表單 %>
+			<%= form_with url: :books, method: :get, class: "nav-search x form-inline d-flex ml-4", local: true, data: {target: "search.book_search"} do |f| %>
+				<%= f.search_field :book_search, class: "search-input book-search-input form-control", placeholder: "Search" %>
+        <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
+          <i class="fas fa-search icon"></i>
+        <% end %>
+			<% end %>
+			<%# author search 表單 %>
+			<%= form_with url: :books, method: :get, class: "nav-search author-search x form-inline d-flex ml-4", local: true, data: {target: "search.author_search"} do |f| %>
+				<%= f.search_field :author_search, class: "search-input author-search-input form-control", placeholder: "Search" %>
+        <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
+          <i class="fas fa-search icon"></i>
+        <% end %>
+			<% end %>
+			<%# tag search 表單 %>
+			<%= form_with url: :books, method: :get, class: "nav-search tag-search x form-inline d-flex ml-4", local: true, data: {target: "search.tag_search"} do |f| %>
+				<%= f.search_field :tag_search, class: "search-input tag-search-input form-control", placeholder: "Search" %>
+        <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
+          <i class="fas fa-search icon"></i>
+        <% end %>
+			<% end %>
+		</div>
   </div>
   
   <div class="icon-group d-flex align-items-center">
@@ -47,13 +64,26 @@
         </i>
       <% end %>
       <% if user_signed_in? %>
-      <!-- 願望清單 -->
-        <div class="nav-icon">
-          <i class="fas fa-heart mx-2"></i>
+        <!-- 願望清單 -->
+        <div class="nav-icon" data-controller="wish" data-wish-username="<%= current_user.username %>">
+          <%= link_to wishlist_path(current_user.username), class: "nav-icon" do %>
+            <i class="fas fa-heart mx-2">
+              <div class="x" data-target="wish.bubble"></div>
+            </i>
+          <% end %>
         </div>
-      <!-- 通知 -->
-        <div class="nav-icon">
-          <i class="fas fa-bell mx-2"></i>
+        <!-- 通知 -->
+        <div class="z" data-controller="notify">
+          <div class="nav-icon">
+            <%= link_to "", id: "notifDropdown", class: "dropdown", role: "button", data: {toggle: "dropdown", action: "notify#show"} do %>
+            <!-- <button id="notiDropdown" class="dropdown" role="button", data-toggle="dropdown" data-action="notify#show"> -->
+              <i class="fas fa-bell mx-2">
+                <div class="x" data-target="notify.bubble"></div>
+              </i>
+            <!-- </button> -->
+            <div class="dropdown-menu position-fixed" aria-labelledby="notifDropdown" data-target="notify.menu"></div>
+            <% end %>
+          </div>
         </div>
       <% else %>
       <!-- 註冊&登入 -->
@@ -100,7 +130,7 @@
 
           <%# 購買紀錄 %>
           <div class="py-2 d-flex">
-            <a href="/purchase" class="nav-drop-item container-fluid">Purchase</a>
+            <a href="/purchases" class="nav-drop-item container-fluid">Purchases</a>
           </div>
           
           <%# 檢視個人主頁 %>
