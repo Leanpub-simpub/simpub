@@ -177,24 +177,12 @@ ActiveRecord::Schema.define(version: 2020_10_07_053156) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-<<<<<<< HEAD
-  create_table "wishlist_items", force: :cascade do |t|
-    t.bigint "wishlist_id", null: false
-    t.bigint "book_id", null: false
-    t.index ["book_id"], name: "index_wishlist_items_on_book_id"
-    t.index ["wishlist_id"], name: "index_wishlist_items_on_wishlist_id"
-  end
-
-  create_table "wishlists", force: :cascade do |t|
-    t.bigint "user_id", null: false
-=======
   create_table "wishlists", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "book_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["book_id"], name: "index_wishlists_on_book_id"
->>>>>>> c28fb008b2bdac7b7e71e0296e27152f6a680fa7
     t.index ["user_id"], name: "index_wishlists_on_user_id"
   end
 
@@ -209,11 +197,6 @@ ActiveRecord::Schema.define(version: 2020_10_07_053156) do
   add_foreign_key "orders", "users"
   add_foreign_key "taggings", "books"
   add_foreign_key "taggings", "tags"
-<<<<<<< HEAD
-  add_foreign_key "wishlist_items", "books"
-  add_foreign_key "wishlist_items", "wishlists"
-=======
   add_foreign_key "wishlists", "books"
->>>>>>> c28fb008b2bdac7b7e71e0296e27152f6a680fa7
   add_foreign_key "wishlists", "users"
 end
