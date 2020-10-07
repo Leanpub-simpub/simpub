@@ -9,17 +9,16 @@ export default class extends Controller {
     axios.defaults.headers.common["X-CSRF-Token"] = token;
   }
 
-  
-  edit() {
+  cart() {
     // 禁止視窗捲動
     document.documentElement.style.overflow = "hidden";
     const modal = document.querySelector(".cart-modal");
     modal.classList.remove("x");
 
-    // 隱藏加入購物車的按鈕
-    const addBtn = document.querySelector(".add-to-cart-price");
-    addBtn.classList.add("x");
-    
+    // 隱藏更新價格的按鈕
+    const update = document.querySelector(".update-price");
+    update.classList.add("x");
+
     // 建立 modal cover
     const itemCover = this.coverTarget.firstElementChild;
     const modalCover = itemCover.cloneNode(true);
@@ -28,8 +27,6 @@ export default class extends Controller {
     modalCoverBox.appendChild(modalCover);
 
     // 建立 modal 書籍資訊
-    const index = this.data.get("index");
-    modal.setAttribute("data-modal-index", index);
     const title = document.querySelector(".modal-body-title");
     const author = document.querySelector(".modal-body-author");
     const min = document.querySelector(".modal-min");
@@ -38,7 +35,8 @@ export default class extends Controller {
     const authorEarns = document.querySelector("#moadl-author-earns");
     const userPayShow = document.querySelector(".modal-user-pay-show");
     const authorEarnsShow = document.querySelector(".modal-author-earns-show");
-    const cartPrice = document.querySelector(".modal-cart-price");
+    const cartPrice = document.querySelector(".cart-price");
+    const addCartForm = document.querySelector(".add-cart-form");
 
     const bookId = this.data.get("book");
     axios.get(`/cart/edit.json?id=${bookId}`)
@@ -52,21 +50,13 @@ export default class extends Controller {
            userPay.max = `${bookInfo.price * 3}`;
            authorEarns.min = `${bookInfo.price * 0.8}`;
            authorEarns.max = `${bookInfo.price * 4}`;
+           addCartForm.action = `/cart/add/${bookInfo.id}`
 
-           axios.get(`/cart.json`)
-                .then(function(result) {
-                  const cartInfo = result.data[0][1];
-                  const cartPrice = cartInfo[index].cart_price;
-                  userPay.value = `${cartPrice}`;
-
-                  // 設定初始化價格
-                  setPricePay();
-                })
-                .then(function(error) {});
-
+           // 設定初始化價格
+           setPricePay();
          })
          .then(function(error) {});
-      
+
     // "User Pay" slider 拖動時呼叫
     userPay.addEventListener("input", () => {
       setPricePay();
@@ -108,6 +98,10 @@ export default class extends Controller {
       }
     });
 
+    addCartForm.addEventListener("submit", () => {
+      location.href = "/cart";
+    });
+
 
     function setPricePay() {
       let userPayDrag = parseFloat(userPay.value).toFixed(2);
@@ -142,14 +136,4 @@ export default class extends Controller {
     }
   }
 
-
-  delete() {
-    if (window.confirm("Are you sure you want to remove this from your cart?")) {
-    let itemIndex = this.data.get("index");
-    
-    axios.patch(`/cart/delete?index=${itemIndex}`)
-         .then(function(result) { location.reload(); })
-         .catch(function(error) {});
-    }
-  }
 }
