@@ -53,6 +53,7 @@ document.addEventListener("turbolinks:load", () => {
     });
 
     // 按下加入購物車按鈕後顯示動畫
+    if (!addCartForm) return;
     addCartForm.onsubmit = bookToCart.bind(addCartForm);
     function bookToCart() {
       const cart = document.querySelector(".fa-shopping-cart");
