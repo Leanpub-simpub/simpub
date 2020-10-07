@@ -47,21 +47,7 @@ class CartsController < ApplicationController
 
   def payment
     if current_cart.empty?
-<<<<<<< HEAD
-      redirect_to :root, notice: "購物車空空"
-    else
-      @order = Order.create(
-        user_id: current_user,
-        payment_term: "credit card",
-        state: "pending",
-      )
-    end
-
-    if user_signed_in?
-      @token = gateway.client_token.generate
-=======
       redirect_to :books, notice: "購物車空空"
->>>>>>> c28fb008b2bdac7b7e71e0296e27152f6a680fa7
     else
       if user_signed_in?
         @token = gateway.client_token.generate
