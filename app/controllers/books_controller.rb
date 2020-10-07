@@ -90,7 +90,6 @@ class BooksController < ApplicationController
   def wish
     current_user.wish_books << @book
     flash.now[:notice] = "書籍已加入願望清單"
-    render :show
   end
 
   # 線上編輯 action
