@@ -5,13 +5,13 @@ import "highlightjs/styles/github"
 import axios from 'axios'
 
 window.addEventListener('turbolinks:load',()=>{
-  if(document.querySelector('#sample')){
+  if(document.querySelector('#sampleshow')){
     let token = document.querySelector("meta[name=csrf-token]").content
     axios.defaults.headers.common['X-CSRF-Token']= token
     let chapter = true
     let section = false
     let bookName= document.querySelector('.book_name').textContent
-    let target = document.querySelector('.chapter').textContent
+    let target = document.querySelector('#sample').textContent
     let params = { bookName:bookName, target:target, chapter:chapter,section:section,chapterName:target}
     axios({
       method: 'post',
@@ -20,7 +20,7 @@ window.addEventListener('turbolinks:load',()=>{
     })
     .then( (result)=>{
       let content = result.data['content']
-      console.log(123)
+      console.log(content)
       mdToHTML(content)
     })
     .catch(function(err){
@@ -29,8 +29,7 @@ window.addEventListener('turbolinks:load',()=>{
   }
 
   function mdToHTML(text){
-      tempForMdToHtml = text
-      let target = document.getElementById('samplehtml')
+      let target = document.getElementById('sampleshow')
       let md = markdownit(({
         html:           false,
         linkify:        true,

@@ -1,9 +1,4 @@
-<h1 class="book_name text-center"><%=  @book.title %><span></span></h1>
-<div class="wrap">
-  <div class="chapter_list">
-    <div class="chapter" id="sample"><%= @json %></div>
-  </div>
+<h1 class="text-center"><span class="book_name"><%=  @book.title %></span>---<span id="sample"><%= @json %></span></h1>
 
-  <div id="targetDiv" id="samplehtml"class="flex-grow-1 px-5">
+<div id="sampleshow"  class="flex-grow-1 px-5 mx-auto">
                          <%# 給 markdown-it 塞 md to html 的東西 %>
-</div>
