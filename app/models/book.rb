@@ -15,6 +15,9 @@ class Book < ApplicationRecord
 
   has_many :book_users
   has_many :readers, through: :book_users, source: :user
+  
+  has_many :wishlists
+  has_many :wish_buyers, through: :wishlists, source: :user
 
   has_one :order_items
 
