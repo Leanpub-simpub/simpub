@@ -19,19 +19,16 @@ export default class extends Controller {
     function switchForm(select) {
       switch (select) {
         case "book-search":
-          console.log(select);
           authorSearch.classList.remove("d-flex");
           tagSearch.classList.remove("d-flex");
           bookSearch.classList.add("d-flex");
           break;
         case "author-search":
-          console.log(select);
           bookSearch.classList.remove("d-flex");
           tagSearch.classList.remove("d-flex");
           authorSearch.classList.add("d-flex");
           break;
         case "tag-search":
-          console.log(select);
           bookSearch.classList.remove("d-flex");
           authorSearch.classList.remove("d-flex");
           tagSearch.classList.add("d-flex");

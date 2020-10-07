@@ -21,7 +21,7 @@ export default class extends Controller {
       function updateItem() {
         let updatePrice = document.querySelector(".cart-price").value;
         
-        axios.patch(`http://localhost:3000/cart?index=${itemIndex}&price=${updatePrice}`)
+        axios.patch(`/cart?index=${itemIndex}&price=${updatePrice}`)
              .then(function(result) {
              // 使用 axois 跳轉頁面
                location.href = "/cart";
@@ -36,7 +36,7 @@ export default class extends Controller {
     if (window.confirm("Are you sure you want to remove this from your cart?")) {
     let itemIndex = this.data.get("index");
     
-    axios.patch(`http://localhost:3000/cart/delete?index=${itemIndex}`)
+    axios.patch(`/cart/delete?index=${itemIndex}`)
          .then(function(result) {
           // 使用 axois 跳轉頁面
            location.href = "/cart";

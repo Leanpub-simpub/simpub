@@ -15,7 +15,7 @@ document.addEventListener("turbolinks:load", () => {
   }
 
   function getCartItems() {
-    fetch("http://localhost:3000/cart.json")
+    fetch("/cart.json")
       .then(response => response.json())
       .then(cartItems => {
         let cartBubble = document.querySelector(".fa-shopping-cart").firstElementChild;
