@@ -54,7 +54,6 @@ export default class extends Controller {
                   const cartInfo = result.data[0][1];
                   const cartPrice = cartInfo[index].cart_price;
                   userPay.value = `${cartPrice}`;
-                  //  authorEarns.value = `$${cartPrice * 2}`;
 
                   // 設定初始化價格
                   setPricePay();
@@ -62,7 +61,7 @@ export default class extends Controller {
                 .then(function(error) {});
 
          })
-         .catch(function(error) {});
+         .then(function(error) {});
       
     // "User Pay" slider 拖動時呼叫
     userPay.addEventListener("input", () => {

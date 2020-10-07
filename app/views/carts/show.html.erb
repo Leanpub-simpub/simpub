@@ -43,7 +43,7 @@
               <button class="item-edit" data-action="cart#edit">edit</button>
               
               <span class="mx-2">|</span>
-              <%= link_to "Move to Wishlist", wish_book_path(item.book), method: :post, remote: true %>
+              <button data-controller="cartwish" data-action="cartwish#add" data-cartwish-id="<%= item.book.id %>" data-cartwish-index="<%= index %>">Move to Wishlist</button>
               <span class="mx-2">|</span>
               <a href="" data-action="cart#delete">Delete</a>
             </div>
