@@ -40,12 +40,11 @@
               <%= link_to item.book.title, book_path(item.book) %>
             </div>
             <div>
-              <button class="item-edit" data-action="cart#edit">edit</button>
-              
+              <button class="item-edit border-0 bg-transparent" data-action="cart#edit">edit</button>
               <span class="mx-2">|</span>
-              <button data-controller="cartwish" data-action="cartwish#add" data-cartwish-id="<%= item.book.id %>" data-cartwish-index="<%= index %>">Move to Wishlist</button>
+              <button class="border-0 bg-transparent" data-controller="cartwish" data-action="cartwish#add" data-cartwish-id="<%= item.book.id %>" data-cartwish-index="<%= index %>">Move to Wishlist</button>
               <span class="mx-2">|</span>
-              <a href="" data-action="cart#delete">Delete</a>
+              <button class="border-0 bg-transparent" data-action="cart#delete">Delete</button>
             </div>
           </td>
           <td style="font-size: large" class="col-2">
