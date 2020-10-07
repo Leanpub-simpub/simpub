@@ -11,24 +11,29 @@ export default class extends Controller {
 
   
   edit() {
-    let cartItems = document.querySelector("#cart-items");
-    cartItems.addEventListener("click", e => {
-      if (!e.target.classList.contains("item-edit")) { return; }
-      let itemIndex = e.target.dataset.index;
-      let updateForm = document.querySelector(".update-price-form");
+    // 禁止視窗捲動
+    document.documentElement.style.overflow = "hidden";
+    const modal = document.querySelector(".cart-modal");
+    modal.classList.remove("x");
+    
+    // let cartItems = document.querySelector("#cart-items");
+    // cartItems.addEventListener("click", e => {
+    //   if (!e.target.classList.contains("item-edit")) { return; }
+    //   let itemIndex = e.target.dataset.index;
+    //   let updateForm = document.querySelector(".update-price-form");
 
-      updateForm.onsubmit = updateItem.bind(updateForm)
-      function updateItem() {
-        let updatePrice = document.querySelector(".cart-price").value;
+    //   updateForm.onsubmit = updateItem.bind(updateForm)
+    //   function updateItem() {
+    //     let updatePrice = document.querySelector(".cart-price").value;
         
-        axios.patch(`/cart?index=${itemIndex}&price=${updatePrice}`)
-             .then(function(result) {
-             // 使用 axois 跳轉頁面
-               location.href = "/cart";
-             })
-             .catch(function(error) {});
-      }
-    });
+    //     axios.patch(`/cart?index=${itemIndex}&price=${updatePrice}`)
+    //          .then(function(result) {
+    //          // 使用 axois 跳轉頁面
+    //            location.href = "/cart";
+    //          })
+    //          .catch(function(error) {});
+    //   }
+    // });
   }
 
 

@@ -40,9 +40,7 @@
               <%= link_to item.book.title, book_path(item.book) %>
             </div>
             <div>
-              <%= link_to "edit", "#slider-modal", remote: true, data: {toggle: "modal", index: index, action: "cart#edit"}, class: "item-edit" %>
-              <%= item.book %>
-              <%#= render "modal", book: item.book %>
+              <button class="item-edit" data-action="cart#edit">edit</button>
               
               <span class="mx-2">|</span>
               <%= link_to "Move to Wishlist", wish_book_path(item.book), method: :post, remote: true %>
