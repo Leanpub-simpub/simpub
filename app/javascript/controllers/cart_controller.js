@@ -144,10 +144,7 @@ export default class extends Controller {
     let itemIndex = this.data.get("index");
     
     axios.patch(`/cart/delete?index=${itemIndex}`)
-         .then(function(result) {
-          // 使用 axois 跳轉頁面
-           location.href = "/cart";
-         })
+         .then(function(result) { location.reload(); })
          .catch(function(error) {});
     }
   }
