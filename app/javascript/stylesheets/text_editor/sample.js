@@ -5,28 +5,28 @@ import "highlightjs/styles/github"
 import axios from 'axios'
 
 window.addEventListener('turbolinks:load',()=>{
-
-  let token = document.querySelector("meta[name=csrf-token]").content
-  axios.defaults.headers.common['X-CSRF-Token']= token
-  let chapter = true
-  let section = false
-  let bookName= document.querySelector('.book_name').textContent
-  let target = document.querySelector('.chapter').textContent
-  let params = { bookName:bookName, target:target, chapter:chapter,section:section,chapterName:target}
-  axios({
-    method: 'post',
-    url: '/books/get_content.json',
-    data: params
-  })
-  .then( (result)=>{
-    let content = result.data['content']
-    console.log(123)
-    mdToHTML(content)
-  })
-  .catch(function(err){
-    alert('Fail to get content')
-  })
-
+  if(document.querySelector('#sample')){
+    let token = document.querySelector("meta[name=csrf-token]").content
+    axios.defaults.headers.common['X-CSRF-Token']= token
+    let chapter = true
+    let section = false
+    let bookName= document.querySelector('.book_name').textContent
+    let target = document.querySelector('.chapter').textContent
+    let params = { bookName:bookName, target:target, chapter:chapter,section:section,chapterName:target}
+    axios({
+      method: 'post',
+      url: '/books/get_content.json',
+      data: params
+    })
+    .then( (result)=>{
+      let content = result.data['content']
+      console.log(123)
+      mdToHTML(content)
+    })
+    .catch(function(err){
+      // alert('Fail to get content')
+    })
+  }
 
   function mdToHTML(text){
       tempForMdToHtml = text

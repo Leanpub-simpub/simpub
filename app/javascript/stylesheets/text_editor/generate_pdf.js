@@ -15,8 +15,8 @@ window.addEventListener('turbolinks:load',()=>{
     
     document.querySelector('.edit_book').addEventListener('submit',(e)=>{
       e.preventDefault()
-      let target = document.querySelector('.pdf_container')
-      target.style.height='1000px'
+      let allpdf = document.querySelector('#allpdf')
+      
       let bookName = document.querySelector('#bookName').textContent
       let params = {bookName:bookName}
       let token = document.querySelector("meta[name=csrf-token]").content
@@ -34,22 +34,23 @@ window.addEventListener('turbolinks:load',()=>{
         console.log(allChapter)
         // chapter section 分開放
         for(let i=0;i<allContent.length;i++){
-          
+          let target=document.importNode(pdfTemplate.content,true)
+          allpdf.appendChild(target)
+          target = document.querySelector('.pdf_container:last-child')
           let filename = `${bookName}_${allChapter[i]}`
           mdToHTML(allContent[i],target)
-          btnDownloadPageBypfd2(target,bookName,filename)  //低標
-          target.innerHTML=""
+          btnDownloadPageBypfd2(target,bookName,filename)  //低標 
         }
+        let target=document.importNode(pdfTemplate.content,true)
+        allpdf.appendChild(target)
+        target = document.querySelector('.pdf_container:last-child')
         allContent=allContent.join("\n")
         mdToHTML(allContent,target)
-        btnDownloadPageBypfd2(target,bookName,bookName)
-        target.innerHTML=""
+        btnDownloadPageBypfd2(target,bookName,bookName,e.target)
       })
       .catch(function(err){
         console.log(err)
       })
-      target.style.height='0px'
-      e.submit()
     })
     
     
@@ -86,7 +87,7 @@ window.addEventListener('turbolinks:load',()=>{
       target.innerHTML=result
     }
 
-    function btnDownloadPageBypfd2(pdf_container,bookName,filename){ //引數是'#pdf_container' 或 '.pdf_container',注意帶字首
+    function btnDownloadPageBypfd2(pdf_container,bookName,filename, form = null){ //引數是'#pdf_container' 或 '.pdf_container',注意帶字首
       console.log(pdf_container)
       pdf_container.classList.add('pdf'); //pdf的css在下一個程式碼中,作用是使得列印的內容能在pdf中完全顯示
 	    var cntElem = pdf_container;
@@ -140,14 +141,14 @@ window.addEventListener('turbolinks:load',()=>{
 	    	     	}
              }
             //  doc.save(`${filename}`+ '.pdf');//儲存為pdf檔案
-             pdftoserver(doc.output('blob'),bookName,filename)
+             pdftoserver(doc.output('blob'),bookName,filename, form)
 	    	  }
 	    	 },
 	    });
 	    pdf_container.classList.remove('pdf');
     }
 
-    function pdftoserver(pdf,bookName,filename){
+    function pdftoserver(pdf,bookName,filename, form = null){
       let token = document.querySelector("meta[name=csrf-token]").content
       axios.defaults.headers.common['X-CSRF-Token']= token 
       let formData = new FormData();
@@ -162,6 +163,7 @@ window.addEventListener('turbolinks:load',()=>{
       })
       .then( result=>{
         console.log(result.data['message'])
+        if (form){form.submit()} 
       })
       .catch(function(err){
         
