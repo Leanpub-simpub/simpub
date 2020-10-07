@@ -1,5 +1,5 @@
 class Users::ProfilesController < ApplicationController
-  before_action :authenticate_user!, only: [:follow, :followship]
+  before_action :authenticate_user!, except: [:show]
   before_action :find_user
 
   def show
@@ -14,6 +14,9 @@ class Users::ProfilesController < ApplicationController
   def followship
     @followers = current_user.followers
     @followees = current_user.followees
+  end
+
+  def wishlist
   end
   
   private
