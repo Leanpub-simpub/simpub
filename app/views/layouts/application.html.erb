@@ -31,10 +31,12 @@
 	</head>
 	<body>
 		<%= render "shared/frontend/navbar" %>
+		<%= render "shared/frontend/cart_modal" %>
 		<p class="notice text-center"><%= notice %></p>
 		<p class="alert text-center"><%= alert %></p>
     
 		<%= yield %>
+		
 		<%= render "shared/frontend/footer" %>
 	</body>
 </html>

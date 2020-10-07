@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   get "/u/:username", to: "users/profiles#show", as: "profile"
   post "/u/:username", to: "users/profiles#follow", as: "follow"
+  get "/u/:username/wishlist", to: "users/profiles#wishlist", as: "wishlist"
+  delete "/u:username/unwish", to: "users/profiles#unwish", as: "unwish"
   
   get "/dash_board/followship", to: "users/profiles#followship", as: "followship"
   get "/dash_board/books", to: "users/authors#show"
@@ -31,10 +33,11 @@ Rails.application.routes.draw do
       patch :publish
       post :add_chapter
       post :add_section
-      post :sample
-      post :table_of_contents
+      get :sample
+      get :table_of_contents
       post :read
       patch :unpublish
+      post :wish
     end
     
     collection do
@@ -44,13 +47,14 @@ Rails.application.routes.draw do
       post :rename
       post :delete_chapter_or_section
       post :all_content
+      post :upload_pdf
     end
   end
 
   get "/purchases", to: "users/purchase#index"
   get "/purchases_show", to: "users/purchase#show"
 
-  resource :cart, only:[:show, :update, :destroy] do
+  resource :cart, only:[:show, :edit, :update, :destroy] do
     collection do
       post :add, path:'add/:id'
       get :payment

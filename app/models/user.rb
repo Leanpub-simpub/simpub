@@ -29,6 +29,11 @@ class User < ApplicationRecord
   has_many :following_users, foreign_key: :followee_id, class_name: "Followship"
   has_many :followers, through: :following_users
 
+  has_many :wishlists
+  has_many :wish_books, through: :wishlists, source: :book
+
+  has_many :notifications, foreign_key: :recipient_id
+
   def self.from_omniauth(auth, signed_in_resource = nil)
     identity = Identity.find_for_oauth(auth)
     user = signed_in_resource ? signed_in_resource : identity.user
