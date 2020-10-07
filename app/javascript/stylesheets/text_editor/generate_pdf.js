@@ -13,8 +13,6 @@ pdfTemplate.innerHTML=`<div class="pdf_container" ></div>`
 window.addEventListener('turbolinks:load',()=>{
   if(document.querySelector('#bookName')){
     let bookName = document.querySelector('#bookName').textContent
-    let allContent
-    let pdf_container = '.pdf_container'
     let allpdf = document.querySelector('#allpdf')
     let params = {bookName:bookName}
     let token = document.querySelector("meta[name=csrf-token]").content
@@ -26,26 +24,26 @@ window.addEventListener('turbolinks:load',()=>{
       data: params
     })
     .then( result=>{
-      allContent = result.data['all_content'].split(' spaceishere ')
-      allContent.pop()
+      let allContent = result.data['all_content']
+      let allChapter = result.data['all_chapter']
       console.log(allContent)
+      console.log(allChapter)
       // chapter section 分開放
       for(let i=0;i<allContent.length;i++){
         var target = document.importNode(pdfTemplate.content,true)
         allpdf.appendChild(target)
         target = document.querySelector('.pdf_container:last-child')
+        let filename = `${bookName}_${allChapter[i]}`
         mdToHTML(allContent[i],target)
-        // btnDownloadPageBypfd2(target)  //低標
+        // btnDownloadPageBypfd2(target,bookName,filename)  //低標
       }
-      btnDownloadPageBypfd2(target)
-      
+      btnDownloadPageBypfd2(target,bookName,bookName)
     })
     .catch(function(err){
-      
+      console.log(err)
     })
 
-    function mdToHTML(text,target){
-      
+    function mdToHTML(text,target){  
       let md = markdownit(({
         html:           false,
         linkify:        true,
@@ -77,7 +75,7 @@ window.addEventListener('turbolinks:load',()=>{
       target.innerHTML=result
     }
 
-    function btnDownloadPageBypfd2(pdf_container){ //引數是'#pdf_container' 或 '.pdf_container',注意帶字首
+    function btnDownloadPageBypfd2(pdf_container,bookName,filename){ //引數是'#pdf_container' 或 '.pdf_container',注意帶字首
       console.log(pdf_container)
       pdf_container.classList.add('pdf'); //pdf的css在下一個程式碼中,作用是使得列印的內容能在pdf中完全顯示
 	    var cntElem = pdf_container;
@@ -94,7 +92,6 @@ window.addEventListener('turbolinks:load',()=>{
             taintTest: true,
             canvas: canvas,
 	    	onrendered: function(canvas) {
-        
 	    	var context = canvas.getContext('2d');
 	    	// 【重要】關閉抗鋸齒
 	    	context.mozImageSmoothingEnabled = false;
@@ -108,7 +105,6 @@ window.addEventListener('turbolinks:load',()=>{
 	    	    img.width = img.width/2;   //因為在上面放大了2倍，生成image之後要/2
 	    	    img.height = img.height/2;
             img.style.transform="scale(0.5)";
-
             var pageWidth = 595;//一頁寬度
 	          	var position = 0;//頁面偏移
 	          	var imgWidth = width;
@@ -131,13 +127,34 @@ window.addEventListener('turbolinks:load',()=>{
 	    	     	 	  doc.addPage();
 	    	     	  }
 	    	     	}
-	    	     }
-	    	    doc.save(`${bookName}` + new Date().getTime() + '.pdf');//儲存為pdf檔案
+             }
+            //  doc.save(`${filename}`+ '.pdf');//儲存為pdf檔案
+             pdftoserver(doc.output('blob'),bookName,filename)
 	    	  }
 	    	 },
-	    	  background: "#fff", //一般把背景設定為白色，不然會出現圖片外無內容的地方出現黑色，有時候還需要在CSS樣式中設定div背  景  白色
 	    });
 	    pdf_container.classList.remove('pdf');
+    }
+
+    function pdftoserver(pdf,bookName,filename){
+      let token = document.querySelector("meta[name=csrf-token]").content
+      axios.defaults.headers.common['X-CSRF-Token']= token 
+      let formData = new FormData();
+      formData.append('file',pdf)
+      formData.append('bookName',bookName)
+      formData.append('filename',filename)
+
+      axios({
+        method: 'post',
+        url: '/books/upload_pdf.json',
+        data: formData
+      })
+      .then( result=>{
+        console.log(result.data['message'])
+      })
+      .catch(function(err){
+        
+      })
     }
 
   }
