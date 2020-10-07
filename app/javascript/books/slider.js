@@ -67,13 +67,16 @@ document.addEventListener("turbolinks:load", () => {
       
       let endW = cart.getBoundingClientRect().width;
       let endH = cart.getBoundingClientRect().height;
-      let endX = endW / 2 + cart.getBoundingClientRect().x;
-      let endY = endH / 2 + cart.getBoundingClientRect().y;
+      // let endX = endW / 2 + cart.getBoundingClientRect().x;
+      // let endY = endH / 2 + cart.getBoundingClientRect().y;
+      let endX = cart.getBoundingClientRect().x;
+      let endY = cart.getBoundingClientRect().y;
 
       coverBubble.classList.add("cover-bubble");
       cover.parentElement.appendChild(coverBubble);
 
-      gsap.to(".cover-bubble", {duration: 1, scale: .08, x: `${endX - startX}px`, y: `${endY - startY}px`, opacity: .5})
+      gsap.to(".cover-bubble", {duration: .5, scaleX: .05, scaleY: .05})
+      gsap.to(".cover-bubble", {delay: .5, duration: .5, x: `${endX - startX}px`, y: `${endY - startY}px`, opacity: .5})
 
       // 動畫結束後刪除該物件
       setTimeout(() => {
