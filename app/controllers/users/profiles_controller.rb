@@ -18,6 +18,11 @@ class Users::ProfilesController < ApplicationController
 
   def wishlist
     @books = current_user.wish_books
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @books.pluck(:slug) }
+    end
   end
   
   private

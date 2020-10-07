@@ -64,10 +64,12 @@
         </i>
       <% end %>
       <% if user_signed_in? %>
-      <!-- 願望清單 -->
-        <div class="nav-icon">
+        <!-- 願望清單 -->
+        <div class="nav-icon" data-controller="wish" data-wish-username="<%= current_user.username %>">
           <%= link_to wishlist_path(current_user.username), class: "nav-icon" do %>
-            <i class="fas fa-heart mx-2"></i>
+            <i class="fas fa-heart mx-2">
+              <div class="x" data-target="wish.bubble"></div>
+            </i>
           <% end %>
         </div>
         <!-- 通知 -->
