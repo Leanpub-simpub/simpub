@@ -33,8 +33,8 @@ Rails.application.routes.draw do
       patch :publish
       post :add_chapter
       post :add_section
-      post :sample
-      post :table_of_contents
+      get :sample
+      get :table_of_contents
       post :read
       patch :unpublish
       post :wish
@@ -47,6 +47,7 @@ Rails.application.routes.draw do
       post :rename
       post :delete_chapter_or_section
       post :all_content
+      post :upload_pdf
     end
   end
 
