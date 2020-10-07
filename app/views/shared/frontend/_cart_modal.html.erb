@@ -1,32 +1,64 @@
 <div class="cart-modal x" data-controller="modal" data-target="modal.body">
   <div class="modal-content">
-    <div class="modal-header">
-      <h3 class="modal-title">Edit Purchase</h3>
-      <button type="button" class="close" data-dismiss="modal" data-action="modal#close" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    
-    <div class="modal-body">
-      <div class="row">
-        <!-- 書本封面 -->
-        <div class="col-6">
-          <%#= render partial: "shared/frontend/book_cover", locals: {book: book, size: :large} %>
-          <div><%#= book.title %></div>
-          <div><%#= book.authors[0].name %></div>
-        </div>
-
-        <div class="col-6">
-          <!-- Slider -->
-          <%#= render partial: "shared/frontend/price_slider", locals: {book: book} %>
-          <!-- 更新價格按鈕 -->
-          <div class="update-price mt-auto">
-            <span>YOU PAY</span>
-            <span class="hint">(US$)</span>
-            <form action="" class="update-price-form">
-              <input type="text", class="cart-price text-center d-block mt-1 mb-4">
-              <input type="submit" value="Update" class="update-btn btn btn-danger main-btn">
-            </form>
+    <div class="col-lg-6 mx-auto">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit Purchase</h3>
+        <button type="button" class="close" data-dismiss="modal" data-action="modal#close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        <div class="row">
+          <!-- 書本封面 -->
+          <div class="col-4">
+            <div class="modal-body-img"></div>
+            <div class="modal-body-title"></div>
+            <div class="modal-body-author"></div>
+          </div>
+  
+          <div class="col-8">
+            <!-- Slider -->
+            <!-- 最大最小價格 -->
+            <div class="d-flex book-price">
+              <div class="mr-3">
+                <p class="modal-min text-center mb-0"></p>
+                <p>MINIMUM PRICE</p>
+              </div>
+              <div>
+                <p class="modal-max text-center mb-0"></p>
+                <p>SUGGESTED PRICE</p>
+              </div>
+            </div>
+  
+            <!-- Slider -->
+            <div class="slider mb-4">
+              <p class="mb-1">YOU PAY</p>
+              <div class="user-pay d-flex">
+                <div class="user-pay-box">
+                  <span class="modal-user-pay-show">$</span>
+                </div>
+                <input id="modal-user-pay" class="w-100 mb-3" type="range" step="0.01">
+              </div>
+  
+              <p class="mb-1">AUTHOR EARNS</p>
+              <div class="author-earns d-flex">
+                <div class="author-earns-box">
+                  <span class="modal-author-earns-show">$</span>
+                </div>
+                <input id="moadl-author-earns" class="w-100" type="range" step="0.01">
+              </div>
+            </div>
+  
+            <!-- 更新價格按鈕 -->
+            <div class="update-price mt-auto">
+              <span>YOU PAY</span>
+              <span class="hint">(US$)</span>
+              <form action="" class="update-price-form" data-action="modal#update">
+                <input type="text", class="modal-cart-price text-center d-block mt-1 mb-4" data-target="modal.price">
+                <input type="submit" value="Update" class="update-btn btn btn-danger main-btn">
+              </form>
+            </div>
           </div>
         </div>
       </div>

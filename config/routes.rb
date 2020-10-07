@@ -53,7 +53,7 @@ Rails.application.routes.draw do
   get "/purchases", to: "users/purchase#index"
   get "/purchases_show", to: "users/purchase#show"
 
-  resource :cart, only:[:show, :update, :destroy] do
+  resource :cart, only:[:show, :edit, :update, :destroy] do
     collection do
       post :add, path:'add/:id'
       get :payment

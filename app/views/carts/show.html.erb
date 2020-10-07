@@ -27,10 +27,10 @@
       </thead>
       <tbody>
       <% current_cart.items.each.with_index do |item, index| %>
-        <tr class="row" data-controller="cart" data-cart-index="<%= index %>">
+        <tr class="row" data-controller="cart" data-cart-index="<%= index %>" data-cart-book="<%= item.book.id %>">
           <td class="col-2">
             <div style="font-size:large" class="font-weight-bold" >
-              <%= link_to book_path(item.book) do %>
+              <%= link_to book_path(item.book), data: {target: "cart.cover"} do %>
                 <%= render partial: "shared/frontend/book_cover", locals: {book: item.book, size: :small} %>
               <% end %>
             </div>

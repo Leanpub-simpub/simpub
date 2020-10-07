@@ -1,9 +1,13 @@
 import { Controller } from "stimulus";
+import axios from "axios";
 
 export default class extends Controller {
-  static targets = [ "body" ];
+  static targets = [ "body", "price" ];
 
   connect() {
+    const token = document.querySelector("meta[name=csrf-token]").content;
+    axios.defaults.headers.common["X-CSRF-Token"] = token;
+
     // 使用 esc 鍵關閉 modal
     const body = this.bodyTarget;
     
@@ -19,5 +23,16 @@ export default class extends Controller {
     document.documentElement.style.overflow = "auto";
     const body = this.bodyTarget;
     body.classList.add("x");
+  }
+
+  update() {
+    const index = this.data.get("index");
+    const price = this.priceTarget.value;
+
+    axios.patch(`/cart?index=${index}&price=${price}`)
+         .then(function(result) {
+           location.href = "/cart";
+         })
+         .then(function(error) {})
   }
 }
