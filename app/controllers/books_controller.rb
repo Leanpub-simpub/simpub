@@ -8,9 +8,7 @@ class BooksController < ApplicationController
   def index
     @books = Book.published_books
 
-    if params[:search].present?
-      @books = @books.with_search(params[:search])
-    elsif params[:book_search].present?
+    if params[:book_search].present?
       @books = @books.book_search(params[:book_search])
     elsif params[:author_search].present?
       @books = @books.author_search(params[:author_search])
