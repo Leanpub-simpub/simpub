@@ -17,6 +17,7 @@ class Users::ProfilesController < ApplicationController
   end
 
   def wishlist
+    @books = current_user.wish_books
   end
   
   private

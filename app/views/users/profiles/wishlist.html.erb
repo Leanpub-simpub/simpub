@@ -1,18 +1,65 @@
 <section class="txt container">
   <h2>Wish List for <%= current_user.name %></h2>
 
-  <div class="row">
-    <div class="col-6 mx-auto row">
-      <div class="text-right ml-auto cover-box">
-        <img src="https://picsum.photos/100/160/?random=1">
-      </div>
-      <div class="pl-3 mr-auto my-auto">
-        <p>title</p>
-        <div>
-          <button>Move to cart</button>
-          <button>Remove from your wish list</button>
+  <% @books.each do |book| %>
+    <div class="row">
+      <div class="col-12 col-lg-8 mx-auto row">
+        <div class="col-4 text-right ml-auto cover-box cover-box">
+          <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
+        </div>
+        <div class="col-8 pl-3 mr-auto my-auto">
+          <p><%= book.title %></p>
+          <div>
+            <%= link_to "Move to cart", "#slider-modal", remote: true, data: {toggle: "modal"}, class: "item-edit main-button btn" %>
+
+            <div id="slider-modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h3 class="modal-title">Edit Purchase</h3>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    
+                    <div class="modal-body">
+                      <div class="row">
+                        <!-- 書本封面 -->
+                        <div class="col-6">
+                          <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :large} %>
+                          <div><%= book.title %></div>
+                          <div><%= book.authors[0].name %></div>
+                        </div>
+
+                        <div class="col-6">
+                          <!-- Slider -->
+                          <%= render partial: "shared/frontend/price_slider", locals: {book: book} %>
+                          <!-- 加入購物車按鈕 -->
+                          <div class="add-to-cart-price mt-auto">
+                            <span>YOU PAY</span>
+                            <span class="hint">(US$)</span>
+                            <%= form_with url: add_cart_path(book.id), class: "add-cart-form" do |f| %>
+                              <div>
+                                <%= f.text_field :cart_price, class: "cart-price text-center mt-1 mb-4" %>
+                              </div>
+                              <div>
+                                <%= f.submit "Add Ebook to Cart", id: "wish-to-cart", class: "add-to-cart-btn btn btn-danger main-btn" %>
+                                <button class="btn btn-danger main-btn wait-btn x" disabled>Please wait...</button>
+                              </div>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            
+            <button>Remove from your wish list</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </section>

@@ -54,6 +54,18 @@ document.addEventListener("turbolinks:load", () => {
 
     // 按下加入購物車按鈕後顯示動畫
     if (!addCartForm) return;
+    if (document.querySelector("#wish-to-cart")) {
+      const wishToCart = document.querySelector("#wish-to-cart");
+      const waitBtn = document.querySelector(".wait-btn");
+      wishToCart.addEventListener("click", () => {
+        wishToCart.parentElement.removeChild(wishToCart);
+        waitBtn.classList.remove("x");
+        setTimeout(() => {
+          location.href = "/cart";
+        }, 500);
+      });
+    }
+
     addCartForm.onsubmit = bookToCart.bind(addCartForm);
     function bookToCart() {
       const cart = document.querySelector(".fa-shopping-cart");
@@ -65,8 +77,8 @@ document.addEventListener("turbolinks:load", () => {
       let startX = startW / 2 + cover.getBoundingClientRect().x
       let startY = startH / 2 + cover.getBoundingClientRect().y;
       
-      let endW = cart.getBoundingClientRect().width;
-      let endH = cart.getBoundingClientRect().height;
+      // let endW = cart.getBoundingClientRect().width;
+      // let endH = cart.getBoundingClientRect().height;
       // let endX = endW / 2 + cart.getBoundingClientRect().x;
       // let endY = endH / 2 + cart.getBoundingClientRect().y;
       let endX = cart.getBoundingClientRect().x;
