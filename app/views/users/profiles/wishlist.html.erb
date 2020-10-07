@@ -10,9 +10,9 @@
         <div class="col-8 pl-3 mr-auto my-auto">
           <p><%= book.title %></p>
           <div>
-            <%= link_to "Move to cart", "#slider-modal", remote: true, data: {toggle: "modal"}, class: "item-edit main-button btn" %>
+            <%= link_to "Move to cart", "#slider-modal-wish", remote: true, data: {toggle: "modal"}, class: "item-edit main-button btn" %>
 
-            <div id="slider-modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div id="slider-modal-wish" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -56,7 +56,7 @@
                 </div>
               </div>
             
-            <button>Remove from your wish list</button>
+            <%= link_to "Remove from your wish list", unwish_path(current_user.username, id: book), method: :delete, remote: true, class: "btn border rounded" %>
           </div>
         </div>
       </div>
