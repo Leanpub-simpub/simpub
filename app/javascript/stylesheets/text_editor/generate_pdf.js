@@ -12,36 +12,47 @@ pdfTemplate.innerHTML=`<div class="pdf_container" ></div>`
 
 window.addEventListener('turbolinks:load',()=>{
   if(document.querySelector('#bookName')){
-    let bookName = document.querySelector('#bookName').textContent
-    let allpdf = document.querySelector('#allpdf')
-    let params = {bookName:bookName}
-    let token = document.querySelector("meta[name=csrf-token]").content
-    axios.defaults.headers.common['X-CSRF-Token']= token 
     
-    axios({
-      method: 'post',
-      url: '/books/all_content.json',
-      data: params
+    document.querySelector('.edit_book').addEventListener('submit',(e)=>{
+      e.preventDefault()
+      let target = document.querySelector('.pdf_container')
+      target.style.height='1000px'
+      let bookName = document.querySelector('#bookName').textContent
+      let params = {bookName:bookName}
+      let token = document.querySelector("meta[name=csrf-token]").content
+      axios.defaults.headers.common['X-CSRF-Token']= token 
+      
+      axios({
+        method: 'post',
+        url: '/books/all_content.json',
+        data: params
+      })
+      .then( result=>{
+        let allContent = result.data['all_content']
+        let allChapter = result.data['all_chapter']
+        console.log(allContent)
+        console.log(allChapter)
+        // chapter section 分開放
+        for(let i=0;i<allContent.length;i++){
+          
+          let filename = `${bookName}_${allChapter[i]}`
+          mdToHTML(allContent[i],target)
+          btnDownloadPageBypfd2(target,bookName,filename)  //低標
+          target.innerHTML=""
+        }
+        allContent=allContent.join("\n")
+        mdToHTML(allContent,target)
+        btnDownloadPageBypfd2(target,bookName,bookName)
+        target.innerHTML=""
+      })
+      .catch(function(err){
+        console.log(err)
+      })
+      target.style.height='0px'
+      e.submit()
     })
-    .then( result=>{
-      let allContent = result.data['all_content']
-      let allChapter = result.data['all_chapter']
-      console.log(allContent)
-      console.log(allChapter)
-      // chapter section 分開放
-      for(let i=0;i<allContent.length;i++){
-        var target = document.importNode(pdfTemplate.content,true)
-        allpdf.appendChild(target)
-        target = document.querySelector('.pdf_container:last-child')
-        let filename = `${bookName}_${allChapter[i]}`
-        mdToHTML(allContent[i],target)
-        // btnDownloadPageBypfd2(target,bookName,filename)  //低標
-      }
-      btnDownloadPageBypfd2(target,bookName,bookName)
-    })
-    .catch(function(err){
-      console.log(err)
-    })
+    
+    
 
     function mdToHTML(text,target){  
       let md = markdownit(({
@@ -108,7 +119,7 @@ window.addEventListener('turbolinks:load',()=>{
             var pageWidth = 595;//一頁寬度
 	          	var position = 0;//頁面偏移
 	          	var imgWidth = width;
-               var leftWidth = width
+               var leftWidth = 720
 	             var imgHeight = height;
               var doc = new jsPDF('p', 'pt', 'a4');
 	    	     if(pageWidth >= leftWidth){//不需要分頁，頁面高度>=未列印內容高度
@@ -119,8 +130,8 @@ window.addEventListener('turbolinks:load',()=>{
 	    	     	while(leftWidth>0){
                 doc.addImage(imgData, 'JPEG', position, 25, imgWidth*0.8, imgHeight*0.8);
                 console.log(`imgWidth*0.6:${imgWidth*0.6}`)
-                leftWidth -= pageWidth; 
-	    	     	  position -= 595; 
+                leftWidth -= 360; 
+	    	     	  position -= 575; 
 	    	     	  //避免新增空白頁
 	    	     	  if(leftWidth > 0){
 	    	     	 	  console.log("新增空白頁");
