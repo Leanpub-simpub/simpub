@@ -9,14 +9,12 @@
     animation: shaking 1s infinite;
   }
 
-  .fa-shopping-cart {
+  .fas {
     position: relative;
-  }
-  .fa-shopping-cart {
     .x {
       display: none;
     }
-    .cart-bubble {
+    .bubble {
       text-align: center;
       line-height: 16px;
       font-size: 8px;

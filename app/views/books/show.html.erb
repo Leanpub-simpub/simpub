@@ -70,7 +70,7 @@
         <% end %>
       </div>
 
-      <%# <%= link_to "Add to Wish List", "#", class: "add-to-wishlist" %>
+      <button class="add-to-wishlist" data-controller="bookwish", data-action="bookwish#add" data-bookwish-id="<%= @book.id %>">Add to Wish List</button>
 		</div>
 	</div>
 </div>

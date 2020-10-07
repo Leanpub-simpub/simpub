@@ -1,4 +1,4 @@
-<nav class="layout-navbar navbar txt">
+<nav class="layout-navbar navbar txt sticky-top">
   <!-- 品牌 logo -->
   <div class="col-1">
     <a href="/" class="navbar-brand">  
@@ -64,13 +64,26 @@
         </i>
       <% end %>
       <% if user_signed_in? %>
-      <!-- 願望清單 -->
-        <div class="nav-icon">
-          <i class="fas fa-heart mx-2"></i>
+        <!-- 願望清單 -->
+        <div class="nav-icon" data-controller="wish" data-wish-username="<%= current_user.username %>">
+          <%= link_to wishlist_path(current_user.username), class: "nav-icon" do %>
+            <i class="fas fa-heart mx-2">
+              <div class="x" data-target="wish.bubble"></div>
+            </i>
+          <% end %>
         </div>
-      <!-- 通知 -->
-        <div class="nav-icon">
-          <i class="fas fa-bell mx-2"></i>
+        <!-- 通知 -->
+        <div class="z" data-controller="notify">
+          <div class="nav-icon">
+            <%= link_to "", id: "notifDropdown", class: "dropdown", role: "button", data: {toggle: "dropdown", action: "notify#show"} do %>
+            <!-- <button id="notiDropdown" class="dropdown" role="button", data-toggle="dropdown" data-action="notify#show"> -->
+              <i class="fas fa-bell mx-2">
+                <div class="x" data-target="notify.bubble"></div>
+              </i>
+            <!-- </button> -->
+            <div class="dropdown-menu position-fixed" aria-labelledby="notifDropdown" data-target="notify.menu"></div>
+            <% end %>
+          </div>
         </div>
       <% else %>
       <!-- 註冊&登入 -->

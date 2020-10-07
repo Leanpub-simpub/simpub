@@ -23,10 +23,10 @@ document.addEventListener("turbolinks:load", () => {
         if (cartItems[0] && cartItems[0][1].length !== 0) {
           let cartCount = cartItems[0][1].length;
           
-          cartBubble.classList.add("cart-bubble");
+          cartBubble.classList.add("bubble");
           cartBubble.textContent = cartCount;
         } else {
-          cartBubble.classList.remove("cart-bubble");
+          cartBubble.classList.remove("bubble");
         }
       });
   }

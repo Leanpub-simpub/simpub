@@ -8,9 +8,7 @@ class BooksController < ApplicationController
   def index
     @books = Book.published_books
 
-    if params[:search].present?
-      @books = @books.with_search(params[:search])
-    elsif params[:book_search].present?
+    if params[:book_search].present?
       @books = @books.book_search(params[:book_search])
     elsif params[:author_search].present?
       @books = @books.author_search(params[:author_search])
@@ -87,6 +85,11 @@ class BooksController < ApplicationController
   def unpublish
     @book.remove!
     redirect_to dash_board_books_path, notice: "#{@book.title} 已下架"
+  end
+
+  def wish
+    current_user.wish_books << @book
+    flash.now[:notice] = "書籍已加入願望清單"
   end
 
   # 線上編輯 action
