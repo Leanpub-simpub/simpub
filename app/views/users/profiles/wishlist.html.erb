@@ -2,7 +2,7 @@
   <h2>Wish List for <%= current_user.name %></h2>
 
   <% @books.each do |book| %>
-    <div class="row" data-controller="wishlist" data-wishlist-book="<%= book.id %>">
+    <div class="row" data-controller="wishlist" data-wishlist-book="<%= book.id %>" data-wishlist-username="<%= current_user.username%>">
       <div class="col-12 col-lg-8 mx-auto row">
         <div class="col-4 text-right ml-auto cover-box cover-box" data-target="wishlist.cover">
           <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>

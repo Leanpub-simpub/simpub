@@ -4,7 +4,7 @@ document.addEventListener("turbolinks:load", () => {
     const userPayShow = document.querySelector(".user-pay-show");
     const authorEarns = document.querySelector("#author-earns");
     const authorEarnsShow = document.querySelector(".author-earns-show");
-    const cartPrice = document.querySelector(".cart-price");
+    const cartPrice = document.querySelector("#cart_price");
     const addCartForm = document.querySelector(".add-cart-form");
 
     // 設定初始化價格
@@ -66,8 +66,7 @@ document.addEventListener("turbolinks:load", () => {
       });
     }
 
-    addCartForm.onsubmit = bookToCart.bind(addCartForm);
-    function bookToCart() {
+    addCartForm.addEventListener("submit", () => {
       const cart = document.querySelector(".fa-shopping-cart");
       const cover = document.querySelector(".cover-img");
       const coverBubble = cover.cloneNode(true);
@@ -94,8 +93,7 @@ document.addEventListener("turbolinks:load", () => {
       setTimeout(() => {
         cover.parentElement.removeChild(coverBubble);
       }, 1000);
-    }
-
+    });
 
 
     function setPricePay() {

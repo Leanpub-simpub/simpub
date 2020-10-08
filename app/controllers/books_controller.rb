@@ -2,9 +2,8 @@ class BooksController < ApplicationController
   require "aws-sdk-s3"
   require "json"
   
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :editor_new, :editor_edit]
-  # before_action :find_book, except: [:index, :new, :create]
-  before_action :find_book, only: [:show, :new, :create, :edit, :update, :pricing, :publish, :onpublish, :wish]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :pricing, :publish, :unpublish, :editor_new, :editor_edit]
+  before_action :find_book, only: [:show, :edit, :update, :pricing, :publish, :unpublish, :wish]
 
   def index
     @books = Book.published_books
@@ -90,7 +89,7 @@ class BooksController < ApplicationController
 
   def wish
     current_user.wish_books << @book
-    flash.now[:notice] = "書籍已加入願望清單"
+    flash[:notice] = "書籍已加入願望清單"
   end
 
   # 線上編輯 action
