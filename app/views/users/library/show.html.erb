@@ -41,7 +41,7 @@
               <p><%= link_to "下載", book.md_url,class:"uploadWholeBook", target: "_blank" %></p>
             <% else %>
               <%= link_to "Read on Simpub",read_book_path(book), class:"txt" %>
-              <p>尚未上傳 PDF</p> 
+              <div class="download" >Download</div> 
               <!-- production: 已上傳 PDF 才能允許上架 -->
             <% end %>
           </div>

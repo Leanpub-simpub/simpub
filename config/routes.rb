@@ -45,6 +45,7 @@ Rails.application.routes.draw do
       post :delete_chapter_or_section
       post :all_content
       post :upload_pdf
+      post :download_pdf
     end
   end
 
