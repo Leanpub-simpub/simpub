@@ -133,9 +133,9 @@
             <a href="/purchases" class="nav-drop-item container-fluid">Purchases</a>
           </div>
           
-          <%# 檢視個人主頁 %>
+          <%# 編輯個人主頁 %>
           <div class="py-2 d-flex">
-            <%= link_to "Profile", profile_path(current_user.username), class: "nav-drop-item container-fluid"%>
+            <%= link_to "Edit Profile", user_dashboard_path, class:"nav-drop-item container-fluid" %>
           </div>
 
           <%# 追隨 %>

@@ -21,7 +21,6 @@
                     </div>
                   </div>
                 </div>
-
               </div>
 
               <%= f.hidden_field :avatar, value: current_user.cached_avatar_data %>
@@ -33,7 +32,6 @@
               <div class="tab-content pt-3">
                 <div class="tab-pane active">
                     
-
                   <div class="row">
                     <div class="col">
                       <div class="row">
@@ -43,7 +41,8 @@
                             <%= f.text_field :name, autofocus: true, class:"form-control" %>
                           </div>
                         </div>
-                          <!-- checkbox 暫時沒有功能，先做畫面 -->
+                        
+                        <!-- checkbox 暫時沒有功能，先做畫面 -->
                         <div class="col">
                           <div class="form-group">
                             <%= f.label :username, "USERNAME" %><br>
@@ -70,7 +69,7 @@
                         </div>
                       </div>
 
-                          <!-- checkbox 暫時沒有功能，先做畫面 -->
+                      <!-- checkbox 暫時沒有功能，先做畫面 -->
                       <div class="row">
                         <div class="col">
                           <div class="form-group">
@@ -103,14 +102,15 @@
                       </div>
 
                       <!-- 密碼驗證
-                      <div class="row">
-                        <div class="col">
-                          <div class="form-group">
-                            <%= f.label :password_confirmation %><br>
-                            <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <%= f.label :password_confirmation %><br>
+                              <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+                            </div>
                           </div>
                         </div>
-                        -->
+                      -->
 
                         <div class="col mt-2 ml-5">
                           <div class="form-group">
@@ -123,14 +123,15 @@
                       </div>
 
                       <!-- 輸入目前密碼
-                      <div class="row">
-                        <div class="col">
-                         <div class="form-group">
-                            <%= f.label :current_password %><br>
-                            <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control" %>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <%= f.label :current_password %><br>
+                              <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control" %>
+                            </div>
                           </div>
                         </div>
-                        --> 
+                      --> 
 
                         <div class="col ml-5">
                           <div class="form-group">
@@ -142,42 +143,42 @@
                         </div>
                       </div>
                       
-                      <!-- 以下目前不會寫入 db，待討論是否要實作 -->
-                      <%# <div class="row">
-                        <div class="col">
-                          <div class="form-group">
-                            <label for="twitter-username">TWITTER USERNAME
-                              <span>@</span>
-                              <input type="text" id="twitter-username", class="form-control ">
-                            </label>
+                      <!-- 以下目前不會寫入 db，待討論是否要實作
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label for="twitter-username">TWITTER USERNAME
+                                <span>@</span>
+                                <input type="text" id="twitter-username", class="form-control ">
+                              </label>
+                            </div>
                           </div>
-                        </div>
 
-                        <div class="col">
-                          <div class="form-group">
-                            <label for="github-username">GITHUB USERNAME
-                              <span>github.com/</span>
-                              <input type="text" id="github-username", class="form-control">
-                            </label>
+                          <div class="col">
+                            <div class="form-group">
+                              <label for="github-username">GITHUB USERNAME
+                                <span>github.com/</span>
+                                <input type="text" id="github-username", class="form-control">
+                              </label>
+                            </div>
                           </div>
-                        </div>
 
-                        <div class="col">
-                          <div class="form-group">
-                            <label for="instagram-username">INSTAGRAM USERNAME
-                              <span>instagram.con/</span>
-                              <input type="text" id="instagram-username", class="form-control">
-                            </label>
+                          <div class="col">
+                            <div class="form-group">
+                              <label for="instagram-username">INSTAGRAM USERNAME
+                                <span>instagram.con/</span>
+                                <input type="text" id="instagram-username", class="form-control">
+                              </label>
+                            </div>
                           </div>
                         </div>
-                      </div> %>
-                      <!-- 以上目前不會寫入 db，待討論是否要實作 -->
+                      -->
 
                       <div class="d-flex justify-content-end mb-3">
                         <%= f.submit "Save Settings", class:"", style:"background-color: #e09a5f" %>
                       </div>
-
                     <% end %>
-
                 </div>
+                <%# 檢視個人頁面 %>
+                  <%# <%= link_to "Profile", profile_path(current_user.username), class: "txt" %> %>
         </div>
