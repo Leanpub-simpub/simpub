@@ -6,23 +6,21 @@
     </a>
   </div>
   
-  <div class="d-flex align-items-center mr-auto">
-    <%# 書搜尋頁 %>
-      <%= link_to "Books", books_path, class: "nav-item mx-2" %>
-
-    <% if user_signed_in?  %>
-    <%# 個人書櫃 %>
-      <%= link_to "Library", :library, class: "nav-item mx-2" %>
-
-    <%# 寫書 %>
-      <%= link_to "Create a Book", :new_book, class: "nav-item mx-2" %>
-        
-    <%# 寫過的書 %>
-      <% if current_user.pub_books.count > 0 %>
-        <%= link_to "My Writings", dash_board_books_path, class: "nav-item mx-2" %>
-      <% end %>  
-    <% end %>
-  </div>
+  <!-- 導覽列選項（手機版隱藏） -->
+    <div class="nav-item-group d-flex align-items-center mr-auto ">
+      <%# 書搜尋頁 %>
+        <%= link_to "Books", books_path, class: "nav-item mx-2" %>
+      <% if user_signed_in?  %>
+      <%# 個人書櫃 %>
+        <%= link_to "Library", :library, class: "nav-item mx-2" %>
+      <%# 寫書 %>
+        <%= link_to "Create a Book", :new_book, class: "nav-item mx-2" %>      
+      <%# 寫過的書 %>
+        <% if current_user.pub_books.count > 0 %>
+          <%= link_to "My Writings", dash_board_books_path, class: "nav-item mx-2" %>
+        <% end %>  
+      <% end %>
+    </div>
 
   <!-- Search Filter -->
   <div class="search-filter d-flex flex-nowrap ml-auto mr-3" data-controller="search">
@@ -56,15 +54,16 @@
 		</div>
   </div>
   
+  <!-- 圖示 -->
   <div class="icon-group d-flex align-items-center">
-      <!-- 購物車 -->
+    <!-- 購物車 -->
       <%= link_to cart_path, class:"nav-icon" do%>
-        <i class="fas fa-shopping-cart mx-2">
-          <div class="x"></div>
-        </i>
-      <% end %>
-      <% if user_signed_in? %>
-        <!-- 願望清單 -->
+      <i class="fas fa-shopping-cart mx-2">
+        <div class="x"></div>
+      </i>
+    <% end %>
+    <% if user_signed_in? %>
+      <!-- 願望清單 -->
         <div class="nav-icon" data-controller="wish" data-wish-username="<%= current_user.username %>">
           <%= link_to wishlist_path(current_user.username), class: "nav-icon" do %>
             <i class="fas fa-heart mx-2">
@@ -72,7 +71,7 @@
             </i>
           <% end %>
         </div>
-        <!-- 通知 -->
+      <!-- 通知 -->
         <div class="z" data-controller="notify">
           <div class="nav-icon">
             <%= link_to "", id: "notifDropdown", class: "dropdown", role: "button", data: {toggle: "dropdown", action: "notify#show"} do %>
@@ -85,17 +84,17 @@
             <% end %>
           </div>
         </div>
-      <% else %>
+    <% else %>
       <!-- 註冊&登入 -->
-        <%= link_to "Sign up", new_user_registration_path ,class: "mx-2 txt" %>
-        <%= link_to "Sign in", new_user_session_path ,class: "mx-2 txt" %>
-      <% end %>
-      <!-- 開燈/關燈 -->
+      <%= link_to "Sign up", new_user_registration_path ,class: "mx-2 txt" %>
+      <%= link_to "Sign in", new_user_session_path ,class: "mx-2 txt" %>
+    <% end %>
+    <!-- 開燈/關燈 -->
       <div class="toggle mx-2">
         <input id="switch" type="checkbox" name="theme" >
         <label for="switch"></label>
       </div>
-    </div>
+  </div>
 
   <!-- 下拉選單 -->
   <div>

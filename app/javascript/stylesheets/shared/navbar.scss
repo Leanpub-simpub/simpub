@@ -154,20 +154,8 @@
     transform: rotate(0turn);
   }
 }
-.pagination {
-  display: flex;
-  justify-content: center;
-
-  span {
-    margin: 0 6px 20px;
-    padding: 0 10px;
-    font-size: 20px;
-  }
-}
-
 @media screen and (max-width: 576px) {
-  .btn-group {
-    max-height: 0px;
-    overflow: hidden;
+  .nav-item-group {
+    display: none;
   }
 }
