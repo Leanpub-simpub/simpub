@@ -3,7 +3,7 @@ class BooksController < ApplicationController
   require "json"
   
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :pricing, :publish, :unpublish, :editor_new, :editor_edit]
-  before_action :find_book, only: [:show, :edit, :update, :pricing, :publish, :unpublish, :wish]
+  before_action :find_book, only: [:show, :edit, :update, :pricing, :publish, :unpublish, :wish, :read]
 
   def index
     @books = Book.published_books
