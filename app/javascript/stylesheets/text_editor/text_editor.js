@@ -178,7 +178,7 @@ window.addEventListener('turbolinks:load',()=>{
           }
         }))
         var result = md.render(text);
-        md2html=result
+        // md2html=result
         target.innerHTML=result
       }else{
         return

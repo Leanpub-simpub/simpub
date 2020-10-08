@@ -22,7 +22,7 @@ namespace :dev do
         as_author: true
         )
       # 下面這行打開會自動將假圖上傳至 S3，請慎用
-      user.avatar_remote_url = Faker::LoremFlickr.image(search_terms: ["people"])
+      # user.avatar_remote_url = Faker::LoremFlickr.image(search_terms: ["people"])
       user.save!
       
       book = Book.new
