@@ -11,9 +11,9 @@ const pdfTemplate = document.createElement('template')
 pdfTemplate.innerHTML=`<div class="pdf_container" ></div>`
 
 window.addEventListener('turbolinks:load',()=>{
-  if(document.querySelector('#bookName')){
+  if(document.querySelector('#pdf-geneator')){
     
-    document.querySelector('.edit_book').addEventListener('submit',(e)=>{
+    document.querySelector('#pdf-geneator').addEventListener('click',(e)=>{
       e.preventDefault()
       let allpdf = document.querySelector('#allpdf')
       
@@ -33,14 +33,14 @@ window.addEventListener('turbolinks:load',()=>{
         console.log(allContent)
         console.log(allChapter)
         // chapter section 分開放
-        for(let i=0;i<allContent.length;i++){
-          let target=document.importNode(pdfTemplate.content,true)
-          allpdf.appendChild(target)
-          target = document.querySelector('.pdf_container:last-child')
-          let filename = `${bookName}_${allChapter[i]}`
-          mdToHTML(allContent[i],target)
-          btnDownloadPageBypfd2(target,bookName,filename)  //低標 
-        }
+        // for(let i=0;i<allContent.length;i++){
+        //   let target=document.importNode(pdfTemplate.content,true)
+        //   allpdf.appendChild(target)
+        //   target = document.querySelector('.pdf_container:last-child')
+        //   let filename = `${bookName}_${allChapter[i]}`
+        //   mdToHTML(allContent[i],target)
+        //   btnDownloadPageBypfd2(target,bookName,filename)  //低標 
+        // }
         let target=document.importNode(pdfTemplate.content,true)
         allpdf.appendChild(target)
         target = document.querySelector('.pdf_container:last-child')
@@ -87,7 +87,7 @@ window.addEventListener('turbolinks:load',()=>{
       target.innerHTML=result
     }
 
-    function btnDownloadPageBypfd2(pdf_container,bookName,filename, form = null){ //引數是'#pdf_container' 或 '.pdf_container',注意帶字首
+    function btnDownloadPageBypfd2(pdf_container,bookName,filename, target = null){ //引數是'#pdf_container' 或 '.pdf_container',注意帶字首
       console.log(pdf_container)
       pdf_container.classList.add('pdf'); //pdf的css在下一個程式碼中,作用是使得列印的內容能在pdf中完全顯示
 	    var cntElem = pdf_container;
@@ -141,7 +141,7 @@ window.addEventListener('turbolinks:load',()=>{
 	    	     	}
              }
             //  doc.save(`${filename}`+ '.pdf');//儲存為pdf檔案
-             pdftoserver(doc.output('blob'),bookName,filename, form)
+             pdftoserver(doc.output('blob'),bookName,filename, target)
 	    	  }
 	    	 },
 	    });
@@ -163,7 +163,8 @@ window.addEventListener('turbolinks:load',()=>{
       })
       .then( result=>{
         console.log(result.data['message'])
-        if (form){form.submit()} 
+        // if (target){alert('Your book has conveted into PDF')} 
+        alert('Your book has conveted into PDF')
       })
       .catch(function(err){
         
