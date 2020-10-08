@@ -5,7 +5,6 @@ document.addEventListener("turbolinks:load", () => {
   
   if(document.querySelector(".add-to-cart-btn")) {
     const addCartBtn = document.querySelectorAll(".add-to-cart-btn");
-    console.log(addCartBtn);
 
     addCartBtn.forEach(btn => {
       btn.addEventListener("click", e => {

@@ -35,6 +35,8 @@ export default class extends Controller {
     const authorEarnsShow = document.querySelector(".modal-author-earns-show");
     const cartPrice = document.querySelector(".cart-price");
     const addCartForm = document.querySelector(".add-cart-form-modal");
+    const wishToCart = document.querySelector("#wish-to-cart");
+    const waitBtn = document.querySelector(".wait-btn");
     
     const username = this.data.get("username");
     const bookId = this.data.get("book");
@@ -97,9 +99,13 @@ export default class extends Controller {
       }
     });
 
+
     // ! 不知道為什麼會打兩次 delete
     addCartForm.addEventListener("submit", () => {
       addCartForm.action = `/cart/add/${bookId}?cart_price=${cartPrice.value}`;
+
+      wishToCart.parentElement.removeChild(wishToCart);
+      waitBtn.classList.remove("x");
       
       setTimeout(() => {
         location.href = "/cart";
