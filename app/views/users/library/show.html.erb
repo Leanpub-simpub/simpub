@@ -34,7 +34,7 @@
           </div>
           <div class="book-info">
             <!-- 線上閱讀 -->
-            <%= link_to "Read on Simpub",read_book_path(book), method: "POST", class:"txt" %>
+            <%= link_to "Read on Simpub",read_book_path(book), class:"txt" %>
             <!-- 加入判斷避免沒上傳檔案的書籍連結壞掉 -->
             <% if book.md_data %>
             <!-- 下載功能-->

@@ -33,7 +33,7 @@ Rails.application.routes.draw do
       post :add_section
       get :sample
       get :table_of_contents
-      post :read
+      get :read
       patch :unpublish
     end
     

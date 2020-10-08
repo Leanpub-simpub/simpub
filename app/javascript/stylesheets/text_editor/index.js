@@ -12,3 +12,4 @@ import "./generate_pdf.js"
 
 import "./sample.js"
 
+import "./online_read.js"

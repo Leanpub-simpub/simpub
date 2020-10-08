@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :editor_new, :editor_edit]
   # before_action :find_book, except: [:index, :new, :create]
-  before_action :find_book, only: [:show, :new, :create, :edit, :update, :pricing, :publish, :onpublish, :wish]
+  before_action :find_book, only: [:show, :edit, :update, :pricing, :publish, :onpublish, :wish]
 
   def index
     @books = Book.published_books
@@ -105,7 +105,7 @@ class BooksController < ApplicationController
     if params[:chapter] == ""  
       return
     end
-    # @book = Book.find_by_slug(params[:id])
+    @book = Book.find_by_slug(params[:id])
     
     # 取到結構json檔資料
     s3_client = Aws::S3::Client.new
@@ -347,7 +347,11 @@ class BooksController < ApplicationController
   end
 
   def read
-    
+    find_book
+    s3_client = Aws::S3::Client.new
+    object = s3_client.get_object(bucket: ENV['bucket'], key:"store/book/#{@book.title}/structure.json")    
+    structure_json = object.body.read
+    @json = JSON.parse(structure_json)
   end
 
   private
