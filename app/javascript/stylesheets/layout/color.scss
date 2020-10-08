@@ -21,7 +21,6 @@ body {
   [class*="item"],
   [class*="cover"],
   [class*="name"],
-  [class*="icon"],
   [class*="tag"] {
     color: var(--txt);
   }
@@ -31,17 +30,10 @@ body {
     background-color: var(--txt);
     border: 0px;
   }
-  // 服務下拉選單
+  // 導覽列下拉選單
   .dropdown-menu {
     background-color: var(--bg);
-  }
-
-  // 個人資訊下拉選單
-  .layout-dropdown {
-    > .layout-dropdown-child {
-      background-color: var(--bg);
-      border: 1px solid #e09a5f;
-    }
+    border: 1px solid #e09a5f;
   }
 }
 
@@ -63,6 +55,10 @@ input[id="switch"] {
   input:checked + label {
     background-color: var(--color-headings);
   }
+}
+
+.search-btn {
+  color: white;
 }
 
 .nav-item:hover,

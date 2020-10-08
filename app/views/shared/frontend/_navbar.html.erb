@@ -1,78 +1,122 @@
-<nav class="layout-navbar navbar txt sticky-top">
-  <!-- 品牌 logo -->
+<nav class="layout-navbar navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <!-- 品牌 logo
   <div class="col-1">
     <a href="/" class="navbar-brand">  
       <%= image_pack_tag "logo.png", class: "img-fluid" %>
     </a>
   </div>
+  -->
   
-  <!-- 導覽列選項（手機版隱藏） -->
-    <div class="nav-item-group d-flex align-items-center mr-auto ">
-      <%# 書搜尋頁 %>
-        <%= link_to "Books", books_path, class: "nav-item mx-2" %>
-      <% if user_signed_in?  %>
-      <%# 個人書櫃 %>
-        <%= link_to "Library", :library, class: "nav-item mx-2" %>
-      <%# 寫書 %>
-        <%= link_to "Create a Book", :new_book, class: "nav-item mx-2" %>      
-      <%# 寫過的書 %>
+  <button class="navbar-toggler" type="button" data-trigger="#main_nav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navbar-collapse" id="main_nav">
+    <div class="offcanvas-header mt-3">
+      <button class="btn btn-outline-danger btn-close float-right">
+        &times
+      </button>
+    </div>
+    <!-- 導覽列選單 -->
+    <ul class="nav-item-group align-items-center mr-auto navbar-nav">
+      <li class="nav-item active">
+        <%= link_to "Books", books_path, class: "nav-link mx-2 txt" %>
+      </li>
+      <li class="nav-item"><%= link_to "Library", :library, class: "nav-link mx-2 txt" %></li>
+      <li class="nav-item">
+        <%= link_to "Create a Book", :new_book, class: "nav-link mx-2 txt" %>      
+      </li>
+      <li class="nav-item">
         <% if current_user.pub_books.count > 0 %>
-          <%= link_to "My Writings", dash_board_books_path, class: "nav-item mx-2" %>
-        <% end %>  
-      <% end %>
+          <%= link_to "My Writings", dash_board_books_path, class: "nav-link mx-2 txt" %>
+        <% end %>     
+      </li>
+    </ul>
+
+    <!-- Search Filter -->
+    <div class="search-filter d-flex flex-nowrap ml-auto mr-3" data-controller="search">
+      <select name="" id="search-selector" class="btn" data-target="search.select" style="color: white">
+        <option value="book-search">搜尋書名</option>
+        <option value="author-search">搜尋作者</option>
+        <option value="tag-search">搜尋標籤</option>
+      </select>
+      <div class="row search-bar">
+        <%# book search 表單 %>
+        <%= form_with url: :books, method: :get, class: "nav-search x form-inline d-flex flex-nowrap ml-4", local: true, data: {target: "search.book_search"} do |f| %>
+          <%= f.search_field :book_search, class: "search-input book-search-input form-control", placeholder: "Search" %>
+          <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+        <% end %>
+        <%# author search 表單 %>
+        <%= form_with url: :books, method: :get, class: "nav-search author-search x form-inline d-flex flex-nowrap ml-4", local: true, data: {target: "search.author_search"} do |f| %>
+          <%= f.search_field :author_search, class: "search-input author-search-input form-control", placeholder: "Search" %>
+          <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+        <% end %>
+        <%# tag search 表單 %>
+        <%= form_with url: :books, method: :get, class: "nav-search tag-search x form-inline d-flex flex-nowrap ml-4", local: true, data: {target: "search.tag_search"} do |f| %>
+          <%= f.search_field :tag_search, class: "search-input tag-search-input form-control", placeholder: "Search" %>
+          <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+        <% end %>
+      </div>
     </div>
 
-  <!-- Search Filter -->
-  <div class="search-filter d-flex flex-nowrap ml-auto mr-3" data-controller="search">
-    <select name="" id="search-selector" class="btn txt" data-target="search.select">
-      <option value="book-search">搜尋書名</option>
-      <option value="author-search">搜尋作者</option>
-      <option value="tag-search">搜尋標籤</option>
-    </select>
-		<div class="row search-bar">
-			<%# book search 表單 %>
-			<%= form_with url: :books, method: :get, class: "nav-search x form-inline d-flex ml-4", local: true, data: {target: "search.book_search"} do |f| %>
-				<%= f.search_field :book_search, class: "search-input book-search-input form-control", placeholder: "Search" %>
-        <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
-          <i class="fas fa-search icon"></i>
-        <% end %>
-			<% end %>
-			<%# author search 表單 %>
-			<%= form_with url: :books, method: :get, class: "nav-search author-search x form-inline d-flex ml-4", local: true, data: {target: "search.author_search"} do |f| %>
-				<%= f.search_field :author_search, class: "search-input author-search-input form-control", placeholder: "Search" %>
-        <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
-          <i class="fas fa-search icon"></i>
-        <% end %>
-			<% end %>
-			<%# tag search 表單 %>
-			<%= form_with url: :books, method: :get, class: "nav-search tag-search x form-inline d-flex ml-4", local: true, data: {target: "search.tag_search"} do |f| %>
-				<%= f.search_field :tag_search, class: "search-input tag-search-input form-control", placeholder: "Search" %>
-        <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
-          <i class="fas fa-search icon"></i>
-        <% end %>
-			<% end %>
-		</div>
-  </div>
-  
-  <!-- 圖示 -->
-  <div class="icon-group d-flex align-items-center">
-    <!-- 購物車 -->
-      <%= link_to cart_path, class:"nav-icon" do%>
-      <i class="fas fa-shopping-cart mx-2">
-        <div class="x"></div>
-      </i>
-    <% end %>
-    <% if user_signed_in? %>
-      <!-- 願望清單 -->
-        <div class="nav-icon" data-controller="wish" data-wish-username="<%= current_user.username %>">
-          <%= link_to wishlist_path(current_user.username), class: "nav-icon" do %>
-            <i class="fas fa-heart mx-2">
-              <div class="x" data-target="wish.bubble"></div>
-            </i>
-          <% end %>
+    <ul class="navbar-nav icon-group ml-auto">
+      <% if user_signed_in? %>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+          User Menu
+        </a>
+        <ul class="dropdown-menu">
+          <%# 編輯個人主頁 %>
+          <li class="dropdown-item">
+            <%= link_to "Edit Profile", user_dashboard_path, class:"nav-drop-item container-fluid" %>
+          </li>
+
+          <%# 追隨 %>
+          <li class="dropdown-item">
+            <%= link_to "Follows", followship_path, class: "nav-drop-item container-fluid" %>
+          </li>
+
+          <%# 購買紀錄 %>
+          <li class="dropdown-item">
+            <a href="/purchases" class="nav-drop-item container-fluid">Purchases</a>
+          </li>
+          
+          <%# 登出 %>
+          <li class="dropdown-item">
+            <%= link_to "Sign Out", :destroy_user_session, method: :delete, class: "sign_out_btn nav-drop-item container-fluid"%>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item d-flex align-items-center">
+        <%# 開燈/關燈 %>
+        <div class="toggle mx-2">
+          <input id="switch" type="checkbox" name="theme" >
+          <label for="switch"></label>
         </div>
-      <!-- 通知 -->
-        <div class="z" data-controller="notify">
+        <!-- 購物車 -->
+        <%= link_to cart_path, class:"nav-icon" do%>
+          <i class="fas fa-shopping-cart mx-2">
+            <div class="x"></div>
+          </i>
+        <% end %>
+      </li>
+      <!-- 願望清單 -->
+        <li class="nav-item d-flex align-items-center">
+          <div class="nav-icon" data-controller="wish" data-wish-username="<%= current_user.username %>">
+            <%= link_to wishlist_path(current_user.username), class: "nav-icon" do %>
+              <i class="fas fa-heart mx-2">
+                <div class="x" data-target="wish.bubble"></div>
+              </i>
+            <% end %>
+          </div>
+        </li>
+        <li class="nav-item d-flex align-items-center z" data-controller="notify">
           <div class="nav-icon">
             <%= link_to "", id: "notifDropdown", class: "dropdown", role: "button", data: {toggle: "dropdown", action: "notify#show"} do %>
             <!-- <button id="notiDropdown" class="dropdown" role="button", data-toggle="dropdown" data-action="notify#show"> -->
@@ -83,71 +127,12 @@
             <div class="dropdown-menu position-fixed" aria-labelledby="notifDropdown" data-target="notify.menu"></div>
             <% end %>
           </div>
-        </div>
-    <% else %>
+        </li>
+      <% else %>
       <!-- 註冊&登入 -->
-      <%= link_to "Sign up", new_user_registration_path ,class: "mx-2 txt" %>
-      <%= link_to "Sign in", new_user_session_path ,class: "mx-2 txt" %>
-    <% end %>
-    <!-- 開燈/關燈 -->
-      <div class="toggle mx-2">
-        <input id="switch" type="checkbox" name="theme" >
-        <label for="switch"></label>
-      </div>
-  </div>
-
-  <!-- 下拉選單 -->
-  <div>
-    <% if user_signed_in?  %>
-      <div class="fix-down">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" >
-          <div class="nav-avatar">
-            <%= render "shared/frontend/user_avatar", user: current_user %>
-          </div>
-        </button>
-      </div>
-      <div class="layout-dropdown collapse position-absolute w-100 ml-auto" id="navbarToggleExternalContent">
-        <div class="layout-dropdown-child position-absolute px-4 py-1 ml-auto col-2 col-lg-2">
-
-          <%# 作者主頁 (有創建過書籍才會顯示) %>
-          <% if current_user.pub_books.count > 0 %>
-          <%# 作者寫書區 %>
-            <div class="py-2 d-flex">
-              <%= link_to "My Writings", dash_board_books_path, class: "nav-drop-item container-fluid" %>
-            </div>
-          <% end %>
-
-          <%# 寫書 %>
-          <div class="py-2 d-flex">
-            <%= link_to "Create a Book", :new_book, class: "nav-drop-item container-fluid" %>
-          </div>
-
-          <%# 個人書櫃 %>
-          <div class="py-2 d-flex">
-            <%= link_to "Library", :library, class: "nav-drop-item container-fluid" %>
-          </div>
-
-          <%# 購買紀錄 %>
-          <div class="py-2 d-flex">
-            <a href="/purchases" class="nav-drop-item container-fluid">Purchases</a>
-          </div>
-          
-          <%# 編輯個人主頁 %>
-          <div class="py-2 d-flex">
-            <%= link_to "Edit Profile", user_dashboard_path, class:"nav-drop-item container-fluid" %>
-          </div>
-
-          <%# 追隨 %>
-          <div class="py-2 d-flex">
-            <%= link_to "Follows", followship_path, class: "nav-drop-item container-fluid" %>
-          </div>
-          
-          <%# 登出 %>
-          <div class="py-2 d-flex">
-            <%= link_to "Sign Out", :destroy_user_session, method: :delete, class: "sign_out_btn nav-drop-item container-fluid"%>
-          </div>
-        </div>
-      </div>
-    <% end %>
+        <li><%= link_to "Sign Up", new_user_registration_path, class: "mx-2 txt" %></li>
+        <li><%= link_to "Sign In", new_user_session_path, class: "mx-2 txt" %></li>
+      <% end %>
+    </ul>
   </div>
 </nav>
