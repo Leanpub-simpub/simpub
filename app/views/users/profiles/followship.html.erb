@@ -3,13 +3,13 @@
 <p>追隨中</p>
 <ul>
   <% @followers.each do |follower| %>
-    <li><%= link_to follower.name, profile_path(follower.username) %></li>
+    <li><%= link_to follower.name, users_profile_path(follower.username) %></li>
   <% end %>
 </ul>
 
 <p>追隨者</p>
 <ul>
   <% @followees.each do |followee| %>
-    <li><%= link_to followee.name, profile_path(followee.username) %></li>
+    <li><%= link_to followee.name, users_profile_path(followee.username) %></li>
   <% end %>
 </ul>

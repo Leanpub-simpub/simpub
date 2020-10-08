@@ -12,7 +12,7 @@
           <div>
             <button class="item-edit main-button btn" data-action="wishlist#cart">Move to cart</button>
 
-            <%= link_to "Remove from your wish list", unwish_path(current_user.username, id: book), method: :delete, remote: true, class: "btn border rounded" %>
+            <%= link_to "Remove from your wish list", users_unwish_path(current_user.username, id: book), method: :delete, remote: true, class: "btn border rounded" %>
           </div>
         </div>
       </div>

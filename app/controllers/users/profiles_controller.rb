@@ -28,7 +28,7 @@ class Users::ProfilesController < ApplicationController
   def unwish
     book = Book.friendly.find(params[:id])
     current_user.wish_books.destroy(book)
-    redirect_to wishlist_path, notice: "已從願望清單中移除"
+    redirect_to users_wishlist_path, notice: "已從願望清單中移除"
   end
   
   private
