@@ -52,20 +52,20 @@ document.addEventListener("turbolinks:load", () => {
       }
     });
 
-    // 按下加入購物車按鈕後顯示動畫
     if (!addCartForm) return;
-    if (document.querySelector("#wish-to-cart")) {
-      const wishToCart = document.querySelector("#wish-to-cart");
-      const waitBtn = document.querySelector(".wait-btn");
-      wishToCart.addEventListener("click", () => {
-        wishToCart.parentElement.removeChild(wishToCart);
-        waitBtn.classList.remove("x");
-        setTimeout(() => {
-          location.href = "/cart";
-        }, 500);
-      });
-    }
-
+    // if (document.querySelector("#wish-to-cart")) {
+    //   const wishToCart = document.querySelector("#wish-to-cart");
+    //   const waitBtn = document.querySelector(".wait-btn");
+    //   wishToCart.addEventListener("click", () => {
+    //     wishToCart.parentElement.removeChild(wishToCart);
+    //     waitBtn.classList.remove("x");
+    //     setTimeout(() => {
+    //       location.href = "/cart";
+    //     }, 500);
+    //   });
+    // }
+    
+    // 按下加入購物車按鈕後顯示動畫
     addCartForm.addEventListener("submit", () => {
       const cart = document.querySelector(".fa-shopping-cart");
       const cover = document.querySelector(".cover-img");
