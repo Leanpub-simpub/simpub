@@ -86,13 +86,13 @@ document.addEventListener("turbolinks:load", () => {
       coverBubble.classList.add("cover-bubble");
       cover.parentElement.appendChild(coverBubble);
 
-      gsap.to(".cover-bubble", {duration: .5, scaleX: .05, scaleY: .05})
-      gsap.to(".cover-bubble", {delay: .5, duration: .5, x: `${endX - startX}px`, y: `${endY - startY}px`, opacity: .5})
+      gsap.to(".cover-bubble", {duration: .4, scaleX: .05, scaleY: .05})
+      gsap.to(".cover-bubble", {delay: .4, duration: .8, x: `${endX - startX}px`, y: `${endY - startY}px`, opacity: .8})
 
       // 動畫結束後刪除該物件
       setTimeout(() => {
         cover.parentElement.removeChild(coverBubble);
-      }, 1000);
+      }, 1200);
     });
 
 
