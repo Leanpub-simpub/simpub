@@ -70,7 +70,7 @@
       <% if user_signed_in? %>
         <!-- 願望清單 -->
         <div class="nav-icon" data-controller="wish" data-wish-username="<%= current_user.username %>">
-          <%= link_to wishlist_path(current_user.username), class: "nav-icon" do %>
+          <%= link_to users_wishlist_path(current_user.username), class: "nav-icon" do %>
             <i class="fas fa-heart mx-2">
               <div class="x" data-target="wish.bubble"></div>
             </i>
@@ -141,7 +141,7 @@
           
           <!-- 檢視個人主頁 -->
           <div class="py-2 d-flex">
-            <%= link_to "Profile", profile_path(current_user.username), class: "nav-drop-item container-fluid"%>
+            <%= link_to "Profile", users_profile_path(current_user.username), class: "nav-drop-item container-fluid"%>
           </div>
 
           <!-- 追隨 -->
