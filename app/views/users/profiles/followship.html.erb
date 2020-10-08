@@ -1,15 +1,23 @@
-<h1>Follow</h1>
-
-<p>追隨中</p>
-<ul>
-  <% @followers.each do |follower| %>
-    <li><%= link_to follower.name, users_profile_path(follower.username) %></li>
-  <% end %>
-</ul>
-
-<p>追隨者</p>
-<ul>
-  <% @followees.each do |followee| %>
-    <li><%= link_to followee.name, users_profile_path(followee.username) %></li>
-  <% end %>
-</ul>
+<div class="container d-flex justify-content-center">
+  <div>
+    <h1 class="col">Follow</h1>
+    
+    <div class="col">
+      <p>追隨中</p>
+      <ul class="list-group list-group-flush">
+        <% @followers.each do |follower| %>
+          <li class="list-group-item"><%= link_to follower.name, users_profile_path(follower.username) %></li>
+        <% end %>
+      </ul>
+    </div>
+    
+    <div class="col">
+      <p>追隨者</p>
+      <ul class="list-group list-group-flush">
+        <% @followees.each do |followee| %>
+          <li class="list-group-item"><%= link_to followee.name, users_profile_path(followee.username) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
