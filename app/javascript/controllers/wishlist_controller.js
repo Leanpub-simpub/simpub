@@ -1,26 +1,72 @@
-document.addEventListener("turbolinks:load", () => {
-  if (document.querySelector("#user-pay")) {
-    const userPay = document.querySelector("#user-pay");
-    const userPayShow = document.querySelector(".user-pay-show");
-    const authorEarns = document.querySelector("#author-earns");
-    const authorEarnsShow = document.querySelector(".author-earns-show");
+import { Controller } from "stimulus";
+import axios from "axios";
+
+export default class extends Controller {
+  static targets = [ "cover" ];
+
+  connect() {
+    const token = document.querySelector("meta[name=csrf-token]").content;
+    axios.defaults.headers.common["X-CSRF-Token"] = token;
+  }
+
+  cart() {
+    // 禁止視窗捲動
+    document.documentElement.style.overflow = "hidden";
+    const modal = document.querySelector(".cart-modal");
+    modal.classList.remove("x");
+
+    // 隱藏更新價格的按鈕
+    const update = document.querySelector(".update-price");
+    update.classList.add("x");
+
+    // 建立 modal cover
+    const itemCover = this.coverTarget.firstElementChild;
+    const modalCover = itemCover.cloneNode(true);
+    const modalCoverBox = document.querySelector(".modal-body-img");
+    modalCoverBox.innerHTML = "";
+    modalCoverBox.appendChild(modalCover);
+
+    // 建立 modal 書籍資訊
+    const title = document.querySelector(".modal-body-title");
+    const author = document.querySelector(".modal-body-author");
+    const min = document.querySelector(".modal-min");
+    const max = document.querySelector(".modal-max");
+    const userPay = document.querySelector("#modal-user-pay");
+    const authorEarns = document.querySelector("#moadl-author-earns");
+    const userPayShow = document.querySelector(".modal-user-pay-show");
+    const authorEarnsShow = document.querySelector(".modal-author-earns-show");
     const cartPrice = document.querySelector(".cart-price");
     const addCartForm = document.querySelector(".add-cart-form");
 
-    // 設定初始化價格
-    setPricePay();
+    const bookId = this.data.get("book");
+    axios.get(`/cart/edit.json?id=${bookId}`)
+         .then(function(result) {
+           const bookInfo = result.data;
+           title.textContent = bookInfo.title;
+           author.textContent = bookInfo.author;
+           min.textContent = `$${bookInfo.price}`;
+           max.textContent = `$${bookInfo.price * 2}`;
+           userPay.min = `${bookInfo.price}`;
+           userPay.max = `${bookInfo.price * 3}`;
+           authorEarns.min = `${bookInfo.price * 0.8}`;
+           authorEarns.max = `${bookInfo.price * 4}`;
+           addCartForm.action = `/cart/add/${bookInfo.id}`
+
+           // 設定初始化價格
+           setPricePay();
+         })
+         .then(function(error) {});
 
     // "User Pay" slider 拖動時呼叫
     userPay.addEventListener("input", () => {
       setPricePay();
     });
-    
+
     // "Author Earns"" slider 拖動時呼叫
     authorEarns.addEventListener("input", () => {
       setPriceEarns();
     });
 
-    // 使用者自行在 input 輸入時呼叫
     cartPrice.addEventListener("keypress", e => {
       if (e.key === "Enter") {
         e.preventDefault();
@@ -52,59 +98,18 @@ document.addEventListener("turbolinks:load", () => {
       }
     });
 
-    // 按下加入購物車按鈕後顯示動畫
-    if (!addCartForm) return;
-    if (document.querySelector("#wish-to-cart")) {
-      const wishToCart = document.querySelector("#wish-to-cart");
-      const waitBtn = document.querySelector(".wait-btn");
-      wishToCart.addEventListener("click", () => {
-        wishToCart.parentElement.removeChild(wishToCart);
-        waitBtn.classList.remove("x");
-        setTimeout(() => {
-          location.href = "/cart";
-        }, 500);
-      });
-    }
-
-    addCartForm.onsubmit = bookToCart.bind(addCartForm);
-    function bookToCart() {
-      const cart = document.querySelector(".fa-shopping-cart");
-      const cover = document.querySelector(".cover-img");
-      const coverBubble = cover.cloneNode(true);
-
-      let startW = cover.getBoundingClientRect().width;
-      let startH = cover.getBoundingClientRect().height;
-      let startX = startW / 2 + cover.getBoundingClientRect().x
-      let startY = startH / 2 + cover.getBoundingClientRect().y;
-      
-      // let endW = cart.getBoundingClientRect().width;
-      // let endH = cart.getBoundingClientRect().height;
-      // let endX = endW / 2 + cart.getBoundingClientRect().x;
-      // let endY = endH / 2 + cart.getBoundingClientRect().y;
-      let endX = cart.getBoundingClientRect().x;
-      let endY = cart.getBoundingClientRect().y;
-
-      coverBubble.classList.add("cover-bubble");
-      cover.parentElement.appendChild(coverBubble);
-
-      gsap.to(".cover-bubble", {duration: .5, scaleX: .05, scaleY: .05})
-      gsap.to(".cover-bubble", {delay: .5, duration: .5, x: `${endX - startX}px`, y: `${endY - startY}px`, opacity: .5})
-
-      // 動畫結束後刪除該物件
-      setTimeout(() => {
-        cover.parentElement.removeChild(coverBubble);
-      }, 1000);
-    }
-
+    addCartForm.addEventListener("submit", () => {
+      location.href = "/cart";
+    });
 
 
     function setPricePay() {
       let userPayDrag = parseFloat(userPay.value).toFixed(2);
       let authorEarnsDrag = (userPayDrag * 0.8).toFixed(2);
-
+    
       userPayShow.textContent = `$${userPayDrag}`;
       cartPrice.value = `$${userPayDrag}`;
-
+    
       authorEarnsShow.textContent = `$${authorEarnsDrag}`;
       authorEarns.value = authorEarnsDrag;
     }
@@ -130,4 +135,5 @@ document.addEventListener("turbolinks:load", () => {
       authorEarnsShow.textContent = `$${(price * 0.8).toFixed(2)}`;
     }
   }
-});
+
+}

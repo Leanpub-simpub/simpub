@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_05_090328) do
+ActiveRecord::Schema.define(version: 2020_10_07_053156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,17 @@ ActiveRecord::Schema.define(version: 2020_10_05_090328) do
     t.index ["follower_id"], name: "index_followships_on_follower_id"
   end
 
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
   create_table "identities", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "provider"
@@ -166,6 +177,15 @@ ActiveRecord::Schema.define(version: 2020_10_05_090328) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  create_table "wishlists", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "book_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_wishlists_on_book_id"
+    t.index ["user_id"], name: "index_wishlists_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "book_authors", "books"
   add_foreign_key "book_authors", "users"
@@ -177,4 +197,6 @@ ActiveRecord::Schema.define(version: 2020_10_05_090328) do
   add_foreign_key "orders", "users"
   add_foreign_key "taggings", "books"
   add_foreign_key "taggings", "tags"
+  add_foreign_key "wishlists", "books"
+  add_foreign_key "wishlists", "users"
 end

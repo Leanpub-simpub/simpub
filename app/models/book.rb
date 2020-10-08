@@ -1,11 +1,11 @@
 class Book < ApplicationRecord
-  include CoverUploader::Attachment(:cover) # adds an `image` virtual attribute
+  extend FriendlyId
+  include AASM
   include MdUploader::Attachment(:md) # adds an `image` virtual attribute
+  include CoverUploader::Attachment(:cover) # adds an `image` virtual attribute
 
-  before_save :update_slug
 
   validates :title, presence: true, uniqueness: true
-  # validates :price, presence: true
 
   has_many :taggings
   has_many :tags, through: :taggings
@@ -15,15 +15,17 @@ class Book < ApplicationRecord
 
   has_many :book_users
   has_many :readers, through: :book_users, source: :user
+  
+  has_many :wishlists
+  has_many :wish_buyers, through: :wishlists, source: :user
 
   has_one :order_items
-  
-  # has_rich_text :content
 
+  friendly_id :title, use: :slugged
+  
   scope :published_books, -> { where(publish_state: "on_shelf").order(id: :desc) }
   scope :unpublish_books, -> { where.not(publish_state: "on_shelf") }
 
-  # scope :with_search, -> (search) { left_joins(:authors, :tags).where("books.title ILIKE :query OR users.name ILIKE :query OR tags.name ILIKE :query", query: "%#{search}%") }
   scope :book_search, -> (search) { where("books.title ILIKE ?", "%#{search}%") }
   scope :author_search, -> (search) { joins(:authors).where("users.name ILIKE ?", "%#{search}%") }
   scope :tag_search, -> (search) { joins(:tags).where("tags.name ILIKE ?", "%#{search}%") }
@@ -42,18 +44,11 @@ class Book < ApplicationRecord
   # tag_items 的 setter
   def tag_items=(names)
     self.tags = names.map{|item|
-      Tag.where(name: item.strip).first_or_create! unless item.blank?}.compact
+      Tag.where(name: item.strip).first_or_create! unless item.blank?
+    }.compact
   end
 
-  def update_slug
-    self.slug = title.gsub(/[\+\#]/, "+" => "p", "#" => "sharp").parameterize
-  end
 
-  def to_param
-    slug
-  end
-
-  include AASM
   aasm(column: "publish_state") do
     state :draft, initial: true
     state :on_shelf, :off_shelf

@@ -27,10 +27,10 @@
       </thead>
       <tbody>
       <% current_cart.items.each.with_index do |item, index| %>
-        <tr class="row" data-controller="cart" data-cart-index="<%= index %>">
+        <tr class="row" data-controller="cart" data-cart-index="<%= index %>" data-cart-book="<%= item.book.id %>">
           <td class="col-2">
             <div style="font-size:large" class="font-weight-bold" >
-              <%= link_to book_path(item.book) do %>
+              <%= link_to book_path(item.book), data: {target: "cart.cover"} do %>
                 <%= render partial: "shared/frontend/book_cover", locals: {book: item.book, size: :small} %>
               <% end %>
             </div>
@@ -40,51 +40,11 @@
               <%= link_to item.book.title, book_path(item.book) %>
             </div>
             <div>
-              <%= link_to "edit", "#slider-modal", remote: true, data: {toggle: "modal", index: index, action: "cart#edit"}, class: "item-edit" %>
-
-              <div id="slider-modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h3 class="modal-title">Edit Purchase</h3>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    
-                    <div class="modal-body">
-                      <div class="row">
-                        <!-- 書本封面 -->
-                        <div class="col-6">
-                          <%= render partial: "shared/frontend/book_cover", locals: {book: item.book, size: :large} %>
-                          <div><%= item.book.title %></div>
-                          <div><%= item.book.authors[0].name %></div>
-                        </div>
-
-                        <div class="col-6">
-                          <!-- Slider -->
-                          <%= render partial: "shared/frontend/price_slider", locals: {book: item.book} %>
-                          <!-- 更新價格按鈕 -->
-                          <div class="update-price mt-auto">
-                            <span>YOU PAY</span>
-                            <span class="hint">(US$)</span>
-                            <form action="" class="update-price-form">
-                              <input type="text", class="cart-price text-center d-block mt-1 mb-4">
-                              <input type="submit" value="Update" class="update-btn btn btn-danger main-btn">
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-              
+              <button class="item-edit border-0 bg-transparent" data-action="cart#edit">edit</button>
               <span class="mx-2">|</span>
-              <a href="">Move to Wishlist</a>
+              <button class="border-0 bg-transparent" data-controller="cartwish" data-action="cartwish#add" data-cartwish-id="<%= item.book.id %>" data-cartwish-index="<%= index %>">Move to Wishlist</button>
               <span class="mx-2">|</span>
-              <a href="" data-action="cart#delete">Delete</a>
+              <button class="border-0 bg-transparent" data-action="cart#delete">Delete</button>
             </div>
           </td>
           <td style="font-size: large" class="col-2">
@@ -121,4 +81,6 @@
   </div>
   
 </section>
+
+
 

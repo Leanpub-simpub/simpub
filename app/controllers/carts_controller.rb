@@ -15,6 +15,10 @@ class CartsController < ApplicationController
   end
 
 
+  def edit
+    @book = Book.find_by(id: params[:id])
+  end
+
   def update
     index = params[:index].to_i
     price = params[:price][1..-1].to_f

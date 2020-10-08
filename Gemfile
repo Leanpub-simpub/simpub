@@ -92,4 +92,7 @@ gem 'redcarpet', '~> 3.5'
 # 金流
 gem "braintree", "~> 2.103.0"
 
+# pretty url
+gem 'friendly_id', '~> 5.4'
+
 gem 'factory_bot_rails', '~> 6.1'
