@@ -1,29 +1,38 @@
-<section class="txt container d-flex justify-content-center my-4">
-  <div class="col-12 col-lg-6 col-lg-8">
-    <h2 class="text-center mb-4">Wish List for <%= current_user.name %></h2>
-    <% @books.each do |book| %>
-      <div class="" data-controller="wishlist" data-wishlist-book="<%= book.id %>" data-wishlist-username="<%= current_user.username%>">
-        
-        <div class="col-12 col-lg-8 row">
-          <div class="col-4 text-right ml-auto cover-box cover-box" data-target="wishlist.cover">
-            <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
-          </div>
+<h1 class="text-center mb-4">Wish List for <%= current_user.name %></h1>   
 
-          <div class="col-8 pl-3 mr-auto my-auto">
-            <p><%= book.title %></p>
+	<div class="txt my-4 container d-flex justify-content-center">   
+	  <div class="col">
+	    <% @books.each do |book| %>
+	      <div class="container d-flex justify-content-center" data-controller="wishlist" data-wishlist-book="<%= book.id %>" data-wishlist-username="<%= current_user.username%>">
+	        
+          <div class="row d-flex justify-content-center">
             <div>
-              <button class="item-edit main-button btn" data-action="wishlist#cart">Move to cart</button>
-
-              <%= link_to "Remove from your wish list", users_unwish_path(current_user.username, id: book), method: :delete, remote: true, class: "btn border rounded" %>
+              <div class="col-12">
+                <div class="cover-box cover-box ml-3 " data-target="wishlist.cover">
+                  <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
+                </div>
+              </div>
+            </div>
+          
+                  
+            <div>
+              <p class="text-center"><%= book.title %></p>
+              <div class="col-12">
+                <div class="d-flex">
+                  <button class="item-edit main-button btn mr-3 my-2" data-action="wishlist#cart">Move to cart</button>
+                  <%= link_to "Remove from your wish list", users_unwish_path(current_user.username, id: book), method: :delete, remote: true, class: "btn border rounded" %>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-      </div>
-      <div class="d-flex justify-content-center" >
-          <div class="col-12 border-white border-bottom my-2"></div>
-      </div>     
-    <% end %>
-  </div>
-  
-</section>
+	      </div>
+	
+	      <div class="d-flex justify-content-center my-3">
+	          <div class="col-12 col-md-8 border-gray border-bottom"></div>
+	      </div>     
+	    <% end %>
+	  </div>
+	</div>
+	  
+
