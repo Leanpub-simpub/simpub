@@ -79,14 +79,16 @@
 
   <div class="row w-100 mt-2">
     <h3 class="mx-auto">Reader Testimonials</h3>
-    <div>
-      <div>
-        <div>
-
+    <div class="row col-12">
+      <% @comments.each do |comment| %>
+        <div class="col-12 col-md-6 col-lg-4 text-center mt-5 p-5">
+          <div class="avatar-container m-auto">
+            <%= render "shared/frontend/user_avatar", user: comment.user %>
+          </div>
+          <div><%= comment.user.name %></div>
+          <div><%= comment.content %></div>
         </div>
-        <div></div>
-        <div></div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
