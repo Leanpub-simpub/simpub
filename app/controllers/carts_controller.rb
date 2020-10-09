@@ -41,13 +41,13 @@ class CartsController < ApplicationController
 
   def destroy
     session[Cart::SessionKey] = nil
-    redirect_to :cart, notice: "購物車已清空"
+    redirect_to cart_path, notice: "購物車已清空"
   end
 
 
   def payment
     if current_cart.empty?
-      redirect_to :books, notice: "購物車空空"
+      redirect_to books_path, notice: "購物車內沒有商品"
     else
       if user_signed_in?
         @token = gateway.client_token.generate

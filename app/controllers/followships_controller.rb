@@ -14,14 +14,14 @@ class FollowshipsController < ApplicationController
       render js: "alert('已經追蹤該作者')"
     else
       current_user.followers << @user
-      redirect_to followship_path(current_user), notice: "已追蹤作者"
+      redirect_to users_followship_path(current_user), notice: "已追蹤作者"
     end
   end
 
   def destroy
     @followship = Followship.find_by(id: params[:id])
     @followship.destroy
-    redirect_to :root, notice: "已取消追蹤"
+    redirect_to root_path, notice: "已取消追蹤"
   end
 
   private

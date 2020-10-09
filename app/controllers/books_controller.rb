@@ -3,7 +3,7 @@ class BooksController < ApplicationController
   require "json"
   
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :pricing, :publish, :unpublish, :editor_new, :editor_edit]
-  before_action :find_book, only: [:show, :edit, :update, :pricing, :publish, :unpublish, :wish, :read]
+  before_action :find_book, only: [:show, :edit, :update, :pricing, :publish, :unpublish, :wish, :read, :add_chapter, :add_section]
 
   def index
     @books = Book.published_books
@@ -52,7 +52,7 @@ class BooksController < ApplicationController
       else
         # 在 s3 做出書的資料夾，chapter1.md，與 structure.json(存章節結構)
         book_start(@book.title)
-        redirect_to dash_board_books_path
+        redirect_to users_books_path
       end
     else
       @tags = Tag.all.map(&:name)
@@ -89,7 +89,7 @@ class BooksController < ApplicationController
 
   def unpublish
     @book.remove!
-    redirect_to dash_board_books_path, notice: "#{@book.title} 已下架"
+    redirect_to users_books_path, notice: "#{@book.title} 已下架"
   end
 
   def wish

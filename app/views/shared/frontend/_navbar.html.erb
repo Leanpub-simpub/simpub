@@ -12,14 +12,14 @@
 
     <% if user_signed_in?  %>
     <!-- 個人書櫃 -->
-      <%= link_to "Library", :library, class: "nav-item mx-2" %>
+      <%= link_to "Library", users_library_path, class: "nav-item mx-2" %>
 
     <!-- 寫書 -->
-      <%= link_to "Create a Book", :new_book, class: "nav-item mx-2" %>
+      <%= link_to "Create a Book", new_book_path, class: "nav-item mx-2" %>
         
     <!-- 寫過的書 -->
       <% if current_user.pub_books.count > 0 %>
-        <%= link_to "My Writings", dash_board_books_path, class: "nav-item mx-2" %>
+        <%= link_to "My Writings", users_books_path, class: "nav-item mx-2" %>
       <% end %>  
     <% end %>
   </div>
@@ -34,7 +34,7 @@
 		<div class="row search-bar">
 
 			<!-- book search 表單 -->
-			<%= form_with url: :books, method: :get, class: "nav-search x form-inline d-flex ml-4", local: true, data: {target: "search.book_search"} do |f| %>
+			<%= form_with url: books_path, method: :get, class: "nav-search x form-inline d-flex ml-4", local: true, data: {target: "search.book_search"} do |f| %>
 				<%= f.search_field :book_search, class: "search-input book-search-input form-control", placeholder: "Search" %>
         <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
           <i class="fas fa-search icon"></i>
@@ -42,7 +42,7 @@
 			<% end %>
 
 			<!-- author search 表單 -->
-			<%= form_with url: :books, method: :get, class: "nav-search author-search x form-inline d-flex ml-4", local: true, data: {target: "search.author_search"} do |f| %>
+			<%= form_with url: books_path, method: :get, class: "nav-search author-search x form-inline d-flex ml-4", local: true, data: {target: "search.author_search"} do |f| %>
 				<%= f.search_field :author_search, class: "search-input author-search-input form-control", placeholder: "Search" %>
         <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
           <i class="fas fa-search icon"></i>
@@ -50,7 +50,7 @@
 			<% end %>
 
 			<!-- tag search 表單 -->
-			<%= form_with url: :books, method: :get, class: "nav-search tag-search x form-inline d-flex ml-4", local: true, data: {target: "search.tag_search"} do |f| %>
+			<%= form_with url: books_path, method: :get, class: "nav-search tag-search x form-inline d-flex ml-4", local: true, data: {target: "search.tag_search"} do |f| %>
 				<%= f.search_field :tag_search, class: "search-input tag-search-input form-control", placeholder: "Search" %>
         <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
           <i class="fas fa-search icon"></i>
@@ -120,18 +120,18 @@
           <% if current_user.as_author %>
           <!-- 作者寫書區 -->
             <div class="py-2 d-flex">
-              <%= link_to "My Writings", dash_board_books_path, class: "nav-drop-item container-fluid" %>
+              <%= link_to "My Writings", users_books_path, class: "nav-drop-item container-fluid" %>
             </div>
           <% end %>
 
           <!-- 寫書 -->
           <div class="py-2 d-flex">
-            <%= link_to "Create a Book", :new_book, class: "nav-drop-item container-fluid" %>
+            <%= link_to "Create a Book", new_book_path, class: "nav-drop-item container-fluid" %>
           </div>
 
           <!-- 個人書櫃 -->
           <div class="py-2 d-flex">
-            <%= link_to "Library", :library, class: "nav-drop-item container-fluid" %>
+            <%= link_to "Library", users_library_path, class: "nav-drop-item container-fluid" %>
           </div>
 
           <!-- 購買紀錄 -->
@@ -146,12 +146,12 @@
 
           <!-- 追隨 -->
           <div class="py-2 d-flex">
-            <%= link_to "Follows", followship_path, class: "nav-drop-item container-fluid" %>
+            <%= link_to "Follows", users_followship_path, class: "nav-drop-item container-fluid" %>
           </div>
           
           <!-- 登出 -->
           <div class="py-2 d-flex">
-            <%= link_to "Sign Out", :destroy_user_session, method: :delete, class: "sign_out_btn nav-drop-item container-fluid"%>
+            <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "sign_out_btn nav-drop-item container-fluid"%>
           </div>
         </div>
       </div>
