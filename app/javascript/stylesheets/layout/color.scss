@@ -55,10 +55,11 @@ input[id="switch"] {
   input:checked + label {
     background-color: var(--color-headings);
   }
-}
 
-.search-btn {
-  color: white;
+  [class*="fas fa"],
+  .search-btn {
+    color: white;
+  }
 }
 
 .nav-item:hover,

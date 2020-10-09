@@ -11,14 +11,15 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="navbar-collapse" id="main_nav">
+  <!-- 收合選單開始 -->
+  <div class="navbar-collapse bg-dark" id="main_nav">
     <div class="offcanvas-header mt-3">
       <button class="btn btn-outline-danger btn-close float-right">
         &times
       </button>
     </div>
     <!-- 導覽列選單 -->
-    <ul class="nav-item-group align-items-center mr-auto navbar-nav">
+    <ul class="nav-item-group mr-auto navbar-nav">
       <li class="nav-item active">
         <%= link_to "Books", books_path, class: "nav-link mx-2 txt" %>
       </li>
@@ -27,9 +28,7 @@
         <%= link_to "Create a Book", :new_book, class: "nav-link mx-2 txt" %>      
       </li>
       <li class="nav-item">
-        <% if current_user.pub_books.count > 0 %>
-          <%= link_to "My Writings", dash_board_books_path, class: "nav-link mx-2 txt" %>
-        <% end %>     
+        <%= link_to "My Writings", dash_board_books_path, class: "nav-link mx-2 txt" %>
       </li>
     </ul>
 
@@ -64,10 +63,11 @@
         <% end %>
       </div>
     </div>
-
-    <ul class="navbar-nav icon-group ml-auto">
+    
+    <ul class="navbar-nav ml-auto">
       <% if user_signed_in? %>
-      <li class="nav-item dropdown">
+      <!-- 使用者選單 -->
+      <li class="nav-item dropdown mx-2">
         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
           User Menu
         </a>
@@ -93,48 +93,54 @@
           </li>
         </ul>
       </li>
-      <li class="nav-item d-flex align-items-center">
-        <%# 開燈/關燈 %>
-        <div class="toggle mx-2">
-          <input id="switch" type="checkbox" name="theme" >
-          <label for="switch"></label>
-          <%# <i class="fas fa-moon"></i> %>
-          <%# <i class="far fa-lightbulb"></i> %>
-        </div>
-        <!-- 購物車 -->
-        <%= link_to cart_path, class:"nav-icon" do%>
-          <i class="fas fa-shopping-cart mx-2">
-            <div class="x"></div>
-          </i>
-        <% end %>
-      </li>
-      <!-- 願望清單 -->
-        <li class="nav-item d-flex align-items-center">
-          <div class="nav-icon" data-controller="wish" data-wish-username="<%= current_user.username %>">
-            <%= link_to wishlist_path(current_user.username), class: "nav-icon" do %>
-              <i class="fas fa-heart mx-2">
-                <div class="x" data-target="wish.bubble"></div>
-              </i>
-            <% end %>
-          </div>
-        </li>
-        <li class="nav-item d-flex align-items-center z" data-controller="notify">
-          <div class="nav-icon">
-            <%= link_to "", id: "notifDropdown", class: "dropdown", role: "button", data: {toggle: "dropdown", action: "notify#show"} do %>
-            <!-- <button id="notiDropdown" class="dropdown" role="button", data-toggle="dropdown" data-action="notify#show"> -->
-              <i class="fas fa-bell mx-2">
-                <div class="x" data-target="notify.bubble"></div>
-              </i>
-            <!-- </button> -->
-            <div class="dropdown-menu position-fixed" aria-labelledby="notifDropdown" data-target="notify.menu"></div>
-            <% end %>
-          </div>
-        </li>
-      <% else %>
-      <!-- 註冊&登入 -->
-        <li><%= link_to "Sign Up", new_user_registration_path, class: "mx-2 txt" %></li>
-        <li><%= link_to "Sign In", new_user_session_path, class: "mx-2 txt" %></li>
-      <% end %>
     </ul>
+
   </div>
+  <!-- 收合選單結束 -->
+  
+  <div class="icon-group">
+    <!-- 購物車 -->
+    <%= link_to cart_path, class:"nav-icon" do%>
+      <i class="fas fa-shopping-cart mx-2">
+        <div class="x"></div>
+      </i>
+    <% end %>
+    <!-- 願望清單 -->
+    <div class="nav-icon" data-controller="wish" data-wish-username="<%= current_user.username %>">
+      <%= link_to wishlist_path(current_user.username), class: "nav-icon" do %>
+        <i class="fas fa-heart mx-2">
+          <div class="x" data-target="wish.bubble"></div>
+        </i>
+      <% end %>
+    </div>
+    <!-- 通知 -->
+    <div class="nav-icon z" data-controller="notify">
+      <%= link_to "", id: "notifDropdown", class: "dropdown", role: "button", data: {toggle: "dropdown", action: "notify#show"} do %>
+      <!-- <button id="notiDropdown" class="dropdown" role="button", data-toggle="dropdown" data-action="notify#show"> -->
+        <i class="fas fa-bell mx-2">
+          <div class="x" data-target="notify.bubble"></div>
+        </i>
+      <!-- </button> -->
+      <div class="dropdown-menu position-fixed" aria-labelledby="notifDropdown" data-target="notify.menu"></div>
+      <% end %>
+    </div>
+    <% else %>
+    <!-- 註冊 -->
+    <%= link_to "Sign Up", new_user_registration_path do %>
+      <i class="fas fa-user-plus"></i>
+    <% end %>
+    <!-- 登入 -->
+    <%= link_to "Sign In", new_user_session_path do %>
+      <i class="fas fa-sign-in-alt"></i>
+    <% end %>
+    <% end %>
+    <%# 開燈 / 關燈 %>
+    <div class="toggle mx-2">
+      <input id="switch" type="checkbox" name="theme" >
+      <label for="switch"></label>
+      <%# <i class="fas fa-moon"></i> %>
+      <%# <i class="far fa-lightbulb"></i> %>
+    </div>
+  </div>
+  
 </nav>

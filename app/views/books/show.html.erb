@@ -1,20 +1,8 @@
 <div class="book-show container d-flex txt" >
-	<div class="row align-self-center">
-      
-    <!-- 書本封面 -->
-    <div class="cover col-md-12 col-lg-4 d-flex flex-column">
-      <div class="mb-4">
-        <%= render partial: "shared/frontend/book_cover", locals: {book: @book, size: :large} %>
-      </div>
-      <div class="completeness mt-auto">
-        <div class="progress mx-auto mb-2"></div>
-        <p class="text-center mb-0">This book is <%= @book.completeness %>% complete</p>
-        <p class="text-center mb-0">COMPLETED ON <%= @book.updated_at.to_date %></p>
-      </div>
-    </div>
-    
+	<div class="row">
+
     <!-- 書本資訊區 -->
-    <div class="col-md-12 col-lg-4 d-flex flex-column">
+    <div class="info col-md-12 col-lg-4">
 
       <!-- 書本標題 -->
       <h2 class="title h3 mb-4">
@@ -59,9 +47,21 @@
         <% end %>
 			</div>
 		</div>
+      
+    <!-- 書本封面 -->
+    <div class="cover col-md-12 col-lg-4">
+      <div class="mb-4">
+        <%= render partial: "shared/frontend/book_cover", locals: {book: @book, size: :large} %>
+      </div>
+      <div class="completeness mt-auto">
+        <div class="progress mx-auto mb-2"></div>
+        <p class="text-center mb-0">This book is <%= @book.completeness %>% complete</p>
+        <p class="text-center mb-0">COMPLETED ON <%= @book.updated_at.to_date %></p>
+      </div>
+    </div>
 
     <!-- 購書區 -->
-		<div class="col-md-12 col-lg-4 d-flex flex-column">
+		<div class="shopping col-md-12 col-lg-4">
       <!-- slider -->
       <%= render partial: "shared/frontend/price_slider", locals: {book: @book} %>
 

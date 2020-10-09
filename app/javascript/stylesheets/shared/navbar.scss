@@ -1,12 +1,20 @@
 .layout-navbar {
   position: sticky;
+  justify-content: space-between;
+
+  .nav-item-group {
+    align-items: center;
+    white-space: nowrap;
+  }
 
   .nav-item {
     text-decoration: none;
   }
+
   .nav-icon {
     font-size: 20px;
   }
+
   div .nav-icon:hover {
     animation: shaking 1s infinite;
   }
@@ -30,6 +38,13 @@
       right: -10px;
     }
   }
+
+  .offcanvas-header {
+    .btn-close {
+      font-size: 28px;
+    }
+  }
+
   input[type="checkbox"] {
     height: 0;
     width: 0;
@@ -65,7 +80,15 @@
   label:active:after {
     width: 45px;
   }
+
+  .icon-group {
+    display: flex;
+    // justify-content: center;
+    // align-items: center;
+    margin: auto;
+  }
 }
+
 .layout-dropdown {
   bottom: 0;
   left: 0;
@@ -96,19 +119,21 @@
     padding-top: 10px;
   }
 }
+
 .nav-avatar {
   width: 40px;
   height: 40px;
 }
+
 .nav-avatar img {
   width: 100%;
 }
+
 .nav-user-info {
-  // color: white;
   font-size: 14px;
 }
+
 .nav-drop-item {
-  // color: white;
   text-decoration: none;
   font-size: 14px;
 }
@@ -156,8 +181,17 @@
     transform: rotate(0turn);
   }
 }
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 992px) {
   .nav-item-group {
-    display: none;
+    align-items: start !important;
+  }
+
+  .icon-group {
+    // flex-direction: column;
+    // align-items: start;
+  }
+
+  .navbar-collapse {
+    z-index: 1;
   }
 }
