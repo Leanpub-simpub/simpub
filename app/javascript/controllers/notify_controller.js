@@ -54,11 +54,15 @@ export default class extends Controller {
     const notifyBubble = this.bubbleTarget;
     const box = this.boxTarget;
     $("#notify-box").slideToggle();
+  }
+
+  mark_read() {
+    const notifyBubble = this.bubbleTarget;
     
-    // axios.post("/notifications/mark_as_read.json")
-    //      .then(function(result) {
-    //        notifyBubble.classList.remove("bubble");
-    //      })
-    //      .then(function(error) {})
+    axios.post("/notifications/mark_as_read.json")
+         .then(function(result) {
+           notifyBubble.classList.remove("bubble");
+         })
+         .then(function(error) {})
   }
 }

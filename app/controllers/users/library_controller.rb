@@ -12,11 +12,12 @@ class Users::LibraryController < ApplicationController
   end
   
   def comment
-    book = current_user.bought_books.find_by(id: params[:id])
-    comment = book.comments.new(comment_params)
+    @book = current_user.bought_books.find_by(id: params[:id])
+    comment = @book.comments.new(comment_params)
 
     if comment.save
-      redirect_to book_path(book), notice: "已新增留言"
+      create_notification(@book.authors[0], current_user, "left a comment on", @book)
+      redirect_to book_path(@book), notice: "已新增留言"
     else
       redirect_to users_library_path, notice: "留言失敗，請重新嘗試"
     end
