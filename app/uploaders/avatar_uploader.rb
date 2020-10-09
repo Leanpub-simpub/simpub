@@ -11,6 +11,8 @@ class AvatarUploader < ApplicationUploader
   Attacher.derivatives do |original, crop: nil|
     magick = ImageProcessing::MiniMagick.source(original)
     magick = magick.crop("#{crop[:w]}x#{crop[:h]}+#{crop[:x]}+#{crop[:y]}") if crop
-    magick.resize_to_limit!(300, 300)
+    {
+      small:  magick.resize_to_limit!(300, 300)
+    }
   end
 end

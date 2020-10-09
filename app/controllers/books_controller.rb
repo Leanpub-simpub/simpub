@@ -41,7 +41,7 @@ class BooksController < ApplicationController
     @book.authors << current_user
     
     # 把 cover 切出 大中小 三個尺寸
-    @book.cover_derivatives! if @book.cover_data?
+    CoverUploaderJob.perform_later(@book) if @book.cover_data?
 
     if @book.save
       if @book.md_data
@@ -68,6 +68,7 @@ class BooksController < ApplicationController
   
   def update
     if @book.update(book_params)
+      CoverUploaderJob.perform_later(@book)
       redirect_to pricing_book_path(@book)
     else
       render :edit
