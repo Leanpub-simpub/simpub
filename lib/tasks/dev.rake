@@ -9,7 +9,7 @@ namespace :dev do
     puts "-" * 20
     puts "開始建立開發用假資料"
 
-    users_limit = 0
+    users_limit = 50
 
     (users_limit - User.count).times do
       name = Faker::Name.name
