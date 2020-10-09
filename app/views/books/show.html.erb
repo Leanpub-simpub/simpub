@@ -1,4 +1,4 @@
-<div class="book-show container d-flex" >
+<div class="book-show container d-flex flex-wrap" >
 	<div class="row align-self-center">
 		<div class="col-4 d-flex flex-column">
       <!-- 書本標題 -->
@@ -13,7 +13,7 @@
         </div>
         <!-- 作者名稱 -->
         <div class="book-show-author-name pl-3">
-          <%= link_to link_to @book.authors[0].name, profile_path(@book.authors[0].username) %>
+          <%= link_to link_to @book.authors[0].name, users_profile_path(@book.authors[0].username) %>
         </div>
       </div>
 
@@ -73,4 +73,20 @@
       <button class="add-to-wishlist" data-controller="bookwish", data-action="bookwish#add" data-bookwish-id="<%= @book.id %>">Add to Wish List</button>
 		</div>
 	</div>
+
+  <!-- 暫時先用分隔線 -->
+  <hr class="w-100 mt-5">
+
+  <div class="row w-100 mt-2">
+    <h3 class="mx-auto">Reader Testimonials</h3>
+    <div>
+      <div>
+        <div>
+
+        </div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
 </div>

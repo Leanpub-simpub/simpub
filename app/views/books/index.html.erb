@@ -38,7 +38,7 @@
 				</div>
 				<div class="book-info row">
 					<%= link_to book.title, book_path(book), class: "book-title col-12" %>
-					<%= link_to book.authors[0].name, profile_path(book.authors[0].username), class: "book-author col-12 mt-auto" %>
+					<%= link_to book.authors[0].name, users_profile_path(book.authors[0].username), class: "book-author col-12 mt-auto" %>
 				</div>
 			</div>
 		<% end %>

@@ -2,9 +2,8 @@ class BooksController < ApplicationController
   require "aws-sdk-s3"
   require "json"
   
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :editor_new, :editor_edit]
-  # before_action :find_book, except: [:index, :new, :create]
-  before_action :find_book, only: [:show, :new, :create, :edit, :update, :pricing, :publish, :onpublish, :wish]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :pricing, :publish, :unpublish, :editor_new, :editor_edit]
+  before_action :find_book, only: [:show, :edit, :update, :pricing, :publish, :unpublish, :wish, :read]
 
   def index
     @books = Book.published_books
@@ -46,6 +45,9 @@ class BooksController < ApplicationController
       if @book.md_data
         @book.update(publish_state: "on_shelf")
         current_user.update(as_author: true)
+
+        publish_notify
+        
         redirect_to pricing_book_path(@book)
       else
         # 在 s3 做出書的資料夾，chapter1.md，與 structure.json(存章節結構)
@@ -79,6 +81,8 @@ class BooksController < ApplicationController
     @book.update(book_params)
     @book.update(publish_state: "on_shelf")
     current_user.update(as_author: true)
+
+    publish_notify
     
     redirect_to @book, notice: "書籍已上架囉～"
   end
@@ -90,7 +94,7 @@ class BooksController < ApplicationController
 
   def wish
     current_user.wish_books << @book
-    flash.now[:notice] = "書籍已加入願望清單"
+    flash[:notice] = "書籍已加入願望清單"
   end
 
   # 線上編輯 action
@@ -371,6 +375,12 @@ class BooksController < ApplicationController
     structure.put(body: a )
     chapter = bucket.object("store/book/#{title}/Chapter_1.md")
     chapter.upload_stream{|ws| ws << '# Chapter_1'}
+  end
+
+  def publish_notify
+    (current_user.followees.uniq).each do |followee|
+      create_notification(followee, current_user, "published a book", @book)
+    end
   end
   
 end
