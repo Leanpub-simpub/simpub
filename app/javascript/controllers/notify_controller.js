@@ -6,6 +6,7 @@ export default class extends Controller {
   static targets = [ "bubble", "box" ];
   
   connect() {
+    if (!document.querySelector(".fa-bell")) return;
     const token = document.querySelector("meta[name=csrf-token]").content;
     axios.defaults.headers.common["X-CSRF-Token"] = token;
     
@@ -40,7 +41,7 @@ export default class extends Controller {
                anchor.textContent = `${actor} ${action} you`;
               } else {
                anchor.href = `/books/${notifiable.slug}`;
-               anchor.textContent = `${actor} ${action} ${notifiable.title}`;
+               anchor.textContent = `${actor} ${action} "${notifiable.title}"`;
              }
   
              box.appendChild(anchorBox)
