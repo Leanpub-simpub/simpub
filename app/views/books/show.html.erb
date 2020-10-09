@@ -70,12 +70,12 @@
         <span>YOU PAY</span>
         <span class="hint">(US$)</span>
         <%= form_with url: add_cart_path(@book.id), class: "add-cart-form" do |f| %>
-          <%= f.text_field :cart_price, class: "cart-price text-center mt-1 mb-4" %>
-          <%= f.submit "Add Ebook to Cart", class: "add-to-cart-btn btn btn-danger main-btn" %>
+          <%= f.text_field :cart_price, class: "cart-price text-center mt-1 mb-1" %>
+          <%= f.submit "Add Ebook to Cart", class: "add-to-cart-btn btn btn-danger main-btn mt-1 mb-1" %>
         <% end %>
       </div>
 
-      <button class="add-to-wishlist" data-controller="bookwish", data-action="bookwish#add" data-bookwish-id="<%= @book.id %>">Add to Wish List</button>
+      <button class="add-to-wishlist btn" data-controller="bookwish", data-action="bookwish#add" data-bookwish-id="<%= @book.id %>">Add to Wish List</button>
 		</div>
 	</div>
 </div>

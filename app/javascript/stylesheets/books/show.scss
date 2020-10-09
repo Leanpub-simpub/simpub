@@ -5,6 +5,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
   }
 }
 
@@ -140,8 +142,9 @@
 }
 
 .add-to-wishlist {
-  font-size: 14px;
+  font-size: 16px;
   text-decoration: underline;
+  text-align: left;
 }
 
 .book-show {
