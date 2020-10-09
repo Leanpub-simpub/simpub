@@ -4,12 +4,10 @@ import axios from "axios";
 export default class extends Controller {
   static targets = [ "cover" ];
 
-  connect() {
+  cart() {
     const token = document.querySelector("meta[name=csrf-token]").content;
     axios.defaults.headers.common["X-CSRF-Token"] = token;
-  }
 
-  cart() {
     // 禁止視窗捲動
     document.documentElement.style.overflow = "hidden";
     const modal = document.querySelector(".cart-modal");
@@ -36,8 +34,11 @@ export default class extends Controller {
     const userPayShow = document.querySelector(".modal-user-pay-show");
     const authorEarnsShow = document.querySelector(".modal-author-earns-show");
     const cartPrice = document.querySelector(".cart-price");
-    const addCartForm = document.querySelector(".add-cart-form");
-
+    const addCartForm = document.querySelector(".add-cart-form-modal");
+    const wishToCart = document.querySelector("#wish-to-cart");
+    const waitBtn = document.querySelector(".wait-btn");
+    
+    const username = this.data.get("username");
     const bookId = this.data.get("book");
     axios.get(`/cart/edit.json?id=${bookId}`)
          .then(function(result) {
@@ -48,9 +49,9 @@ export default class extends Controller {
            max.textContent = `$${bookInfo.price * 2}`;
            userPay.min = `${bookInfo.price}`;
            userPay.max = `${bookInfo.price * 3}`;
+           userPay.value = `${bookInfo.price * 2}`;
            authorEarns.min = `${bookInfo.price * 0.8}`;
            authorEarns.max = `${bookInfo.price * 4}`;
-           addCartForm.action = `/cart/add/${bookInfo.id}`
 
            // 設定初始化價格
            setPricePay();
@@ -98,8 +99,20 @@ export default class extends Controller {
       }
     });
 
+
+    // ! 不知道為什麼會打兩次 delete
     addCartForm.addEventListener("submit", () => {
-      location.href = "/cart";
+      addCartForm.action = `/cart/add/${bookId}?cart_price=${cartPrice.value}`;
+
+      wishToCart.parentElement.removeChild(wishToCart);
+      waitBtn.classList.remove("x");
+      
+      setTimeout(() => {
+        location.href = "/cart";
+        axios.delete(`/u/${username}/wishlist?id=${bookId}`)
+             .then(function(reuslt) {})
+             .then(function(result) {});
+      }, 500);
     });
 
 
