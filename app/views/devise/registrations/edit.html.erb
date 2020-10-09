@@ -3,20 +3,16 @@
       <div class="col mb-3">
         <div class="card">
           <div class="card-body">
-            <div class="e-profile">
+            <div class="e-profile position-relative" data-controller="avatar">
               <div class="row">
                 <div class="col d-flex justify-content-center">
                   <%= form_for(resource, as: resource_name, url: user_registration_path(resource_name), method: :patch) do |f| %>
                   <%= render "devise/shared/error_messages", resource: resource %>
                   
                   <div class="mb-3" style="width:160px">
-                    <div class="pb-3" style="width:100%">
-                      <div class="square-img border rounded-circle" id="avatar-preview">
-                        <% if has_avatar?(current_user) %>
-                          <%= image_tag current_user.avatar_url, class: "w-100 position-absolute" %>
-                        <% else %>
-                          <img class="w-100 position-absolute" src="https://www.nicepng.com/png/full/136-1366211_group-of-10-guys-login-user-icon-png.png">
-                        <% end %>
+                    <div class="pb-3" class="w-100">
+                      <div class="square-img border rounded-circle" id="avatar-preview" data-target="avatar.show">
+                        <%= render "shared/frontend/user_avatar", user: resource %>
                       </div>
                     </div>
                   </div>
@@ -25,7 +21,21 @@
               </div>
 
               <%= f.hidden_field :avatar, value: current_user.cached_avatar_data %>
-              <%= f.file_field :avatar, id: "avatar-input" %>
+              <%= f.file_field :avatar, id: "avatar-input", class: "img-reader", accept: "image/*", data: {target: "avatar.img_reader"} %>
+              <div class="cropper-wrap x border position-absolute" data-target="avatar.wrap">
+                <div class="cropper-container cropper-bg d-flex">
+                  <img id="crop-img" data-target="avatar.crop_img">
+                </div>
+                <div class="preview p-4 flex-grow-1">
+                  <div class="preview-box text-center m-auto" data-target="avatar.preview_box"></div>
+                  <div class="crop-btn btn main-btn" data-target="avatar.crop">確認</div>
+                </div>
+              </div>
+              <%= f.hidden_field :x, id:"dataX", data: {target: "avatar.x"} %>
+              <%= f.hidden_field :y, id:"dataY", data: {target: "avatar.y"} %>
+              <%= f.hidden_field :width, id:"dataWidth", data: {target: "avatar.width"} %>
+              <%= f.hidden_field :height, id:"dataHeight", data: {target: "avatar.height"} %>
+
               <ul class="nav nav-tabs mt-3">
                 <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
               </ul>
