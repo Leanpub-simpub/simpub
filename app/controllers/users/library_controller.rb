@@ -25,7 +25,7 @@ class Users::LibraryController < ApplicationController
 
   private
   def comment_params
-    params.require(:comment).permit(:stars, :content)
+    params.require(:comment).permit(:stars, :content).merge(user: current_user)
   end
   
 end

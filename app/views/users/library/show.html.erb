@@ -82,7 +82,7 @@
           <% end %>
 
           <div>
-            <%= form_with model: @comment, url: users_comment_path(id: 1), local: true do |f| %>
+            <%= form_with model: @comment, url: "#", class: "comment-form" do |f| %>
               <div>
                 <%= f.label :content, "留下評論" %>
                 <%= f.text_area :content, class: "d-block" %>

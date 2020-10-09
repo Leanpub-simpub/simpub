@@ -3,6 +3,7 @@ window.addEventListener("turbolinks:load", function () {
     const bookBox = document.querySelector(".book-box");
 
     bookBox.addEventListener("click", e => {
+      let commentForm = document.querySelector(".comment-form");
       let classes = e.target.classList;
       
       if (classes.contains("book-cover") || classes.contains("book-title")) {
@@ -32,6 +33,10 @@ window.addEventListener("turbolinks:load", function () {
             document.querySelector(".name").textContent = book.authors[0].name;
             document.querySelector(".name").image = book.authors[0].avatar_data;
             document.querySelector(".Leanpub").href = `/books/${book.slug}/read`;
+        });
+  
+        commentForm.addEventListener("submit", () => {
+          commentForm.action = `/dash_board/library?id=${bookKey}`
         });
       };
     });
