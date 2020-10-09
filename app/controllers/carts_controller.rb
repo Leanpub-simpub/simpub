@@ -58,27 +58,31 @@ class CartsController < ApplicationController
   end
 
   def checkout
-    result = gateway.transaction.sale(
-      amount: current_cart.total_price,
-      payment_method_nonce: params[:nonce],
-      options: {
-        submit_for_settlement: true
-      }
-    )
-
-    if result.success?
-      # 成功付款建立訂單
-      create_order(current_user, result.transaction.id)
-
-      current_cart.items.each do |item|
-        current_user.bought_books << Book.find_by(id: item.book_id)
-      end
-             
-      session[Cart::SessionKey] = nil
-      redirect_to root_path, notice: "付款成功"
+    if current_cart.total_price == 0
+      create_order(current_user)
     else
-      redirect_to root_path, notice: "付款發生錯誤"
+      result = gateway.transaction.sale(
+        amount: current_cart.total_price,
+        payment_method_nonce: params[:nonce],
+        options: {
+          submit_for_settlement: true
+        }
+      )
+
+      if result.success?
+        # 成功付款建立訂單
+        create_order(current_user, result.transaction.id)
+      else
+        redirect_to root_path, notice: "付款發生錯誤"
+      end
     end
+
+    current_cart.items.each do |item|
+      current_user.bought_books << Book.find_by(id: item.book_id)
+    end
+           
+    session[Cart::SessionKey] = nil
+    redirect_to root_path, notice: "付款成功"
   end
 
 
