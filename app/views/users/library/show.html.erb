@@ -84,6 +84,16 @@
           <div>
             <%= form_with model: @comment, url: "#", class: "comment-form" do |f| %>
               <div>
+                <%= f.hidden_field :stars, id: "rating-input", min: "0", max: "5" %>
+              </div>
+
+              <div class="rating" role="optgroup">
+                <% 1.upto(5) do |n| %>
+                  <i class="far fa-star fa-2x rating-star" id="rating-<%= n %>" data-rating="<%= n %>" tabindex="0" aria-label="Rate as one out of 5 stars" role="radio"></i>
+                <% end %>
+              </div>
+
+              <div>
                 <%= f.label :content, "留下評論" %>
                 <%= f.text_area :content, class: "d-block" %>
               </div>

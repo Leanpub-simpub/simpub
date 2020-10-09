@@ -40,6 +40,26 @@ window.addEventListener("turbolinks:load", function () {
         });
       };
     });
+
+    
+    $(".rating-star")
+      .on("click", function(e) {
+        rating = $(e.target).data("rating");
+        setRating(rating);
+      })
+      .on("keyup", function(e){
+        if (e.keyCode === 32) {
+          rating = $(e.target).data("rating");
+          setRating(rating);
+        }
+      });
+
+    function setRating(rating) {
+      $("#rating-input").val(rating);
+      $(".rating-star").removeClass("far").addClass("fas");
+      $(`.rating-star#rating-${rating} ~ .rating-star`).removeClass("fas").addClass("far");
+    }
+
   };
 });
  
