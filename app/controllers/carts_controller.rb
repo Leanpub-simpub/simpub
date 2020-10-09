@@ -87,8 +87,13 @@ class CartsController < ApplicationController
 
 
   def refund
-    transaction = gateway.transaction.find(params[:trans_id])
     order = current_user.orders.find_by(uuid: params[:uuid])
+    if order.total == 0
+      redirect_to purchases_path, notice: "零元訂單無法退貨"
+      return
+    end
+
+    transaction = gateway.transaction.find(params[:trans_id])
 
     if transaction.status == "settled" or transaction.status == "settling"
       refund = gateway.transaction.refund(transaction.id)
