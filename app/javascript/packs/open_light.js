@@ -20,14 +20,14 @@ document.addEventListener("turbolinks:load", () => {
 	const initialColors = {
 		bg: getStyle(html, "--bg"),
 		txt: getStyle(html, "--txt"),
-		main: getStyle(html, "--main"),
+		main: getStyle(html, "--main")
 	};
 
 	// override styles
 	const darkMode = {
 		bg: "#222222",
 		txt: "#ffffff",
-		main: "#e09a5f",
+		main: "#e09a5f"
 	};
 
 	const transformKey = (key) =>

@@ -1,0 +1,49 @@
+.purchase {
+  .text2 {
+    color: #888;
+  }
+
+  #order-info {
+    .info-text2 {
+      font-size: 12px;
+    }
+
+    .order-box {
+      
+      a {
+        color: #e09a5f;
+        text-shadow: .3px .3px hsla(27, 68%, 63%, .9);
+        text-decoration: none;
+        transition: font-size .2s linear;
+      }
+      a:hover {
+        font-size: 20px;
+      }
+
+      .col-0 {
+        font-size: 0;
+        padding: 0;
+        width: 0;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .purchase {
+    #order-info {
+      text-align-last: left;
+
+      .order-box {
+        .col-0 {
+          font-size: inherit;
+          width: 100%;
+          text-align-last: center;
+        }
+        .order-item {
+          border-top: 1px solid #aaa;
+        }
+      }
+    }
+  }
+}
