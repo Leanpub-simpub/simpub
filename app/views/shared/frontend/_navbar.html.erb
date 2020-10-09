@@ -1,4 +1,4 @@
-<nav class="layout-navbar navbar txt sticky-top mb-4">
+<nav class="layout-navbar navbar txt sticky-top mb-4" data-controller="notify">
   <!-- 品牌 logo -->
   <div class="col-1">
     <a href="/" class="navbar-brand">  
@@ -77,17 +77,12 @@
           <% end %>
         </div>
         <!-- 通知 -->
-        <div class="z" data-controller="notify">
-          <div class="nav-icon">
-            <%= link_to "", id: "notifDropdown", class: "dropdown", role: "button", data: {toggle: "dropdown", action: "notify#show"} do %>
-            <!-- <button id="notiDropdown" class="dropdown" role="button", data-toggle="dropdown" data-action="notify#show"> -->
-              <i class="fas fa-bell mx-2">
-                <div class="x" data-target="notify.bubble"></div>
-              </i>
-            <!-- </button> -->
-            <div class="dropdown-menu position-fixed" aria-labelledby="notifDropdown" data-target="notify.menu"></div>
-            <% end %>
-          </div>
+        <div class="nav-icon">
+          <button class="nav-icon border-0 bg-transparent p-0" data-action="notify#show">
+            <i class="fas fa-bell mx-2">
+              <div class="x" data-target="notify.bubble"></div>
+            </i>
+          </button>
         </div>
 
       <% else %>
@@ -156,5 +151,13 @@
         </div>
       </div>
     <% end %>
+  </div>
+
+  <div id="notify-box" class="position-fixed x">
+    <div class="d-flex px-3 py-2 border-bottom justify-content-between">
+      <div class="">Notifications</div>
+      <div>Clear All</div>
+    </div>
+    <div class="notify-content" data-target="notify.box"></div>
   </div>
 </nav>
