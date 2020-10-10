@@ -7,36 +7,60 @@
       <p class="text-center mt-3 txt"><%= current_user.name %></p>
     </div>
 
-    <div id="order-items" class="col-10 border">
-      <div id="purchased-time" class="h3 pl-5 pt-5">
-        <%= link_to purchases_path, data: {turbolinks: "false"} do %>
-          <i class="fas fa-angle-left"></i>
-        <% end %>
-        Purchased on <%= @order.updated_at.strftime("%Y-%m-%d") %>
+    <div id="order-items" class="col-12 col-lg-9 col-xl-10 txt text-center pl-xl-5">
+      <div id="purchased-time" class="pb-3">
+        <div class="h3">
+          <%= link_to purchases_path, class: "txt", data: {turbolinks: "false"} do %>
+            <i class="fas fa-angle-left"></i>
+          <% end %>
+          Purchased on <%= @order.updated_at.strftime("%Y-%m-%d") %>
+        </div>
+        <%= link_to "Request Refund", refund_cart_path(trans_id: @order.transaction_id, uuid: @order.uuid), method: :post, class: "btn", data: {confirm: "真的要退款嗎？"} %>
       </div>
-        
-        <section class="pl-5 pt-5 w-100">
-          <div class="row border-bottom py-3">
-            <div class="col-5">Item</div>
-            <div class="col-2">Total</div>
-            <div class="col-2">Refund Days left</div>
-            <div class="col-3">
-              <%= link_to "Request Refund", refund_cart_path(trans_id: @order.transaction_id, uuid: @order.uuid), method: :post, data: {confirm: "真的要退款嗎？"} %>
+
+      <!-- 手機版樣式 -->
+      <div class="mobile">
+        <% @order_items.each do |item| %>
+          <div class="items-box pt-3 mx-auto">
+            <div class="row pb-2">
+              <div class="col-5">Item : </div>
+              <div class="col-6"><%= item.book.title %></div>
+            </div>
+            <div class="row pb-2">
+              <div class="col-5">Total : </div>
+              <div class="col-6">$<%= sprintf("%.2f", item.price) %></div>
+            </div>
+            <div class="row pb-2">
+              <div class="col-5">Refund Days left : </div>
+              <div class="col-6"><%= @refund_time %></div>
             </div>
           </div>
-        </section>
-
-        <div class="pl-5 py-3 w-100">
-          <% @order_items.each do |item| %>
-            <div class="row border-bottom">
-              <div class="col-5"><%= item.book.title %></div>
-              <div class="col-2">$<%= sprintf("%.2f", item.price) %></div>
-              <div class="col-5"><%= @refund_time %></div>
-            </div>
-          <% end %>
-        </div>
-  
+        <% end %>
       </div>
+        
+      <!-- 電腦版樣式 -->
+      <div class="desk">
+        <div class="items-box">
+          <div class="w-100">
+            <div class="row py-3">
+              <div class="col-6">Item</div>
+              <div class="col-2">Total</div>
+              <div class="col-4">Refund Days left</div>
+            </div>
+          </div>
+  
+          <div class="w-100 item">
+            <% @order_items.each do |item| %>
+              <div class="row py-3">
+                <div class="col-6"><%= item.book.title %></div>
+                <div class="col-2">$<%= sprintf("%.2f", item.price) %></div>
+                <div class="col-4"><%= @refund_time %></div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
