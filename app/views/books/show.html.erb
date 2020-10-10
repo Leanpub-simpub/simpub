@@ -16,8 +16,8 @@
           <%= render "shared/frontend/user_avatar", user: @book.authors[0] %>
         </div>
         <!-- 作者名稱 -->
-        <div class="book-show-author-name pl-3 d-flex align-items-center">
-          <%= link_to link_to @book.authors[0].name, profile_path(@book.authors[0].username), class:"txt" %>
+        <div class="book-show-author-name pl-3">
+          <%= link_to link_to @book.authors[0].name, users_profile_path(@book.authors[0].username) %>
         </div>
       </div>
 
@@ -78,4 +78,20 @@
       <button class="add-to-wishlist btn" data-controller="bookwish", data-action="bookwish#add" data-bookwish-id="<%= @book.id %>">Add to Wish List</button>
 		</div>
 	</div>
+
+  <!-- 暫時先用分隔線 -->
+  <hr class="w-100 mt-5">
+
+  <div class="row w-100 mt-2">
+    <h3 class="mx-auto">Reader Testimonials</h3>
+    <div>
+      <div>
+        <div>
+
+        </div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
 </div>

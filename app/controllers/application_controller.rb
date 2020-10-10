@@ -26,4 +26,13 @@ class ApplicationController < ActionController::Base
   def any_purchase?(user)
     user.orders.count > 0
   end
+
+  def create_notification(receiver, actor, action, notifiable)
+    Notification.create(
+        recipient: receiver,
+        actor: actor,
+        action: action,
+        notifiable: notifiable
+    )
+  end
 end

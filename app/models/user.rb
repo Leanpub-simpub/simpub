@@ -22,6 +22,7 @@ class User < ApplicationRecord
   has_many :bought_books, through: :book_users, source: :book
 
   has_many :orders
+  has_many :comments
 
   has_many :followed_users, foreign_key: :follower_id, class_name: "Followship"
   has_many :followees, through: :followed_users

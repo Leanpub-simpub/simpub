@@ -4,7 +4,7 @@ document.addEventListener("turbolinks:load", () => {
     const userPayShow = document.querySelector(".user-pay-show");
     const authorEarns = document.querySelector("#author-earns");
     const authorEarnsShow = document.querySelector(".author-earns-show");
-    const cartPrice = document.querySelector(".cart-price");
+    const cartPrice = document.querySelector("#cart_price");
     const addCartForm = document.querySelector(".add-cart-form");
 
     // 設定初始化價格
@@ -52,22 +52,10 @@ document.addEventListener("turbolinks:load", () => {
       }
     });
 
-    // 按下加入購物車按鈕後顯示動畫
     if (!addCartForm) return;
-    if (document.querySelector("#wish-to-cart")) {
-      const wishToCart = document.querySelector("#wish-to-cart");
-      const waitBtn = document.querySelector(".wait-btn");
-      wishToCart.addEventListener("click", () => {
-        wishToCart.parentElement.removeChild(wishToCart);
-        waitBtn.classList.remove("x");
-        setTimeout(() => {
-          location.href = "/cart";
-        }, 500);
-      });
-    }
 
-    addCartForm.onsubmit = bookToCart.bind(addCartForm);
-    function bookToCart() {
+    // 按下加入購物車按鈕後顯示動畫
+    addCartForm.addEventListener("submit", () => {
       const cart = document.querySelector(".fa-shopping-cart");
       const cover = document.querySelector(".cover-img");
       const coverBubble = cover.cloneNode(true);
@@ -87,20 +75,20 @@ document.addEventListener("turbolinks:load", () => {
       coverBubble.classList.add("cover-bubble");
       cover.parentElement.appendChild(coverBubble);
 
-      gsap.to(".cover-bubble", { duration: 0.5, scaleX: 0.05, scaleY: 0.05 });
+      gsap.to(".cover-bubble", { duration: 0.4, scaleX: 0.05, scaleY: 0.05 });
       gsap.to(".cover-bubble", {
-        delay: 0.5,
-        duration: 0.5,
+        delay: 0.4,
+        duration: 0.8,
         x: `${endX - startX}px`,
         y: `${endY - startY}px`,
-        opacity: 0.5,
+        opacity: 0.8,
       });
 
       // 動畫結束後刪除該物件
       setTimeout(() => {
         cover.parentElement.removeChild(coverBubble);
-      }, 1000);
-    }
+      }, 1200);
+    });
 
     function setPricePay() {
       let userPayDrag = parseFloat(userPay.value).toFixed(2);

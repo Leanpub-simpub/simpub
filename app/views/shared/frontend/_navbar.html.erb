@@ -29,7 +29,9 @@
         <%= link_to "Create a Book", :new_book, class: "nav-link txt" %>      
       </li>
       <li class="nav-item">
+      <% if current_user.as_author %>
         <%= link_to "My Writings", dash_board_books_path, class: "nav-link txt" %>
+      <% end %>
       </li>
     </ul>
 
@@ -41,21 +43,24 @@
         <option value="tag-search">Book Tags</option>
       </select>
       <div class="row search-bar">
-        <%# book search 表單 %>
+      
+        <!-- book search 表單 -->
         <%= form_with url: :books, method: :get, class: "nav-search x form-inline d-flex flex-nowrap ml-4", local: true, data: {target: "search.book_search"} do |f| %>
           <%= f.search_field :book_search, class: "search-input book-search-input form-control", placeholder: "Search" %>
           <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
             <i class="fas fa-search"></i>
           <% end %>
         <% end %>
-        <%# author search 表單 %>
+
+        <!-- author search 表單 -->
         <%= form_with url: :books, method: :get, class: "nav-search author-search x form-inline d-flex flex-nowrap ml-4", local: true, data: {target: "search.author_search"} do |f| %>
           <%= f.search_field :author_search, class: "search-input author-search-input form-control", placeholder: "Search" %>
           <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
             <i class="fas fa-search"></i>
           <% end %>
         <% end %>
-        <%# tag search 表單 %>
+
+        <!-- tag search 表單 -->
         <%= form_with url: :books, method: :get, class: "nav-search tag-search x form-inline d-flex flex-nowrap ml-4", local: true, data: {target: "search.tag_search"} do |f| %>
           <%= f.search_field :tag_search, class: "search-input tag-search-input form-control", placeholder: "Search" %>
           <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
@@ -67,7 +72,7 @@
 
     <!-- 開燈 / 關燈 -->
     <div class="toggle mx-2" data-controller="light">
-      <%# <div data-action="click->light#switch" class="">
+      <div data-action="click->light#switch" class="">
         <i class="fas fa-moon" data-target="light.icon"></i>
       </div> %>
       <input id="switch" type="checkbox" name="theme" >
@@ -82,30 +87,32 @@
             User Menu
           </a>
           <ul class="dropdown-menu">
-            <%# 編輯個人主頁 %>
+            <!-- 編輯個人主頁 -->
             <li class="dropdown-item">
               <%= link_to "Edit Profile", user_dashboard_path, class:"nav-drop-item" %>
             </li>
 
-            <%# 追隨 %>
+            <!-- 追隨 -->
             <li class="dropdown-item">
               <%= link_to "Follows", followship_path, class: "nav-drop-item" %>
             </li>
 
-            <%# 購買紀錄 %>
+            <!-- 購買紀錄 -->
             <li class="dropdown-item">
               <a href="/purchases" class="nav-drop-item">Purchases</a>
             </li>
             
-            <%# 登出 %>
+            <!-- 登出 -->
             <li class="dropdown-item">
               <%= link_to "Sign Out", :destroy_user_session, method: :delete, class: "sign_out_btn nav-drop-item"%>
             </li>
           </ul>
         </li>
       <% else %>
+
         <!-- 註冊 -->
         <%= link_to "Sign Up", new_user_registration_path, class: "sing_up nav-link" %>
+        
         <!-- 登入 -->
         <%= link_to "Sign In", new_user_session_path, class: "sing_in nav-link" %>
       <% end %>
@@ -116,21 +123,25 @@
 
   <!-- 購物車、願望清單、通知 -->
   <div class="icon-group">
+
     <!-- 購物車 -->
     <%= link_to cart_path, class:"nav-icon" do%>
       <i class="fas fa-shopping-cart mx-2">
         <div class="x"></div>
       </i>
     <% end %>
-    <% if user_signed_in? %>
+    
+
     <!-- 願望清單 -->
+    <% if user_signed_in? %>
     <div class="nav-icon" data-controller="wish" data-wish-username="<%= current_user.username %>">
-      <%= link_to wishlist_path(current_user.username), class: "nav-icon" do %>
+      <%= link_to users_wishlist_path(current_user.username), class: "nav-icon" do %>
         <i class="fas fa-heart mx-2">
           <div class="x" data-target="wish.bubble"></div>
         </i>
       <% end %>
     </div>
+
     <!-- 通知 -->
     <div class="nav-icon z" data-controller="notify">
       <%= link_to "", id: "notifDropdown", class: "dropdown", role: "button", data: {toggle: "dropdown", action: "notify#show"} do %>
