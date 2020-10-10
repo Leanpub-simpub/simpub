@@ -3,6 +3,14 @@
   margin-top: -2px;
 }
 
+.slider-content {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  margin: auto;
+  transform: translate(-50%, -50%);
+}
+
 @media screen and (max-width: 992px) {
   .slider-content {
     max-height: 0px;
