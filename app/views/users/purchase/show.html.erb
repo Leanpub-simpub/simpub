@@ -1,21 +1,21 @@
-<div class="container">
-  <div class="row">
-    <div class="col-2">
-      <div>
+<section class="purchase container-lg py-5 py-lg-3">
+  <div class="row flex-unwrap">
+    <div class="col-12 col-lg-3 col-xl-2 flex-unwrap mb-4">
+      <div class="col-6 col-sm-3 col-lg-10 col-xl-12 m-auto">
         <%= render "shared/frontend/user_avatar", user: current_user %>
       </div>
-      <p class="text-center"><%= current_user.name %></p>
+      <p class="text-center mt-3 txt"><%= current_user.name %></p>
     </div>
 
     <div id="order-items" class="col-10 border">
       <div id="purchased-time" class="h3 pl-5 pt-5">
-        <%= link_to purchases_path do %>
+        <%= link_to purchases_path, data: {turbolinks: "false"} do %>
           <i class="fas fa-angle-left"></i>
         <% end %>
         Purchased on <%= @order.updated_at.strftime("%Y-%m-%d") %>
       </div>
         
-        <div class="pl-5 pt-5 w-100">
+        <section class="pl-5 pt-5 w-100">
           <div class="row border-bottom py-3">
             <div class="col-5">Item</div>
             <div class="col-2">Total</div>
@@ -24,7 +24,7 @@
               <%= link_to "Request Refund", refund_cart_path(trans_id: @order.transaction_id, uuid: @order.uuid), method: :post, data: {confirm: "真的要退款嗎？"} %>
             </div>
           </div>
-        </div>
+        </section>
 
         <div class="pl-5 py-3 w-100">
           <% @order_items.each do |item| %>
@@ -39,4 +39,4 @@
       </div>
     </div>
   </div>
-</div>
+</section>

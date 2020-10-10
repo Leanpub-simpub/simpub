@@ -4,16 +4,6 @@ document.addEventListener("turbolinks:load", () => {
 	const iconBtn = document.querySelector(".icon-btn");
 	const icon = document.querySelector(".light-icon");
 
-	if (localStorage.getItem("mode")) {
-		if (localStorage.getItem("mode").includes("dark")) {
-			icon.classList.remove("fa-moon");
-			icon.classList.add("fa-sun");
-		} else {
-			icon.classList.remove("fa-sun");
-			icon.classList.add("fa-moon");
-		}
-	}
-
 	const getStyle = (element, style) =>
 		window.getComputedStyle(element).getPropertyValue(style);
 
@@ -68,13 +58,17 @@ document.addEventListener("turbolinks:load", () => {
 		createOrEditLocalStorage("mode", "initialColors");
 
 	if (getValueLocalStorage("mode") === "initialColors") {
-		checkbox.removeAttribute("checked");
 		changeColors(initialColors);
+		checkbox.removeAttribute("checked");
+		icon.classList.remove("fa-sun");
+		icon.classList.add("fa-moon");
 	} else {
 		checkbox.setAttribute("checked", "");
 		changeColors(darkMode);
+		icon.classList.remove("fa-moon");
+		icon.classList.add("fa-sun");
 	}
-
+	
 	iconBtn.addEventListener("click", () => {
 		checkbox.click();
 	});

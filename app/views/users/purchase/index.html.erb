@@ -4,7 +4,7 @@
       <div class="col-6 col-sm-3 col-lg-10 col-xl-12 m-auto">
         <%= render "shared/frontend/user_avatar", user: current_user %>
       </div>
-      <p class="text-center user-name mt-3"><%= current_user.name %></p>
+      <p class="text-center mt-3 txt"><%= current_user.name %></p>
     </div>
     
     <div id="order-info" class="col-12 col-lg-9 col-xl-10 pl-xl-5">
@@ -23,7 +23,7 @@
   
             <% @orders.each do |order| %>
               <div class="row py-2 order-item">
-                <%= link_to "/purchases_show?uuid=#{order.uuid}", class: "d-flex w-100", data: {controller: "order", action: "order#show", order_uuid: order.uuid} do %>
+                <%= link_to "/purchases_show?uuid=#{order.uuid}", class: "d-flex w-100", data: {controller: "order", action: "order#show", order_uuid: order.uuid, turbolinks: "false"} do %>
                   <div class="col-12 col-lg-5"><%= order.order_items[0].book.title %></div>
                   <div class="col-0 col-lg-2"><%= order.updated_at.strftime("%Y-%m-%d") %></div>
                   <div class="col-0 col-lg-2"><%= order.order_items.count %></div>
