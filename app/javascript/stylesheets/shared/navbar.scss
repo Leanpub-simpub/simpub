@@ -131,9 +131,6 @@
 
 .dropdown-menu {
   margin-bottom: 1vh;
-  // position: absolute;
-  // top: 6vh;
-  // right: 2vh;
 }
 
 .search-filter {
@@ -141,11 +138,6 @@
   margin-right: auto;
   display: flex;
   flex-wrap: nowrap;
-  //   .nav-search {
-  //     display: flex;
-  //     flex-wrap: nowrap;
-  //     margin-left: 1em;
-  //   }
 }
 
 .nav-user-info {
@@ -218,11 +210,6 @@
     visibility: hidden;
   }
 
-  .icon-group {
-    // top: 5em;
-    // right: 0;
-  }
-
   .navbar-collapse {
     position: relative;
     display: flex;
@@ -239,7 +226,9 @@
     .search-filter {
       order: -1;
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-left: 0;
       margin-bottom: 2em;
     }
 
