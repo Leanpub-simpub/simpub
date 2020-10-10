@@ -2,12 +2,9 @@ import { Controller } from "stimulus";
 import axios from "axios";
 
 export default class extends Controller {
-  static targets = [ "title", "error_msg" ];
+  static targets = [ "title", "error_msg", "cover", "pdf" ];
 
   connect() {
-    const token = document.querySelector("meta[name=csrf-token]").content;
-    axios.defaults.headers.common["X-CSRF-Token"] = token;
-
     // 檢查書籍的狀態使否為草稿，非草稿狀態不能改 title
     let publishState = this.data.get("state");
     if (publishState != "draft") {
@@ -15,7 +12,20 @@ export default class extends Controller {
     }
   }
 
+  upload_cover() {
+    const coverInput = this.coverTarget;
+    coverInput.click();
+  }
+
+  upload_pdf() {
+    const pdfInput = this.pdfTarget;
+    pdfInput.click();
+  }
+
   input() {
+    const token = document.querySelector("meta[name=csrf-token]").content;
+    axios.defaults.headers.common["X-CSRF-Token"] = token;
+
     // title 欄位 unfocus 後檢查該 titlte 是否已經被使用
     this.titleTarget.addEventListener("blur", () => {
       let bookTittle = this.data.get("title");
@@ -25,6 +35,7 @@ export default class extends Controller {
       
       axios.get(`/books/new.json`)
            .then(function(result) {
+             console.log(result.data);
               if (bookTittle != title && result.data.includes(title)) {
                 titleInput.setAttribute("style", "border: 2px solid red; border-radius: 0.25em;");
                 titleError.textContent = "Title has already been taken";
