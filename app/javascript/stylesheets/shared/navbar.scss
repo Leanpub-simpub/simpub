@@ -84,10 +84,10 @@
   }
 
   .icon-group {
-    display: flex;
+    display: inline-flex;
     position: absolute;
-    top: 1vh;
-    right: 20vh;
+    top: 1.5vh;
+    right: 25vh;
   }
 
   .light {
@@ -217,10 +217,8 @@
     align-items: flex-start;
     padding: 2vh;
 
-    .offcanvas-header {
-      position: absolute;
-      top: 3vh;
-      right: 3vh;
+    .icon-group {
+      right: 5vh;
     }
 
     .search-filter {
@@ -235,7 +233,13 @@
     .nav-item-group,
     .user-menu {
       order: 1;
-      margin-left: 1vh;
+      margin-left: 2vh;
+    }
+
+    .offcanvas-header {
+      position: absolute;
+      top: 3vh;
+      right: 3vh;
     }
 
     .toggle {
