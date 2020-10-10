@@ -1,6 +1,6 @@
 <section class="sign-in container">
   <div class="w-50 mx-auto">
-    <h3 class="title">Sign in</h3>
+    <h3 class="title">Sign In</h3>
     
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     
@@ -20,7 +20,7 @@
 
     <p class="txt">This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</p>
     
-    <%= f.submit "Sign In", class: "col-4 btn btn-dark main-btn border-0"%>
+    <%= f.submit "Sign In", class: "btn btn-dark main-btn"%>
     <% end %>
     
     <%= render "devise/shared/links" %>
