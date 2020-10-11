@@ -6,7 +6,7 @@ namespace :dev do
 
   # `$ rake dev:fake` 會依據 `users_limit` 數字建立固定數量的假資料
   task fake: :environment do
-    puts "-" * 20
+    puts "-" * 10
     puts "開始建立開發用假資料"
 
     users_limit = 50
