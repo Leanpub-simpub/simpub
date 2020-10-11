@@ -1,6 +1,18 @@
 document.addEventListener("turbolinks:load", () => {
 	const html = document.querySelector("html");
 	const checkbox = document.querySelector("input[name=theme]");
+	const iconBtn = document.querySelector(".icon-btn");
+	const icon = document.querySelector(".light-icon");
+
+	if (localStorage.getItem("mode")) {
+		if (localStorage.getItem("mode").includes("dark")) {
+			icon.classList.remove("fa-moon");
+			icon.classList.add("fa-sun");
+		} else {
+			icon.classList.remove("fa-sun");
+			icon.classList.add("fa-moon");
+		}
+	}
 
 	const getStyle = (element, style) =>
 		window.getComputedStyle(element).getPropertyValue(style);
@@ -27,9 +39,9 @@ document.addEventListener("turbolinks:load", () => {
 		);
 	};
 
-	checkbox.addEventListener("change", ({ target }) => {
-		target.checked ? changeColors(darkMode) : changeColors(initialColors);
-	});
+	// checkbox.addEventListener("change", ({ target }) => {
+	// 	target.checked ? changeColors(darkMode) : changeColors(initialColors);
+	// });
 
 	const isExistLocalStorage = (key) => localStorage.getItem(key) != null;
 
@@ -42,9 +54,13 @@ document.addEventListener("turbolinks:load", () => {
 		if (target.checked) {
 			changeColors(darkMode);
 			createOrEditLocalStorage("mode", "darkMode");
+			icon.classList.remove("fa-moon");
+			icon.classList.add("fa-sun");
 		} else {
 			changeColors(initialColors);
 			createOrEditLocalStorage("mode", "initialColors");
+			icon.classList.remove("fa-sun");
+			icon.classList.add("fa-moon");
 		}
 	});
 
@@ -58,4 +74,8 @@ document.addEventListener("turbolinks:load", () => {
 		checkbox.setAttribute("checked", "");
 		changeColors(darkMode);
 	}
+
+	iconBtn.addEventListener("click", () => {
+		checkbox.click();
+	});
 });

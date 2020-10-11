@@ -68,21 +68,7 @@
           <% end %>
         <% end %>
       </div>
-    </div>
-
-    <!-- 開燈 / 關燈 -->
-    <div class="toggle mx-2" data-controller="light">
-
-      <!-- 圖示（測試中）
-      <div data-action="click->light#switch" class="">
-        <i class="fas fa-moon" data-target="light.icon"></i>
-      </div> %>
-      -->
-
-      <!-- 按鈕 -->
-      <input id="switch" type="checkbox" name="theme" >
-      <label for="switch"></label>
-    </div>
+		</div>
 
     <!-- 使用者選單 -->
     <ul class="navbar-nav user-menu">
@@ -121,13 +107,22 @@
         <!-- 登入 -->
         <%= link_to "Sign In", new_user_session_path, class: "sing_in nav-link" %>
       <% end %>
-    </ul>
-
+    </div>
   </div>
   <!-- 收合選單結束 -->
 
   <!-- 購物車、願望清單、通知 -->
   <div class="icon-group">
+
+    <!-- 開燈/關燈 -->
+    <!-- 圖示 -->
+    <div class="icon-btn">
+      <i class="light-icon mx-2 fas fa-moon"></i>
+      <!-- <i class="fas fa-lightbulb"></i> -->
+    </div>
+    <!-- 按鈕 -->
+    <input id="switch" type="checkbox" name="theme">
+    <label for="switch" hidden></label>
 
     <!-- 購物車 -->
     <%= link_to cart_path, class:"nav-icon" do%>
