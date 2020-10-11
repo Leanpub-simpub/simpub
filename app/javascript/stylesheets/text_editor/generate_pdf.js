@@ -140,8 +140,8 @@ window.addEventListener('turbolinks:load',()=>{
 	    	     	  }
 	    	     	}
              }
-            //  doc.save(`${filename}`+ '.pdf');//儲存為pdf檔案
-             pdftoserver(doc.output('blob'),bookName,filename, target)
+             doc.save(`${filename}`+ '.pdf');//儲存為pdf檔案
+            //  pdftoserver(doc.output('blob'),bookName,filename, target)
 	    	  }
 	    	 },
 	    });
