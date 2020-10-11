@@ -20,7 +20,7 @@
         <div class="h3 txt user-name ">
           <%= @user.name %> 
         </div>
-        <div class="txt user-about"><%= @user.about %>He’s the bestselling author of Steal Like An Artist and other books.</div>
+        <div class="txt user-about"><%= @user.about %>He’s the bestselling author of Steal Like An Artist and other books. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores, eaque ipsam fugit quos perferendis ut dolorum rem error repellendus vitae! </div>
       </div>
 
       <div class="contact">
@@ -60,28 +60,79 @@
         <!--Slides and lightbox-->
 
         <div class="carousel-inner mdb-lightbox " role="listbox">
-          <div id="mdb-lightbox-ui">wer</div>
-          <!--Third slide-->
-          <div class="carousel-item text-center d-flex">
-
-          <% @user.pub_books.each do |book| %>
+          <div id="mdb-lightbox-ui"></div>
+          <!--First slide-->
+          <div class=" carousel-item active text-center d-flex">
+            <% @user.pub_books.each do |book| %>
+              <figure class="col-6 col-sm-4 col-md-3 col-lg-2 d-md-inline-block">
+                <a class="cover-link" data-key="<%= book.id %>">
+                  <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
+                  <h4><%= book.title %></h4>
+                  <div>
+                    <%= book.authors[0].name %>
+                  </div>
+                </a>
+              </figure>
+            <% end %>
 
             <figure class="col-md-2 d-md-inline-block">
-              <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(44).jpg"
+              <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(4).jpg"
                 data-size="1600x1067">
-                <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
-                <h4>
-                  <%= book.title %>
-                </h4>
-                <div>
-                  <%= book.authors[0].name %>
-                </div>
-
+                <img src="https://fakeimg.pl/350x200/?text=World&font=book"
+                  class="img-fluid">
               </a>
             </figure>
-          <% end %>
 
-          
+            <figure class="col-md-2 d-md-inline-block">
+              <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(6).jpg"
+                data-size="1600x1067">
+                <img src="https://fakeimg.pl/350x200/?text=World&font=book"
+                  class="img-fluid">
+              </a>
+            </figure>
+
+            <figure class="col-md-2 d-md-inline-block">
+              <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(10).jpg"
+                data-size="1600x1067">
+                <img src="https://fakeimg.pl/350x200/?text=World&font=bookcover"
+                  class="img-fluid">
+              </a>
+            </figure>
+            <figure class="col-md-2 d-md-inline-block">
+              <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(12).jpg"
+                data-size="1600x1067">
+                <img src="https://fakeimg.pl/350x200/?text=World&font=bookcover"
+                  class="img-fluid">
+              </a>
+            </figure>
+            <figure class="col-md-2 d-md-inline-block">
+              <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(14).jpg"
+                data-size="1600x1067">
+                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(14).jpg"
+                  class="img-fluid">
+              </a>
+            </figure>
+            <figure class="col-md-2 d-md-inline-block">
+              <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(22).jpg"
+                data-size="1600x1067">
+                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(22).jpg"
+                  class="img-fluid">
+              </a>
+            </figure>
+          </div>
+          <!--/.First slide-->
+
+          <!--Second slide-->
+          <div class="carousel-item text-center d-flex">
+
+            <figure class="col-md-2 d-md-inline-block">
+              <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(22).jpg"
+                data-size="1600x1067">
+                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(22).jpg"
+                  class="img-fluid">
+              </a>
+            </figure>
+
             <figure class="col-md-2 d-md-inline-block">
               <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(44).jpg"
                 data-size="1600x1067">
@@ -119,13 +170,21 @@
                   class="img-fluid">
               </a>
             </figure>
-            <figure class="col-md-2 d-md-inline-block">
-              <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(77).jpg"
-                data-size="1600x1067">
-                <img src="http://covers.openlibrary.org/b/isbn/9780062662033-L.jpg"
-                  class="img-fluid">
-              </a>
-            </figure>
+          <!--/.Second slide-->
+
+          <!--Third slide-->
+          <div class="carousel-item text-center d-flex">
+            <% @user.pub_books.each do |book| %>
+              <figure class="col-6 col-sm-4 col-md-3 col-lg-2 d-md-inline-block">
+                <a class="cover-link" data-key="<%= book.id %>">
+                  <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
+                  <h4><%= book.title %></h4>
+                  <div>
+                    <%= book.authors[0].name %>
+                  </div>
+                </a>
+              </figure>
+            <% end %>
           </div>
           <!--/.Third slide-->
         </div>
@@ -133,8 +192,10 @@
       </div>
       <!--/.Carousel Wrapper-->
     </div>
+    
    
     <%# 出版過的書 %>
+
     <div class="row m-0 d-flex">
       <h3 class="col-12 title">Published Books</h3>
       <% @user.pub_books.each do |book| %>
@@ -147,6 +208,7 @@
         </div>
       <% end %>
     </div>    
+    
   </div>
 </div>
 

@@ -1,10 +1,13 @@
 .author-about{
   width: 100%;
   height: 292px;
-  margin:16px;
+  margin: 2% 0px;
   background: #FFFFFF;
   box-shadow: 7.16829px 7.16829px 19.9119px rgba(0, 0, 0, 0.15);
   border-radius: 7.96477px;
+  border: 0.8px solid #F1C39E;
+
+
 }
 .avatar{
   position: absolute;
@@ -38,12 +41,13 @@
   margin: 30px 0px;
   /* identical to box height */
   letter-spacing: 0.05em;
-  color: #5C5D60;
+  color: #5C5D60 !important;
 
 }
 .user-about{
   position: absolute;
-  height: 47.74px;
+  height: 15.1%;
+  width: 46.3%;
   left: 420px;
   top: 240px;
   font-family: SF Pro Display;
@@ -51,23 +55,34 @@
   font-weight: normal;
   font-size: 15.9295px;
   line-height: 24px;
-  /* or 150% */
   letter-spacing: 0.05em;
-  color: #726F6F;
+  color: #726F6F !important;
 }
 .contact{
   position: absolute;
-  right:210px;
-  top:355px;
-
+  right:222px;
+  top:360px;
+  width: 9%;
 }
 a{
   color: #e09a5f;
+  margin-left: 5%;
 }
 .book-container{
   width: 100%;
-  margin:16px;
   background: #FFFFFF;
   box-shadow: 7.16829px 7.16829px 19.9119px rgba(0, 0, 0, 0.15);
   border-radius: 7.96477px;
+}
+.title{
+  margin: 5% 0;
+  height: 49.33px;
+  font-family: SF Pro Display;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 41.4168px;
+  line-height: 49px;
+  /* identical to box height */
+  letter-spacing: 0.05em;
+  color: #e09a5f !important; 
 }
