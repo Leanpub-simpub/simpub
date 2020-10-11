@@ -147,21 +147,51 @@ export default class extends Controller {
     
     wishBtns.forEach(wishBtn => {
       wishBtn.addEventListener("click", () => {
-        console.log(wishBtn);
+        const item = wishBtn.parentElement.parentElement.parentElement;
+        const total = document.querySelector(".cart-total");
+        const index = wishBtn.parentElement.dataset.index;
+        const cartBubble = document.querySelector(".fa-shopping-cart").firstElementChild;
+        const heartBubble = document.querySelector(".fa-heart").firstElementChild;
+        
+        // 將書籍移動到願望清單
+        const bookId = wishBtn.parentElement.dataset.bookid;
+        console.log(bookId);
+        axios
+          .post(`/books/${bookId}/wish`)
+          .then(function(result) {})
+          .catch(function(error) {})
+
+        // 從購物車當中刪除
+        axios
+          .delete(`/cart?index=${index}`)
+          .then(function(result) {})
+          // .then(function(result) { location.reload(); })
+          .catch(function(error) {});
+
+        setTimeout(() => {
+          axios
+            .get(`/cart.json`)
+            .then(function(result) {
+              item.remove();
+              cartBubble.textContent--;
+              heartBubble.textContent++;
+              total.textContent = `$${result.data.total.toFixed(2)}`;
+            })
+            .catch(function(error) {});
+        }, 500);
       });
     });
     
     deleteBtns.forEach(deleteBtn => {
       deleteBtn.addEventListener("click", () => {
-        console.log(deleteBtn);
         if (window.confirm("Are you sure you want to remove this from your cart?")) {
           const item = deleteBtn.parentElement.parentElement.parentElement;
           const total = document.querySelector(".cart-total");
           const index = deleteBtn.parentElement.dataset.index;
+          const cartBubble = document.querySelector(".fa-shopping-cart").firstElementChild;
           
           axios
             .delete(`/cart?index=${index}`)
-            // .then(function(result) { location.reload(); })
             .then(function(result) {})
             .catch(function(error) {});
           
@@ -169,6 +199,7 @@ export default class extends Controller {
             axios.get(`/cart.json`)
                   .then(function(result) {
                     item.remove();
+                    cartBubble.textContent--;
                     total.textContent = `$${result.data.total.toFixed(2)}`;
                   })
                   .catch(function(error) {});

@@ -112,7 +112,7 @@ export default class extends Controller {
         axios.delete(`/u/${username}/unwish?id=${bookId}`)
              .then(function(reuslt) {})
              .then(function(result) {});
-      }, 500);
+      }, 1000);
     });
 
 
