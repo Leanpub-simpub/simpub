@@ -4,11 +4,7 @@
 
   <h2 class="h3">這邊預覽書籍</h2>
   <div class="cover col-3 mx-auto">
-    <% if @book.cover_data %>
-      <%= image_tag @book.cover_url(:small), class: "w-100" %>
-    <% else %>
-      <img class="w-100" src="https://picsum.photos/200/250/? random=<%= rand(100) %>">
-    <% end %>
+    <%= render partial: "shared/frontend/book_cover", locals: {book: @book, size: :large} %>
   </div>
 
   <br>

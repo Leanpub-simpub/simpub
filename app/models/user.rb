@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   include AvatarUploader::Attachment(:avatar)
 
+  attr_accessor :x, :y, :width, :height
+
   # 測試用
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,

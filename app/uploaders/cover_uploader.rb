@@ -1,6 +1,5 @@
 class CoverUploader < ApplicationUploader
   plugin :derivatives
-  plugin :default_url
   plugin :pretty_location, identifier: :title
   plugin :remote_url, max_size: 20*1024*1024
   
@@ -16,9 +15,5 @@ class CoverUploader < ApplicationUploader
       medium: magick.resize_to_limit!(500, 500),
       small:  magick.resize_to_limit!(200,200),
     }
-  end
-
-  Attacher.default_url do |**options|
-    url if derivatives
   end
 end
