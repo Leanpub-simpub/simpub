@@ -1,5 +1,5 @@
-section.book-new {
-	form#new_book {
+section.book-new, section.book-edit {
+	form {
 		width: 100%;
 	}
 	.form-item {
@@ -53,8 +53,8 @@ section.book-new {
 }
 
 @media screen and (min-width: 992px) {
-	section.book-new {
-		form#new_book {
+	section.book-new, section.book-edit {
+		form {
 			display: flex;
 
 			.desk {
@@ -67,7 +67,7 @@ section.book-new {
 					padding-right: 0;
 				}
 			}
-			label[for="book_md"], input[type="submit"] {
+			label[for="book_md"].main-button, input[type="submit"] {
 				width: 100%;
 			}
 		}

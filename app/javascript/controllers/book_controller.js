@@ -35,16 +35,15 @@ export default class extends Controller {
       
       axios.get(`/books/new.json`)
            .then(function(result) {
-             console.log(result.data);
-              if (bookTittle != title && result.data.includes(title)) {
-                titleInput.setAttribute("style", "border: 2px solid red; border-radius: 0.25em;");
-                titleError.textContent = "Title has already been taken";
-              } else {
-                titleInput.removeAttribute("style");
-                titleError.textContent = "";
-              }
-            })
-            .catch(function(error) {});
+            if (bookTittle != title && result.data.includes(title)) {
+              titleInput.setAttribute("style", "border: 2px solid red; border-radius: 025em;");
+              titleError.textContent = "Title has already been taken";
+            } else {
+              titleInput.removeAttribute("style");
+              titleError.textContent = "";
+            }
+          })
+          .catch(function(error) {});
     });
   }
 }
