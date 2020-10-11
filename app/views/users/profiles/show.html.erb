@@ -63,6 +63,25 @@
           <div id="mdb-lightbox-ui">wer</div>
           <!--Third slide-->
           <div class="carousel-item text-center d-flex">
+
+          <% @user.pub_books.each do |book| %>
+
+            <figure class="col-md-2 d-md-inline-block">
+              <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(44).jpg"
+                data-size="1600x1067">
+                <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
+                <h4>
+                  <%= book.title %>
+                </h4>
+                <div>
+                  <%= book.authors[0].name %>
+                </div>
+
+              </a>
+            </figure>
+          <% end %>
+
+          
             <figure class="col-md-2 d-md-inline-block">
               <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(44).jpg"
                 data-size="1600x1067">
