@@ -2,7 +2,7 @@ import { Controller } from "stimulus";
 import axios from "axios";
 
 export default class extends Controller {
-  static targets = [ "cover" ];
+  static targets = [ "cover", "item" ];
   
   edit() {
     const token = document.querySelector("meta[name=csrf-token]").content;
@@ -140,17 +140,16 @@ export default class extends Controller {
   }
 
   delete() {
-    if (
-      window.confirm("Are you sure you want to remove this from your cart?")
-    ) {
-      let itemIndex = this.data.get("index");
-
+    if (window.confirm("Are you sure you want to remove this from your cart?")) {
+      const item = this.itemTarget;
+      const itemIndex = this.data.get("index");
+      
       axios
         .patch(`/cart/delete?index=${itemIndex}`)
-        .then(function (result) {
-          location.reload();
-        })
-        .catch(function (error) {});
+        .then(function(result) {})
+        .catch(function(error) {});
+
+      item.remove();
     }
   }
 }
