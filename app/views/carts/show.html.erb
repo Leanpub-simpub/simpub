@@ -28,7 +28,7 @@
 
       <tbody>
         <% current_cart.items.each.with_index do |item, index| %>
-          <tr class="row text-center" data-controller="cart" data-cart-index="<%= index %>" data-cart-book="<%= item.book.id %>">
+          <tr class="row text-center" data-controller="cart" data-cart-index="<%= index %>" data-cart-book="<%= item.book.id %>" data-target="cart.item">
             <td class="col-12 col-md-2">
               <div style="font-size:large" class="font-weight-bold" >
                 <%= link_to book_path(item.book), data: {target: "cart.cover"} do %>
