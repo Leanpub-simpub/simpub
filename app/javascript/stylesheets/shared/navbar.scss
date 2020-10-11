@@ -18,6 +18,9 @@
   div .nav-icon:hover {
     animation: shaking 1s infinite;
   }
+  button.nav-icon:focus {
+    outline: none;
+  }
 
   .fas {
     position: relative;
@@ -246,4 +249,21 @@
       display: none;
     }
   }
+}
+
+
+#notify-box {
+  background-color: #fff;
+  width: 400px;
+  top: 90px;
+  right: 8rem;
+  border: 1px solid #e09a5f;
+
+  .notify-content {
+    min-height: 100px;
+  }
+}
+
+.clear-notify {
+  cursor: pointer;
 }

@@ -39,13 +39,4 @@ class Users::ProfilesController < ApplicationController
   def find_user
     @user = User.find_by(username: params[:username])
   end
-
-  def create_notification(user, followship)
-    Notification.create(
-        recipient: @user,
-        actor: current_user,
-        action: "starts following",
-        notifiable: followship
-      )
-  end
 end

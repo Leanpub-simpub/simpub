@@ -1,21 +1,34 @@
-<section class="txt container">
-  <h2>Wish List for <%= current_user.name %></h2>
+<h1 class="text-center mb-4">Wish List for <%= current_user.name %></h1>   
+  <div class="txt my-4 container">   
 
-  <% @books.each do |book| %>
-    <div class="row" data-controller="wishlist" data-wishlist-book="<%= book.id %>" data-wishlist-username="<%= current_user.username%>">
-      <div class="col-12 col-lg-8 mx-auto row">
-        <div class="col-4 text-right ml-auto cover-box cover-box" data-target="wishlist.cover">
-          <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
-        </div>
-        <div class="col-8 pl-3 mr-auto my-auto">
-          <p><%= book.title %></p>
+    <% @books.each do |book| %>
+      <div class="container" data-controller="wishlist" data-wishlist-book="<%= book.id %>" data-wishlist-username="<%= current_user.username%>">
+        
+        <div class="row d-flex justify-content-center">
+          <div> 
+            <div class="col-12 col-md-10">
+              <div class="cover-box cover-box ml-3 " data-target="wishlist.cover">
+                <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
+              </div>
+            </div>
+          </div>
+        
+                
           <div>
-            <button class="item-edit main-button btn" data-action="wishlist#cart">Move to cart</button>
-
-            <%= link_to "Remove from your wish list", users_unwish_path(current_user.username, id: book), method: :delete, remote: true, class: "btn border rounded" %>
+            <p class="text-center"><%= book.title %></p>
+            <div class="col-12">
+              <div>
+                <button class="item-edit main-button btn mr-3 my-2" data-action="wishlist#cart">Move to cart</button>
+                <%= link_to "Remove from your wish list", users_unwish_path(current_user.username, id: book), method: :delete, remote: true, class: "btn border rounded" %>
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
-    </div>
-  <% end %>
-</section>
+
+      <div class="d-flex justify-content-center my-3">
+          <div class="col-12 col-md-8 border-gray border-bottom"></div>
+      </div>     
+    <% end %>
+  </div>

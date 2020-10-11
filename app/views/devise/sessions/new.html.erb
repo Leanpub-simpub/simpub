@@ -1,12 +1,12 @@
 <section class="sign-in container">
-  <div class="w-50 mx-auto">
-    <h3 class="title">Sign In</h3>
+  <div class="col-12 col-md-6 mx-auto">
+    <h3 class="title">Sign in</h3>
     
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     
     <%= f.label :email, class:"txt" %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col mb-3"%> 
-    <div class="w-100"></div>
+    <%# <div class="col-12"></div> %>
 
     <%= f.label :password, class:"txt" %><br />
     <%= f.password_field :password, autocomplete: "current-password", class:"col mb-3" %>
@@ -20,8 +20,14 @@
 
     <p class="txt">This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</p>
     
+<<<<<<< HEAD
     <%= f.submit "Sign In", class: "btn btn-dark main-btn"%>
+=======
+    <%= f.submit "Sign In", class: "col-12 col-md-4 btn btn-dark main-btn border-0"%>
+>>>>>>> ef55c2a3adaa03365fce7f190c6b02fd2b5fed45
     <% end %>
+    
+    
     
     <%= render "devise/shared/links" %>
   </div>
