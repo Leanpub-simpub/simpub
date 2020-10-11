@@ -15,16 +15,18 @@ Rails.application.routes.draw do
   end
 
   namespace :users, path: :u do
-    get "/:username", to: "profiles#show",  as: "profile"
+    get "/:username", to: "profiles#show", as: "profile"
     post "/:username", to: "profiles#follow", as: "follow"
     get "/:username/wishlist", to: "profiles#wishlist", as: "wishlist"
-    delete "/:username/wishlist", to: "profiles#unwish", as: "unwish"
+    delete "/:username/unwish", to: "profiles#unwish", as: "unwish"
   end
   
-  get "/dash_board/followship", to: "users/profiles#followship", as: "followship"
-  get "/dash_board/books", to: "users/authors#show"
-  get "/dash_board/library", to: "users/library#show", as: "library"
-  # post "/dash_board/library", to: "users/library#comment", as: "comment"
+  namespace :users, path: :dash_board do
+    get "/followship", to: "profiles#followship"
+    get "/books", to: "authors#show"
+    get "/library", to: "library#show"
+    post "/library", to: "library#comment", as: "comment"
+  end
 
   resources :books do
     member do

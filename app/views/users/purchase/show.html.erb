@@ -9,7 +9,7 @@
 
     <div id="order-items" class="col-10 border">
       <div id="purchased-time" class="h3 pl-5 pt-5">
-        <%= link_to :purchases do %>
+        <%= link_to purchases_path do %>
           <i class="fas fa-angle-left"></i>
         <% end %>
         Purchased on <%= @order.updated_at.strftime("%Y-%m-%d") %>

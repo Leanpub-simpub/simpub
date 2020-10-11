@@ -26,4 +26,6 @@ require("../stylesheets");
 require("../cart");
 require("../books");
 
-import "controllers"
+import "controllers";
+import "cropperjs";
+import "cropperjs/dist/cropper.css";
