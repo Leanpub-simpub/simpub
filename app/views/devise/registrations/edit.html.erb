@@ -1,30 +1,40 @@
 <h1 class="text-center">Edit Profile</h1>
 
-<section class="edit-profile container d-flex justify-content-center my-5 ">
+<section class="edit-profile container d-flex justify-content-center my-5">
   <div class="card col-12 col-md-10">
     <div class="card-body">
-      <div class="e-profile">
+      <div class="e-profile position-relative" data-controller="avatar">
         <div class="row">
           <div class="col d-flex justify-content-center">
             <%= form_for(resource, as: resource_name, url: user_registration_path(resource_name), method: :patch) do |f| %>
-            <%= render "devise/shared/error_messages", resource: resource %>
+              <%= render "devise/shared/error_messages", resource: resource %>
             
-            <div class="mb-3" style="width:160px">
-              <div class="pb-3" style="width:100%">
-                <div class="square-img border rounded-circle" id="avatar-preview">
-                  <% if has_avatar?(current_user) %>
-                    <%= image_tag current_user.avatar_url, class: "w-100 position-absolute" %>
-                  <% else %>
-                    <img class="w-100 position-absolute" src="https://www.nicepng.com/png/full/136-1366211_group-of-10-guys-login-user-icon-png.png">
-                  <% end %>
+              <div class="mb-3" style="width:160px">
+                <div class="pb-3" class="w-100">
+                  <div class="square-img border rounded-circle" id="avatar-preview" data-target="avatar.show">
+                    <%= render "shared/frontend/user_avatar", user: resource %>
+                  </div>
                 </div>
               </div>
-            </div>
           </div>
         </div>
 
         <%= f.hidden_field :avatar, value: current_user.cached_avatar_data %>
-        <%= f.file_field :avatar, id: "avatar-input" %>
+        <%= f.file_field :avatar, id: "avatar-input", class: "img-reader", accept: "image/*", data: {target: "avatar.img_reader"} %>
+        <div class="cropper-wrap x border position-absolute" data-target="avatar.wrap">
+          <div class="cropper-container cropper-bg d-flex">
+            <img id="crop-img" data-target="avatar.crop_img">
+          </div>
+          <div class="preview p-4 flex-grow-1">
+            <div class="preview-box text-center m-auto" data-target="avatar.preview_box"></div>
+            <div class="crop-btn btn main-btn" data-target="avatar.crop">確認</div>
+          </div>
+        </div>
+        <%= f.hidden_field :x, id:"dataX", data: {target: "avatar.x"} %>
+        <%= f.hidden_field :y, id:"dataY", data: {target: "avatar.y"} %>
+        <%= f.hidden_field :width, id:"dataWidth", data: {target: "avatar.width"} %>
+        <%= f.hidden_field :height, id:"dataHeight", data: {target: "avatar.height"} %>
+
         <ul class="nav nav-tabs mt-3">
           <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
         </ul>
@@ -41,7 +51,6 @@
                       <%= f.text_field :name, autofocus: true, class:"form-control" %>
                     </div>
                   </div>
-                    <!-- checkbox 暫時沒有功能，先做畫面 -->
                   <div class="col">
                     <div class="form-group">
                       <%= f.label :username, "USERNAME" %><br>
@@ -68,7 +77,7 @@
                   </div>
                 </div>
 
-                    <!-- checkbox 暫時沒有功能，先做畫面 -->
+                <!-- checkbox 暫時沒有功能，先做畫面 -->
                 <div class="row">
                   <div class="col">
                     <div class="form-group">
@@ -90,14 +99,14 @@
                     </div>
                   </div>
 
-                  <%# <div class="col mt-2 ml-5">
+                  <!-- <div class="col mt-2 ml-5">
                     <div class="form-group">
                       <label for="twitter-username">TWITTER USERNAME
                         <span>@</span>
                         <input type="text" id="twitter-username", class="form-control">
                       </label>
                     </div>
-                  </div> %>
+                  </div> -->
                 </div>
 
                 <!-- 密碼驗證
@@ -108,17 +117,17 @@
                       <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
                     </div>
                   </div>
-                  -->
 
-                  <%# <div class="col mt-2 ml-5">
+                  <div class="col mt-2 ml-5">
                     <div class="form-group">
                       <label for="github-username">GITHUB USERNAME
                         <span>github.com/</span>
                         <input type="text" id="github-username", class="form-control">
                       </label>
                     </div>
-                  </div> %>
-                <%# </div> %>
+                  </div>
+                </div>
+                -->
 
                 <!-- 輸入目前密碼
                 <div class="row">
@@ -128,17 +137,17 @@
                       <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control" %>
                     </div>
                   </div>
-                  --> 
 
-                  <%# <div class="col ml-5">
+                  <div class="col ml-5">
                     <div class="form-group">
                       <label for="instagram-username">INSTAGRAM USERNAME
                         <span>instagram.con/</span>
                         <input type="text" id="instagram-username", class="form-control">
                       </label>
                     </div>
-                  </div> %>
-                <%# </div> %>
+                  </div>
+                </div>
+                -->
                 
                 <!-- 以下目前不會寫入 db，待討論是否要實作 -->
                 <%# <div class="row">
@@ -171,10 +180,11 @@
                 </div> %>
                 <!-- 以上目前不會寫入 db，待討論是否要實作 -->
 
-                <div class="d-flex justify-content-start mb-3">
-                  <%= f.submit "Save Settings", class:"", style:"background-color: #e09a5f" %>
+                <div class="d-flex justify-content-end mb-3">
+                  <%= f.submit "Save Settings", style:"background-color: #e09a5f" %>
                 </div>
-                <% end %>
+
+              <% end %>
               </div>
             </div>
           </div>

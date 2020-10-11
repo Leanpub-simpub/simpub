@@ -109,7 +109,7 @@ export default class extends Controller {
       
       setTimeout(() => {
         location.href = "/cart";
-        axios.delete(`/u/${username}/wishlist?id=${bookId}`)
+        axios.delete(`/u/${username}/unwish?id=${bookId}`)
              .then(function(reuslt) {})
              .then(function(result) {});
       }, 500);

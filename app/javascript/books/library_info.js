@@ -3,6 +3,7 @@ window.addEventListener("turbolinks:load", function () {
     const bookBox = document.querySelector(".book-box");
 
     bookBox.addEventListener("click", e => {
+      let commentForm = document.querySelector(".comment-form");
       let classes = e.target.classList;
       
       if (classes.contains("book-cover") || classes.contains("book-title")) {
@@ -33,8 +34,32 @@ window.addEventListener("turbolinks:load", function () {
             document.querySelector(".name").image = book.authors[0].avatar_data;
             document.querySelector(".Leanpub").href = `/books/${book.slug}/read`;
         });
+  
+        commentForm.addEventListener("submit", () => {
+          commentForm.action = `/dash_board/library?id=${bookKey}`
+        });
       };
     });
+
+    
+    $(".rating-star")
+      .on("click", function(e) {
+        rating = $(e.target).data("rating");
+        setRating(rating);
+      })
+      .on("keyup", function(e){
+        if (e.keyCode === 32) {
+          rating = $(e.target).data("rating");
+          setRating(rating);
+        }
+      });
+
+    function setRating(rating) {
+      $("#rating-input").val(rating);
+      $(".rating-star").removeClass("far").addClass("fas");
+      $(`.rating-star#rating-${rating} ~ .rating-star`).removeClass("fas").addClass("far");
+    }
+
   };
 });
  

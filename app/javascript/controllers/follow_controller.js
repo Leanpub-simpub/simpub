@@ -19,8 +19,6 @@ export default class extends Controller {
              followBtn.textContent = "Follow";
            }
          })
-         .catch(function(error) {
-           
-         });
+         .catch(function(error) {});
   }
 }

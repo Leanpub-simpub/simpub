@@ -14,6 +14,7 @@ export default class extends Controller {
     document.addEventListener("keydown", function(event) {
       if(event.keyCode === 27){
         body.classList.add("x");
+        document.documentElement.style.overflow = "auto";
       }
     });
   }
