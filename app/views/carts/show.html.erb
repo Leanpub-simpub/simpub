@@ -18,7 +18,7 @@
   <div class="checkoutstage_review col-10 container d-flex justify-content-center ">
     <table id="cart-items" class="table">
       <thead class="txt d-none d-md-block">
-        <tr class="row">
+        <tr class="row text-center">
           <th class="col-2">商品</th>
           <th class="col-6"></th>
           <th class="col-2">數量</th>
@@ -37,14 +37,14 @@
               </div>
             </td>
             <td class="col-12 col-md-6">
-              <div style="font-size:large" class=" font-weight-bold" >
+              <div style="font-size:large" class="font-weight-bold mb-2" >
                 <%= link_to item.book.title, book_path(item.book) %>
               </div>
               <div>
                 <button class="item-edit border-0 bg-transparent" data-action="cart#edit">edit</button>
-                <span class="mx-2">|</span>
+                <span class="mx-1">|</span>
                 <button class="border-0 bg-transparent" data-controller="cartwish" data-action="cartwish#add" data-cartwish-id="<%= item.book.id %>" data-cartwish-index="<%= index %>">Move to Wishlist</button>
-                <span class="mx-2">|</span>
+                <span class="mx-1">|</span>
                 <button class="border-0 bg-transparent" data-action="cart#delete">Delete</button>
               </div>
             </td>
