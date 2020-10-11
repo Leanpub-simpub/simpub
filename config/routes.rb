@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   
   # 正式用
   devise_for :users, controllers: { registrations: "users/registrations", omniauth_callbacks: "users/omniauth_callbacks", confirmations: "users/confirmations" }
-  
+  # devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
+
   devise_scope :user do
     get "/users", to: "users/registrations#new"
     get "/users/password", to: "users/passwords#new"

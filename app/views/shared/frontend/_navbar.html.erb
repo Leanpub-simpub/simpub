@@ -29,9 +29,9 @@
         <%= link_to "Create a Book", :new_book, class: "nav-link txt" %>      
       </li>
       <li class="nav-item">
-      <% if current_user.as_author %>
+      <%# <% if current_user.as_author %>
         <%= link_to "My Writings", dash_board_books_path, class: "nav-link txt" %>
-      <% end %>
+      <%# <% end %>
       </li>
     </ul>
 

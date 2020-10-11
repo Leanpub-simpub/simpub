@@ -2,14 +2,18 @@ class User < ApplicationRecord
   include AvatarUploader::Attachment(:avatar)
 
   # 測試用
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
+  # devise :database_authenticatable, :registerable,
+  #        :recoverable, :rememberable, :validatable,
+  #        :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
   
   # 正式用
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable, :confirmable,
+         :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
+
   # devise :database_authenticatable, :registerable,
-  #        :recoverable, :rememberable, :validatable, :confirmable,
-  #        :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
+  #        :recoverable, :rememberable, :trackable, :validatable,
+  #        :omniauthable, omniauth_providers: [:facebook, :google_oauth2 :github]
 
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
