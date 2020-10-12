@@ -2,14 +2,12 @@ import { Controller } from "stimulus";
 import axios from "axios";
 
 export default class extends Controller {
-  static targets = ["cover"];
-
-  connect() {
+  static targets = [ "cover" ];
+  
+  edit() {
     const token = document.querySelector("meta[name=csrf-token]").content;
     axios.defaults.headers.common["X-CSRF-Token"] = token;
-  }
 
-  edit() {
     // 禁止視窗捲動
     document.documentElement.style.overflow = "hidden";
     const modal = document.querySelector(".cart-modal");

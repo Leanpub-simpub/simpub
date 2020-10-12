@@ -1,10 +1,82 @@
-.form-item {
-	margin-bottom: 20px;
+section.book-new, section.book-edit {
+	form {
+		width: 100%;
+	}
+	.form-item {
+		margin-bottom: 20px;
+
+		.cover {
+			width: 100%;
+		}
+		#cover-preview {
+			width: 60%;
+			border: 2px dashed #888;
+		}
+		label[for="book_cover"], label[for="book_md"] {
+			width: 50%;
+			cursor: pointer;
+			border-radius: 5px;
+			font-size: 18px;
+			color: #fff;
+			
+			#cover-input, #file_input {
+				width: 100%;
+				display: none;
+			}
+		}
+		input {
+			text-align: center;
+		}
+		textarea {
+			resize: none;
+			height: 8rem;
+		}
+		span.select2.select2-container.select2-container--default {
+			width: 100%!important;
+			// 如果不下 important 寬度會一直被 select2 自動複寫，拖拉 RWD 時寬度會跑掉
+		}
+		span.select2-selection.select2-selection--multiple {
+			border: 1px solid;
+			border-color: -internal-light-dark(rgb(118, 118, 118), rgb(195, 195, 195));
+		}
+	}
+	.form-item :first-child {
+		font-size: 20px;
+	}
+	.hint {
+		color: #aaaaaa;
+		font-size: 36px;
+	}
+	input[type="submit"] {
+		width: 50%;
+	}
 }
-.form-item :first-child {
-	font-size: 20px;
-}
-.hint {
-	color: #aaaaaa;
-	font-size: 36px;
+
+@media screen and (min-width: 992px) {
+	section.book-new, section.book-edit {
+		form {
+			display: flex;
+
+			.desk {
+				display: flex;
+
+				div:first-child	{
+					padding-left: 0;
+				}
+				div:last-child {
+					padding-right: 0;
+				}
+			}
+			label[for="book_md"].main-button, input[type="submit"] {
+				width: 100%;
+			}
+		}
+		.form-item {
+			margin-bottom: 20px;
+	
+			#cover-preview {
+				width: 75%;
+			}
+		}
+	}
 }
