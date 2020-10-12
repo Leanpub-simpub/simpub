@@ -56,7 +56,7 @@
               <span class="hint">(US$)</span>
               <form action="" class="update-price-form" data-action="modal#update">
                 <input type="text", class="modal-cart-price text-center d-block mt-1 mb-4" data-target="modal.price">
-                <input type="submit" value="Update" class="update-btn btn btn-danger main-btn">
+                <input type="submit" value="Update" class="update-btn btn main-button">
               </form>
             </div>
 
@@ -66,8 +66,8 @@
               <span class="hint">(US$)</span>
               <%= form_with url: "#", class: "add-cart-form-modal" do |f| %>
                 <%= f.text_field :cart_price, id: "cart-price-modal", class: "cart-price text-center mt-1 mb-4" %>
-                <%= f.submit "Add Ebook to Cart", id: "wish-to-cart", class: "add-to-cart-btn btn btn-danger main-btn" %>
-                <button class="wait-btn btn btn-danger main-btn x" disabled>Please wait...</button>
+                <%= f.submit "Add Ebook to Cart", id: "wish-to-cart", class: "add-to-cart-btn btn main-button" %>
+                <button class="wait-btn btn main-button x" disabled>Please wait...</button>
               <% end %>
             </div>
           </div>
