@@ -4281,6 +4281,11 @@ json5@^2.1.2:
   dependencies:
     minimist "^1.2.5"
 
+jspdf-customfonts@^0.0.4-rc.4:
+  version "0.0.4-rc.4"
+  resolved "https://registry.yarnpkg.com/jspdf-customfonts/-/jspdf-customfonts-0.0.4-rc.4.tgz#9ae8e75e13e9797ffbcb29055a93809610f1f0de"
+  integrity sha512-88gO7B2cZQDGqnpFRJ1XztI94ofZTcq9a3KJBXZpMDhg7Z8JGYOpAj+LfCLaXoMH5oW21E4UL69XXXR5liI99w==
+
 jspdf@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/jspdf/-/jspdf-2.1.1.tgz#4ee5b694eeceb24acd25b98e37a24ce94b1ccc67"
