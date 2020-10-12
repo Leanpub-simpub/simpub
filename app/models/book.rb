@@ -20,6 +20,7 @@ class Book < ApplicationRecord
   has_many :wish_buyers, through: :wishlists, source: :user
 
   has_one :order_items
+  has_many :comments
 
   friendly_id :title, use: :slugged
   

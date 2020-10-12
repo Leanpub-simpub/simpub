@@ -1,5 +1,47 @@
 .square-img {
-  padding-bottom:100%;
-  overflow:hidden;
-  position:relative
+  width: 160px;
+  height: 160px;
+  overflow: hidden;
+  position: relative;
+}
+
+.cropper-wrap {
+  border-radius: 15px;
+  z-index: 1;
+  box-shadow: 0 0 15px #555;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cropper-container.cropper-bg {
+  width: 80%;
+  max-width: 800px;
+  max-height: 400px;
+
+  #crop-img {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+.preview {
+  background-color: #fff;
+}
+
+.preview-box {
+  box-shadow: 0 0 5px #adadad;
+  width: 100px;
+  height: 100px;
+  margin-top: 30px;
+  overflow: hidden;       /*這個超出設置為隱藏很重要，否則就會整個顯示出來了*/
+  border-radius: 50%;     /*設置為圓形*/     
+}
+
+.crop-btn {
+  border: 1px solid #000;
+  cursor: pointer;
 }
