@@ -53,17 +53,14 @@
         <%= f.password_field :password, autocomplete: "new-password", class:"col-12 mb-3 txt" %>
         <div class="w-100"></div>
 
-        <%= f.label :password_confirmation %><br />
+        <%= f.label :password_confirmation, class:"txt" %><br />
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"col-12 mb-3" %>
         <div class="w-100"></div>
-      
-        <input class="mr-2" type="checkbox">
-        <p class="text-base txt">
-          I accept the Simpub Terms of Service and Privacy Policy
-        </p>
 
+        <input class= "txt mr-2" type="checkbox">I accept the Simpub Terms of Service and Privacy Policy
+  
         <div class="my-3">
-          <%= f.submit "Create Account", class: "btn btn-danger main-btn border-0 py-2" %>
+        <%= f.submit "Create Account", class: "btn main-button border-0 py-2" %>
         </div>
         <% end %>
         

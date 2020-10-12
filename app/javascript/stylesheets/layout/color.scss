@@ -7,6 +7,12 @@ html {
     background-color: #e09a5f;
     color: white;
     border: none;
+    opacity: 0.9;
+  }
+  .main-button:hover {
+    opacity: 1;
+    color: #ffffff;
+    background-color: #e09a5f;
   }
 }
 
@@ -23,12 +29,6 @@ body {
   [class*="name"],
   [class*="tag"] {
     color: var(--txt);
-  }
-  // 按鈕的顏色配置和其他元件相反
-  [class*="main-btn"] {
-    color: var(--bg);
-    background-color: var(--txt);
-    border: 0px;
   }
   // 導覽列下拉選單
   .dropdown-menu {
