@@ -4,7 +4,7 @@
       <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
     </div>
     <p class="text-center">
-      <%= link_to book.title, book_path(book), class:"title" %>
+      <%= link_to book.title, book_path(book.id), class:"title" %>
     </p>
     <div class="text-center">
       <%= link_to edit_book_path(book) do %>
@@ -20,7 +20,7 @@
         <% end %>
       <% end %>
       <%= link_to editor_edit_book_path(book) do %>
-        <i class="fas fa-pencil-alt icon"></i>
+        <i class="fas fa-cog icon"></i>
       <% end %>
     </div>
   </div>
