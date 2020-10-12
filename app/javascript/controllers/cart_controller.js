@@ -163,6 +163,8 @@ export default class extends Controller {
               .delete(`/cart?index=${index}`)
               .then(function(result) {
                 // 前端演畫面
+                heartBubble.classList.remove("x");
+                heartBubble.classList.add("bubble");
                 axios
                   .get(`/cart.json`)
                   .then(function(result) {
