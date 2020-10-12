@@ -5,6 +5,10 @@ window.addEventListener("turbolinks:load", function () {
     bookBox.addEventListener("click", (e) => {
       let commentForm = document.querySelector(".comment-form");
       let classes = e.target.classList;
+      // console.log(classes);
+      let infoCoverBox = document.querySelector(".info-cover-box");
+      console.log(infoCoverBox.firstElementChild);
+
       if (classes.contains("book-cover") || classes.contains("book-title")) {
         let bookKey = e.target.parentElement.dataset.key;
         let infoCoverBox = document.querySelector(".info-cover-box");
