@@ -158,27 +158,25 @@ export default class extends Controller {
         console.log(bookId);
         axios
           .post(`/books/${bookId}/wish`)
-          .then(function(result) {})
+          .then(function(result) {
+            // 從購物車當中刪除
+            axios
+              .delete(`/cart?index=${index}`)
+              .then(function(result) {
+                // 前端演畫面
+                axios
+                  .get(`/cart.json`)
+                  .then(function(result) {
+                    item.remove();
+                    cartBubble.textContent--;
+                    heartBubble.textContent++;
+                    total.textContent = `$${result.data.total.toFixed(2)}`;
+                  })
+                  .catch(function(error) {});
+              })
+              .catch(function(error) {});
+          })
           .catch(function(error) {})
-
-        // 從購物車當中刪除
-        axios
-          .delete(`/cart?index=${index}`)
-          .then(function(result) {})
-          // .then(function(result) { location.reload(); })
-          .catch(function(error) {});
-
-        setTimeout(() => {
-          axios
-            .get(`/cart.json`)
-            .then(function(result) {
-              item.remove();
-              cartBubble.textContent--;
-              heartBubble.textContent++;
-              total.textContent = `$${result.data.total.toFixed(2)}`;
-            })
-            .catch(function(error) {});
-        }, 500);
       });
     });
     
@@ -192,18 +190,17 @@ export default class extends Controller {
           
           axios
             .delete(`/cart?index=${index}`)
-            .then(function(result) {})
+            .then(function(result) {
+              axios
+                .get(`/cart.json`)
+                .then(function(result) {
+                  item.remove();
+                  cartBubble.textContent--;
+                  total.textContent = `$${result.data.total.toFixed(2)}`;
+                })
+                .catch(function(error) {});
+            })
             .catch(function(error) {});
-          
-          setTimeout(() => {
-            axios.get(`/cart.json`)
-                  .then(function(result) {
-                    item.remove();
-                    cartBubble.textContent--;
-                    total.textContent = `$${result.data.total.toFixed(2)}`;
-                  })
-                  .catch(function(error) {});
-          }, 500);
         }
       });
     });
