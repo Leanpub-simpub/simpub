@@ -24,13 +24,13 @@
       <li class="nav-item">
         <%= link_to "Books", books_path, class: "nav-link txt" %>
       </li>
-      <li class="nav-item"><%= link_to "Library", :library, class: "nav-link txt" %></li>
+      <li class="nav-item"><%= link_to "Library", users_library_path, class: "nav-link txt" %></li>
       <li class="nav-item active">
-        <%= link_to "Create a Book", :new_book, class: "nav-link txt" %>      
+        <%= link_to "Create a Book", new_book_path, class: "nav-link txt" %>      
       </li>
       <li class="nav-item">
       <%# <% if current_user.as_author %>
-        <%= link_to "My Writings", dash_board_books_path, class: "nav-link txt" %>
+        <%= link_to "My Writings", users_books_path, class: "nav-link txt" %>
       <%# <% end %>
       </li>
     </ul>
@@ -45,7 +45,7 @@
       <div class="row search-bar">
 
         <!-- book search 表單 -->
-        <%= form_with url: :books, method: :get, class: "nav-search x form-inline d-flex flex-nowrap ml-4", local: true, data: {target: "search.book_search"} do |f| %>
+        <%= form_with url: books_path, method: :get, class: "nav-search x form-inline d-flex flex-nowrap ml-4", local: true, data: {target: "search.book_search"} do |f| %>
           <%= f.search_field :book_search, class: "search-input book-search-input form-control", placeholder: "Search" %>
           <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
             <i class="fas fa-search"></i>
@@ -53,7 +53,7 @@
         <% end %>
 
         <!-- author search 表單 -->
-        <%= form_with url: :books, method: :get, class: "nav-search author-search x form-inline d-flex flex-nowrap ml-4", local: true, data: {target: "search.author_search"} do |f| %>
+        <%= form_with url: books_path, method: :get, class: "nav-search author-search x form-inline d-flex flex-nowrap ml-4", local: true, data: {target: "search.author_search"} do |f| %>
           <%= f.search_field :author_search, class: "search-input author-search-input form-control", placeholder: "Search" %>
           <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
             <i class="fas fa-search"></i>
@@ -61,28 +61,14 @@
         <% end %>
 
         <!-- tag search 表單 -->
-        <%= form_with url: :books, method: :get, class: "nav-search tag-search x form-inline d-flex flex-nowrap ml-4", local: true, data: {target: "search.tag_search"} do |f| %>
+        <%= form_with url: books_path, method: :get, class: "nav-search tag-search x form-inline d-flex flex-nowrap ml-4", local: true, data: {target: "search.tag_search"} do |f| %>
           <%= f.search_field :tag_search, class: "search-input tag-search-input form-control", placeholder: "Search" %>
           <%= f.button :submit, class: "search-btn btn btn-outline-black" do %>
             <i class="fas fa-search"></i>
           <% end %>
         <% end %>
       </div>
-    </div>
-
-    <!-- 開燈 / 關燈 -->
-    <div class="toggle mx-2" data-controller="light">
-
-      <!-- 圖示（測試中）
-      <div data-action="click->light#switch" class="">
-        <i class="fas fa-moon" data-target="light.icon"></i>
-      </div> %>
-      -->
-
-      <!-- 按鈕 -->
-      <input id="switch" type="checkbox" name="theme" >
-      <label for="switch"></label>
-    </div>
+		</div>
 
     <!-- 使用者選單 -->
     <ul class="navbar-nav user-menu">
@@ -99,7 +85,7 @@
 
             <!-- 追隨 -->
             <li class="dropdown-item">
-              <%= link_to "Follows", followship_path, class: "nav-drop-item" %>
+              <%= link_to "Follows", users_followship_path, class: "nav-drop-item" %>
             </li>
 
             <!-- 購買紀錄 -->
@@ -121,13 +107,22 @@
         <!-- 登入 -->
         <%= link_to "Sign In", new_user_session_path, class: "sing_in nav-link" %>
       <% end %>
-    </ul>
-
+    </div>
   </div>
   <!-- 收合選單結束 -->
 
   <!-- 購物車、願望清單、通知 -->
   <div class="icon-group">
+
+    <!-- 開燈/關燈 -->
+    <!-- 圖示 -->
+    <div class="icon-btn">
+      <i class="light-icon mx-2 fas fa-moon"></i>
+      <!-- <i class="fas fa-lightbulb"></i> -->
+    </div>
+    <!-- 按鈕 -->
+    <input id="switch" type="checkbox" name="theme">
+    <label for="switch" hidden></label>
 
     <!-- 購物車 -->
     <%= link_to cart_path, class:"nav-icon" do%>

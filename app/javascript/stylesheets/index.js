@@ -4,7 +4,6 @@ import "@fortawesome/fontawesome-free/css/all";
 import "./actiontext.scss";
 import "./cart_review.scss";
 import "./typed.scss";
-import "./wishlist.scss";
 import "./modal.scss";
 
 import "./books";
