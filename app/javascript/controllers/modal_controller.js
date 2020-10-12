@@ -2,7 +2,7 @@ import { Controller } from "stimulus";
 import axios from "axios";
 
 export default class extends Controller {
-  static targets = [ "body", "price", "update_form" ];
+  static targets = [ "body", "price", "update_form", "cart_wait", "update_btn" ];
 
   connect() {
     // 使用 esc 鍵關閉 modal
@@ -35,14 +35,19 @@ export default class extends Controller {
 
     // 前端關閉跳窗並替換掉價格
     const body = this.bodyTarget;
-    body.classList.add("x");
-    document.documentElement.style.overflow = "auto";
+    const updateBtn = this.update_btnTarget;
+    const updateWaitBtn = this.cart_waitTarget;
+    updateBtn.classList.add("x");
+    updateWaitBtn.classList.remove("x");
 
-    const total = document.querySelector(".cart-total");
-    const item = document.querySelector("tbody").children[index];
-    item.lastElementChild.textContent = `${price}`;
-    
     setTimeout(() => {
+      body.classList.add("x");
+      document.documentElement.style.overflow = "auto";
+  
+      const total = document.querySelector(".cart-total");
+      const item = document.querySelector("tbody").children[index];
+      item.lastElementChild.textContent = `${price}`;
+
       axios.get(`/cart.json`)
         .then(function(result) {
           total.textContent = `$${result.data.total.toFixed(2)}`;
