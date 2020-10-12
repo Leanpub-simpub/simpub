@@ -1,29 +1,20 @@
 .book-info {
-	min-height: 30%;
+  min-height: 30%;
 }
 
 .book-title {
-	font-weight: bold;
-	font-size: 15px;
-	// margin: 5px 0px;
+  font-weight: bold;
+  font-size: 15px;
 }
 
 .book-author {
-	font-size: 13px;
-	// margin: 5px 0px;
+  font-size: 13px;
 }
 
 form.x {
-	display: none;
-}
-#carouselExampleControls {
-	position: relative;
+  display: none;
 }
 
-.slider-content {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin: auto;
-	transform: translate(-50%, -50%);
+#carouselExampleControls {
+  position: relative;
 }
