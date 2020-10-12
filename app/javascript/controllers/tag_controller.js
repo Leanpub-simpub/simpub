@@ -10,6 +10,7 @@ export default class extends Controller {
     if (list[0] == "") return;
     
     // 把 select2 的 tagging 功能打開
+    if (location.href.includes("/books/new")) return;
     $(".select").select2({ tags: true });
 
     // 相對應的 option 設定成已選擇

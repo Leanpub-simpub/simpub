@@ -15,6 +15,22 @@
     </div>
   </div>
 
+<<<<<<< HEAD
+  <div class="form-item">
+    <%= f.label :completeness, "Completeness", class:"txt" %> (%)
+    <%= f.number_field :completeness, class:"w-100 mb-3", min: "0", max: "100" %>
+  </div>
+
+  <!-- 編輯器另外做一個頁面 -->
+  <div class="form-item">
+    <%= f.label :md, "Upload Files", class:"txt w-100" %>
+    <%= f.hidden_field :md, value: book.cached_md_data %>
+    <%= f.file_field :md, class:"mb-3", id: "file_input" %>
+  </div>
+
+  <div>
+    <%= f.submit "Finish", class:"btn w-50 main-button" %>
+=======
   <div class="col-lg-7">
     <div class="col-xl-10 pl-xl-0">
       <div class="form-item mb-3">
@@ -60,5 +76,6 @@
         </div>
       </div>
     </div>
+>>>>>>> 6f958f4071e79b545afecf493308ccb262a737e6
   </div>
 <% end %>
