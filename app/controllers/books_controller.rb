@@ -2,19 +2,8 @@ class BooksController < ApplicationController
   require "aws-sdk-s3"
   require "json"
   
-<<<<<<< HEAD
-<<<<<<< HEAD
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :editor_new, :editor_edit]
-  # before_action :find_book, except: [:index, :new, :create]
-  before_action :find_book, only: [:show, :edit, :update, :pricing, :publish, :onpublish, :wish]
-=======
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :pricing, :publish, :unpublish, :editor_new, :editor_edit]
   before_action :find_book, only: [:show, :edit, :update, :pricing, :publish, :unpublish, :wish, :read, :add_chapter, :add_section]
->>>>>>> 6f958f4071e79b545afecf493308ccb262a737e6
-=======
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :pricing, :publish, :unpublish, :editor_new, :editor_edit]
-  before_action :find_book, only: [:show, :edit, :update, :pricing, :publish, :unpublish, :wish, :read, :add_chapter, :add_section]
->>>>>>> text_editor_2
 
   def index
     @books = Book.published_books
