@@ -34,13 +34,14 @@
           </div>
           <div class="book-info">
             <!-- 線上閱讀 -->
-            <%= link_to "Read on Simpub",read_book_path(book), method: "POST", class:"txt" %>
+            
             <!-- 加入判斷避免沒上傳檔案的書籍連結壞掉 -->
             <% if book.md_data %>
             <!-- 下載功能-->
-              <p><%= link_to "下載", book.md_url, target: "_blank" %></p>
+              <p><%= link_to "下載", book.md_url,class:"uploadWholeBook", target: "_blank" %></p>
             <% else %>
-              <p>尚未上傳 PDF</p> 
+              <%= link_to "Read on Simpub",read_book_path(book), class:"txt" %>
+              <div class="download" >Download</div> 
               <!-- production: 已上傳 PDF 才能允許上架 -->
             <% end %>
           </div>
@@ -66,7 +67,7 @@
           </div>
           <h2 class="Read this book ">Read this book</h2>
           <a href="#" class="PDF ">
-            <i class="fas fa-laptop"></i>"PDF"<span>(For reading on a computer)</span>
+            <i class="fas fa-laptop"></i>PDF<span>(For reading on a computer)</span>
           </a>
           <br>
           <a href="#" class="EPUB ">

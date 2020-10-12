@@ -115,7 +115,7 @@ class BooksController < ApplicationController
     if params[:chapter] == ""  
       return
     end
-    # @book = Book.find_by_slug(params[:id])
+    
     
     # 取到結構json檔資料
     s3_client = Aws::S3::Client.new
@@ -151,7 +151,7 @@ class BooksController < ApplicationController
     if params[:section] == ""
       return
     end
-    # @book = Book.find_by_slug(params[:id])
+    
 
     # 取到結構json檔資料
     s3_client = Aws::S3::Client.new
