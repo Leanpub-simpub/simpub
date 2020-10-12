@@ -1,9 +1,72 @@
-.cover-box {
-  max-width: 160px;
+.wishlist {
+	.cover-box {
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.wish-btns {
+		.book-title {
+			text-align: center;
+			font-size: 24px;
+		}
+		.wish-btn {
+			button, a {
+				width: 260px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			button {
+				margin-bottom: .5rem;
+			}
+		}
+	}
 }
 
 .wait-btn {
 	width: 210px;
 	font-size: 22px;
 	font-weight: 700;
+}
+
+@media screen and (min-width: 768px) {
+	.wishlist {
+		.wish-btn {
+			button, a {
+				width: 35%;
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 992px) {
+	.wishlist {
+		.cover-box {
+			margin-left: auto;
+			margin-right: 0;
+		}
+		.wish-btns {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: start;
+			align-items: center;
+
+			.book-title {
+				text-align: left;
+				font-size: 24px;
+				margin-bottom: 0;
+			}
+			
+			.wish-btn {
+				display: flex;
+
+				button, a {
+					width: auto;
+					margin: 0;
+				}
+				button {
+					margin-right: 1rem;
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
 }
