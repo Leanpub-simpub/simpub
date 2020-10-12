@@ -2,7 +2,7 @@ import { Controller } from "stimulus";
 import axios from "axios";
 
 export default class extends Controller {
-  static targets = [ "body", "price" ];
+  static targets = [ "body", "price", "update_form" ];
 
   connect() {
     // 使用 esc 鍵關閉 modal
@@ -27,13 +27,27 @@ export default class extends Controller {
     const token = document.querySelector("meta[name=csrf-token]").content;
     axios.defaults.headers.common["X-CSRF-Token"] = token;
 
+    // 往後端送更新的價格
     const index = this.data.get("index");
     const price = this.priceTarget.value;
+    const updateForm = this.update_formTarget;
+    updateForm.action = `/cart?index=${index}&price=${price}`;
 
-    axios.patch(`/cart?index=${index}&price=${price}`)
-         .then(function(result) {
-           location.href = "/cart";
-         })
-         .then(function(error) {})
+    // 前端關閉跳窗並替換掉價格
+    const body = this.bodyTarget;
+    body.classList.add("x");
+    document.documentElement.style.overflow = "auto";
+
+    const total = document.querySelector(".cart-total");
+    const item = document.querySelector("tbody").children[index];
+    item.lastElementChild.textContent = `${price}`;
+    
+    setTimeout(() => {
+      axios.get(`/cart.json`)
+        .then(function(result) {
+          total.textContent = `$${result.data.total.toFixed(2)}`;
+        })
+        .catch(function(error) {});
+    }, 1000);
   }
 }
