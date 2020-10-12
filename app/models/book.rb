@@ -6,7 +6,6 @@ class Book < ApplicationRecord
 
 
   validates :title, presence: true, uniqueness: true
-  # validates :price, presence: true
 
   has_many :taggings
   has_many :tags, through: :taggings
@@ -16,17 +15,18 @@ class Book < ApplicationRecord
 
   has_many :book_users
   has_many :readers, through: :book_users, source: :user
+  
+  has_many :wishlists
+  has_many :wish_buyers, through: :wishlists, source: :user
 
   has_one :order_items
+  has_many :comments
 
   friendly_id :title, use: :slugged
   
-  # has_rich_text :content
-
   scope :published_books, -> { where(publish_state: "on_shelf").order(id: :desc) }
   scope :unpublish_books, -> { where.not(publish_state: "on_shelf") }
 
-  # scope :with_search, -> (search) { left_joins(:authors, :tags).where("books.title ILIKE :query OR users.name ILIKE :query OR tags.name ILIKE :query", query: "%#{search}%") }
   scope :book_search, -> (search) { where("books.title ILIKE ?", "%#{search}%") }
   scope :author_search, -> (search) { joins(:authors).where("users.name ILIKE ?", "%#{search}%") }
   scope :tag_search, -> (search) { joins(:tags).where("tags.name ILIKE ?", "%#{search}%") }

@@ -8,7 +8,7 @@ import "./chapter_list.scss"
 
 import "./rename_and_delete.js"
 
-import "./generate_pdf.js"
+// import "./generate_pdf.js"
 
 import "./sample.js"
 

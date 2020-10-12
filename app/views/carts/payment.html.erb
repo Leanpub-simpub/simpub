@@ -1,4 +1,4 @@
-<section class="cart-payment txt">
+<section class="cart-payment txt container">
 <!--- header 是否要留?
   <div>
     <header class="checkout_header d-flex justify-content-center mb-5">
@@ -14,18 +14,21 @@
     </header>
   </div>
 ---> 
-    <div class="d-flex justify-content-center my-4">
-    <h3 class="w-75 d-flex justify-content-start">Summary</h3>
+  <div class="d-flex justify-content-center my-4">
+    <h3 class="col-12 col-md-10 d-flex justify-content-start">Summary</h3>
   </div>
+
   <div class="checkoutstage_checkout d-flex justify-content-center">
-    <table class="w-75 table table-borderless"> 
-      <thead class="mb-5">
-        <tr class="confirm-details-title"> 
-          <td class="">商品名稱</td> 
-          <td class="text-right">數量</td> 
-          <td class="text-right">小計</td>
-        </tr>
-      </thead>
+    <table class="col-12 col-md-10 table table-borderless"> 
+      <div>
+        <thead class="mb-5">
+          <tr class="confirm-details-title"> 
+            <td class="">商品名稱</td> 
+            <td class="text-right">數量</td> 
+            <td class="text-right">小計</td>
+          </tr>
+        </thead>
+      </div>
       <tbody class="confirm-details-item">
         <% current_cart.items.each do |item| %> 
           <tr class="">
@@ -44,25 +47,25 @@
     </table>
   </div>
   
-  <div class="check-out d-flex justify-content-center mt-3 ">
-    <div class="w-75 d-flex justify-content-end" >
+  <div class="check-out d-flex justify-content-center mt-3">
+    <div class="col-12 col-md-10 d-flex justify-content-end" >
       <span class="mx-5">總計</span>
       $<%= sprintf("%.2f", current_cart.total_price) %>
     </div>
   </div>
-  <hr class="border-bottom border-white w-75">
+  <hr class="border-bottom border-white col-10">
   <div class="d-flex justify-content-center ">
-    <h3 class="w-75 d-flex justify-content-start">信用卡資訊</h3>
+    <h3 class="col-10 d-flex justify-content-start">信用卡資訊</h3>
   </div>
   
   <%= form_with(url: "/cart/checkout", method: "post", id: "payment_form", local: true) do%>
     <div class="d-flex justify-content-center">
-      <div id="dropin-container" data-token="<%= @token %>" class="w-75"></div>
+      <div id="dropin-container" data-token="<%= @token %>" class="col-12 col-md-10"></div>
       <input type="hidden" value="" id="nonce" name="nonce">
     </div>
   <div class="d-flex justify-content-center mt-2">
-    <div class=" d-flex justify-content-end w-75 ">
-      <button id="submit-button" class="btn-danger main-btn btn w-25">付款</button>
+    <div class=" d-flex justify-content-end col-10">
+      <button id="submit-button" class="main-button btn col-12 col-md-3">付款</button>
     </div>
   </div>
   <% end %>
@@ -70,7 +73,7 @@
 
   <div id="depot-form">
     <fieldset>
-    <legend>Please Enter Your Details</legend>
+    <legend class="text-center">Please Enter Your Details</legend>
 
     <%form_for :order do |f|%>
       

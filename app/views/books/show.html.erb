@@ -1,19 +1,23 @@
-<div class="book-show container d-flex" >
-	<div class="row align-self-center">
-		<div class="col-4 d-flex flex-column">
+<div class="book-show container txt" >
+	<div class="row">
+
+    <!-- 書本資訊區 -->
+    <div class="info col-md-12 col-lg-4">
+
       <!-- 書本標題 -->
       <h2 class="title h3 mb-4">
         <%= @book.title %>
       </h2>
 
-      <div class="d-flex  mb-4">
-        <!-- 書籍作者頭像 -->
+      <!-- 書本作者 -->
+      <div class="d-flex mb-4">
+        <!-- 作者頭像 -->
         <div class="book-show-author-avatar">
           <%= render "shared/frontend/user_avatar", user: @book.authors[0] %>
         </div>
         <!-- 作者名稱 -->
         <div class="book-show-author-name pl-3">
-          <%= link_to link_to @book.authors[0].name, profile_path(@book.authors[0].username) %>
+          <%= link_to link_to @book.authors[0].name, users_profile_path(@book.authors[0].username) %>
         </div>
       </div>
 
@@ -35,17 +39,17 @@
       </div>
       
 			<div class="button-group mt-auto">
-        <%= link_to sample_book_path(@book),class: "btn w-50 p-1 mb-2 main-btn" do %>
+        <%= link_to sample_book_path(@book),class: "btn w-50 p-1 mb-2 main-button" do %>
           <span class="mr-2 ">Read Free Sample</span><i class="far fa-file-pdf "></i>
         <% end %> 
-        <%= link_to table_of_contents_book_path(@book), class: "btn w-50 p-1 main-btn" do %>
+        <%= link_to table_of_contents_book_path(@book), class: "btn w-50 p-1 main-button" do %>
           <span class="mr-2 ">Table Of Contents</span><i class="fas fa-list-ol "></i>
         <% end %>
 			</div>
 		</div>
-    
-    <!-- 書籍封面 -->
-		<div class="cover col-4 d-flex flex-column">
+      
+    <!-- 書本封面 -->
+    <div class="cover col-md-12 col-lg-4">
       <div class="mb-4">
         <%= render partial: "shared/frontend/book_cover", locals: {book: @book, size: :large} %>
       </div>
@@ -54,23 +58,42 @@
         <p class="text-center mb-0">This book is <%= @book.completeness %>% complete</p>
         <p class="text-center mb-0">COMPLETED ON <%= @book.updated_at.to_date %></p>
       </div>
-		</div>
+    </div>
 
-		<div class="col-4 d-flex flex-column">
+    <!-- 購書區 -->
+		<div class="shopping col-md-12 col-lg-4">
       <!-- slider -->
-      <%= render partial: "shared/frontend/price_slider", locals: {book: @book} %>
+      <%= render partial: "shared/frontend/price_slider", locals: {book: @book, size: :large} %>
 
       <!-- 加入購物車按鈕 -->
       <div class="add-to-cart-price mt-auto">
         <span>YOU PAY</span>
         <span class="hint">(US$)</span>
         <%= form_with url: add_cart_path(@book.id), class: "add-cart-form" do |f| %>
-          <%= f.text_field :cart_price, class: "cart-price text-center mt-1 mb-4" %>
-          <%= f.submit "Add Ebook to Cart", class: "add-to-cart-btn btn btn-danger main-btn" %>
+          <%= f.text_field :cart_price, class: "cart-price text-center mt-1 mb-1" %>
+          <%= f.submit "Add Ebook to Cart", class: "add-to-cart-btn btn main-button mt-1 mb-1" %>
         <% end %>
       </div>
 
-      <%# <%= link_to "Add to Wish List", "#", class: "add-to-wishlist" %>
+      <button class="add-to-wishlist btn" data-controller="bookwish", data-action="bookwish#add" data-bookwish-id="<%= @book.id %>">Add to Wish List</button>
 		</div>
 	</div>
+
+  <!-- 暫時先用分隔線 -->
+  <hr class="w-100 mt-5">
+
+  <div class="row w-100 mt-2">
+    <h3 class="mx-auto">Reader Testimonials</h3>
+    <div class="row col-12">
+      <% @comments.each do |comment| %>
+        <div class="col-12 col-md-6 col-lg-4 text-center mt-5 p-5">
+          <div class="avatar-container m-auto">
+            <%= render "shared/frontend/user_avatar", user: comment.user %>
+          </div>
+          <div><%= comment.user.name %></div>
+          <div><%= comment.content %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

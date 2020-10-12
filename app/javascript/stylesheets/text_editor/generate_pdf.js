@@ -147,7 +147,7 @@ window.addEventListener('turbolinks:load',()=>{
         }
         
         doc.save(`${bookName}`+ '.pdf')
-        // pdftoserver(doc.output('blob'),bookName,bookName)
+        pdftoserver(doc.output('blob'),bookName,bookName)
               
       })
       .catch(function(err){

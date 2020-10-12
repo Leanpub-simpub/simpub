@@ -1,15 +1,21 @@
 class User < ApplicationRecord
   include AvatarUploader::Attachment(:avatar)
 
+  attr_accessor :x, :y, :width, :height
+
   # 測試用
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
+  # devise :database_authenticatable, :registerable,
+  #        :recoverable, :rememberable, :validatable,
+  #        :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
   
   # 正式用
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable, :confirmable,
+         :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
+
   # devise :database_authenticatable, :registerable,
-  #        :recoverable, :rememberable, :validatable, :confirmable,
-  #        :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
+  #        :recoverable, :rememberable, :trackable, :validatable,
+  #        :omniauthable, omniauth_providers: [:facebook, :google_oauth2 :github]
 
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
@@ -22,12 +28,18 @@ class User < ApplicationRecord
   has_many :bought_books, through: :book_users, source: :book
 
   has_many :orders
+  has_many :comments
 
   has_many :followed_users, foreign_key: :follower_id, class_name: "Followship"
   has_many :followees, through: :followed_users
     
   has_many :following_users, foreign_key: :followee_id, class_name: "Followship"
   has_many :followers, through: :following_users
+
+  has_many :wishlists
+  has_many :wish_books, through: :wishlists, source: :book
+
+  has_many :notifications, foreign_key: :recipient_id
 
   def self.from_omniauth(auth, signed_in_resource = nil)
     identity = Identity.find_for_oauth(auth)

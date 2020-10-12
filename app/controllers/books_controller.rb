@@ -2,16 +2,13 @@ class BooksController < ApplicationController
   require "aws-sdk-s3"
   require "json"
   
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :editor_new, :editor_edit]
-  # before_action :find_book, except: [:index, :new, :create]
-  before_action :find_book, only: [:show, :edit, :update, :pricing, :publish, :unpublish, :wish]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :pricing, :publish, :unpublish, :editor_new, :editor_edit]
+  before_action :find_book, only: [:show, :edit, :update, :pricing, :publish, :unpublish, :wish, :read, :add_chapter, :add_section]
 
   def index
     @books = Book.published_books
 
-    if params[:search].present?
-      @books = @books.with_search(params[:search])
-    elsif params[:book_search].present?
+    if params[:book_search].present?
       @books = @books.book_search(params[:book_search])
     elsif params[:author_search].present?
       @books = @books.author_search(params[:author_search])
@@ -23,6 +20,8 @@ class BooksController < ApplicationController
   end
   
   def show
+    @comments = @book.comments.where.not(content: "")
+    @stars = @comments.average(:stars).round() if @comments.size > 0
   end
   
 
@@ -42,17 +41,20 @@ class BooksController < ApplicationController
     @book.authors << current_user
     
     # 把 cover 切出 大中小 三個尺寸
-    @book.cover_derivatives! if @book.cover_data?
+    CoverUploaderJob.perform_later(@book) if @book.cover_data?
 
     if @book.save
       if @book.md_data
         @book.update(publish_state: "on_shelf")
         current_user.update(as_author: true)
+
+        publish_notify
+        
         redirect_to pricing_book_path(@book)
       else
         # 在 s3 做出書的資料夾，chapter1.md，與 structure.json(存章節結構)
         book_start(@book.title)
-        redirect_to dash_board_books_path
+        redirect_to users_books_path
       end
     else
       @tags = Tag.all.map(&:name)
@@ -66,6 +68,7 @@ class BooksController < ApplicationController
   
   def update
     if @book.update(book_params)
+      CoverUploaderJob.perform_later(@book)
       redirect_to pricing_book_path(@book)
     else
       render :edit
@@ -81,13 +84,20 @@ class BooksController < ApplicationController
     @book.update(book_params)
     @book.update(publish_state: "on_shelf")
     current_user.update(as_author: true)
+
+    publish_notify
     
     redirect_to @book, notice: "書籍已上架囉～"
   end
 
   def unpublish
     @book.remove!
-    redirect_to dash_board_books_path, notice: "#{@book.title} 已下架"
+    redirect_to users_books_path, notice: "#{@book.title} 已下架"
+  end
+
+  def wish
+    current_user.wish_books << @book
+    flash[:notice] = "書籍已加入願望清單"
   end
 
   # 線上編輯 action
@@ -105,7 +115,7 @@ class BooksController < ApplicationController
     if params[:chapter] == ""  
       return
     end
-    @book = Book.find_by_slug(params[:id])
+    
     
     # 取到結構json檔資料
     s3_client = Aws::S3::Client.new
@@ -141,7 +151,7 @@ class BooksController < ApplicationController
     if params[:section] == ""
       return
     end
-    # @book = Book.find_by_slug(params[:id])
+    
 
     # 取到結構json檔資料
     s3_client = Aws::S3::Client.new
@@ -347,20 +357,7 @@ class BooksController < ApplicationController
   end
 
   def read
-    find_book
-    s3_client = Aws::S3::Client.new
-    object = s3_client.get_object(bucket: ENV['bucket'], key:"store/book/#{@book.title}/structure.json")    
-    structure_json = object.body.read
-    @json = JSON.parse(structure_json)
-  end
-  
-  def download_pdf
-    signer = Aws::S3::Presigner.new
-    url = signer.presigned_url(:get_object, bucket: ENV['bucket'], key: "store/book/#{params[:bookName]}/#{params[:bookName]}.pdf")
-
-    respond_to do |format|
-      format.json{ render json: {url: url} }
-    end
+    
   end
 
   private
@@ -381,6 +378,12 @@ class BooksController < ApplicationController
     structure.put(body: a )
     chapter = bucket.object("store/book/#{title}/Chapter_1.md")
     chapter.upload_stream{|ws| ws << '# Chapter_1'}
+  end
+
+  def publish_notify
+    (current_user.followees.uniq).each do |followee|
+      create_notification(followee, current_user, "published a book", @book)
+    end
   end
   
 end

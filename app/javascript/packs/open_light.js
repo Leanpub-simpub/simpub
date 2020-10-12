@@ -1,6 +1,8 @@
 document.addEventListener("turbolinks:load", () => {
 	const html = document.querySelector("html");
 	const checkbox = document.querySelector("input[name=theme]");
+	const iconBtn = document.querySelector(".icon-btn");
+	const icon = document.querySelector(".light-icon");
 
 	const getStyle = (element, style) =>
 		window.getComputedStyle(element).getPropertyValue(style);
@@ -8,14 +10,14 @@ document.addEventListener("turbolinks:load", () => {
 	const initialColors = {
 		bg: getStyle(html, "--bg"),
 		txt: getStyle(html, "--txt"),
-		main: getStyle(html, "--main"),
+		main: getStyle(html, "--main")
 	};
 
 	// override styles
 	const darkMode = {
 		bg: "#222222",
 		txt: "#ffffff",
-		main: "#e09a5f",
+		main: "#e09a5f"
 	};
 
 	const transformKey = (key) =>
@@ -27,9 +29,9 @@ document.addEventListener("turbolinks:load", () => {
 		);
 	};
 
-	checkbox.addEventListener("change", ({ target }) => {
-		target.checked ? changeColors(darkMode) : changeColors(initialColors);
-	});
+	// checkbox.addEventListener("change", ({ target }) => {
+	// 	target.checked ? changeColors(darkMode) : changeColors(initialColors);
+	// });
 
 	const isExistLocalStorage = (key) => localStorage.getItem(key) != null;
 
@@ -42,9 +44,13 @@ document.addEventListener("turbolinks:load", () => {
 		if (target.checked) {
 			changeColors(darkMode);
 			createOrEditLocalStorage("mode", "darkMode");
+			icon.classList.remove("fa-moon");
+			icon.classList.add("fa-sun");
 		} else {
 			changeColors(initialColors);
 			createOrEditLocalStorage("mode", "initialColors");
+			icon.classList.remove("fa-sun");
+			icon.classList.add("fa-moon");
 		}
 	});
 
@@ -52,10 +58,18 @@ document.addEventListener("turbolinks:load", () => {
 		createOrEditLocalStorage("mode", "initialColors");
 
 	if (getValueLocalStorage("mode") === "initialColors") {
-		checkbox.removeAttribute("checked");
 		changeColors(initialColors);
+		checkbox.removeAttribute("checked");
+		icon.classList.remove("fa-sun");
+		icon.classList.add("fa-moon");
 	} else {
 		checkbox.setAttribute("checked", "");
 		changeColors(darkMode);
+		icon.classList.remove("fa-moon");
+		icon.classList.add("fa-sun");
 	}
+	
+	iconBtn.addEventListener("click", () => {
+		checkbox.click();
+	});
 });

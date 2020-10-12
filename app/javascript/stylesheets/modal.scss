@@ -1,0 +1,20 @@
+.cart-modal {
+  width: 100vw;
+  height: 85vh;
+  background-color: #fa0;
+  position: sticky;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 100;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-content {
+  height: 100%;
+}

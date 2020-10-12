@@ -1,11 +1,15 @@
 html {
+  // 版面共同設定
   .library,
   .purchase,
   .cart-show,
   .author-books,
   .profile-show,
-  .book-index {
+  .book-index,
+  .book-show {
     min-height: 65vh;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
   }
   .notice,
   .alert {

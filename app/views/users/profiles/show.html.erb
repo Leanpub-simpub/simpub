@@ -1,42 +1,227 @@
 <div class="profile-show container text-center">
-  <div class="row justify-content-center">
-    <div class="col-2">
-      <%= render "shared/frontend/user_avatar", user: @user %>
+  <div class="row ">
+    <div class="author-about d-flex">
+      <div class="avatar justify-content-center ">
+        <%= render "shared/frontend/user_avatar", user: @user %>
+        <div class="justify-content" data-controller="follow" data-follow-user="<%= @user.username %>">
+          <div class="h3">
+            <button class="follow-btn btn btn-danger main-btn txt", data-action="follow#followship">
+              <% if @user.followed_by?(current_user) %>
+                Following
+              <% else %>
+                Follow
+              <% end %>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="authers-info justify-content ">
+        <div class="h3 txt user-name ">
+          <%= @user.name %> 
+        </div>
+        <div class="txt user-about"><%= @user.about %>He’s the bestselling author of Steal Like An Artist and other books. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores, eaque ipsam fugit quos perferendis ut dolorum rem error repellendus vitae! </div>
+      </div>
+
+      <div class="contact">
+        <a href="#" class="facebook">
+            <i class="fab fa-facebook fa-2x"></i>
+        </a>
+        <a href="#" class="github">
+          <i class="fab fa-github fa-2x"></i>
+        </a>
+        <a href="#" class="email">
+          <i class="far fa-envelope fa-2x"></i>
+        </a>
+      </div>
     </div>
 
+<<<<<<< HEAD
     <div class="col-12">
       <div class="row justify-content-center" data-controller="follow" data-follow-user="<%= @user.username %>">
         <p class="text-center h3">
-          <button class="follow-btn btn btn-danger main-btn txt", data-action="follow#followship">
+          <button class="follow-btn btn main-button txt", data-action="follow#followship">
             <% if @user.followed_by?(current_user) %>
               Following
             <% else %>
               Follow
-            <% end %>
-          </button>
-        </p>
-      </div>
-    </div>
+=======
+    <div class="book-container">
+      <h3 class="col-12 title">Published Books</h3>
+      <!--Carousel Wrapper-->
+      <div id="carousel-with-lb" class="carousel slide carousel-multi-item" data-ride="carousel">
+        <!--Controls-->
+        <div class="controls-top">
+          <a class="btn-floating btn-secondary" href="#carousel-with-lb" data-slide="prev"><i
+              class="fas fa-chevron-left"></i></a>
+          <a class="btn-floating btn-secondary" href="#carousel-with-lb" data-slide="next"><i
+              class="fas fa-chevron-right"></i></a>
+        </div>
+        <!--/.Controls-->
 
-    <div class="col-12 h3 txt"><%= @user.name %></div>
-    <div class="col-12 h3 txt"><%= @user.about %></div>
+        <!--Indicators-->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel-with-lb" data-slide-to="0" class="active secondary-color"></li>
+          <li data-target="#carousel-with-lb" data-slide-to="1" class="secondary-color"></li>
+          <li data-target="#carousel-with-lb" data-slide-to="2" class="secondary-color"></li>
+        </ol>
+        <!--/.Indicators-->
+
+        <!--Slides and lightbox-->
+
+        <div class="carousel-inner mdb-lightbox " role="listbox">
+          <div id="mdb-lightbox-ui"></div>
+          <!--First slide-->
+          <div class=" carousel-item active text-center d-flex">
+            <% @user.pub_books.each do |book| %>
+              <figure class="col-6 col-sm-4 col-md-3 col-lg-2 d-md-inline-block">
+                <a class="cover-link" data-key="<%= book.id %>">
+                  <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
+                  <h4><%= book.title %></h4>
+                  <div>
+                    <%= book.authors[0].name %>
+                  </div>
+                </a>
+              </figure>
+            <% end %>
+
+            <figure class="col-md-2 d-md-inline-block">
+              <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(4).jpg"
+                data-size="1600x1067">
+                <img src="https://fakeimg.pl/350x200/?text=World&font=book"
+                  class="img-fluid">
+              </a>
+            </figure>
+
+            <figure class="col-md-2 d-md-inline-block">
+              <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(6).jpg"
+                data-size="1600x1067">
+                <img src="https://fakeimg.pl/350x200/?text=World&font=book"
+                  class="img-fluid">
+              </a>
+            </figure>
+
+            <figure class="col-md-2 d-md-inline-block">
+              <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(10).jpg"
+                data-size="1600x1067">
+                <img src="https://fakeimg.pl/350x200/?text=World&font=bookcover"
+                  class="img-fluid">
+              </a>
+            </figure>
+            <figure class="col-md-2 d-md-inline-block">
+              <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(12).jpg"
+                data-size="1600x1067">
+                <img src="https://fakeimg.pl/350x200/?text=World&font=bookcover"
+                  class="img-fluid">
+              </a>
+            </figure>
+            <figure class="col-md-2 d-md-inline-block">
+              <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(14).jpg"
+                data-size="1600x1067">
+                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(14).jpg"
+                  class="img-fluid">
+              </a>
+            </figure>
+            <figure class="col-md-2 d-md-inline-block">
+              <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(22).jpg"
+                data-size="1600x1067">
+                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(22).jpg"
+                  class="img-fluid">
+              </a>
+            </figure>
+          </div>
+          <!--/.First slide-->
+
+          <!--Second slide-->
+          <div class="carousel-item text-center d-flex">
+
+            <figure class="col-md-2 d-md-inline-block">
+              <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(22).jpg"
+                data-size="1600x1067">
+                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(22).jpg"
+                  class="img-fluid">
+              </a>
+            </figure>
+
+            <figure class="col-md-2 d-md-inline-block">
+              <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(44).jpg"
+                data-size="1600x1067">
+                <img src="http://covers.openlibrary.org/b/isbn/9780062382801-L.jpg"
+                  class="img-fluid">
+              </a>
+            </figure>
+            <figure class="col-md-2 d-md-inline-block">
+              <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(45).jpg"
+                data-size="1600x1067">
+                <img src="http://covers.openlibrary.org/b/isbn/9780593160275-L.jpg"
+                  class="img-fluid">
+              </a>
+            </figure>
+
+            <figure class="col-md-2 d-md-inline-block">
+              <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(53).jpg"
+                data-size="1600x1067">
+                <img src="http://covers.openlibrary.org/b/isbn/9780735224650-L.jpg"
+                  class="img-fluid">
+              </a>
+            </figure>
+
+            <figure class="col-md-2 d-md-inline-block">
+              <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(53).jpg"
+                data-size="1600x1067">
+                <img src="http://covers.openlibrary.org/b/isbn/9780525563051-L.jpg"
+                  class="img-fluid">
+              </a>
+            </figure>
+            <figure class="col-md-2 d-md-inline-block">
+              <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(77).jpg"
+                data-size="1600x1067">
+                <img src="http://covers.openlibrary.org/b/isbn/9780062882769-L.jpg"
+                  class="img-fluid">
+              </a>
+            </figure>
+          <!--/.Second slide-->
+
+          <!--Third slide-->
+          <div class="carousel-item text-center d-flex">
+            <% @user.pub_books.each do |book| %>
+              <figure class="col-6 col-sm-4 col-md-3 col-lg-2 d-md-inline-block">
+                <a class="cover-link" data-key="<%= book.id %>">
+                  <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
+                  <h4><%= book.title %></h4>
+                  <div>
+                    <%= book.authors[0].name %>
+                  </div>
+                </a>
+              </figure>
+>>>>>>> 6f958f4071e79b545afecf493308ccb262a737e6
+            <% end %>
+          </div>
+          <!--/.Third slide-->
+        </div>
+        <!--/.Slides-->
+      </div>
+      <!--/.Carousel Wrapper-->
+    </div>
+    
    
     <%# 出版過的書 %>
-    <div>
+
+    <div class="row m-0 d-flex">
       <h3 class="col-12 title">Published Books</h3>
       <% @user.pub_books.each do |book| %>
-        <div class="col-12">
+        <div class="book-item col-6 col-sm-4 col-md-3 col-lg-2 d-flex flex-column justify-content-between">
           <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
-          <%= book.title %>
-          <%= book.authors[0].name %>
+          <h4><%= book.title %></h4>
+          <div>
+            <%= book.authors[0].name %>
+          </div>
         </div>
       <% end %>
-    </div>
-
-    <%# 編輯個人資料 %>
-    <div class="col-12">
-      <%= link_to "Edit Profile", user_dashboard_path, class:"txt" %>
-    </div>
-
+    </div>    
+    
   </div>
 </div>
+
+
+

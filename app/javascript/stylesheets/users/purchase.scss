@@ -1,0 +1,129 @@
+.purchase {
+  .text2 {
+    color: #888;
+  }
+
+  #order-info {
+    .info-text2 {
+      font-size: 12px;
+    }
+
+    .order-box {
+      a {
+        color: #e09a5f;
+        text-shadow: .3px .3px hsla(27, 68%, 63%, .9);
+        text-decoration: none;
+        transition: font-size .2s linear;
+      }
+      .col-0 {
+        font-size: 0;
+        padding: 0;
+        width: 0;
+      }
+    }
+  }
+
+  #order-items {
+    .desk {
+      display: none;
+    }
+    a:hover {
+      text-decoration: none;
+    }
+    #purchased-time {
+      margin-left: auto;
+      margin-right: auto;
+      width: 75%;
+    }
+    .items-box {
+      font-size: 20px;
+      border-top: 1px solid #aaa;
+      width: 90%;
+
+      div {
+        div:first-child {
+          text-align: right;
+        }
+        div:last-child {
+          text-align: left;
+        }
+      }
+    }
+    .btn {
+      border: 1px solid #aaa;
+      color: #888;
+      transition: .5s linear;
+    }
+    // .btn:hover {
+      // background-color: ;
+    // }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .purchase {
+    #order-info {
+      text-align-last: left;
+
+      .order-box {
+        a:hover {
+          font-size: 20px;
+        }
+        .col-0 {
+          font-size: inherit;
+          width: 100%;
+          text-align-last: center;
+        }
+        .order-item {
+          border-top: 1px solid #aaa;
+        }
+      }
+    }
+
+    #order-items {
+      text-align-last: left;
+
+      .mobile {
+        display: none;
+      }
+      .items-box {
+        border: 0;
+        font-size: inherit;
+      }
+      .desk {
+        display: initial;
+
+        .items-box {
+          width: 100%;
+
+          .row {
+            margin-left: 0;
+            margin-right: 0;
+          }
+          .item {
+            .row {
+              border-top: 1px solid #888;
+            }
+          }
+          .col-2, .col-4 {
+            text-align-last: center;
+          }
+        }
+      }
+      #purchased-time {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        
+        div {
+          margin-right: auto;
+          margin-bottom: 0;
+        }
+        .btn {
+          // text-align: right;
+        }
+      }
+    }
+  }
+}

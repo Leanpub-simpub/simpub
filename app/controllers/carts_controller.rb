@@ -15,6 +15,10 @@ class CartsController < ApplicationController
   end
 
 
+  def edit
+    @book = Book.find_by(id: params[:id])
+  end
+
   def update
     index = params[:index].to_i
     price = params[:price][1..-1].to_f
@@ -37,13 +41,13 @@ class CartsController < ApplicationController
 
   def destroy
     session[Cart::SessionKey] = nil
-    redirect_to :cart, notice: "購物車已清空"
+    redirect_to cart_path, notice: "購物車已清空"
   end
 
 
   def payment
     if current_cart.empty?
-      redirect_to :books, notice: "購物車空空"
+      redirect_to books_path, notice: "購物車內沒有商品"
     else
       if user_signed_in?
         @token = gateway.client_token.generate
@@ -54,33 +58,42 @@ class CartsController < ApplicationController
   end
 
   def checkout
-    result = gateway.transaction.sale(
-      amount: current_cart.total_price,
-      payment_method_nonce: params[:nonce],
-      options: {
-        submit_for_settlement: true
-      }
-    )
-
-    if result.success?
-      # 成功付款建立訂單
-      create_order(current_user, result.transaction.id)
-
-      current_cart.items.each do |item|
-        current_user.bought_books << Book.find_by(id: item.book_id)
-      end
-             
-      session[Cart::SessionKey] = nil
-      redirect_to root_path, notice: "付款成功"
+    if current_cart.total_price == 0
+      create_order(current_user)
     else
-      redirect_to root_path, notice: "付款發生錯誤"
+      result = gateway.transaction.sale(
+        amount: current_cart.total_price,
+        payment_method_nonce: params[:nonce],
+        options: {
+          submit_for_settlement: true
+        }
+      )
+
+      if result.success?
+        # 成功付款建立訂單
+        create_order(current_user, result.transaction.id)
+      else
+        redirect_to root_path, notice: "付款發生錯誤"
+      end
     end
+
+    current_cart.items.each do |item|
+      current_user.bought_books << Book.find_by(id: item.book_id)
+    end
+           
+    session[Cart::SessionKey] = nil
+    redirect_to root_path, notice: "付款成功"
   end
 
 
   def refund
-    transaction = gateway.transaction.find(params[:trans_id])
     order = current_user.orders.find_by(uuid: params[:uuid])
+    if order.total == 0
+      redirect_to purchases_path, notice: "零元訂單無法退貨"
+      return
+    end
+
+    transaction = gateway.transaction.find(params[:trans_id])
 
     if transaction.status == "settled" or transaction.status == "settling"
       refund = gateway.transaction.refund(transaction.id)
