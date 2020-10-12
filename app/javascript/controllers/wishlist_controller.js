@@ -36,7 +36,7 @@ export default class extends Controller {
     const cartPrice = document.querySelector(".cart-price");
     const addCartForm = document.querySelector(".add-cart-form-modal");
     const wishToCart = document.querySelector("#wish-to-cart");
-    const waitBtn = document.querySelector(".wait-btn");
+    const waitBtn = document.querySelector(".wish-wait-btn");
     
     const username = this.data.get("username");
     const bookId = this.data.get("book");
@@ -98,7 +98,6 @@ export default class extends Controller {
         }
       }
     });
-
 
     // ! 不知道為什麼會打兩次 delete
     addCartForm.addEventListener("submit", () => {

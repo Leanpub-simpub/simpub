@@ -56,8 +56,8 @@
               <span class="hint">(US$)</span>
               <%= form_with url: cart_path, method: :patch, class: "update-price-form", data: {action: "modal#update", target: "modal.update_form"} do |f| %>
                 <%= f.text_field :cart_price, id: "modal-cart-price", class: "modal-cart-price text-center d-block mt-1 mb-4", data: {target: "modal.price"} %>
-                <%= f.submit "Update", class: "update-btn btn btn-danger main-btn" %>
-                <button class="wait-btn btn btn-danger main-btn x" disabled>Please wait...</button>
+                <%= f.submit "Update", class: "update-btn btn btn-danger main-btn", data: {target: "modal.update_btn"} %>
+                <button class="cart-wait-btn btn btn-danger main-btn x" disabled data-target="modal.cart_wait">Please wait...</button>
               <% end %>
             </div>
 
@@ -70,7 +70,7 @@
                 <div>
                   <%= f.submit "Add Ebook to Cart", id: "wish-to-cart", class: "add-to-cart-btn btn btn-danger main-btn" %>
                 </div>
-                <button class="wait-btn btn btn-danger main-btn x" disabled>Please wait...</button>
+                <button class="wish-wait-btn btn btn-danger main-btn x" disabled>Please wait...</button>
               <% end %>
             </div>
           </div>

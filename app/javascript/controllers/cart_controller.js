@@ -155,7 +155,6 @@ export default class extends Controller {
         
         // 將書籍移動到願望清單
         const bookId = wishBtn.parentElement.dataset.bookid;
-        console.log(bookId);
         axios
           .post(`/books/${bookId}/wish`)
           .then(function(result) {
