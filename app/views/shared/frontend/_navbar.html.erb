@@ -1,4 +1,4 @@
-<nav class="layout-navbar navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+<nav class="layout-navbar navbar navbar-expand-lg navbar-dark bg-dark sticky-top" data-controller="notify">
   <!-- 品牌 logo
   <div class="col-1">
     <a href="/" class="navbar-brand">  
@@ -28,11 +28,11 @@
       <li class="nav-item active">
         <%= link_to "Create a Book", new_book_path, class: "nav-link txt" %>      
       </li>
-      <li class="nav-item">
       <%# <% if current_user.as_author %>
+      <li class="nav-item">
         <%= link_to "My Writings", users_books_path, class: "nav-link txt" %>
-      <%# <% end %>
       </li>
+      <%# <% end %>
     </ul>
 
     <!-- Search Filter -->
@@ -95,7 +95,7 @@
             
             <!-- 登出 -->
             <li class="dropdown-item">
-              <%= link_to "Sign Out", :destroy_user_session, method: :delete, class: "sign_out_btn nav-drop-item"%>
+              <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "sign_out_btn nav-drop-item"%>
             </li>
           </ul>
         </li>
@@ -125,13 +125,12 @@
     <label for="switch" hidden></label>
 
     <!-- 購物車 -->
-    <%= link_to cart_path, class:"nav-icon" do%>
+    <%= link_to cart_path, class:"nav-icon" do %>
       <i class="fas fa-shopping-cart mx-2">
         <div class="x"></div>
       </i>
     <% end %>
     
-
     <!-- 願望清單 -->
     <% if user_signed_in? %>
     <div class="nav-icon" data-controller="wish" data-wish-username="<%= current_user.username %>">
@@ -143,17 +142,21 @@
     </div>
 
     <!-- 通知 -->
-    <div class="nav-icon z" data-controller="notify">
-      <%= link_to "", id: "notifDropdown", class: "dropdown", role: "button", data: {toggle: "dropdown", action: "notify#show"} do %>
-      <!-- <button id="notiDropdown" class="dropdown" role="button", data-toggle="dropdown" data-action="notify#show"> -->
+    <div class="nav-icon">
+      <button class="nav-icon border-0 bg-transparent p-0" data-action="notify#show">
         <i class="fas fa-bell mx-2">
           <div class="x" data-target="notify.bubble"></div>
         </i>
-      <!-- </button> -->
-      <div class="dropdown-menu position-fixed" aria-labelledby="notifDropdown" data-target="notify.menu"></div>
-      <% end %>
+      </button>
+    </div>
+
+    <div id="notify-box" class="position-fixed x">
+      <div class="d-flex px-3 py-2 border-bottom justify-content-between">
+        <div class="">Notifications</div>
+        <div class="clear-notify" data-action="click->notify#mark_read">Clear All</div>
+      </div>
+      <div class="notify-content" data-target="notify.box"></div>
     </div>
     <% end %>
   </div>
-  
 </nav>

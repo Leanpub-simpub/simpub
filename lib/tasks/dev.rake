@@ -31,7 +31,7 @@ namespace :dev do
       book.publish_state = "on_shelf"
       book.completeness = rand(50..100)
       # 下面這行打開會自動將假圖上傳至 S3，請慎用
-      # book.cover_remote_url = Faker::LoremFlickr.image
+      book.cover_remote_url = Faker::LoremFlickr.image
       
       user.pub_books << book if book.save!
       book.tags.create(name: Faker::Book.genre)
