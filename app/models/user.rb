@@ -13,10 +13,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable,
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
 
-  # devise :database_authenticatable, :registerable,
-  #        :recoverable, :rememberable, :trackable, :validatable,
-  #        :omniauthable, omniauth_providers: [:facebook, :google_oauth2 :github]
-
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
   validates :username, presence: true, uniqueness: true
