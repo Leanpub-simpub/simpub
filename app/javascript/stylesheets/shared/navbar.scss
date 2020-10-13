@@ -10,7 +10,8 @@
   .nav-item {
     text-decoration: none;
   }
-  .nav-icon, .icon-btn {
+  .nav-icon,
+  .icon-btn {
     font-size: 20px;
   }
 
@@ -85,15 +86,19 @@
     width: 45px;
   }
 
-  .icon-group {
-    display: inline-flex;
-    position: absolute;
-    top: 1.5vh;
-    right: 25vh;
-  }
-
   .light {
     font-size: 20px;
+  }
+
+  .icon-group {
+    display: inline-flex;
+    display: none;
+    // position: absolute;
+    // top: 1.5vh;
+    // right: 25vh;
+  }
+  .icon-group-hidden {
+    display: inline-flex;
   }
 }
 
@@ -219,10 +224,6 @@
     align-items: flex-start;
     padding: 2vh;
 
-    .icon-group {
-      right: 5vh;
-    }
-
     .search-filter {
       order: -1;
       display: flex;
@@ -247,9 +248,21 @@
     .toggle {
       display: none;
     }
+
+    .logo {
+      display: none;
+    }
+
+    .icon-group {
+      display: show;
+      right: 5vh;
+    }
+
+    .icon-group-hidden {
+      display: none;
+    }
   }
 }
-
 
 #notify-box {
   background-color: #fff;
