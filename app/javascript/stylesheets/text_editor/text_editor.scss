@@ -1,4 +1,4 @@
-.book_name,.currentTarget,#save,#sample {
+.book_name,.currentTarget,#save,#sample,#current {
   font-size: 30px;
   // color: #e09a5f;
 }
@@ -135,4 +135,7 @@
   column-width: 595px;
   column-gap: 100px;
   overflow-x: scroll;
+  img{
+    max-width: 400px;
+  }
 }

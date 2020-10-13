@@ -18,6 +18,7 @@
 		"html2canvas": "0.5.0-beta4",
 		"jquery": "^3.5.1",
 		"jspdf": "^2.1.1",
+		"jspdf-customfonts": "^0.0.4-rc.4",
 		"markdown-it": "^11.0.0",
 		"popper.js": "^1.16.1",
 		"select2": "^4.0.13",

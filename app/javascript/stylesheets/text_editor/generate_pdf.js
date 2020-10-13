@@ -1,4 +1,6 @@
 import jsPDF from "jspdf";
+import "./TaipeiSansTCBeta-Bold-normal"
+
 import html2canvas from 'html2canvas';
 import markdownit from "markdown-it/dist/markdown-it" 
 import hljs from 'highlightjs/highlight.pack'
@@ -11,9 +13,9 @@ const pdfTemplate = document.createElement('template')
 pdfTemplate.innerHTML=`<div class="pdf_container" ></div>`
 
 window.addEventListener('turbolinks:load',()=>{
-  if(document.querySelector('#bookName')){
+  if(document.querySelector('#pdf-geneator')){
     
-    document.querySelector('.edit_book').addEventListener('submit',(e)=>{
+    document.querySelector('#pdf-geneator').addEventListener('click',(e)=>{
       e.preventDefault()
       let allpdf = document.querySelector('#allpdf')
       
@@ -29,27 +31,127 @@ window.addEventListener('turbolinks:load',()=>{
       })
       .then( result=>{
         let allContent = result.data['all_content']
-        let allChapter = result.data['all_chapter']
-        console.log(allContent)
-        console.log(allChapter)
-        // chapter section 分開放
-        for(let i=0;i<allContent.length;i++){
-          let target=document.importNode(pdfTemplate.content,true)
-          allpdf.appendChild(target)
-          target = document.querySelector('.pdf_container:last-child')
-          let filename = `${bookName}_${allChapter[i]}`
-          mdToHTML(allContent[i],target)
-          btnDownloadPageBypfd2(target,bookName,filename)  //低標 
-        }
-        let target=document.importNode(pdfTemplate.content,true)
+        allContent=allContent.join("\n")
+ 
+        var target=document.importNode(pdfTemplate.content,true)
         allpdf.appendChild(target)
         target = document.querySelector('.pdf_container:last-child')
-        allContent=allContent.join("\n")
         mdToHTML(allContent,target)
-        btnDownloadPageBypfd2(target,bookName,bookName,e.target)
+
+
+        var doc = new jsPDF('p', 'pt', 'a4');
+        doc.setFont('TaipeiSansTCBeta-Bold')
+        
+        let pdf_ary = document.querySelector('.pdf_container').children
+        let h = 50 //current height
+        let index =0.65
+        // 拿到所有 md to html 的內容
+        for(let i =0 ;i<pdf_ary.length;i++){
+          let itemH = pdf_ary[i].scrollHeight
+          
+          // 如果內容太多就跳下一頁
+          if( (h+itemH) > 842){
+          h = 50   
+          doc.addPage();
+          }   
+
+          //內文有圖片
+          if(pdf_ary[i].querySelectorAll('img').length != 0){
+            
+            for(let j=0;j<pdf_ary[i].querySelectorAll('img').length;j++){
+              let height = pdf_ary[i].querySelectorAll('img')[j].scrollHeight*0.6
+              let weight = pdf_ary[i].querySelectorAll('img')[j].scrollWidth*0.6
+              doc.addImage(pdf_ary[i].querySelectorAll('img')[j],'JPEG',30,h,weight,height)
+              h+= pdf_ary[i].querySelectorAll('img')[j].scrollHeight*index
+            }
+
+          }else{
+            //文字的處理
+            if(pdf_ary[i].tagName =='H1'){
+              let text = pdf_ary[i].textContent
+              let line = doc.splitTextToSize(text,500)
+              doc.setFontSize(32)
+              doc.text(line,30,h+20)
+              h += 20
+              h += pdf_ary[i].scrollHeight*index
+            }else if(pdf_ary[i].tagName =='H2'){
+              let text = pdf_ary[i].textContent
+              let line = doc.splitTextToSize(text,500)
+              doc.setFontSize(24)
+              doc.text(line,30,h)
+              h += pdf_ary[i].scrollHeight*index
+            }else if(pdf_ary[i].tagName =='H3'){
+              let text = pdf_ary[i].textContent
+              let line = doc.splitTextToSize(text,500)
+              doc.setFontSize(20)
+              doc.text(line,30,h)
+              h += pdf_ary[i].scrollHeight*index
+            }else if(pdf_ary[i].tagName =='H4'){
+              let text = pdf_ary[i].textContent
+              let line = doc.splitTextToSize(text,500)
+              doc.setFontSize(16)
+              doc.text(line,30,h)
+              h += pdf_ary[i].scrollHeight*index
+            }else if(pdf_ary[i].tagName =='H5'){
+              let text = pdf_ary[i].textContent
+              let line = doc.splitTextToSize(text,500)
+              doc.setFontSize(14)
+              doc.text(line,30,h)
+              h += pdf_ary[i].scrollHeight*index
+            }else if(pdf_ary[i].tagName =='H6'){
+              let text = pdf_ary[i].textContent
+              let line = doc.splitTextToSize(text,500)
+              doc.setFontSize(13)
+              doc.text(line,30,h)
+              h += pdf_ary[i].scrollHeight*index
+            }else if(pdf_ary[i].tagName =='P'){
+              let text = pdf_ary[i].textContent
+              let line = doc.splitTextToSize(text,500)
+              doc.setFontSize(12)
+              doc.text(line,30,h)
+              h += pdf_ary[i].scrollHeight*index
+            }
+
+          }
+
+          if(pdf_ary[i].tagName =="OL"){
+            console.log('ol')
+            doc.setFontSize(12)
+            // let text = `${k+1}. ${pdf_ary[k].textContent}`
+            // let line = doc.splitTextToSize(text,500)
+            // doc.text(line,30,h)
+            // h += pdf_ary[i].scrollHeight*index
+            console.log(pdf_ary[i])
+            console.log(pdf_ary[i].textContent)
+            console.log(pdf_ary[i].children)
+            for(let k = 0; i<pdf_ary[i].children.length;k++){
+              console.log('k')
+              console.log(pdf_ary[i].children.length)
+              let text = `${k+1}. ${pdf_ary[k].children.textContent}`
+              let line = doc.splitTextToSize(text,500)
+              doc.text(line,30,h)
+              h += pdf_ary[i].children.scrollHeight*index
+            }
+          }
+
+          if(pdf_ary[i].tagName =="UL"){
+            doc.setFontSize(12)
+            for(let l = 0; i<pdf_ary[i].children.length;l++){
+              let text = `${pdf_ary[i].children.textContent}`
+              let line = doc.splitTextToSize(text,500)
+              doc.text(line,30,h)
+              h += pdf_ary[i].children.scrollHeight*index
+            }
+          }
+
+        }
+        
+        doc.save(`${bookName}`+ '.pdf')
+        pdftoserver(doc.output('blob'),bookName,bookName)
+              
       })
       .catch(function(err){
-        console.log(err)
+
       })
     })
     
@@ -87,68 +189,7 @@ window.addEventListener('turbolinks:load',()=>{
       target.innerHTML=result
     }
 
-    function btnDownloadPageBypfd2(pdf_container,bookName,filename, form = null){ //引數是'#pdf_container' 或 '.pdf_container',注意帶字首
-      console.log(pdf_container)
-      pdf_container.classList.add('pdf'); //pdf的css在下一個程式碼中,作用是使得列印的內容能在pdf中完全顯示
-	    var cntElem = pdf_container;
-	    var shareContent = cntElem; //需要截圖的包裹的（原生的）DOM 物件
-	    var width = shareContent.offsetWidth; //獲取dom 寬度
-	    var height = shareContent.offsetHeight; //獲取dom 高度
-	    var canvas = document.createElement("canvas"); //建立一個canvas節點
-	    var scale = 2; //定義任意放大倍數 支援小數
-	    canvas.width = width * scale; //定義canvas 寬度 * 縮放，在此我是把canvas放大了2倍
-	    canvas.height = height * scale; //定義canvas高度 *縮放
-	    canvas.getContext("2d").scale(scale, scale); //獲取context,設定scale 
-	    html2canvas(pdf_container, {
-	    	allowTaint: true,
-            taintTest: true,
-            canvas: canvas,
-	    	onrendered: function(canvas) {
-	    	var context = canvas.getContext('2d');
-	    	// 【重要】關閉抗鋸齒
-	    	context.mozImageSmoothingEnabled = false;
-	    	context.webkitImageSmoothingEnabled = false;
-	    	context.msImageSmoothingEnabled = false;
-	    	context.imageSmoothingEnabled = false;
-	    	  var imgData = canvas.toDataURL('image/jpg',1.0);//轉化成base64格式,可上網瞭解此格式
-	    	  var img = new Image();
-	    	  img.src = imgData;
-	    	  img.onload = function() {	
-	    	    img.width = img.width/2;   //因為在上面放大了2倍，生成image之後要/2
-	    	    img.height = img.height/2;
-            img.style.transform="scale(0.5)";
-            var pageWidth = 595;//一頁寬度
-	          	var position = 0;//頁面偏移
-	          	var imgWidth = width;
-               var leftWidth = 720
-	             var imgHeight = height;
-              var doc = new jsPDF('p', 'pt', 'a4');
-	    	     if(pageWidth >= leftWidth){//不需要分頁，頁面高度>=未列印內容高度
-	    	     	console.log("不需要分頁");
-	    	     	 doc.addImage(imgData, 'jpeg', 35, 25, imgWidth*0.75, imgHeight*0.75);
-	    	     }else{//需要分頁
-	    	     	console.log("需要分頁");
-	    	     	while(leftWidth>0){
-                doc.addImage(imgData, 'JPEG', position, 25, imgWidth*0.8, imgHeight*0.8);
-                console.log(`imgWidth*0.6:${imgWidth*0.6}`)
-                leftWidth -= 360; 
-	    	     	  position -= 575; 
-	    	     	  //避免新增空白頁
-	    	     	  if(leftWidth > 0){
-	    	     	 	  console.log("新增空白頁");
-	    	     	 	  doc.addPage();
-	    	     	  }
-	    	     	}
-             }
-            //  doc.save(`${filename}`+ '.pdf');//儲存為pdf檔案
-             pdftoserver(doc.output('blob'),bookName,filename, form)
-	    	  }
-	    	 },
-	    });
-	    pdf_container.classList.remove('pdf');
-    }
-
-    function pdftoserver(pdf,bookName,filename, form = null){
+    function pdftoserver(pdf,bookName,filename){
       let token = document.querySelector("meta[name=csrf-token]").content
       axios.defaults.headers.common['X-CSRF-Token']= token 
       let formData = new FormData();
@@ -162,8 +203,7 @@ window.addEventListener('turbolinks:load',()=>{
         data: formData
       })
       .then( result=>{
-        console.log(result.data['message'])
-        if (form){form.submit()} 
+        alert('Your book has conveted into PDF')
       })
       .catch(function(err){
         
@@ -172,6 +212,9 @@ window.addEventListener('turbolinks:load',()=>{
 
   }
 })
+
+
+
 
 
 

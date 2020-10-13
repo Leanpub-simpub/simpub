@@ -40,10 +40,10 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.authors << current_user
     
-    # 把 cover 切出 大中小 三個尺寸
-    CoverUploaderJob.perform_later(@book) if @book.cover_data?
-
     if @book.save
+      # 把 cover 切出 大中小 三個尺寸
+      CoverUploaderJob.perform_later(@book) if @book.cover_data?
+      
       if @book.md_data
         @book.update(publish_state: "on_shelf")
         current_user.update(as_author: true)
@@ -115,7 +115,7 @@ class BooksController < ApplicationController
     if params[:chapter] == ""  
       return
     end
-    # @book = Book.find_by_slug(params[:id])
+    
     
     # 取到結構json檔資料
     s3_client = Aws::S3::Client.new
@@ -151,7 +151,7 @@ class BooksController < ApplicationController
     if params[:section] == ""
       return
     end
-    # @book = Book.find_by_slug(params[:id])
+    
 
     # 取到結構json檔資料
     s3_client = Aws::S3::Client.new

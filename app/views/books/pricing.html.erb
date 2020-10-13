@@ -6,7 +6,11 @@
   <div class="cover col-3 mx-auto">
     <%= render partial: "shared/frontend/book_cover", locals: {book: @book, size: :large} %>
   </div>
-
+  <div class="col-3 mx-auto mt-1 p-0 pdf-notice">
+    <div class="mt-1 ">Upload your book as PDF ?</div>
+    <div class="mt-1 ">If not, press col-3 mx-auto</div>
+    <div class="mt-1 btn" id="pdf-geneator">PDF</div>
+  </div>
   <br>
 
   <%= form_for(@book, url: publish_book_path(@book)) do |f| %>

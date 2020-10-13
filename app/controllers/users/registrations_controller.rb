@@ -4,10 +4,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, only: [:create, :update]
 
   def update
+    byebug
     super
 
-    if params[:x].present?
-      current_user.avatar_derivatives!(crop: { x: params[:x], y: params[:y], w: params[:width], h: params[:height] })
+    if params[:user][:x].present?
+      AvatarUploaderJob.perform_later(current_user, crop: { x: params[:user][:x], y: params[:user][:y], w: params[:user][:width], h: params[:user][:height] })
     end
   end
  
