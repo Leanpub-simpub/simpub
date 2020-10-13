@@ -2,7 +2,7 @@ import { Controller } from "stimulus";
 import axios from "axios";
 
 export default class extends Controller {
-  static targets = [ "edit", "wish", "delete", "cover" ];
+  static targets = [ "edit", "wish", "delete", "cover", "payment", "wait" ];
 
   connect() {
     const token = document.querySelector("meta[name=csrf-token]").content;
@@ -11,6 +11,8 @@ export default class extends Controller {
     const editBtns = this.editTargets;
     const wishBtns = this.wishTargets;
     const deleteBtns = this.deleteTargets;
+    const paymentBtn = this.paymentTarget;
+    const waitBtn = this.waitTarget;
     
     editBtns.forEach(editBtn => {
       editBtn.addEventListener("click", () => {
@@ -204,6 +206,11 @@ export default class extends Controller {
             .catch(function(error) {});
         }
       });
+    });
+
+    paymentBtn.addEventListener("click", () => {
+      paymentBtn.remove();
+      waitBtn.classList.remove("x");
     });
   }
 }
