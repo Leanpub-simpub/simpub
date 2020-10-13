@@ -4,18 +4,14 @@ class User < ApplicationRecord
   attr_accessor :x, :y, :width, :height
 
   # 測試用
-  # devise :database_authenticatable, :registerable,
-  #        :recoverable, :rememberable, :validatable,
-  #        :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
   
   # 正式用
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable,
-         :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
-
   # devise :database_authenticatable, :registerable,
-  #        :recoverable, :rememberable, :trackable, :validatable,
-  #        :omniauthable, omniauth_providers: [:facebook, :google_oauth2 :github]
+  #        :recoverable, :rememberable, :validatable, :confirmable,
+  #        :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
 
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
@@ -44,7 +40,8 @@ class User < ApplicationRecord
   def self.from_omniauth(auth, signed_in_resource = nil)
     identity = Identity.find_for_oauth(auth)
     user = signed_in_resource ? signed_in_resource : identity.user
-      if user.nil?
+      
+    if user.nil?
         email = auth.info.email
         user = User.where(email: email).first if email
         if user.nil?

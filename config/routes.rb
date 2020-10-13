@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     get "/:username", to: "profiles#show", as: "profile"
     post "/:username", to: "profiles#follow", as: "follow"
     get "/:username/wishlist", to: "profiles#wishlist", as: "wishlist"
+    post "/:username/wishcart", to: "profiles#wishcart"
     delete "/:username/unwish", to: "profiles#unwish", as: "unwish"
   end
   
