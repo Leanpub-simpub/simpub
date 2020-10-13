@@ -29,3 +29,4 @@ require("../books");
 import "controllers";
 import "cropperjs";
 import "cropperjs/dist/cropper.css";
+import "sweetalert2";
