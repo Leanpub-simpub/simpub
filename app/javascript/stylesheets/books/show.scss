@@ -23,6 +23,9 @@
 }
 
 .tags {
+  border-radius: 5%;
+  padding: 10px;
+
   span {
     margin-right: 10px;
   }
@@ -167,8 +170,7 @@
   }
 }
 
-
 .avatar-container {
-	width: 75px;
-	height: 75px;
+  width: 75px;
+  height: 75px;
 }

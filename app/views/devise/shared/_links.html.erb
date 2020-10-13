@@ -18,21 +18,22 @@
   <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
 <% end %>
 
-<%# <!-- 測試中 %>
+<!-- 第三方登入按鈕 -->
 <div class="omniauth_authorize mt-2 d-flex">
-  <%= link_to omniauth_authorize_path(resource_name, :facebook), class: "fab fa-facebook-f btn col mr-1 text-white", style:"background-color: #3B5998" do %>
+  <%= link_to omniauth_authorize_path(resource_name, :facebook), class: "fab fa-facebook-f btn col-3 mr-1 text-white", style:"background-color: #3B5998" do %>
     <span></span> 
   <% end %>
   
-  <%= link_to omniauth_authorize_path(resource_name, :google_oauth2), class: "fab fa-google-plus-g btn col mr-1 text-white", style:"background-color: #DD4B39" do %>
+  <%= link_to omniauth_authorize_path(resource_name, :google_oauth2), class: "fab fa-google-plus-g btn col-3 mr-1 text-white", style:"background-color: #DD4B39" do %>
     <span></span> 
   <% end %>
   
+  <!-- 測試中
   <%= link_to omniauth_authorize_path(resource_name, :github), class: "fab fa-github btn col mr-1 text-white", style:"background-color: #444444" do %>
-  <span></span> 
+    <span></span> 
   <% end %>
+  -->
 </div>
--->
 
 
 

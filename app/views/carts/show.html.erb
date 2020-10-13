@@ -19,16 +19,16 @@
     <table id="cart-items" class="table">
       <thead class="txt d-none d-md-block">
         <tr class="row text-center">
-          <th class="col-2">商品</th>
+          <th class="col-2">Product</th>
           <th class="col-6"></th>
-          <th class="col-2">數量</th>
-          <th class="col-2">小計</th>
+          <th class="col-2">Quantity</th>
+          <th class="col-2">Subtotal</th>
         </tr>
       </thead>
 
       <tbody>
         <% current_cart.items.each.with_index do |item, index| %>
-          <tr class="row text-center">
+          <tr class="row">
             <td class="col-12 col-md-2">
               <div style="font-size:large" class="font-weight-bold" >
                 <%= link_to book_path(item.book), data: {target: "cart.cover"} do %>
@@ -38,21 +38,21 @@
             </td>
             <td class="col-12 col-md-6">
               <div style="font-size:large" class="font-weight-bold mb-2" >
-                <%= link_to item.book.title, book_path(item.book) %>
+                <%= link_to item.book.title, book_path(item.book), class:"product-title mx-1" %>
               </div>
-              <div data-index="<%= index %>" data-price="<%= item.price %>" data-bookid="<%= item.book.id %>">
-                <button class="item-edit border-0 bg-transparent" data-target="cart.edit">edit</button>
+              <div class="d-flex" data-index="<%= index %>" data-price="<%= item.price %>" data-bookid="<%= item.book.id %>">
+                <button class="item-edit border-0 bg-transparent" data-target="cart.edit">Edit</button>
                 <span class="mx-1">|</span>
-                <button class="border-0 bg-transparent" data-target="cart.wish">Move to Wishlist</button>
+                <button class="item-wishlist border-0 bg-transparent" data-target="cart.wish">Move to Wishlist</button>
                 <span class="mx-1">|</span>
-                <button class="border-0 bg-transparent" data-target="cart.delete">Delete</button>
+                <button class="item-delete border-0 bg-transparent" data-target="cart.delete">Delete</button>
               </div>
             </td>
 
-            <td style="font-size: large" class="col-12 col-md-2">
+            <td style="font-size: large" class="quantity col-12 col-md-2">
               1
             </td>
-            <td style="font-size: large" class="col-12 col-md-2">
+            <td style="font-size: large" class="subtotal col-12 col-md-2">
             $<%= sprintf("%.2f", item.price) %>
             </td>
           </tr>
@@ -64,7 +64,7 @@
     
   
   <div class="d-flex justify-content-center">
-    <div class="col-10 d-flex justify-content-end align-items-center">總計</div>
+    <div class="col-10 d-flex justify-content-end align-items-center">Total</div>
   </div>
 
   <div class="check-out d-flex justify-content-center">

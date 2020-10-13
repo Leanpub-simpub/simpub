@@ -10,7 +10,8 @@
   .nav-item {
     text-decoration: none;
   }
-  .nav-icon, .icon-btn {
+  .nav-icon,
+  .icon-btn {
     font-size: 20px;
   }
 
@@ -83,13 +84,6 @@
 
   label:active:after {
     width: 45px;
-  }
-
-  .icon-group {
-    display: inline-flex;
-    position: absolute;
-    top: 1.5vh;
-    right: 25vh;
   }
 
   .light {
@@ -199,7 +193,27 @@
   }
 }
 
+.icon-group-mobile {
+  display: none;
+}
+.icon-group-desktop {
+  display: inline-flex;
+}
+
 @media screen and (max-width: 992px) {
+  .icon-group-desktop {
+    display: none;
+  }
+
+  .icon-group-mobile {
+    display: inline-flex;
+    right: 5vh;
+  }
+
+  .logo {
+    display: none;
+  }
+
   .nav-item-group {
     align-items: start !important;
   }
@@ -218,10 +232,6 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 2vh;
-
-    .icon-group {
-      right: 5vh;
-    }
 
     .search-filter {
       order: -1;
@@ -249,7 +259,6 @@
     }
   }
 }
-
 
 #notify-box {
   background-color: #fff;
