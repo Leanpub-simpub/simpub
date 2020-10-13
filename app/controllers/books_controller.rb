@@ -359,7 +359,11 @@ class BooksController < ApplicationController
   end
 
   def read
-    
+    find_book
+    s3_client = Aws::S3::Client.new
+    object = s3_client.get_object(bucket: ENV['bucket'], key:"store/book/#{@book.title}/structure.json")    
+    structure_json = object.body.read
+    @json = JSON.parse(structure_json)
   end
 
   private
