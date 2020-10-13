@@ -62,47 +62,10 @@
             </a>
           </div>
         </div>
-        
       </div>
-
-      
     </div>
 
-    <div class="book-container">
-      <h3 class="col-12 title">Published Books</h3>
-
-      <div id="carousel-example-multi" class="carousel slide carousel-multi-item v-2" data-ride="carousel">
-        <!--Controls-->
-        <div class="controls-top">
-          <a class="btn-floating" href="#carousel-example-multi" data-slide="prev"><i
-              class="fas fa-chevron-left"></i></a>
-          <a class="btn-floating" href="#carousel-example-multi" data-slide="next"><i
-              class="fas fa-chevron-right"></i></a>
-        </div>
-        <!--/.Controls-->
-
-        <div class="carousel-inner v-2" role="listbox">
-          <% @user.pub_books.each do |book| %>
-            <div class="carousel-item d-flex">
-              <div class="col-4 col-md-4">
-                <div class="card mb-2">
-                  <a class="cover-link" data-key="<%= book.id %>">
-                    <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
-                    <h4><%= book.title %></h4>
-                    <div>
-                      <%= book.authors[0].name %>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    
-   
     <%# 出版過的書 %>
-
     <div class="row m-0 d-flex">
       <h3 class="col-12 title">Published Books</h3>
       <% @user.pub_books.each do |book| %>
