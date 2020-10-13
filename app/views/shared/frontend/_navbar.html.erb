@@ -25,7 +25,7 @@
         <%= link_to "Books", books_path, class: "nav-link txt" %>
       </li>
       <li class="nav-item"><%= link_to "Library", users_library_path, class: "nav-link txt" %></li>
-      <li class="nav-item active">
+      <li class="nav-item">
         <%= link_to "Create a Book", new_book_path, class: "nav-link txt" %>      
       </li>
       <%# <% if current_user.as_author %>
@@ -78,6 +78,11 @@
             User Menu
           </a>
           <ul class="dropdown-menu">
+            <!-- 個人主頁 -->
+            <li class="dropdown-item">
+              <%= link_to "View Profile", users_profile_path(current_user.username), class:"nav-drop-item" %>
+            </li>
+
             <!-- 編輯個人主頁 -->
             <li class="dropdown-item">
               <%= link_to "Edit Profile", user_dashboard_path, class:"nav-drop-item" %>

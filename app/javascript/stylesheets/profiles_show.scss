@@ -7,7 +7,6 @@
     border-radius: 7.96477px;
     border: 0.8px solid #F1C39E;
     padding:20px;
-
   }
   .avatar{
     padding: 0;
@@ -15,7 +14,6 @@
     display: flex;
     flex-direction: column;
     justify-items: space-around;
-  
   }
   .follow-btn{
     margin-bottom: 17px;
@@ -34,7 +32,6 @@
     margin-top: 17px;
     letter-spacing: 0.05em;
     color: #5C5D60 !important;
-  
   }
   .user-about{
     font-family: SF Pro Display;
@@ -61,12 +58,9 @@
       color: #726F6F !important;
     }
   }
-
   .follow-grop{
     justify-content: space-between;
   }
-
-
   .follow-between {
     font-family: SF Pro Display;
     font-style: normal;
@@ -84,8 +78,6 @@
       margin-left: 10px;
     }
   }
- 
-
   
   .contact{
     margin-right:6.7%;
@@ -93,7 +85,6 @@
   a{
     color: #e09a5f;
     margin-right: 5%;
-    
   }
   .book-container{
     width: 100%;
@@ -113,5 +104,4 @@
     letter-spacing: 0.05em;
     color: #e09a5f !important; 
   }
-
 }
