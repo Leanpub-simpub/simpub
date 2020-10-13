@@ -77,7 +77,7 @@
                   </div>
                 </div>
 
-                <!-- checkbox 暫時沒有功能，先做畫面 -->
+                <!-- checkbox 暫時沒有功能，先做畫面
                 <div class="row">
                   <div class="col">
                     <div class="form-group">
@@ -86,8 +86,26 @@
                     </div>
                   </div>
                 </div>
+                -->
 
-                    
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <%= f.label :facebook, "FACEBOOK" %>
+                      <span>facebook.com/</span>
+                      <%= f.text_field :facebook, id: "facebook-username", class: "form-control" %>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="form-group">
+                      <%= f.label :github, "GITHUB USERNAME" %>
+                      <span>github.com/</span>
+                      <%= f.text_field :github, id: "github-username", class: "form-control" %>
+                    </div>
+                  </div>
+                </div>
+
                 <div class="row">
                   <div class="col">
                     <div class="form-group">
@@ -98,87 +116,7 @@
                       <% end %>
                     </div>
                   </div>
-
-                  <!-- <div class="col mt-2 ml-5">
-                    <div class="form-group">
-                      <label for="twitter-username">TWITTER USERNAME
-                        <span>@</span>
-                        <input type="text" id="twitter-username", class="form-control">
-                      </label>
-                    </div>
-                  </div> -->
                 </div>
-
-                <!-- 密碼驗證
-                <div class="row">
-                  <div class="col">
-                    <div class="form-group">
-                      <%= f.label :password_confirmation %><br>
-                      <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
-                    </div>
-                  </div>
-
-                  <div class="col mt-2 ml-5">
-                    <div class="form-group">
-                      <label for="github-username">GITHUB USERNAME
-                        <span>github.com/</span>
-                        <input type="text" id="github-username", class="form-control">
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                -->
-
-                <!-- 輸入目前密碼
-                <div class="row">
-                  <div class="col">
-                    <div class="form-group">
-                      <%= f.label :current_password %><br>
-                      <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control" %>
-                    </div>
-                  </div>
-
-                  <div class="col ml-5">
-                    <div class="form-group">
-                      <label for="instagram-username">INSTAGRAM USERNAME
-                        <span>instagram.con/</span>
-                        <input type="text" id="instagram-username", class="form-control">
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                -->
-                
-                <!-- 以下目前不會寫入 db，待討論是否要實作 -->
-                <%# <div class="row">
-                  <div class="col">
-                    <div class="form-group">
-                      <label for="twitter-username">TWITTER USERNAME
-                        <span>@</span>
-                        <input type="text" id="twitter-username", class="form-control ">
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="col">
-                    <div class="form-group">
-                      <label for="github-username">GITHUB USERNAME
-                        <span>github.com/</span>
-                        <input type="text" id="github-username", class="form-control">
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="col">
-                    <div class="form-group">
-                      <label for="instagram-username">INSTAGRAM USERNAME
-                        <span>instagram.con/</span>
-                        <input type="text" id="instagram-username", class="form-control">
-                      </label>
-                    </div>
-                  </div>
-                </div> %>
-                <!-- 以上目前不會寫入 db，待討論是否要實作 -->
 
                 <div class="d-flex justify-content-end mb-3">
                   <%= f.submit "Save Settings", style:"background-color: #e09a5f" %>
