@@ -10,7 +10,7 @@ class User < ApplicationRecord
   
   # 正式用
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :trackable,
+         :recoverable, :rememberable, :validatable, :confirmable,
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
 
   validates :email, presence: true, uniqueness: true
