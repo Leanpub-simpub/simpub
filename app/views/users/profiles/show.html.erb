@@ -1,8 +1,8 @@
 <section class="profile-show container">
   <div class="row">
-    <div class="author-about col-12 d-flex">
-      <div class="avatar col-12 col-md-4 col-lg-3 h-100">
-        <div class="col-12 col-lg-7 mx-auto my-auto">
+    <div class="author-about col-12 d-lg-flex">
+      <div class="avatar col-8 col-md-4 col-lg-3">
+        <div class="img-box col-12 col-lg-7 mx-auto">
           <%= render "shared/frontend/user_avatar", user: @user %>
         </div>
         <div class="justify-content" data-controller="follow" data-follow-user="<%= @user.username %>">
@@ -18,7 +18,7 @@
         </div>
       </div>
       
-      <div class="authers-info justify-content col-12 col-md-6 col-lg-9">
+      <div class="authors-info justify-content col-12 col-md-6 col-lg-9">
         <div class="h3 txt user-name ">
           <%= @user.name %> 
         </div>
