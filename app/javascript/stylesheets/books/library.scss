@@ -38,3 +38,16 @@ div#collapseBook {
   margin-left: -5px;
   color: #e3cf7a;
 }
+.download {
+  background: linear-gradient(90deg, #F28128 0%, #F1C39E 100%);
+  color: white;
+  border: none;
+  border-radius: 12.279px;
+  opacity: 0.9;
+  text-align: center;
+}
+.download:hover {
+  opacity: 1;
+  color: #ffffff;
+  background-color: #e09a5f;
+}

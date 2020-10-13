@@ -359,8 +359,22 @@ class BooksController < ApplicationController
   end
 
   def read
-    
+    find_book
+    s3_client = Aws::S3::Client.new
+    object = s3_client.get_object(bucket: ENV['bucket'], key:"store/book/#{@book.title}/structure.json")    
+    structure_json = object.body.read
+    @json = JSON.parse(structure_json)
   end
+  
+  def download_pdf
+    signer = Aws::S3::Presigner.new
+    url = signer.presigned_url(:get_object, bucket: ENV['bucket'], key: "store/book/#{params[:bookName]}/#{params[:bookName]}.pdf")
+
+    respond_to do |format|
+      format.json{ render json: {url: url} }
+    end
+  end
+
 
   private
   def book_params

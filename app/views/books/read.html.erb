@@ -1,8 +1,8 @@
-<h1 class="text-center"><span class="book_name"><%=  @book.title %></span><span id="current"></span></h1>
+<h1 class="text-center"><span class="book_name"><%=  @book.title %></span><span class="currentTarget"></span></h1>
 <div class="wrap">
   <div class="chapter_list">
     <% @json.each_with_index do |chapter,index| %>
-    <div class="d-flex justify-content-between" >
+    <div class="d-flex justify-content-between chaptersite" >
       <div class="chapter" data-order="<%= index%>"><%= chapter.keys[0] %></div>
     </div>
       <% if chapter.values[0].length != 0 %>
@@ -12,7 +12,5 @@
       <% end %>
     <% end %>
   </div>
-  <%# <div id="sourceTA" class="custom d-none" rows="10" cols="82"></div> 給 codemirror 塞 code highlight 編輯器 %>
   <div id="targetDiv" class=" flex-grow-1"></div>
-                              <%# 給 markdown-it 塞 md to html 的東西 %>
 </div>

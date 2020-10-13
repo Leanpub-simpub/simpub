@@ -194,10 +194,8 @@ window.addEventListener('turbolinks:load',()=>{
                 })
                 target.parentElement.remove()
               }
-              // alert('Success to delete ')
             })
             .catch(function(err){
-              // alert('Fail to delete ')
             })
             // // 更改 chapter and section 編號
             let allChapter = document.querySelectorAll('.chapter')

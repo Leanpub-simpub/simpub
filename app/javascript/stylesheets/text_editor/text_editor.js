@@ -2,6 +2,7 @@ import CodeMirror from "codemirror/lib/codemirror.js" // 引入 codemirror 套�
 import "codemirror/lib/codemirror.css"
 import "codemirror/theme/mdn-like"                    // 編輯器的主題，黑底的主題
 import "codemirror/theme/abcdef" 
+import "codemirror/theme/base16-dark" 
 import "codemirror/mode/markdown/markdown"            // markdown 語法 hightlight 
 import "codemirror/mode/ruby/ruby"
 import "codemirror/mode/javascript/javascript"
@@ -56,7 +57,7 @@ window.addEventListener('turbolinks:load',()=>{
         mode: "markdown",
         lint: true,
         lineNumbers: true,
-        theme: 'abcdef',
+        theme: 'base16-dark',
         lineWrapping: true,
         autoRefresh: true,
         value: content
@@ -103,7 +104,7 @@ window.addEventListener('turbolinks:load',()=>{
             mode: "markdown",
             lint: true,
             lineNumbers: true,
-            theme: 'abcdef',
+            theme: 'base16-dark',
             lineWrapping: true,
             autoRefresh: true,
             value: content
@@ -127,7 +128,7 @@ window.addEventListener('turbolinks:load',()=>{
     // 切換書本頁面時判斷是否要存檔
     chapterList.addEventListener('click',(e)=>{      
       if(e.target.className == 'chapter' || e.target.className == 'section'){
-        
+       
         saveContent()  //存檔
 
         let currentActive = chapterList.querySelector('.active')
@@ -146,7 +147,7 @@ window.addEventListener('turbolinks:load',()=>{
 
 
     setInterval(mdToHTML,500) //模擬即時顯示 // 重複執行時間拉開，避免被圖片連結的網站認為是攻擊
-    // setInterval(saveContent,1000*60*5) //每五分鐘自動存檔
+    setInterval(saveContent,1000*60*5) //每五分鐘自動存檔
     
     
     function mdToHTML(){
