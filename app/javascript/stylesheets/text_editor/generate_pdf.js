@@ -17,6 +17,7 @@ window.addEventListener('turbolinks:load',()=>{
     
     document.querySelector('#pdf-geneator').addEventListener('click',(e)=>{
       e.preventDefault()
+      
       let allpdf = document.querySelector('#allpdf')
       
       let bookName = document.querySelector('#bookName').textContent
@@ -38,9 +39,8 @@ window.addEventListener('turbolinks:load',()=>{
         target = document.querySelector('.pdf_container:last-child')
         mdToHTML(allContent,target)
 
-
         var doc = new jsPDF('p', 'pt', 'a4');
-        doc.setFont('TaipeiSansTCBeta-Bold')
+        doc. setFont('TaipeiSansTCBeta-Bold')
         
         let pdf_ary = document.querySelector('.pdf_container').children
         let h = 50 //current height
@@ -48,12 +48,14 @@ window.addEventListener('turbolinks:load',()=>{
         // 拿到所有 md to html 的內容
         for(let i =0 ;i<pdf_ary.length;i++){
           let itemH = pdf_ary[i].scrollHeight
-          
+          let text = pdf_ary[i].textContent
+          let line = doc.splitTextToSize(text,530)
           // 如果內容太多就跳下一頁
-          if( (h+itemH) > 842){
+          if( (h+itemH) > 900){
           h = 50   
           doc.addPage();
           }   
+          if(i==1){h+=20}
 
           //內文有圖片
           if(pdf_ary[i].querySelectorAll('img').length != 0){
@@ -64,69 +66,51 @@ window.addEventListener('turbolinks:load',()=>{
               doc.addImage(pdf_ary[i].querySelectorAll('img')[j],'JPEG',30,h,weight,height)
               h+= pdf_ary[i].querySelectorAll('img')[j].scrollHeight*index
             }
-
           }else{
             //文字的處理
             if(pdf_ary[i].tagName =='H1'){
-              let text = pdf_ary[i].textContent
-              let line = doc.splitTextToSize(text,500)
               doc.setFontSize(32)
               doc.text(line,30,h+20)
               h += 20
               h += pdf_ary[i].scrollHeight*index
             }else if(pdf_ary[i].tagName =='H2'){
-              let text = pdf_ary[i].textContent
-              let line = doc.splitTextToSize(text,500)
               doc.setFontSize(24)
               doc.text(line,30,h)
               h += pdf_ary[i].scrollHeight*index
             }else if(pdf_ary[i].tagName =='H3'){
-              let text = pdf_ary[i].textContent
-              let line = doc.splitTextToSize(text,500)
               doc.setFontSize(20)
               doc.text(line,30,h)
               h += pdf_ary[i].scrollHeight*index
             }else if(pdf_ary[i].tagName =='H4'){
-              let text = pdf_ary[i].textContent
-              let line = doc.splitTextToSize(text,500)
               doc.setFontSize(16)
               doc.text(line,30,h)
               h += pdf_ary[i].scrollHeight*index
             }else if(pdf_ary[i].tagName =='H5'){
-              let text = pdf_ary[i].textContent
-              let line = doc.splitTextToSize(text,500)
               doc.setFontSize(14)
               doc.text(line,30,h)
               h += pdf_ary[i].scrollHeight*index
             }else if(pdf_ary[i].tagName =='H6'){
-              let text = pdf_ary[i].textContent
-              let line = doc.splitTextToSize(text,500)
               doc.setFontSize(13)
               doc.text(line,30,h)
               h += pdf_ary[i].scrollHeight*index
             }else if(pdf_ary[i].tagName =='P'){
-              let text = pdf_ary[i].textContent
-              let line = doc.splitTextToSize(text,500)
               doc.setFontSize(12)
               doc.text(line,30,h)
               h += pdf_ary[i].scrollHeight*index
+            }else if(pdf_ary[i].tagName =='PRE'){
+              let txt = pdf_ary[i].textContent.replace(/(\d)(\w)/g,"\n$1   $2")
+              doc.setFontSize(12)
+              doc.text(txt,30,h)
+
+              h += pdf_ary[i].scrollHeight*index +30
+
             }
 
           }
 
           if(pdf_ary[i].tagName =="OL"){
-            console.log('ol')
             doc.setFontSize(12)
-            // let text = `${k+1}. ${pdf_ary[k].textContent}`
-            // let line = doc.splitTextToSize(text,500)
-            // doc.text(line,30,h)
-            // h += pdf_ary[i].scrollHeight*index
-            console.log(pdf_ary[i])
-            console.log(pdf_ary[i].textContent)
-            console.log(pdf_ary[i].children)
             for(let k = 0; i<pdf_ary[i].children.length;k++){
-              console.log('k')
-              console.log(pdf_ary[i].children.length)
               let text = `${k+1}. ${pdf_ary[k].children.textContent}`
               let line = doc.splitTextToSize(text,500)
               doc.text(line,30,h)
@@ -146,9 +130,8 @@ window.addEventListener('turbolinks:load',()=>{
 
         }
         
-        doc.save(`${bookName}`+ '.pdf')
         pdftoserver(doc.output('blob'),bookName,bookName)
-              
+        doc.save(`${bookName}`+ '.pdf')
       })
       .catch(function(err){
 

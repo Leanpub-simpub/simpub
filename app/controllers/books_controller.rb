@@ -41,9 +41,9 @@ class BooksController < ApplicationController
     @book.authors << current_user
     
     # 把 cover 切出 大中小 三個尺寸
-    CoverUploaderJob.perform_later(@book) if @book.cover_data?
-
+    
     if @book.save
+      CoverUploaderJob.perform_later(@book) if @book.cover_data?
       if @book.md_data
         @book.update(publish_state: "on_shelf")
         current_user.update(as_author: true)
@@ -182,11 +182,13 @@ class BooksController < ApplicationController
   
   def get_content  
     s3_client = Aws::S3::Client.new
+    
     if params[:chapter]
       object = s3_client.get_object(bucket: ENV['bucket'], key:"store/book/#{params[:bookName]}/#{params[:target]}.md")    
     elsif params[:section]
       object = s3_client.get_object(bucket: ENV['bucket'], key:"store/book/#{params[:bookName]}/#{params[:chapterName]}_#{params[:target]}.md")   
     end
+    
     content = object.body.read
     respond_to do |format|
       format.json{ render json: {content: content} }

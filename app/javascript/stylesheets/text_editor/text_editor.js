@@ -41,7 +41,7 @@ window.addEventListener('turbolinks:load',()=>{
     let chapter = true
     let section = false
     let params = { bookName:bookName.textContent, target:target.textContent , chapter:chapter,section:section, chapterName:target.textContent}
-
+   
     // 到server 拿第一章的內容
     axios({
       method: 'post',
@@ -50,7 +50,7 @@ window.addEventListener('turbolinks:load',()=>{
     })
     .then( (result)=>{
       let content = result.data['content']
-     
+      
       let editorConfig = {
         mode: "markdown",
         lint: true,
@@ -165,7 +165,7 @@ window.addEventListener('turbolinks:load',()=>{
                 const lines = preCode.split(/\n/).slice(0, -1)
                 // 添加自定义行号
                 let html = lines.map((item, index) => {
-                  return '<div><span class="line-num line-index"  data-line="">' + (index + 1) + '</span>' + item + '</div>'
+                  return '<div><span class="line-num line-index"  data-line="">' + (index + 1)+ '</span>' + item + '</div>'
                 }).join('')
                 html = '<ol>' + html + '</ol>'
 
