@@ -20,11 +20,11 @@ window.addEventListener('turbolinks:load',()=>{
     })
     .then( (result)=>{
       let content = result.data['content']
-      console.log(content)
+
       mdToHTML(content)
     })
     .catch(function(err){
-      // alert('Fail to get content')
+
     })
   }
 
