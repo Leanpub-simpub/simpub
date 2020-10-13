@@ -78,6 +78,11 @@
             User Menu
           </a>
           <ul class="dropdown-menu">
+            <!-- 個人主頁 -->
+            <li class="dropdown-item">
+              <%= link_to "View Profile", users_profile_path(current_user.username), class:"nav-drop-item" %>
+            </li>
+
             <!-- 編輯個人主頁 -->
             <li class="dropdown-item">
               <%= link_to "Edit Profile", user_dashboard_path, class:"nav-drop-item" %>

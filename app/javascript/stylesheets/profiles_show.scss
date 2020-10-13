@@ -1,88 +1,107 @@
-.author-about{
-  width: 100%;
-  height: 292px;
-  margin: 2% 0px;
-  background: #FFFFFF;
-  box-shadow: 7.16829px 7.16829px 19.9119px rgba(0, 0, 0, 0.15);
-  border-radius: 7.96477px;
-  border: 0.8px solid #F1C39E;
-
-
-}
-.avatar{
-  position: absolute;
-  width: 10.5%;
-  height: 135px;
-  left: 190px;
-  top: 148px;
-  margin:30px 30px;
-
-}
-.follow-btn{
-  width: 147.38px;
-  height: 50.29px;
-  background: linear-gradient(90deg, #F28128 0%, #F1C39E 100%);
-  border-radius: 12.279px;
-  margin-top: 15px;
-}
-.authers-info{
-  margin: 30px 0px;
-}
-.user-name{
-  position: absolute;
-  left: 420px;
-  top: 148px;
-  text-align: start;
-  font-family: SF Pro Display;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 41.4168px;
-  line-height: 49px;
-  margin: 30px 0px;
-  /* identical to box height */
-  letter-spacing: 0.05em;
-  color: #5C5D60 !important;
-
-}
-.user-about{
-  position: absolute;
-  height: 15.1%;
-  width: 46.3%;
-  left: 420px;
-  top: 240px;
-  font-family: SF Pro Display;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 15.9295px;
-  line-height: 24px;
-  letter-spacing: 0.05em;
-  color: #726F6F !important;
-}
-.contact{
-  position: absolute;
-  right:222px;
-  top:360px;
-  width: 9%;
-}
-a{
-  color: #e09a5f;
-  margin-left: 5%;
-}
-.book-container{
-  width: 100%;
-  background: #FFFFFF;
-  box-shadow: 7.16829px 7.16829px 19.9119px rgba(0, 0, 0, 0.15);
-  border-radius: 7.96477px;
-}
-.title{
-  margin: 5% 0;
-  height: 49.33px;
-  font-family: SF Pro Display;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 41.4168px;
-  line-height: 49px;
-  /* identical to box height */
-  letter-spacing: 0.05em;
-  color: #e09a5f !important; 
+.profile-show{
+  .author-about{
+    width: 100%;
+    // height: 292px;
+    background: #FFFFFF;
+    box-shadow: 7.16829px 7.16829px 19.9119px rgba(0, 0, 0, 0.15);
+    border-radius: 7.96477px;
+    border: 0.8px solid #F1C39E;
+    padding:20px;
+  }
+  .avatar{
+    padding: 0;
+    margin:auto;
+    display: flex;
+    flex-direction: column;
+    justify-items: space-around;
+  }
+  .follow-btn{
+    margin-bottom: 17px;
+    height: 50.29px;
+  }
+  .authers-info{
+    padding:0px;
+  }
+  .user-name{
+    text-align: start;
+    font-family: SF Pro Display;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 41.4168px;
+    line-height: 49px;
+    margin-top: 17px;
+    letter-spacing: 0.05em;
+    color: #5C5D60 !important;
+  }
+  .user-about{
+    font-family: SF Pro Display;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15.9295px;
+    line-height: 26px;
+    letter-spacing: 0.05em;
+    color: #726F6F !important;
+    text-align: none;
+  }
+  .user-locate{
+    font-family: SF Pro Display;
+    font-style: italic;
+    font-weight: bold;
+    margin-top: 5px;
+    font-size: 12px;
+    line-height: 24px;
+    letter-spacing: 0.1em;
+    color: #726F6F !important;
+    p{
+      font-size: 16px;
+      margin-left: 15px;
+      color: #726F6F !important;
+    }
+  }
+  .follow-grop{
+    justify-content: space-between;
+  }
+  .follow-between {
+    font-family: SF Pro Display;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 24px;
+    color: #726F6F !important;
+    .number{
+      font-weight: bold;
+      letter-spacing: 0.1em;
+    }
+    .following{
+      margin-right: 10px;
+    }
+    .follower{
+      margin-left: 10px;
+    }
+  }
+  
+  .contact{
+    margin-right:6.7%;
+  }
+  a{
+    color: #e09a5f;
+    margin-right: 5%;
+  }
+  .book-container{
+    width: 100%;
+    background: #FFFFFF;
+    box-shadow: 7.16829px 7.16829px 19.9119px rgba(0, 0, 0, 0.15);
+    border-radius: 7.96477px;
+  }
+  .title{
+    margin: 5% 0;
+    height: 49.33px;
+    font-family: SF Pro Display;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 41.4168px;
+    line-height: 49px;
+    /* identical to box height */
+    letter-spacing: 0.05em;
+    color: #e09a5f !important; 
+  }
 }

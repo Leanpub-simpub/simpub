@@ -4,9 +4,11 @@ html {
 
   // 主要按鈕
   .main-button {
-    background-color: #e09a5f;
+		background: linear-gradient(90deg, #F28128 0%, #F1C39E 100%);
     color: white;
-    border: none;
+		border: none;
+		border-radius: 12.279px;
+		height: 2.5em;
     opacity: 0.9;
   }
   .main-button:hover {
@@ -43,7 +45,7 @@ input[id="switch"] {
 
 .layout-navbar {
 	// border-bottom: 1px solid #e09a5f;
-	box-shadow: 0px 4px 34px rgba(224,154,95, 0.35);
+	box-shadow: 0px 4px 34px rgba(53, 53, 53, 1);
 
   label {
     background: grey;
@@ -80,5 +82,5 @@ input[id="switch"] {
 
 .footer {
 	// border-top: 1px solid #e09a5f;
-	box-shadow: 0px 4px 34px rgba(224,154,95, 0.35);
+  box-shadow: 0px 4px 34px 0px rgba(53, 53, 53, 1);
 }

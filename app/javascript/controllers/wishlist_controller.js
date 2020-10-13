@@ -99,7 +99,6 @@ export default class extends Controller {
       }
     });
 
-    // ! 不知道為什麼會打兩次 delete
     addCartForm.addEventListener("submit", () => {
       addCartForm.action = `/cart/add/${bookId}?cart_price=${cartPrice.value}`;
 
@@ -107,10 +106,12 @@ export default class extends Controller {
       waitBtn.classList.remove("x");
       
       setTimeout(() => {
-        location.href = "/cart";
-        axios.delete(`/u/${username}/unwish?id=${bookId}`)
-             .then(function(reuslt) {})
-             .then(function(result) {});
+        axios
+          .post(`/u/${username}/wishcart?id=${bookId}`)
+          .then(function(reuslt) {
+            location.href = "/cart";
+          })
+          .then(function(result) {});
       }, 1000);
     });
 
