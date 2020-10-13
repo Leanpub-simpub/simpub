@@ -23,7 +23,13 @@
           <%= @user.name %> 
         </div>
         <div class="txt user-about">
-          <%= @user.about %>He’s the bestselling author of Steal Like An Artist and other books. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores, eaque ipsam fugit quos perferendis ut dolorum rem error repellendus vitae! 
+          <% if @user.about %>
+            <%= @user.about %>
+          <% else %>
+            <p>
+              Samuel Miller was born and raised in Vermillion, South Dakota, and now resides in Los Angeles, where, in addition to writing, he directs music videos and coaches Little League Baseball. He began writing his first novel while on tour in a fifteen-passenger van with the rock band Paradise Fears. A Lite Too Bright is his debut novel. Currently he attends graduate school at the University of Southern California. He credits his existence entirely to two spectacular parents, three brothers, one sister, and the best and sweetest puppy dog on the whole planet, Addison.
+            </p>
+          <% end %>
         </div>
         <div class="txt user-locate d-flex">
           <i class="fas fa-map-marker-alt fa-2x"></i>
