@@ -4,7 +4,7 @@ import "highlightjs/styles/github"
 
 import axios from 'axios'
 window.addEventListener('turbolinks:load',()=>{
-  if(document.querySelector('.chapter_list')&& document.querySelector('#sourceTA')==null){
+  if(document.querySelector('.chapter_list') && document.querySelector('#sourceTA') == null){
     let bookName = document.querySelector('.book_name')
     let chapterList = document.querySelector('.chapter_list')
     let current = document.querySelector('.currentTarget')
@@ -15,6 +15,7 @@ window.addEventListener('turbolinks:load',()=>{
     // 預設打開第一章節
     document.querySelector('.chapter').classList.add('active')
     let target = document.querySelector('.active')
+    target.parentElement.classList.add('activesite')
     current.textContent =`----${target.textContent}`
     let chapter = true
     let section = false
@@ -37,8 +38,8 @@ window.addEventListener('turbolinks:load',()=>{
 
     // 點擊到對應章節可以找到該檔案的資料並呈現
     chapterList.addEventListener('click',(e)=>{
-    if((e.target.className.match("chapter") != null ||e.target.className.match("section") != null ) && e.target != document.querySelector('.active')){
-
+    if((e.target.className.match("chapter") != null ||e.target.className.match("section") != null ) && e.target != document.querySelector('.active')&& e.target != chapterList){
+      
       if(e.target.className.match('chapter')!=null){
         chapter = true
         section = false
@@ -68,17 +69,19 @@ window.addEventListener('turbolinks:load',()=>{
         alert('Fail to get content')
       })
     }
-
-
-    chapterList.addEventListener('click',(e)=>{      
-      if(e.target.className == 'chapter' || e.target.className == 'section'){
-        let currentActive = chapterList.querySelector('.active')
-
+    // let time = 0
+    chapterList.addEventListener('click',(e)=>{     
+      // console.log(time) 
+      // time += 1
+      if((e.target.className == 'chapter'|| e.target.className == 'section')){
+        console.log('in if') 
+        let currentActive = document.querySelector('.active')
         currentActive.classList.remove('active')
         e.target.classList.add('active')
         let current = document.querySelector('.currentTarget')
         current.textContent = `----${e.target.textContent}`
         document.querySelector('.activesite').classList.remove('activesite')
+        
         if(e.target.className.match('chapter')!= null){
           e.target.parentElement.classList.add('activesite')
         }else if(e.target.className.match('section') != null){
@@ -86,6 +89,9 @@ window.addEventListener('turbolinks:load',()=>{
         }
       }
     })
+
+
+ 
   })
   
 

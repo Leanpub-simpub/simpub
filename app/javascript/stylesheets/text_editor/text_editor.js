@@ -128,7 +128,7 @@ window.addEventListener('turbolinks:load',()=>{
     // 切換書本頁面時判斷是否要存檔
     chapterList.addEventListener('click',(e)=>{      
       if(e.target.className == 'chapter' || e.target.className == 'section'){
-        
+       
         saveContent()  //存檔
 
         let currentActive = chapterList.querySelector('.active')

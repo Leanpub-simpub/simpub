@@ -2,7 +2,6 @@
   width: 15%;
   height: 100vh;
   border: lightgray 2px solid;
-  margin-right: 5px;
   font-size: 24px;
   overflow-y: scroll;
   background-color: rgb(38,38,38);
@@ -29,6 +28,7 @@
 
 .chaptersite:hover,.section:hover  {
   background-color: rgb(81,81,81);
+  width: 100%;
 }
 .activesite {
   background-color: rgb(101,101,101);
