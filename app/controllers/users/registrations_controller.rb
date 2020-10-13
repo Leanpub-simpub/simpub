@@ -3,6 +3,15 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, only: [:create, :update]
 
+  def new
+    @users = User.all
+
+    respond_to do |format|
+      format.html { super }
+      format.json { @users }
+    end
+  end
+
   def update
     byebug
     super

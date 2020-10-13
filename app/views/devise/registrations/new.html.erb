@@ -1,4 +1,4 @@
-<section class="sign-up container d-flex justify-content-center my-10">
+<section class="sign-up container d-flex justify-content-center my-10" data-controller="singup">
   <div class="mx-4 d-none d-lg-block">
     <h4 class="font-weight-normal title">
       PUBLISH EARLY,<br />
@@ -33,20 +33,29 @@
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
         
-        <%= f.label :name, class:"txt" %><br />
-        <%= f.text_field :name, autofocus: true, class:"col-12 mb-3" %>
-        <div class="w-100"></div>
-
-        <%= f.label :email, class:"txt" %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-12 mb-3" %>
-        <div class="w-100"></div>
-
-        <%= f.label :username, class:"txt" %><br />
-        <div class="username d-flex mb-3">
-          <span class="">simpub.tw/u/</span>
-          <%= f.text_field :username, autofocus: true, class:"flex-grow-1" %>
+        <div class="mb-3">
+          <%= f.label :name, class:"txt" %><br />
+          <%= f.text_field :name, autofocus: true, class:"col-12", required: true, data: {target: "singup.name"} %>
+          <span class="text-danger d-block mt-1" data-target="singup.name_error"></span>
+          <div class="w-100"></div>
         </div>
-        <div class="w-100"></div>
+
+        <div class="mb-3">
+          <%= f.label :email, class:"txt" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-12", data: {target: "singup.email"} %>
+          <span class="text-danger d-block mt-1" data-target="singup.email_error"></span>
+          <div class="w-100"></div>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :username, class:"txt" %><br />
+          <div class="username d-flex">
+            <span class="">simpub.tw/u/</span>
+            <%= f.text_field :username, autofocus: true, class:"flex-grow-1", data: {target: "singup.username"} %>
+          </div>
+          <span class="text-danger d-block mt-1" data-target="singup.username_error"></span>
+          <div class="w-100"></div>
+        </div>
 
         <%= f.label :password, class:"txt" %>
         <% if @minimum_password_length %>
