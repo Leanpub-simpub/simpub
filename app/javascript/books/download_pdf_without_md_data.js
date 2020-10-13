@@ -17,7 +17,6 @@ window.addEventListener("turbolinks:load", function () {
           data: params
         })
         .then( (result)=>{
-          console.log(result.data['url'])
           let url = result.data['url']
           window.open(
             url,
@@ -25,7 +24,7 @@ window.addEventListener("turbolinks:load", function () {
           );
         })
         .catch(function(err){
-          alert('Fail to get content')
+          alert('Fail to Download Pdf')
         })
       }
 

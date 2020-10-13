@@ -38,7 +38,6 @@ window.addEventListener('turbolinks:load',()=>{
     // 點擊到對應章節可以找到該檔案的資料並呈現
     chapterList.addEventListener('click',(e)=>{
     if((e.target.className.match("chapter") != null ||e.target.className.match("section") != null ) && e.target != document.querySelector('.active')){
-      // e.stopPropagation()
 
       if(e.target.className.match('chapter')!=null){
         chapter = true
@@ -70,7 +69,7 @@ window.addEventListener('turbolinks:load',()=>{
       })
     }
 
-    // 切換書本頁面時判斷是否要存檔
+
     chapterList.addEventListener('click',(e)=>{      
       if(e.target.className == 'chapter' || e.target.className == 'section'){
         let currentActive = chapterList.querySelector('.active')

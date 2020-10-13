@@ -147,7 +147,7 @@ window.addEventListener('turbolinks:load',()=>{
 
 
     setInterval(mdToHTML,500) //模擬即時顯示 // 重複執行時間拉開，避免被圖片連結的網站認為是攻擊
-    // setInterval(saveContent,1000*60*5) //每五分鐘自動存檔
+    setInterval(saveContent,1000*60*5) //每五分鐘自動存檔
     
     
     function mdToHTML(){
