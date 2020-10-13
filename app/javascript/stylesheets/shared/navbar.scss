@@ -89,17 +89,6 @@
   .light {
     font-size: 20px;
   }
-
-  .icon-group {
-    display: inline-flex;
-    display: none;
-    // position: absolute;
-    // top: 1.5vh;
-    // right: 25vh;
-  }
-  .icon-group-hidden {
-    display: inline-flex;
-  }
 }
 
 // .layout-dropdown {
@@ -204,7 +193,27 @@
   }
 }
 
+.icon-group-mobile {
+  display: none;
+}
+.icon-group-desktop {
+  display: inline-flex;
+}
+
 @media screen and (max-width: 992px) {
+  .icon-group-desktop {
+    display: none;
+  }
+
+  .icon-group-mobile {
+    display: inline-flex;
+    right: 5vh;
+  }
+
+  .logo {
+    display: none;
+  }
+
   .nav-item-group {
     align-items: start !important;
   }
@@ -246,19 +255,6 @@
     }
 
     .toggle {
-      display: none;
-    }
-
-    .logo {
-      display: none;
-    }
-
-    .icon-group {
-      display: block;
-      right: 5vh;
-    }
-
-    .icon-group-hidden {
       display: none;
     }
   }
