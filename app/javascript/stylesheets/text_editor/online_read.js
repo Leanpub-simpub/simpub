@@ -38,41 +38,42 @@ window.addEventListener('turbolinks:load',()=>{
 
     // 點擊到對應章節可以找到該檔案的資料並呈現
     chapterList.addEventListener('click',(e)=>{
-    if((e.target.className.match("chapter") != null ||e.target.className.match("section") != null ) && e.target != document.querySelector('.active')&& e.target != chapterList){
+      if((e.target.className.match("chapter") != null ||e.target.className.match("section") != null ) && e.target != document.querySelector('.active')&& e.target != chapterList){
       
-      if(e.target.className.match('chapter')!=null){
-        chapter = true
-        section = false
-        chapterName = e.target.textContent
-      }else if(e.target.className.match('section')!=null){
-        chapter = false
-        section = true
-        let index = e.target.dataset.chapterOrder
-        chapterName = document.querySelector(`[data-order="${index}"]`).textContent
+        if(e.target.className.match('chapter')!=null){
+          chapter = true
+          section = false
+          chapterName = e.target.textContent
+        }else if(e.target.className.match('section')!=null){
+          chapter = false
+          section = true
+          let index = e.target.dataset.chapterOrder
+          chapterName = document.querySelector(`[data-order="${index}"]`).textContent
+        }
+        let token = document.querySelector("meta[name=csrf-token]").content
+        axios.defaults.headers.common['X-CSRF-Token']= token  
+        //紀錄書本名稱，要看哪一個章節   
+        let params = { bookName: bookName.textContent, target: e.target.textContent , chapter:chapter,section:section,  chapterName: chapterName}
+
+        axios({
+          method: 'post',
+          url: '/books/get_content.json',
+          data: params
+        })
+        .then( (result)=>{
+          let content = result.data['content']
+          mdToHTML(content)
+
+        })
+        .catch(function(err){
+          alert('Fail to get content')
+        })
       }
-      let token = document.querySelector("meta[name=csrf-token]").content
-      axios.defaults.headers.common['X-CSRF-Token']= token  
-      //紀錄書本名稱，要看哪一個章節   
-      let params = { bookName: bookName.textContent, target: e.target.textContent , chapter:chapter,section:section, chapterName: chapterName}
+    })
+    
+    
 
-      axios({
-        method: 'post',
-        url: '/books/get_content.json',
-        data: params
-      })
-      .then( (result)=>{
-        let content = result.data['content']
-        mdToHTML(content)
-
-      })
-      .catch(function(err){
-        alert('Fail to get content')
-      })
-    }
-    // let time = 0
     chapterList.addEventListener('click',(e)=>{     
-      // console.log(time) 
-      // time += 1
       if((e.target.className == 'chapter'|| e.target.className == 'section')){
         console.log('in if') 
         let currentActive = document.querySelector('.active')
@@ -90,9 +91,6 @@ window.addEventListener('turbolinks:load',()=>{
       }
     })
 
-
- 
-  })
   
 
 
