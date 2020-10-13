@@ -1,6 +1,7 @@
 class Users::ProfilesController < ApplicationController
   before_action :authenticate_user!, except: [:show]
   before_action :find_user
+  before_action :find_book, only: [:unwish, :wishcart]
 
   def show
   end
@@ -30,13 +31,24 @@ class Users::ProfilesController < ApplicationController
   end
 
   def unwish
-    book = Book.friendly.find(params[:id])
-    current_user.wish_books.destroy(book)
+    remove_wish_book(@book)
     redirect_to users_wishlist_path, notice: "已從願望清單中移除"
+  end
+
+  def wishcart
+    remove_wish_book(@book)
   end
   
   private
   def find_user
     @user = User.find_by(username: params[:username])
+  end
+
+  def find_book
+    @book = Book.friendly.find(params[:id])
+  end
+
+  def remove_wish_book(book)
+    current_user.wish_books.destroy(book)
   end
 end
