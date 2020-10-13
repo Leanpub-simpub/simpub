@@ -1,11 +1,13 @@
-<section class="profile-show container text-center">
-  <div class="row ">
-    <div class="author-about d-flex">
-      <div class="avatar justify-content-center ">
-        <%= render "shared/frontend/user_avatar", user: @user %>
+<section class="profile-show container">
+  <div class="row">
+    <div class="author-about col-12 d-flex">
+      <div class="avatar col-12 col-md-4 col-lg-3 h-100">
+        <div class="col-12 col-lg-7 mx-auto my-auto">
+          <%= render "shared/frontend/user_avatar", user: @user %>
+        </div>
         <div class="justify-content" data-controller="follow" data-follow-user="<%= @user.username %>">
-          <div class="h3">
-            <button class="follow-btn btn main-btn txt", data-action="follow#followship">
+          <div class="follow col-12 col-lg-10 m-auto">
+            <button class="follow-btn btn main-button txt w-100", data-action="follow#followship">
               <% if @user.followed_by?(current_user) %>
                 Following
               <% else %>
@@ -16,24 +18,47 @@
         </div>
       </div>
       
-      <div class="authers-info justify-content ">
+      <div class="authers-info justify-content col-12 col-md-6 col-lg-9">
         <div class="h3 txt user-name ">
           <%= @user.name %> 
         </div>
-        <div class="txt user-about"><%= @user.about %>He’s the bestselling author of Steal Like An Artist and other books. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores, eaque ipsam fugit quos perferendis ut dolorum rem error repellendus vitae! </div>
+        <div class="txt user-about">
+          <%= @user.about %>He’s the bestselling author of Steal Like An Artist and other books. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores, eaque ipsam fugit quos perferendis ut dolorum rem error repellendus vitae! 
+        </div>
+        <div class="txt user-locate d-flex">
+          <i class="fas fa-map-marker-alt fa-2x"></i>
+          <div class="txt location d-flex">
+            <p>Taipei, Taiwan</p>
+          </div>
+        </div>
+        <div class="follow-grop d-flex">
+          <div class="txt follow-between d-flex">
+            <div class="following">
+              <div class="number">111</div>
+              <p>Following</p>
+            </div>
+            <div class="follower">
+              <div class="number">111</div>
+              <p>Follower</p>
+            </div>
+          </div>
+
+          <div class="contact d-flex ">
+            <a href="#" class="facebook">
+                <i class="fab fa-facebook fa-3x"></i>
+            </a>
+            <a href="#" class="github">
+              <i class="fab fa-github fa-3x"></i>
+            </a>
+            <a href="#" class="email">
+              <i class="far fa-envelope fa-3x"></i>
+            </a>
+          </div>
+        </div>
+        
       </div>
 
-      <div class="contact">
-        <a href="#" class="facebook">
-            <i class="fab fa-facebook fa-2x"></i>
-        </a>
-        <a href="#" class="github">
-          <i class="fab fa-github fa-2x"></i>
-        </a>
-        <a href="#" class="email">
-          <i class="far fa-envelope fa-2x"></i>
-        </a>
-      </div>
+      
     </div>
 
     <div class="book-container">
