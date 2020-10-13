@@ -31,9 +31,9 @@
           <tr class="row text-center">
             <td class="col-12 col-md-2">
               <div style="font-size:large" class="font-weight-bold" >
-                <%= link_to book_path(item.book), data: {target: "cart.cover"} do %>
+                <%#= link_to book_path(item.book), data: {target: "cart.cover"} do %>
                   <%= render partial: "shared/frontend/book_cover", locals: {book: item.book, size: :small} %>
-                <% end %>
+                <%# end %>
               </div>
             </td>
             <td class="col-12 col-md-6">
