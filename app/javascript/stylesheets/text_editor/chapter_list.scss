@@ -3,15 +3,16 @@
   height: 100vh;
   border: lightgray 2px solid;
   margin-right: 5px;
-  padding: 10px;
   font-size: 24px;
   overflow-y: scroll;
-  background-color: #fff8dc;
+  background-color: rgb(38,38,38);
+  color: white;
 }
 
 .chapter_list div {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  line-height: 38px;
 }
 .chapter, .section {
   cursor: pointer;
@@ -21,15 +22,16 @@
   content: " ";
   height: 10px;
   width: 10px;
-  border: 2px solid red;
+  border: 2px solid #e09a5f;
+  margin-left: 10px;
   margin-right: 10px;
 }
 
 .chaptersite:hover,.section:hover  {
-  background-color: rgb(255,222,173);
+  background-color: rgb(81,81,81);
 }
 .activesite {
-  background-color: rgb(235,202,153);
+  background-color: rgb(101,101,101);
 }
 
 
@@ -38,7 +40,7 @@
   width: 10px;
   display: inline-block;
   height: 5px;
-  color: black;
+  color: white;
   line-height: 100%;
   margin-right: 10px;
 }
@@ -48,22 +50,29 @@
 }
 
 #addChapter {
-  background-color: darkorange;
+  background-color: #e09a5f;
   text-align: center;
   font-size: 24px;
+  height: 46px;
+  line-height:38px;
+  margin: auto;
+  box-sizing: border-box;
   cursor: pointer;
 }
 
 #addChapter:hover {
-  color: yellow;
+  font-size: 28px;
+  line-height:38px;
+  margin: auto;
 }
 
 .addsection {
   cursor: pointer;
+  padding-right: 5px;
 }
 
 .addsection:hover {
-  color: crimson;
+  font-size: 32px;
 }
 
 .chapterCreate,.sectionCreate {
@@ -104,7 +113,7 @@
 }
 
 .active {
-  color: black;
+  color: white;
 }
 
 #tableOfContent {
