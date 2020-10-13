@@ -1,4 +1,4 @@
-.profile-show{
+ .profile-show{
   .author-about{
     width: 100%;
     // height: 292px;
@@ -8,33 +8,41 @@
     border: 0.8px solid #F1C39E;
     padding:20px;
 
+    .avatar{
+      padding: 0;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      justify-items: space-around;
+      
+      .img-box {
+        margin-bottom: 1rem;
+      }
+    }
+    
   }
-  .avatar{
-    padding: 0;
-    margin:auto;
-    display: flex;
-    flex-direction: column;
-    justify-items: space-around;
   
-  }
   .follow-btn{
     margin-bottom: 17px;
     height: 50.29px;
   }
-  .authers-info{
+  .authors-info{
     padding:0px;
-  }
-  .user-name{
-    text-align: start;
-    font-family: SF Pro Display;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 41.4168px;
-    line-height: 49px;
-    margin-top: 17px;
-    letter-spacing: 0.05em;
-    color: #5C5D60 !important;
-  
+    margin-left: auto;
+    margin-right: auto;
+
+    .user-name{
+      text-align: start;
+      font-family: SF Pro Display;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 41.4168px;
+      line-height: 49px;
+      margin-top: 17px;
+      letter-spacing: 0.05em;
+      color: #5C5D60 !important;
+      text-align: center;
+    }
   }
   .user-about{
     font-family: SF Pro Display;
@@ -61,12 +69,9 @@
       color: #726F6F !important;
     }
   }
-
   .follow-grop{
     justify-content: space-between;
   }
-
-
   .follow-between {
     font-family: SF Pro Display;
     font-style: normal;
@@ -84,9 +89,6 @@
       margin-left: 10px;
     }
   }
- 
-
-  
   .contact{
     margin-right:6.7%;
   }
@@ -107,11 +109,33 @@
     font-family: SF Pro Display;
     font-style: normal;
     font-weight: bold;
-    font-size: 41.4168px;
+    font-size: 39px;
     line-height: 49px;
     /* identical to box height */
     letter-spacing: 0.05em;
     color: #e09a5f !important; 
   }
+  
+}
 
+@media screen and (min-width: 992px) {
+  .profile-show{
+    .author-about {
+      height: 100%;
+
+      .avatar {
+        padding-top: 17px;
+        margin: 0;
+
+        .img-box {
+          margin-bottom: auto;
+        }
+      }
+    }
+    .authors-info {
+      .user-name {
+        text-align: left;
+      }
+    }
+  }
 }
