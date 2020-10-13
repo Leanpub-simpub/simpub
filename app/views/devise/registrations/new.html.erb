@@ -6,29 +6,29 @@
     </h4>
     <div class="txt">
       <p>
-        Authors, companies and universities use Simpub to<br />easily <strong>write,
-        publish and sell</strong> amazing <strong>in-progress<br />and completed ebooks and online courses.</strong>
+        Authors, companies and universities use Simpub to<br />easily write,
+        publish and sell amazing in-progress<br />and completed ebooks and online courses.
       </p>
       <p>
-        By the way, this is a sign up page, but <strong>you actually<br />don't need to sign up here!</strong>
+        By the way, this is a sign up page, but you actually<br />don't need to sign up here!
       </p>
       <p>
-        We automatically create an account for you if you <strong>buy<br />
-        a book or course as a reader</a></strong>.This is because many<br /> of our books and courses are published in-progress,<br />
+        We automatically create an account for you if you buy<br />
+        a book or course as a reader</a>.This is because many<br /> of our books and courses are published in-progress,<br />
         and you get free updates whenever an author<br />publishes a new version.
       </p>
       <p>
-        We also automatically create an account for you if<br />you <strong>create a book or course as an author</a></strong>.Simpub<br />authors can create up to <strong>100 books or courses for<br /> free</strong>, or choose a Standard or Pro plan for more features.
+        We also automatically create an account for you if<br />you create a book or course as an author</a>.Simpub<br />authors can create up to 100 books or courses for<br /> free, or choose a Standard or Pro plan for more features.
       </p>     
       <p>
         So why does this page exist? Simple: when it didn't,<br />people asked us where it was. So, it's here, and you<br />can use it if you wish!
       </p>     
       <p>
-        If you have an issue signing up here, just go <strong>buy a<br />book or course</a></strong> or <strong>create a book or course</a></strong> instead!
+        If you have an issue signing up here, just go buy a<br />book or course</a> or create a book or course</a> instead!
       </p>
     </div>
   </div> 
-  <div class="mx-4"> 
+  <div class="sign-up-column mx-4"> 
     <h3 class="title">Sign Up</h3>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
@@ -42,7 +42,10 @@
         <div class="w-100"></div>
 
         <%= f.label :username, class:"txt" %><br />
-        <%= f.text_field :username, autofocus: true, class:"col-12 mb-3" %>
+        <div class="username d-flex mb-3">
+          <span class="">simpub.tw/u/</span>
+          <%= f.text_field :username, autofocus: true, class:"flex-grow-1" %>
+        </div>
         <div class="w-100"></div>
 
         <%= f.label :password, class:"txt" %>
