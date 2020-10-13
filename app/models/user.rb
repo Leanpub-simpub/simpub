@@ -4,14 +4,14 @@ class User < ApplicationRecord
   attr_accessor :x, :y, :width, :height
 
   # 測試用
-  # devise :database_authenticatable, :registerable,
-  #        :recoverable, :rememberable, :validatable,
-  #        :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
   
   # 正式用
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable,
-         :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
+  # devise :database_authenticatable, :registerable,
+  #        :recoverable, :rememberable, :validatable, :confirmable,
+  #        :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
 
   # devise :database_authenticatable, :registerable,
   #        :recoverable, :rememberable, :trackable, :validatable,

@@ -6,7 +6,7 @@
   padding: 10px;
   font-size: 24px;
   overflow-y: scroll;
-  background-color: navajowhite;
+  background-color: #fff8dc;
 }
 
 .chapter_list div {
@@ -25,9 +25,13 @@
   margin-right: 10px;
 }
 
-.chapter:hover,.section:hover  {
-  color: crimson;
+.chaptersite:hover,.section:hover  {
+  background-color: rgb(255,222,173);
 }
+.activesite {
+  background-color: rgb(235,202,153);
+}
+
 
 .section::before{
   content: "-";
@@ -40,7 +44,7 @@
 }
 
 .section {
-  margin-left: 20px
+  padding-left: 20px
 }
 
 #addChapter {
@@ -100,7 +104,7 @@
 }
 
 .active {
-  color: mediumblue;
+  color: black;
 }
 
 #tableOfContent {
