@@ -40,10 +40,10 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.authors << current_user
     
-    # 把 cover 切出 大中小 三個尺寸
-    
     if @book.save
+      # 把 cover 切出 大中小 三個尺寸
       CoverUploaderJob.perform_later(@book) if @book.cover_data?
+      
       if @book.md_data
         @book.update(publish_state: "on_shelf")
         current_user.update(as_author: true)

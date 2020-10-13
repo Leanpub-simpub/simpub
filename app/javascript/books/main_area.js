@@ -1,6 +1,5 @@
 import "bootstrap";
 import $ from "jquery";
-window.$ = $
 $(document).ready(function($) {
   $('#myCarousel').carousel({
     interval: 5000
