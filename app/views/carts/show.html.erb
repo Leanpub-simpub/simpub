@@ -1,4 +1,4 @@
-<section class="cart-show container mt-4">
+<section class="cart-show container mt-4" data-controller="cart">
 <!--- header 是否要留?
   <div>
     <header class="checkout_header d-flex justify-content-center mb-5">
@@ -28,7 +28,7 @@
 
       <tbody>
         <% current_cart.items.each.with_index do |item, index| %>
-          <tr class="row text-center" data-controller="cart" data-cart-index="<%= index %>" data-cart-book="<%= item.book.id %>">
+          <tr class="row text-center">
             <td class="col-12 col-md-2">
               <div style="font-size:large" class="font-weight-bold" >
                 <%= link_to book_path(item.book), data: {target: "cart.cover"} do %>
@@ -40,12 +40,12 @@
               <div style="font-size:large" class="font-weight-bold mb-2" >
                 <%= link_to item.book.title, book_path(item.book) %>
               </div>
-              <div>
-                <button class="item-edit border-0 bg-transparent" data-action="cart#edit">edit</button>
+              <div data-index="<%= index %>" data-price="<%= item.price %>" data-bookid="<%= item.book.id %>">
+                <button class="item-edit border-0 bg-transparent" data-target="cart.edit">edit</button>
                 <span class="mx-1">|</span>
-                <button class="border-0 bg-transparent" data-controller="cartwish" data-action="cartwish#add" data-cartwish-id="<%= item.book.id %>" data-cartwish-index="<%= index %>">Move to Wishlist</button>
+                <button class="border-0 bg-transparent" data-target="cart.wish">Move to Wishlist</button>
                 <span class="mx-1">|</span>
-                <button class="border-0 bg-transparent" data-action="cart#delete">Delete</button>
+                <button class="border-0 bg-transparent" data-target="cart.delete">Delete</button>
               </div>
             </td>
 
@@ -68,7 +68,7 @@
   </div>
 
   <div class="check-out d-flex justify-content-center">
-    <div class="col-10 d-flex justify-content-end align-items-center">
+    <div class="cart-total col-10 d-flex justify-content-end align-items-center">
     	$<%= sprintf("%.2f", current_cart.total_price) %>
     </div>
   </div>

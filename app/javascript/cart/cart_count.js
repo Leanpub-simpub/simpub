@@ -22,12 +22,11 @@ document.addEventListener("turbolinks:load", () => {
     fetch("/cart.json")
       .then((response) => response.json())
       .then((cartItems) => {
-        let cartBubble = document.querySelector(".fa-shopping-cart")
-          .firstElementChild;
+        let cartBubble = document.querySelector(".fa-shopping-cart").firstElementChild;
 
-        if (cartItems[0] && cartItems[0][1].length !== 0) {
-          let cartCount = cartItems[0][1].length;
-
+        if (cartItems.cart.items.length !== 0) {
+          let cartCount = cartItems.cart.items.length;
+          
           cartBubble.classList.add("bubble");
           cartBubble.textContent = cartCount;
         } else {

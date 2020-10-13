@@ -1,13 +1,14 @@
+body {
+  position: relative;
+}
+
 .cart-modal {
   width: 100vw;
   height: 85vh;
   background-color: #fa0;
-  position: sticky;
-  top: 0;
-  bottom: 0;
+  position: fixed;
+  top: 3.5rem;
   left: 0;
-  right: 0;
-  margin: auto;
   z-index: 100;
 }
 
