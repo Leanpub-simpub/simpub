@@ -1,0 +1,23 @@
+section.flash {
+  top: 3.5rem;
+
+  div.alert.alert-success {
+    color: #e09a5f;
+    background-color: #222;
+    max-width: 100%;
+    height: 3rem;
+    line-height: 100%;
+    font-size: 24px;
+    text-align: center;
+    box-sizing: border-box;
+    padding-top: 10px;
+    // padding-bottom: 6px;
+  }
+  button[data-dismiss="alert"] {
+    padding: 0rem 1.25rem;
+
+    span {
+      font-size: 38px;
+    }
+  }
+}
