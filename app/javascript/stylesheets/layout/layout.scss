@@ -1,24 +1,35 @@
 html {
   // 版面共同設定
-  .library,
-  .purchase,
-  .cart-show,
+  .home,
   .author-books,
+  .author-show,
   .profile-show,
   .book-index,
   .book-show,
+  .book-new,
+  .library,
   .sign-in,
   .sign-up,
+  .cart-show,
+  .payment,
+  .purchase-index,
+  .purchase-show,
   .resend-confirmation,
-  .wish-list {
-    min-height: 65vh;
+  .wishlist {
+    min-height: 100vh;
     margin-top: 5vh;
     margin-bottom: 5vh;
   }
+
   .notice,
   .alert {
     padding: 0px;
     margin: 0px;
     max-width: 576px;
+  }
+
+  .footer {
+    position: relative;
+    bottom: 0;
   }
 }
