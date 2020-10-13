@@ -62,6 +62,26 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  # Don't care if the mailer can't send.
+  config.action_mailer.default_url_options = { host: 'simpub.tw' }
+  
+  # mail 設定
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  
+  # config.action_mailer.delivery_method = :letter_opener_web
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    domain: 'simpub.tw',
+    user_name: ENV['SENDMAIL_USERNAME'],
+    password: ENV['SENDMAIL_PASSWORD'],
+    authentication: 'plain',
+    enable_starttls_auto: true,
+    openssl_verify_mode: 'none'
+  }
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
