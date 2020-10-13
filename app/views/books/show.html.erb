@@ -1,4 +1,4 @@
-<div class="book-show container txt" >
+<div class="book-show container txt d-flex flex-column" >
 	<div class="row">
 
     <!-- 書本資訊區 -->
@@ -32,18 +32,18 @@
         <% end %>
       </div>
 
-      <div class="tags">
+      <div class="tags my-2">
         <% @book.tag_items.each do |tag| %>
           <span class="tag"># <%= tag %></span>
         <% end %>
       </div>
       
-			<div class="button-group mt-auto">
-        <%= link_to sample_book_path(@book),class: "btn w-50 p-1 mb-2 main-button" do %>
-          <span class="mr-2 ">Read Free Sample</span><i class="far fa-file-pdf "></i>
+			<div class="button-group">
+        <%= link_to sample_book_path(@book),class: "btn w-50 my-1 main-button" do %>
+          <span class="mr-2">Read Free Sample</span><i class="far fa-file-pdf "></i>
         <% end %> 
-        <%= link_to table_of_contents_book_path(@book), class: "btn w-50 p-1 main-button" do %>
-          <span class="mr-2 ">Table Of Contents</span><i class="fas fa-list-ol "></i>
+        <%= link_to table_of_contents_book_path(@book), class: "btn w-50 my-1 main-button" do %>
+          <span class="mr-2">Table Of Contents</span><i class="fas fa-list-ol "></i>
         <% end %>
 			</div>
 		</div>
@@ -79,11 +79,11 @@
 		</div>
 	</div>
 
-  <!-- 暫時先用分隔線 -->
-  <hr class="w-100 mt-5">
+  <!-- 我是分隔線 -->
+  <hr class="w-100 my-5">
 
-  <div class="row w-100 mt-2">
-    <h3 class="mx-auto">Reader Testimonials</h3>
+  <div class="row">
+    <h3 class="col-12 mx-auto">Reader Testimonials</h3>
     <div class="row col-12">
       <% @comments.each do |comment| %>
         <div class="col-12 col-md-6 col-lg-4 text-center mt-5 p-5">
