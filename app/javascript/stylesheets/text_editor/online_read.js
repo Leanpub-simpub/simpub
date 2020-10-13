@@ -7,7 +7,7 @@ window.addEventListener('turbolinks:load',()=>{
   if(document.querySelector('.chapter_list')&& document.querySelector('#sourceTA')==null){
     let bookName = document.querySelector('.book_name')
     let chapterList = document.querySelector('.chapter_list')
-    let current = document.querySelector('#current')
+    let current = document.querySelector('.currentTarget')
     let chapterName
     let token = document.querySelector("meta[name=csrf-token]").content
     axios.defaults.headers.common['X-CSRF-Token']= token
@@ -70,17 +70,24 @@ window.addEventListener('turbolinks:load',()=>{
       })
     }
 
-
+    // 切換書本頁面時判斷是否要存檔
     chapterList.addEventListener('click',(e)=>{      
       if(e.target.className == 'chapter' || e.target.className == 'section'){
-        chapterList.querySelector('.active').classList.remove('active')
+        let currentActive = chapterList.querySelector('.active')
+        console.log(currentActive)
+        currentActive.classList.remove('active')
         e.target.classList.add('active')
+        let current = document.querySelector('.currentTarget')
         current.textContent = `----${e.target.textContent}`
+        document.querySelector('.activesite').classList.remove('activesite')
+        if(e.target.className.match('chapter')!= null){
+          e.target.parentElement.classList.add('activesite')
+        }else if(e.target.className.match('section') != null){
+          e.target.classList.add('activesite')
+        }
       }
     })
-
   })
-
   
 
 
