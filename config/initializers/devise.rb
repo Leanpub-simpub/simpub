@@ -25,8 +25,9 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   config.mailer_sender = "postmaster@sandbox8926761a784847a3b80a2919709abe3b.mailgun.org"
+
   config.omniauth :facebook, ENV['FB_ID'], ENV['FB_SECRET'], scope: "public_profile,email", info_fields: "email,name"
-  config.omniauth :google_oauth2, ENV["GOOGLE_ID"], ENV["GOOGLE_SECRET"],{access_type: "offline", approval_prompt: ""}
+  config.omniauth :google_oauth2, ENV["GOOGLE_ID"], ENV["GOOGLE_SECRET"], skip_jwt: true
   config.omniauth :github, ENV["GITHUB_ID"], ENV["GITHUB_SECRET"], :scope => 'user:email'
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
