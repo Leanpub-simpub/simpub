@@ -10,7 +10,7 @@ class CartsController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      format.json { @cart = session[Cart::SessionKey] }
+      format.json { current_cart }
     end
   end
 
@@ -25,23 +25,26 @@ class CartsController < ApplicationController
 
     current_cart.update_price(current_cart.items[index], price)
     session[Cart::SessionKey] = current_cart.serialize
-  end
-  
 
-  def delete
+    redirect_to cart_path
+  end
+
+  def destroy
     cart = current_cart.items
     @items = cart.select.with_index { |item, index|
       item if index != params[:index].to_i
     }
+
+    p "-" * 50
+    pp session[Cart::SessionKey]
+    p "-" * 50
     current_cart.delete_item(@items)
     session[Cart::SessionKey] = current_cart.serialize
+    p "-" * 50
+    pp session[Cart::SessionKey]
+    p "-" * 50
 
-    flash[:notice] = "成功移出購物車"
-  end
-
-  def destroy
-    session[Cart::SessionKey] = nil
-    redirect_to cart_path, notice: "購物車已清空"
+    # redirect_to action: :show, notice: "商品已移出購物車"
   end
 
 
