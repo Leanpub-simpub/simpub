@@ -66,7 +66,6 @@ Rails.application.routes.draw do
       post :add, path:'add/:id'
       get :payment
       post :checkout
-      patch :delete
       post :refund
     end
   end

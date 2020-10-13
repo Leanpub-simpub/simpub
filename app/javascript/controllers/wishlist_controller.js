@@ -36,7 +36,7 @@ export default class extends Controller {
     const cartPrice = document.querySelector(".cart-price");
     const addCartForm = document.querySelector(".add-cart-form-modal");
     const wishToCart = document.querySelector("#wish-to-cart");
-    const waitBtn = document.querySelector(".wait-btn");
+    const waitBtn = document.querySelector(".wish-wait-btn");
     
     const username = this.data.get("username");
     const bookId = this.data.get("book");
@@ -99,7 +99,6 @@ export default class extends Controller {
       }
     });
 
-
     // ! 不知道為什麼會打兩次 delete
     addCartForm.addEventListener("submit", () => {
       addCartForm.action = `/cart/add/${bookId}?cart_price=${cartPrice.value}`;
@@ -112,7 +111,7 @@ export default class extends Controller {
         axios.delete(`/u/${username}/unwish?id=${bookId}`)
              .then(function(reuslt) {})
              .then(function(result) {});
-      }, 500);
+      }, 1000);
     });
 
 
