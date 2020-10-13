@@ -37,6 +37,7 @@ window.addEventListener('turbolinks:load',()=>{
     
     // 預設打開第一章節
     document.querySelector('.chapter').classList.add('active')
+    document.querySelector('.chapter').parentElement.classList.add('activesite') 
     let target = document.querySelector('.active')
     let chapter = true
     let section = false
@@ -128,11 +129,18 @@ window.addEventListener('turbolinks:load',()=>{
       if(e.target.className == 'chapter' || e.target.className == 'section'){
         
         saveContent()  //存檔
-        
-        chapterList.querySelector('.active').classList.remove('active')
+
+        let currentActive = chapterList.querySelector('.active')
+        currentActive.classList.remove('active')
         e.target.classList.add('active')
         let current = document.querySelector('.currentTarget')
         current.textContent = `----${e.target.textContent}`
+        document.querySelector('.activesite').classList.remove('activesite')
+        if(e.target.className.match('chapter')!= null){
+          e.target.parentElement.classList.add('activesite')
+        }else if(e.target.className.match('section') != null){
+          e.target.classList.add('activesite')
+        }
       }
     })
 

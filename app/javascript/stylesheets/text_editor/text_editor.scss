@@ -28,13 +28,14 @@
     }
   }
   #targetDiv {
-    border: 1px solid #333333;
+    
     width: 42%;
     height: 100vh;
     padding: 20px 20px 20px 20px;
     overflow-y: scroll;
-    background-color: #fff8dc;
+    background-color: white;
     margin-left: 5px;
+    box-shadow: 7px 7px 19px black;
       // 客製修改
     img {
       width: 500px;
@@ -42,12 +43,10 @@
     h1 {
       padding-bottom: .3em;
       font-size: 2em;
-      // border-bottom: 1px solid black;
     }
     h2 {
       padding-bottom: .3em;
       font-size: 1.5em;
-      // border-bottom: 1px solid black;
     }
     h3 {
       padding-bottom: .3em;
