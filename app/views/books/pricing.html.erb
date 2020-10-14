@@ -1,8 +1,7 @@
-<div class="container  text-center pricing d-flex flex-column justify-content-center">
+<div class="pricing container text-center pricing d-flex flex-column justify-content-center" data-controller="pricing">
   <h1 class="h3" id="bookName"><%= @book.title %></h1>
   <h1 class="h3">設定書本價格</h1>
 
-  <h2 class="h3">這邊預覽書籍</h2>
   <div class="cover col-3 mx-auto">
     <%= render partial: "shared/frontend/book_cover", locals: {book: @book, size: :large} %>
   </div>
@@ -13,15 +12,16 @@
   </div>
   <br>
 
-  <%= form_for(@book, url: publish_book_path(@book)) do |f| %>
+  <%= form_for @book, data: {target: "pricing.form", pricing_book: @book.slug} do |f| %>
     <div>
       <%= f.label :price, "設定價格" %>
-      <%= f.number_field :price, :step => "0.01", data: {   required: "requred" } %>
+      <%= f.number_field :price, :step => "0.01", data: {required: "requred"} %>
     </div>
 
     <div>
-      <%= f.submit "上架" %>
+      <%= f.submit "上架", class: "x", data: {target: "pricing.submit"} %>
     </div>
   <% end %>
+  <button class="btn", data-target="pricing.btn">上架</button>
 </div>
 <div id="allpdf"></div>

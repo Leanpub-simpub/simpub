@@ -1,8 +1,9 @@
 import { Controller } from "stimulus";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export default class extends Controller {
-  static targets = [ "edit", "wish", "delete", "cover" ];
+  static targets = [ "edit", "wish", "delete", "cover", "payment", "wait" ];
 
   connect() {
     const token = document.querySelector("meta[name=csrf-token]").content;
@@ -11,6 +12,8 @@ export default class extends Controller {
     const editBtns = this.editTargets;
     const wishBtns = this.wishTargets;
     const deleteBtns = this.deleteTargets;
+    const paymentBtn = this.paymentTarget;
+    const waitBtn = this.waitTarget;
     
     editBtns.forEach(editBtn => {
       editBtn.addEventListener("click", () => {
@@ -183,27 +186,52 @@ export default class extends Controller {
     
     deleteBtns.forEach(deleteBtn => {
       deleteBtn.addEventListener("click", () => {
-        if (window.confirm("Are you sure you want to remove this from your cart?")) {
-          const item = deleteBtn.parentElement.parentElement.parentElement;
-          const total = document.querySelector(".cart-total");
-          const index = deleteBtn.parentElement.dataset.index;
-          const cartBubble = document.querySelector(".fa-shopping-cart").firstElementChild;
-          
-          axios
-            .delete(`/cart?index=${index}`)
-            .then(function(result) {
+        Swal
+          .fire({
+            text: "真的要移出購物車嗎？",
+            icon: "warning",
+            iconColor: "#f33",
+            showCancelButton: true,
+            cancelButtonText: "No, keep it",
+            confirmButtonText: "Yes, delete it!",
+            confirmButtonColor: "#e09a5f",
+            focusCancel: true
+          })
+          .then(result => {
+            if (result.value) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "已從購物車中移除",
+                icon: "success",
+                confirmButtonColor: "#e09a5f"
+              });
+
+              const item = deleteBtn.parentElement.parentElement.parentElement;
+              const total = document.querySelector(".cart-total");
+              const index = deleteBtn.parentElement.dataset.index;
+              const cartBubble = document.querySelector(".fa-shopping-cart").firstElementChild;
+              
               axios
-                .get(`/cart.json`)
+                .delete(`/cart?index=${index}`)
                 .then(function(result) {
-                  item.remove();
-                  cartBubble.textContent--;
-                  total.textContent = `$${result.data.total.toFixed(2)}`;
+                  axios
+                    .get(`/cart.json`)
+                    .then(function(result) {
+                      item.remove();
+                      cartBubble.textContent--;
+                      total.textContent = `$${result.data.total.toFixed(2)}`;
+                    })
+                    .catch(function(error) {});
                 })
                 .catch(function(error) {});
-            })
-            .catch(function(error) {});
-        }
+            }
+          });
       });
+    });
+
+    paymentBtn.addEventListener("click", () => {
+      paymentBtn.remove();
+      waitBtn.classList.remove("x");
     });
   }
 }

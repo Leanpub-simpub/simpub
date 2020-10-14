@@ -1,4 +1,4 @@
-<section class="cart-payment txt container">
+<section class="cart-payment txt container" data-controller="checkout">
 <!--- header 是否要留?
   <div>
     <header class="checkout_header d-flex justify-content-center mb-5">
@@ -58,19 +58,20 @@
     <h3 class="col-10 d-flex justify-content-start">信用卡資訊</h3>
   </div>
   
-  <%= form_with(url: "/cart/checkout", method: "post", id: "payment_form", local: true) do%>
+  <%= form_with url: "/cart/checkout", method: "post", id: "payment_form", local: true do%>
     <div class="d-flex justify-content-center">
       <div id="dropin-container" data-token="<%= @token %>" class="col-12 col-md-10"></div>
       <input type="hidden" value="" id="nonce" name="nonce">
     </div>
-  <div class="d-flex justify-content-center mt-2">
-    <div class=" d-flex justify-content-end col-10">
-      <button id="submit-button" class="main-button btn col-12 col-md-3">付款</button>
+    <div class="d-flex justify-content-center mt-2">
+      <div class=" d-flex justify-content-end col-10">
+        <button id="submit-button" class="main-button btn col-12 col-md-3" data-target="checkout.pay">付款</button>
+        <button class="ml-auto btn btn-secondary w-25 x" disabled data-target="checkout.wait">Please wait...</button>
+      </div>
     </div>
-  </div>
   <% end %>
 
-
+  <!--
   <div id="depot-form">
     <fieldset>
     <legend class="text-center">Please Enter Your Details</legend>
@@ -82,5 +83,6 @@
     <%end%>
     </fieldset>
   </div>
+  -->
   
 </section>

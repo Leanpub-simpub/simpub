@@ -10,12 +10,23 @@ body {
   top: 3.5rem;
   left: 0;
   z-index: 100;
+
+  .modal-header {
+    border-bottom: none;
+  }
+  .modal-content {
+    height: 100%;
+  }
 }
 
-.modal-header {
-  border-bottom: none;
+@media screen and (min-width: 992px) {
+  .cart-modal {
+    top: 4rem;
+  }
 }
 
-.modal-content {
-  height: 100%;
+@media screen and (min-width: 1200px) {
+  .cart-modal {
+    top: 5.8rem;
+  }
 }
