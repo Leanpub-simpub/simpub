@@ -1,6 +1,5 @@
 html {
   // 版面共同設定
-  .home,
   .author-publishing,
   .profile-show,
   .book-index,
@@ -15,7 +14,7 @@ html {
   .purchase,
   .resend-confirmation,
   .wishlist {
-    min-height: 100vh;
+    min-height: 80vh;
     margin-top: 5vh;
     margin-bottom: 5vh;
   }
@@ -28,11 +27,11 @@ html {
   }
 
   .footer {
-    position: relative;
     bottom: 0;
-    
+    height: 10vh;
+
     span {
-      color: #fff!important;
+      color: #fff !important;
     }
   }
 }

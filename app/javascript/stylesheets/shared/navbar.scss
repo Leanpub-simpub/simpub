@@ -1,6 +1,7 @@
 .layout-navbar {
   position: sticky;
   justify-content: space-between;
+  height: 10vh;
 
   .nav-item-group {
     align-items: center;
@@ -108,7 +109,7 @@
 
       a {
         color: #343a40;
-        transition: .2s linear;
+        transition: 0.2s linear;
       }
       a:hover {
         color: #e09a5f;
