@@ -13,7 +13,7 @@ document.addEventListener("turbolinks:load", () => {
       if (e.target.classList.contains("on-shelf")) {
         Swal
           .fire({
-            text: "確定發佈嗎？",
+            text: "Would you like to publish this book?",
             icon: "warning",
             iconColor: "#f33",
             showCancelButton: true,
@@ -29,7 +29,7 @@ document.addEventListener("turbolinks:load", () => {
         } else if (e.target.classList.contains("off-shelf")) {
           Swal
             .fire({
-              text: "確定下架嗎？",
+              text: "Would you like to unpublish this book?",
               icon: "warning",
               iconColor: "#f33",
               showCancelButton: true,
@@ -44,11 +44,11 @@ document.addEventListener("turbolinks:load", () => {
                   .then(function(result) {
                     location.reload();
                     // flash.innerHTML = `<div class="alert alert-success alert-dismissible fade show" role="alert">
-                    // 書籍已下架
-                    // <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    // <span aria-hidden="true">&times;</span>
-                    // </button>
-                    // </div>`
+                    //   書籍已下架
+                    //   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    //   <span aria-hidden="true">&times;</span>
+                    //   </button>
+                    //   </div>`
                   });
               }
             });
