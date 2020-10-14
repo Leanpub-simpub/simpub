@@ -134,8 +134,7 @@ window.addEventListener('turbolinks:load',()=>{
         let currentActive = chapterList.querySelector('.active')
         currentActive.classList.remove('active')
         e.target.classList.add('active')
-        let current = document.querySelector('.currentTarget')
-        current.textContent = `----${e.target.textContent}`
+
         document.querySelector('.activesite').classList.remove('activesite')
         if(e.target.className.match('chapter')!= null){
           e.target.parentElement.classList.add('activesite')

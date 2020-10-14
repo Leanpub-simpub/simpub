@@ -7,7 +7,7 @@ window.addEventListener('turbolinks:load',()=>{
   if(document.querySelector('.chapter_list') && document.querySelector('#sourceTA') == null){
     let bookName = document.querySelector('.book_name')
     let chapterList = document.querySelector('.chapter_list')
-    let current = document.querySelector('.currentTarget')
+
     let chapterName
     let token = document.querySelector("meta[name=csrf-token]").content
     axios.defaults.headers.common['X-CSRF-Token']= token
@@ -16,7 +16,7 @@ window.addEventListener('turbolinks:load',()=>{
     document.querySelector('.chapter').classList.add('active')
     let target = document.querySelector('.active')
     target.parentElement.classList.add('activesite')
-    current.textContent =`----${target.textContent}`
+    
     let chapter = true
     let section = false
     let params = { bookName:bookName.textContent, target:target.textContent , chapter:chapter,  section:section,chapterName:target.textContent}
@@ -79,8 +79,7 @@ window.addEventListener('turbolinks:load',()=>{
         let currentActive = document.querySelector('.active')
         currentActive.classList.remove('active')
         e.target.classList.add('active')
-        let current = document.querySelector('.currentTarget')
-        current.textContent = `----${e.target.textContent}`
+        
         document.querySelector('.activesite').classList.remove('activesite')
         
         if(e.target.className.match('chapter')!= null){
