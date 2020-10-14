@@ -87,12 +87,11 @@ class BooksController < ApplicationController
 
     publish_notify
     
-    redirect_to @book, notice: "書籍已上架囉～"
+    redirect_to @book, notice: "書籍已成功上架"
   end
 
   def unpublish
     @book.remove!
-    redirect_to users_books_path, notice: "#{@book.title} 已下架"
   end
 
   def wish
