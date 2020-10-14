@@ -7,7 +7,7 @@
         </div>
         <div class="justify-content" data-controller="follow" data-follow-user="<%= @user.username %>">
           <div class="follow col-12 col-lg-10 m-auto">
-            <button class="follow-btn btn main-button txt w-100", data-action="follow#followship">
+            <button class="follow-btn btn btn-primary txt w-100", data-action="follow#followship">
               <% if @user.followed_by?(current_user) %>
                 Following
               <% else %>
