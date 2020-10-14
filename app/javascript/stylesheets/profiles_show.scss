@@ -108,7 +108,7 @@
     font-family: SF Pro Display;
     font-style: normal;
     font-weight: bold;
-    font-size: 39px;
+    font-size: 36px;
     line-height: 49px;
     /* identical to box height */
     letter-spacing: 0.05em;
@@ -118,10 +118,12 @@
     margin: auto;
 
     .book-item{
-      padding: 0px;
-      margin-bottom: 30px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       
-      h4{
+      h5{
         text-align: center;
       }
       .book-name{
@@ -129,7 +131,6 @@
       }
     }
   }
-  
 }
 
 @media screen and (min-width: 992px) {
@@ -150,16 +151,6 @@
       .user-name {
         text-align: left;
       }
-    }
-    .buy-books {
-      .book-item {
-        // margin: 0;
-      }
-    }
-  }
-  .buy-books{
-    .book-item{
-     margin:10px
     }
   }
 }
