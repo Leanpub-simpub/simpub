@@ -21,7 +21,7 @@
     </div>
     <div class="all-books justify-content-center col-12 col-md-6 col-lg-9">
       <h4>Published (<%= published_books.count %>)</h4>
-      <div class="publish-book row col-12 col-md-6 col-lg-9 ">
+      <div class="publish-book row col-12 col-6 col-md-3 col-lg-2 d-flex flex-column justify-content-between">
         <%= render "books", books: published_books %>
       </div>
       <h4>Unpublished (<%= unpublish_books.count %>)</h4>

@@ -114,6 +114,21 @@
     letter-spacing: 0.05em;
     color: #e09a5f !important; 
   }
+  .buy-books {
+    margin: auto;
+
+    .book-item{
+      padding: 0px;
+      margin-bottom: 30px;
+      
+      h4{
+        text-align: center;
+      }
+      .book-name{
+        text-align: center;
+      }
+    }
+  }
   
 }
 
@@ -135,6 +150,16 @@
       .user-name {
         text-align: left;
       }
+    }
+    .buy-books {
+      .book-item {
+        // margin: 0;
+      }
+    }
+  }
+  .buy-books{
+    .book-item{
+     margin:10px
     }
   }
 }
