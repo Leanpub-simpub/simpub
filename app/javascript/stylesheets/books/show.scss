@@ -24,23 +24,9 @@
 
 .tags {
   border-radius: 5%;
-  padding: 10px;
 
   span {
     margin-right: 10px;
-  }
-}
-
-.button-group {
-  a.btn {
-    border: 1px solid rgba(225, 154, 96, 0.5);
-    font-size: 14px;
-  }
-}
-
-.cover {
-  div:first-child {
-    border: 1px solid rgba(225, 154, 96, 0.5);
   }
 }
 
@@ -162,15 +148,10 @@
   padding: 2px;
 }
 
-@media screen and (max-width: 992px) {
-  .book-show {
-    .cover {
-      order: -1;
-    }
-  }
-}
-
 .avatar-container {
   width: 75px;
   height: 75px;
+}
+
+@media screen and (max-width: 992px) {
 }
