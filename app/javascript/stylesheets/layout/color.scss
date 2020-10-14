@@ -4,12 +4,12 @@ html {
 
   // 主要按鈕
   .main-button {
-		background: linear-gradient(90deg, #F28128 0%, #F1C39E 100%);
+    background: linear-gradient(90deg, #f28128 0%, #f1c39e 100%);
     color: white;
-		border: none;
-		border-radius: 12.279px;
-		height: 2.5em;
-    opacity: 0.9;  
+    border: none;
+    border-radius: 12.279px;
+    height: 2.5em;
+    opacity: 0.9;
   }
   .main-button:hover {
     opacity: 1;
@@ -44,9 +44,6 @@ input[id="switch"] {
 }
 
 .layout-navbar {
-	// border-bottom: 1px solid #e09a5f;
-	box-shadow: 0px 4px 34px rgba(53, 53, 53, 1);
-
   label {
     background: grey;
   }
@@ -78,9 +75,4 @@ input[id="switch"] {
 .cart-bubble {
   background-color: var(--bg);
   color: var(--txt);
-}
-
-.footer {
-	// border-top: 1px solid #e09a5f;
-  box-shadow: 0px 4px 34px 0px rgba(53, 53, 53, 1);
 }
