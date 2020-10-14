@@ -1,6 +1,6 @@
 <% books.each do |book| %>
   <div class="pubbook-item col-2 p-0 m-3">
-    <div class="books w-100">
+    <div class="w-100">
       <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
     </div>
     <p class="text-center">
