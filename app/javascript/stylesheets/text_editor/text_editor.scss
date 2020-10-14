@@ -8,14 +8,14 @@
 
 
 #sampleshow {
-  border: 1px solid #333333;
-  width: 80%;
   height: 100vh;
   padding: 20px 20px 20px 20px;
   overflow-y: scroll;
-  background-color: #fff8dc;
+  background-color: white;
+  box-shadow: 2px 2px 5px black;
   margin-left: 5px;
 }
+
 
 .wrap {
   display: flex;
