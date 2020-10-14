@@ -58,6 +58,13 @@ section.author-publishing{
     h4{
       margin:auto;
     }
+    pubbook-item{
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
     .publish-book{
       margin:auto;
       font-size: 20px;
