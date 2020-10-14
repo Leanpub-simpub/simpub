@@ -1,19 +1,18 @@
 html {
   // 版面共同設定
   .home,
-  .author-books,
-  .author-show,
+  .author-publishing,
   .profile-show,
   .book-index,
   .book-show,
   .book-new,
+  .book-edit,
   .library,
   .sign-in,
   .sign-up,
   .cart-show,
-  .payment,
-  .purchase-index,
-  .purchase-show,
+  .cart-payment,
+  .purchase,
   .resend-confirmation,
   .wishlist {
     min-height: 100vh;
