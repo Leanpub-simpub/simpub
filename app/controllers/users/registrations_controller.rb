@@ -13,7 +13,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def update
-    byebug
     super
 
     if params[:user][:x].present?

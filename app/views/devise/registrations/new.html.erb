@@ -1,4 +1,4 @@
-<section class="sign-up container d-flex justify-content-center my-10" data-controller="singup">
+<section class="sign-up container d-flex justify-content-center my-10" data-controller="signup">
   <div class="mx-4 d-none d-lg-block">
     <h4 class="font-weight-normal title">
       PUBLISH EARLY,<br />
@@ -35,15 +35,15 @@
         
         <div class="mb-3">
           <%= f.label :name, class:"txt" %><br />
-          <%= f.text_field :name, autofocus: true, class:"col-12", required: true, data: {target: "singup.name"} %>
-          <span class="text-danger d-block mt-1" data-target="singup.name_error"></span>
+          <%= f.text_field :name, autofocus: true, class:"col-12", required: true, data: {target: "signup.name"} %>
+          <span class="text-danger d-block mt-1" data-target="signup.name_error"></span>
           <div class="w-100"></div>
         </div>
 
         <div class="mb-3">
           <%= f.label :email, class:"txt" %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-12", data: {target: "singup.email"} %>
-          <span class="text-danger d-block mt-1" data-target="singup.email_error"></span>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-12", data: {target: "signup.email"} %>
+          <span class="text-danger d-block mt-1" data-target="signup.email_error"></span>
           <div class="w-100"></div>
         </div>
 
@@ -51,9 +51,9 @@
           <%= f.label :username, class:"txt" %><br />
           <div class="username d-flex">
             <span class="">simpub.tw/u/</span>
-            <%= f.text_field :username, autofocus: true, class:"flex-grow-1", data: {target: "singup.username"} %>
+            <%= f.text_field :username, autofocus: true, class:"flex-grow-1", data: {target: "signup.username"} %>
           </div>
-          <span class="text-danger d-block mt-1" data-target="singup.username_error"></span>
+          <span class="text-danger d-block mt-1" data-target="signup.username_error"></span>
           <div class="w-100"></div>
         </div>
 
