@@ -10,7 +10,7 @@ document.addEventListener("turbolinks:load", () => {
     const flash = document.querySelector(".flash");
 
     booksContrainer.addEventListener("click", e => {
-      if (e.target.textContent.includes("發佈")) {
+      if (e.target.classList.contains("on-shelf")) {
         Swal
           .fire({
             text: "確定發佈嗎？",
@@ -26,32 +26,33 @@ document.addEventListener("turbolinks:load", () => {
               location.href = `/books/${e.target.dataset.bookid}/pricing`;
             }
           });
-        } else if (e.target.textContent.includes("下架")) {Swal
-          .fire({
-            text: "確定下架嗎？",
-            icon: "warning",
-            iconColor: "#f33",
-            showCancelButton: true,
-            confirmButtonText: "Yes",
-            cancelButtonText: "No",
-            confirmButtonColor: "#e09a5f"
-          })
-          .then(result => {
-            if (result.value) {
-              axios
-                .patch(`/books/${e.target.dataset.bookid}/unpublish`)
-                .then(function(result) {
-                  location.reload();
-                  // flash.innerHTML = `<div class="alert alert-success alert-dismissible fade show" role="alert">
-                  // 書籍已下架
-                  // <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  // <span aria-hidden="true">&times;</span>
-                  // </button>
-                  // </div>`
-                });
-            }
-          });
-      }
+        } else if (e.target.classList.contains("off-shelf")) {
+          Swal
+            .fire({
+              text: "確定下架嗎？",
+              icon: "warning",
+              iconColor: "#f33",
+              showCancelButton: true,
+              confirmButtonText: "Yes",
+              cancelButtonText: "No",
+              confirmButtonColor: "#e09a5f"
+            })
+            .then(result => {
+              if (result.value) {
+                axios
+                  .patch(`/books/${e.target.dataset.bookid}/unpublish`)
+                  .then(function(result) {
+                    location.reload();
+                    // flash.innerHTML = `<div class="alert alert-success alert-dismissible fade show" role="alert">
+                    // 書籍已下架
+                    // <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    // <span aria-hidden="true">&times;</span>
+                    // </button>
+                    // </div>`
+                  });
+              }
+            });
+        }
     });
   }
 });
