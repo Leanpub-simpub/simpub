@@ -50,14 +50,21 @@
           </div>
 
           <div class="contact d-flex ">
-            <a href="#" class="facebook">
+            <% if @user.facebook %>
+              <%= link_to "https://www.facebook.com/#{@user.facebook}", target: "_blank", class: "facebook" do %>
                 <i class="fab fa-facebook fa-3x"></i>
-            </a>
-            <a href="#" class="github">
-              <i class="fab fa-github fa-3x"></i>
-            </a>
-            <a href="#" class="email">
+              <% end %>
+            <% end %>
+
+            <% if @user.github %>
+              <%= link_to "https://github.com/#{@user.github}", target: "_blank", class: "github" do %>
+                <i class="fab fa-github fa-3x"></i>
+              <% end %>
+            <% end %>
+
+            <%= mail_to "ygfert@gmail.com", target: "_blank", class: "email" do %>
               <i class="far fa-envelope fa-3x"></i>
+            <% end %>
             </a>
           </div>
         </div>

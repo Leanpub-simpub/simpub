@@ -24,7 +24,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # 在 devise 中加入 name & username 欄位
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :username])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:avatar, :name, :username, :about, :password, :x, :y, :width, :height])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:avatar, :name, :username, :about, :password, :facebook, :github, :x, :y, :width, :height])
   end
 
   # update 的時候不需要驗證密碼

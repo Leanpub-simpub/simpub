@@ -7,7 +7,7 @@
 		<title>Simpub</title>
 		<%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= favicon_link_tag asset_path('favicon.png') %>
+    <%= favicon_pack_tag "favicon.png" %>
 
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
     <%= javascript_pack_tag "application", "data-turbolinks-track": "reload" %>
@@ -94,8 +94,7 @@
 	<body>
 		<%= render "shared/frontend/navbar" %>
 		<%= render "shared/frontend/cart_modal" %>
-		<p class="notice text-center"><%= notice %></p>
-		<p class="alert text-center"><%= alert %></p>
+    <%= render "layouts/messages" %>
     
 		<%= yield %>
 		

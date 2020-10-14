@@ -7,7 +7,7 @@ export default class extends Controller {
   connect() {
     // 檢查書籍的狀態使否為草稿，非草稿狀態不能改 title
     let publishState = this.data.get("state");
-    if (publishState != "draft") {
+    if (publishState == "on_shelf" || publishState == "off_shelf") {
       this.titleTarget.disabled = true;
     }
   }
