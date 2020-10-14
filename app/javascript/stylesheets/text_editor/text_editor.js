@@ -21,6 +21,7 @@ import "highlightjs/styles/github"
 import axios from 'axios'
 import syn_scroll from "./syn_scroll.js"
 
+import Swal from "sweetalert2";
 
 window.addEventListener('turbolinks:load',()=>{
   if(document.querySelector('#sourceTA') && document.querySelector('#targetDiv')){
@@ -194,7 +195,7 @@ window.addEventListener('turbolinks:load',()=>{
     }
 
     // 手動存檔的code
-    function saveContent(){
+    function saveContent(confirm){
       let content = myCodeMirror.getValue()
       if(startText != content){
         startText = content
@@ -219,21 +220,25 @@ window.addEventListener('turbolinks:load',()=>{
           data: params
         })
         .then( (result)=>{
-          if(result.data['message'] === "ok" ){
-            let alert = document.querySelector('.alert')
-            alert.textContent = 'Success to Save'
-            setTimeout(function(){
-              alert.textContent = ""
-            },8000)
-            
-          }
+         
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Success to save',
+            showConfirmButton: false,
+            timer: 500
+          })
+          
+          
         })
         .catch(function(err){
-          let alert = document.querySelector('.alert')
-          alert.textContent = 'Fail to Save'
-          setTimeout(function(){
-            alert.textContent = ""
-          },8000)
+          Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: 'Fail to save',
+            showConfirmButton: true,
+            // timer: 2000
+          })
         
         })
       }

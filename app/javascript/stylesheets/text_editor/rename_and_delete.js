@@ -1,4 +1,6 @@
 import axios from "axios"
+import Swal from "sweetalert2";
+
 window.addEventListener('turbolinks:load',()=>{
   if(document.querySelector('#sourceTA') && document.querySelector('#targetDiv')){
     let chapterList = document.querySelector('.chapter_list')
@@ -125,20 +127,24 @@ window.addEventListener('turbolinks:load',()=>{
                 renameform.classList.add('x')
                 renameformErr.textContent =""
                 
-                let alert = document.querySelector('.alert')
-                alert.textContent = 'Success to change name'
-                setTimeout(function(){
-                  alert.textContent = ""
-                },8000)
+                Swal.fire({
+                  position: 'center',
+                  icon: 'success',
+                  title: 'Success to change name',
+                  showConfirmButton: false,
+                  timer: 500
+                })
                 
               }
             })
             .catch(function(err){
-              let alert = document.querySelector('.alert')
-              alert.textContent = 'Fail to change name'
-              setTimeout(function(){
-                alert.textContent = ""
-              },8000)             
+              Swal.fire({
+                position: 'center',
+                icon: 'warning',
+                title: 'Fail to change name',
+                showConfirmButton: true,
+                // timer: 2000
+              })        
             })
           }
         })
@@ -204,8 +210,24 @@ window.addEventListener('turbolinks:load',()=>{
                 })
                 target.parentElement.remove()
               }
+
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Success to delete item',
+                showConfirmButton: false,
+                timer: 500
+              })
+
             })
             .catch(function(err){
+              Swal.fire({
+                position: 'center',
+                icon: 'waring',
+                title: 'Fail to delete item',
+                showConfirmButton: true,
+                // timer: 2000
+              })
             })
             // // 更改 chapter and section 編號
             let allChapter = document.querySelectorAll('.chapter')

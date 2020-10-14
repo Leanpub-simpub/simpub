@@ -1,4 +1,5 @@
 import axios from "axios"
+import Swal from "sweetalert2";
 
 window.addEventListener("turbolinks:load", function () {
   if(document.querySelector('.book-box')){
@@ -24,11 +25,14 @@ window.addEventListener("turbolinks:load", function () {
           );
         })
         .catch(function(err){
-          let alert = document.querySelector('.alert')
-          alert.textContent = 'Fail to Download Pdf'
-          setTimeout(function(){
-            alert.textContent = ""
-          },8000)
+          Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: 'This book is only for online-reading',
+            showConfirmButton: true,
+            // timer: 1000
+          })
+          
         })
       }
 
