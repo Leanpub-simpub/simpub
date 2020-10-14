@@ -12,11 +12,11 @@
       <% end %>
       <% if has_published?(book) %>
         <%= link_to unpublish_book_path(book), method: :patch, remote: true, data: {confirm: "真的要下架嗎？"}, class: "btn" do %>
-          下架
+          <span class="txt">下架</span>
         <% end %>
       <% else %>
         <%= link_to pricing_book_path(book), data: {confirm: "確定發佈？"}, class: "btn" do %>
-          發佈
+          <span class="txt">上架</span>
         <% end %>
       <% end %>
       <%= link_to editor_edit_book_path(book) do %>
