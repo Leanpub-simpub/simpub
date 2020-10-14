@@ -124,11 +124,21 @@ window.addEventListener('turbolinks:load',()=>{
                 // 隱藏renameform
                 renameform.classList.add('x')
                 renameformErr.textContent =""
-                alert('Success to change name')
+                
+                let alert = document.querySelector('.alert')
+                alert.textContent = 'Success to change name'
+                setTimeout(function(){
+                  alert.textContent = ""
+                },8000)
+                
               }
             })
             .catch(function(err){
-              alert('Fail to change name')
+              let alert = document.querySelector('.alert')
+              alert.textContent = 'Fail to change name'
+              setTimeout(function(){
+                alert.textContent = ""
+              },8000)             
             })
           }
         })

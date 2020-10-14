@@ -209,7 +209,12 @@ window.addEventListener('turbolinks:load',()=>{
         data: formData
       })
       .then( result=>{
-        alert('Your book has conveted into PDF')
+        let alert = document.querySelector('.alert')
+          alert.textContent = 'Your book has conveted into PDF'
+          setTimeout(function(){
+            alert.textContent = ""
+          },8000)
+
       })
       .catch(function(err){
         

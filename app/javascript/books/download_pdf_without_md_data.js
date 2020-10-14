@@ -24,7 +24,11 @@ window.addEventListener("turbolinks:load", function () {
           );
         })
         .catch(function(err){
-          alert('Fail to Download Pdf')
+          let alert = document.querySelector('.alert')
+          alert.textContent = 'Fail to Download Pdf'
+          setTimeout(function(){
+            alert.textContent = ""
+          },8000)
         })
       }
 

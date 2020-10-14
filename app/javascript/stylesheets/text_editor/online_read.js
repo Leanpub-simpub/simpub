@@ -31,7 +31,7 @@ window.addEventListener('turbolinks:load',()=>{
       mdToHTML(content)
     })
     .catch(function(err){
-      alert('Fail to get content')
+      
     })
 
     
@@ -39,7 +39,7 @@ window.addEventListener('turbolinks:load',()=>{
     // 點擊到對應章節可以找到該檔案的資料並呈現
     chapterList.addEventListener('click',(e)=>{
       if((e.target.className.match("chapter") != null ||e.target.className.match("section") != null ) && e.target != document.querySelector('.active')&& e.target != chapterList){
-      
+        
         if(e.target.className.match('chapter')!=null){
           chapter = true
           section = false
@@ -66,7 +66,7 @@ window.addEventListener('turbolinks:load',()=>{
 
         })
         .catch(function(err){
-          alert('Fail to get content')
+          
         })
       }
     })

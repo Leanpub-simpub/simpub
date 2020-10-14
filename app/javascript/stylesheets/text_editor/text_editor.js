@@ -70,12 +70,12 @@ window.addEventListener('turbolinks:load',()=>{
       syn_scroll()
     })
     .catch(function(err){
-      alert('Fail to get content')
+      
     })
     
     // 點擊到對應章節可以找到該檔案的資料並呈現
     chapterList.addEventListener('click',(e)=>{
-      if((e.target.className.match("chapter") != null ||e.target.className.match("section") != null ) && e.target != document.querySelector('.active') && e.target.className.match('addsection') == null){
+      if((e.target.className.match("chapter") != null ||e.target.className.match("section") != null ) && e.target != document.querySelector('.active') && e.target.className.match('addsection') == null && e.target != chapterList){
         e.stopPropagation()
         if(e.target.className.match('chapter')!=null){
           chapter = true
@@ -116,7 +116,7 @@ window.addEventListener('turbolinks:load',()=>{
           syn_scroll()
         })
         .catch(function(err){
-          alert('Fail to get content')
+          
         })
       }
     })
@@ -221,11 +221,21 @@ window.addEventListener('turbolinks:load',()=>{
         })
         .then( (result)=>{
           if(result.data['message'] === "ok" ){
-            alert('Success to Save')
+            let alert = document.querySelector('.alert')
+            alert.textContent = 'Success to Save'
+            setTimeout(function(){
+              alert.textContent = ""
+            },8000)
+            
           }
         })
         .catch(function(err){
-          alert('Fail to Save')
+          let alert = document.querySelector('.alert')
+          alert.textContent = 'Fail to Save'
+          setTimeout(function(){
+            alert.textContent = ""
+          },8000)
+        
         })
       }
     }
