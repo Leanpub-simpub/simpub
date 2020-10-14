@@ -20,6 +20,12 @@
         padding: 0;
         width: 0;
       }
+      .empty {
+        p {
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
     }
   }
 
@@ -62,7 +68,7 @@
       text-align-last: left;
 
       .order-box {
-        a:hover {
+        a.orders:hover {
           font-size: 20px;
         }
         .col-0 {
@@ -72,6 +78,14 @@
         }
         .order-item {
           border-top: 1px solid #aaa;
+        }
+        .empty {
+          padding-left: 0;
+          text-align: center;
+
+          p {
+            text-align-last: center;
+          }
         }
       }
     }
