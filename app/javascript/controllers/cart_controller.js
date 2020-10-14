@@ -188,7 +188,7 @@ export default class extends Controller {
       deleteBtn.addEventListener("click", () => {
         Swal
           .fire({
-            text: "Are you sure you want to remove this from your cart?",
+            text: "真的要移出購物車嗎？",
             icon: "warning",
             iconColor: "#f33",
             showCancelButton: true,
