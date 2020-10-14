@@ -11,19 +11,9 @@
         <i class="fas fa-cog icon"></i>
       <% end %>
       <% if has_published?(book) %>
-<<<<<<< HEAD
-        <%= link_to unpublish_book_path(book), method: :patch, remote: true, data: {confirm: "真的要下架嗎？"}, class: "btn" do %>
-          <span class="txt">下架</span>
-        <% end %>
-      <% else %>
-        <%= link_to pricing_book_path(book), data: {confirm: "確定發佈？"}, class: "btn" do %>
-          <span class="txt">上架</span>
-        <% end %>
-=======
         <button class="off-shelf btn" data-bookid="<%= book.slug %>">下架</button>
       <% else %>
         <button class="on-shelf btn" data-bookid="<%= book.slug %>">發佈</button>
->>>>>>> 234911709808745620dd5d2fa5fc36733d7db051
       <% end %>
       <%= link_to editor_edit_book_path(book) do %>
         <i class="fas fa-edit icon"></i>
