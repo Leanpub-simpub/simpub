@@ -4,7 +4,7 @@ import "highlightjs/styles/github"
 
 import axios from 'axios'
 window.addEventListener('turbolinks:load',()=>{
-  if(document.querySelector('.chapter_list') && document.querySelector('#sourceTA') == null){
+  if(document.querySelector('.chapter_list') && document.querySelector('#sourceTA') == null && document.querySelector('#targetDiv')!==null){
     let bookName = document.querySelector('.book_name')
     let chapterList = document.querySelector('.chapter_list')
 
