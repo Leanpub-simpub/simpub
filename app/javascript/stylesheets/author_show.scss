@@ -5,7 +5,8 @@ section.author-publishing{
     box-shadow: 7.16829px 7.16829px 19.9119px rgba(0, 0, 0, 0.15);
     border-radius: 7.96477px;
     border: 0.8px solid #F1C39E;
-    padding:0px;
+    padding:20px 0 0 0;
+
 
     .avatar{
       padding: 0;
@@ -67,17 +68,14 @@ section.author-publishing{
       font-size: 20px;
       font-weight: bold;
     }
-
   }
 }
 
 @media screen and (min-width: 992px) {
-  .profile-show{
+  section.author-publishing{
     .author-about {
-      height: 100%;
-
+      padding:20px 0;
       .avatar {
-        padding-top: 17px;
         margin: 0;
 
         .img-box {
@@ -85,8 +83,8 @@ section.author-publishing{
         }
       }
     }
-    .authors-info {
-      .user-name {
+    .author-all-books {
+      h2 {
         text-align: left;
       }
     }
