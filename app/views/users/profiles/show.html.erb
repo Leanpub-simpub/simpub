@@ -76,9 +76,9 @@
       <h3 class="col-12 title">Published Books</h3>
       <div class="buy-books col-12 row justify-content-between">
         <% @user.pub_books.each do |book| %>
-          <div class="book-item col-12 col-lg-2">
+          <div class="book-item col-6 col-lg-2">
             <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
-            <h4><%= book.title %></h4>
+            <h5><%= book.title %></h5>
             <div class="book-name">
               <%= book.authors[0].name %>
             </div>
