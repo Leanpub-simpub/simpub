@@ -34,23 +34,15 @@ class CartsController < ApplicationController
     @items = cart.select.with_index { |item, index|
       item if index != params[:index].to_i
     }
-
-    p "-" * 50
-    pp session[Cart::SessionKey]
-    p "-" * 50
+    
     current_cart.delete_item(@items)
     session[Cart::SessionKey] = current_cart.serialize
-    p "-" * 50
-    pp session[Cart::SessionKey]
-    p "-" * 50
-
-    # redirect_to action: :show, notice: "商品已移出購物車"
   end
 
 
   def payment
     if current_cart.empty?
-      redirect_to books_path, notice: "購物車內沒有商品"
+      redirect_to books_path, notice: "Nothing in the Cart"
     else
       if user_signed_in?
         @token = gateway.client_token.generate
@@ -76,7 +68,7 @@ class CartsController < ApplicationController
         # 成功付款建立訂單
         create_order(current_user, result.transaction.id)
       else
-        redirect_to root_path, notice: "付款發生錯誤"
+        redirect_to root_path, notice: "Error! Please try again"
       end
     end
 
@@ -85,14 +77,14 @@ class CartsController < ApplicationController
     end
            
     session[Cart::SessionKey] = nil
-    redirect_to root_path, notice: "付款成功"
+    redirect_to root_path, notice: "Payment Success"
   end
 
 
   def refund
     order = current_user.orders.find_by(uuid: params[:uuid])
     if order.total == 0
-      redirect_to purchases_path, notice: "零元訂單無法退貨"
+      redirect_to purchases_path, notice: "This was a free purchase, so it cannot be refunded"
       return
     end
 
@@ -103,7 +95,7 @@ class CartsController < ApplicationController
     elsif transaction.status == "submitted_for_settlement"
       refund = gateway.transaction.void(transaction.id)
     else
-      redirect_to purchases_path, notice: "退款發生錯誤，請聯絡客服人員"
+      redirect_to purchases_path, notice: "Refund error occurred, please contact customer service"
     end
 
     if refund.success?
@@ -114,9 +106,9 @@ class CartsController < ApplicationController
       end
       order.destroy
 
-      redirect_to purchases_path, notice: "已成功申請退款"
+      redirect_to purchases_path, notice: "Successfully requested a refund"
     else
-      redirect_to purchases_path, notice: "退款失敗，請重新申請"
+      redirect_to purchases_path, notice: "Refund failed, please apply again"
     end
   end
 

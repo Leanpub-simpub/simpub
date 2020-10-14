@@ -87,7 +87,7 @@ class BooksController < ApplicationController
 
     publish_notify
     
-    redirect_to @book, notice: "書籍已成功上架"
+    redirect_to @book, notice: "The book has been successfully published"
   end
 
   def unpublish
@@ -96,7 +96,7 @@ class BooksController < ApplicationController
 
   def wish
     current_user.wish_books << @book
-    flash[:notice] = "書籍已加入願望清單"
+    flash[:notice] = "Added item to your Wish List."
   end
 
   # 線上編輯 action
