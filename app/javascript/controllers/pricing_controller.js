@@ -3,18 +3,17 @@ import { Controller } from "stimulus";
 import Swal from "sweetalert2";
 
 export default class extends Controller {
-  static targets = [ "form", "btn", "submit" ];
+  static targets = [ "form" ];
 
-  connect() {
+  submit(e) {
+    e.preventDefault();
+
     const form = this.formTarget;
     const book = form.dataset.pricingBook;
-    const btn = this.btnTarget;
-    const submitBtn = this.submitTarget;
 
-    btn.addEventListener("click", () => {
-      Swal
+    Swal
       .fire({
-        text: "確定上架？",
+        text: "Publishing？",
         icon: "warning",
         iconColor: "#f33",
         showCancelButton: true,
@@ -26,9 +25,8 @@ export default class extends Controller {
       .then(result => {
         if (result.value) {
           form.action = `/books/${book}/publish`;
-          submitBtn.click();
+          form.submit();
         }
       });
-    });
   }
 }

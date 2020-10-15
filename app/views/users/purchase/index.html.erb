@@ -23,7 +23,7 @@
   
             <% @orders.each do |order| %>
               <div class="row py-2 order-item">
-                <%= link_to "/purchases_show?uuid=#{order.uuid}", class: "d-flex w-100", data: {controller: "order", action: "order#show", order_uuid: order.uuid, turbolinks: "false"} do %>
+                <%= link_to "/purchases_show?uuid=#{order.uuid}", class: "orders d-flex w-100", data: {controller: "order", action: "order#show", order_uuid: order.uuid, turbolinks: "false"} do %>
                   <div class="col-12 col-lg-5"><%= order.order_items[0].book.title %></div>
                   <div class="col-0 col-lg-2"><%= order.updated_at.strftime("%Y-%m-%d") %></div>
                   <div class="col-0 col-lg-2"><%= order.order_items.count %></div>
@@ -33,11 +33,11 @@
             <% end %>
           </div>
         <% else %>
-          <div class="container purchase d-flex  text-center">
-            <p class=" h2 mx-auto align-self-center">
+          <div class="empty container d-flex text-center">
+            <p class="h2 align-self-center">
               <%= link_to "Get some books", books_path, class: "" %> <br>
-              or <br>
-              <%= link_to "Is there any book in your shopping cart",cart_path ,class:"" %>
+              <span class="txt">or</span> <br>
+              <%= link_to "Is there any book in your shopping cart", cart_path %>
             </p>
           </div>
         <% end %>

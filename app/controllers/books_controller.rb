@@ -6,7 +6,7 @@ class BooksController < ApplicationController
   before_action :find_book, only: [:show, :edit, :update, :pricing, :publish, :unpublish, :wish, :read, :add_chapter, :add_section]
 
   def index
-    @books = Book.published_books
+    @books = Book.published_books.includes(:authors)
 
     if params[:book_search].present?
       @books = @books.book_search(params[:book_search])
@@ -21,7 +21,7 @@ class BooksController < ApplicationController
   
   def show
     @comments = @book.comments.where.not(content: "")
-    @stars = @comments.average(:stars).round() if @comments.size > 0
+    @stars = @book.comments.average(:stars).ceil() if @comments.size > 0
   end
   
 
@@ -87,16 +87,19 @@ class BooksController < ApplicationController
 
     publish_notify
     
-    redirect_to @book, notice: "書籍已成功上架"
+    redirect_to @book, notice: "The book has been successfully published"
   end
 
   def unpublish
     @book.remove!
+    flash[:notice] = "#{@book.title} is off shelf"
+    render json: { redirect: users_books_path }
   end
 
   def wish
     current_user.wish_books << @book
-    flash[:notice] = "書籍已加入願望清單"
+    flash[:notice] = "Added item to your Wish List."
+    render json: { redirect: book_path(@book) }
   end
 
   # 線上編輯 action

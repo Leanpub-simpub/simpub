@@ -12,16 +12,15 @@
   </div>
   <br>
 
-  <%= form_for @book, data: {target: "pricing.form", pricing_book: @book.slug} do |f| %>
+  <%= form_with model: @book, data: {target: "pricing.form", pricing_book: @book.slug} do |f| %>
     <div>
       <%= f.label :price, "設定價格" %>
       <%= f.number_field :price, :step => "0.01", data: {required: "requred"} %>
     </div>
 
     <div>
-      <%= f.submit "上架", class: "x", data: {target: "pricing.submit"} %>
+      <%= f.submit "上架", data: {action: "pricing#submit"} %>
     </div>
   <% end %>
-  <button class="btn", data-target="pricing.btn">上架</button>
 </div>
 <div id="allpdf"></div>

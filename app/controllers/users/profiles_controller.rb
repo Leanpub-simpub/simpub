@@ -32,7 +32,7 @@ class Users::ProfilesController < ApplicationController
 
   def unwish
     remove_wish_book(@book)
-    redirect_to users_wishlist_path, notice: "已從願望清單中移除"
+    redirect_to users_wishlist_path, notice: "Removed item from your Wish List"
   end
 
   def wishcart
