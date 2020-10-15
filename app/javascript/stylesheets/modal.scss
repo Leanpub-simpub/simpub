@@ -7,7 +7,7 @@ body {
   height: 85vh;
   background-color: #fa0;
   position: fixed;
-  top: 3.5rem;
+  top: 4.2rem;
   left: 0;
   z-index: 100;
 
@@ -19,14 +19,8 @@ body {
   }
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 720px) {
   .cart-modal {
-    top: 4rem;
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  .cart-modal {
-    top: 5.8rem;
+    top: 4.8rem;
   }
 }
