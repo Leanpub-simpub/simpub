@@ -11,7 +11,7 @@ section.flash {
     text-align: center;
     box-sizing: border-box;
     padding-top: 10px;
-    // padding-bottom: 6px;
+    border-color: #888;
   }
   button[data-dismiss="alert"] {
     padding: 0rem 1.25rem;
@@ -19,5 +19,8 @@ section.flash {
     span {
       font-size: 38px;
     }
+  }
+  button[data-dismiss="alert"]:hover {
+    color: #e09a5f;
   }
 }

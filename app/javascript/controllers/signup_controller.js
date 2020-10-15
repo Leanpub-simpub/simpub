@@ -1,8 +1,9 @@
 import { Controller } from "stimulus";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export default class extends Controller {
-  static targets = [ "name", "username", "email", "name_error", "username_error", "email_error" ];
+  static targets = [ "name", "username", "email", "name_error", "username_error", "email_error", "form" ];
 
   connect() {
     const token = document.querySelector("meta[name=csrf-token]").content;
@@ -14,10 +15,27 @@ export default class extends Controller {
     const nameError = this.name_errorTarget;
     const usernameError = this.username_errorTarget;
     const emailError = this.email_errorTarget;
+    const form = this.formTarget;
 
-    validate(nameInput, "name", nameError)
-    validate(usernameInput, "username", usernameError)
-    validate(emailInput, "email", emailError)
+    if (document.querySelector("#error_explanation")) {
+      const errors = document.querySelector("#error_explanation");
+
+      if (errors.textContent.includes("Password confirmation doesn't match Password")) {
+        Swal
+          .fire({
+            text: "Password confirmation doesn't match",
+            icon: "warning",
+            iconColor: "#f33",
+            showConfirmButton: false,
+            showCancelButton: true,
+            cancelButtonText: "Got it!"
+          });
+      }
+    }
+
+    validate(nameInput, "name", nameError);
+    validate(usernameInput, "username", usernameError);
+    validate(emailInput, "email", emailError);
 
     function validate(input, column, error) {
       input.addEventListener("blur", () => {
