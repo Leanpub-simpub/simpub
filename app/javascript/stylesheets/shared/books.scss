@@ -1,29 +1,5 @@
 // 書本樣式
 .book-cover{
   box-shadow: 1px 1px 5px #353535;
-  height: 280px;
-}
-
-@media screen and (min-width:576px){
-  .book-cover{
-    height: 200px;
-  }
-}
-
-@media screen and (min-width:768px){
-  .book-cover{
-    height: 200px;
-  }
-}
-
-@media screen and (min-width:992px){
-  .book-cover{
-    height: 180px;
-  }
-}
-
-@media screen and (min-width:1200px){
-  .book-cover{
-    height: 210px;
-  }
+  
 }
