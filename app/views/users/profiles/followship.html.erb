@@ -1,4 +1,4 @@
-<section class="followship container">
+<section class="followship container" data-controller="followship">
   <h3 class="text-center txt">You are Following</h3>
   <div class="card-box row m-0">
     <% @followers.each do |follower| %>
@@ -9,7 +9,7 @@
         <div class="card-body col-lg-10 text-center">
           <h5 class="card-title"><%= follower.name %></h5>
         </div>
-        <button class="follow-btn btn btn-primary txt col-lg-10 w-100">
+        <button class="follow-btn btn btn-primary txt col-lg-10 w-100" data-username="<%= follower.username %>">
           <% if follower.followed_by?(current_user) %>
             Following
           <% else %>
@@ -30,7 +30,7 @@
         <div class="card-body col-lg-10 text-center">
           <h5 class="card-title"><%= followee.name %></h5>
         </div>
-        <button class="follow-btn btn btn-primary txt col-lg-10 w-100">
+        <button class="follow-btn btn btn-primary txt col-lg-10 w-100" data-username="<%= followee.username %>">
           <% if followee.followed_by?(current_user) %>
             Following
           <% else %>
