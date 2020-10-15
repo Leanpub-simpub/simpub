@@ -99,19 +99,22 @@
           <h4 class="">You Paid </h4>
           <span class="hint"> （＄US DOLLAR ) </span>
         </div>
+        
 
         <%= form_with url: add_cart_path(@book.id), class: "add-cart-form d-inline" do |f| %>
           <!-- 消費者須付金額-->
-          <%= f.text_field :cart_price, class: "cart-price text-center my-1" %>
-          
-          <!-- 加入購物車按鈕 -->
-          <%= f.submit "ADD TO CART", class: "add-to-cart-btn btn btn-primary" %>
-        <% end %>
+          <%= f.text_field :cart_price, class: "cart-price text-center my-1" %> 
 
-        <!-- 加入願望清單-->
-        <span class="add-to-wishlist btn" data-controller="bookwish", data-action="bookwish#add" data-bookwish-id="<%= @book.id %>">
-          <i class="far fa-heart fa-2x icon"></i>
-        </span>
+        <div class="d-flex mt-2 align-items-center">
+          <!-- 加入購物車按鈕 -->
+          <%= f.submit "ADD TO CART", class: "add-to-cart btn btn-primary" %>
+        <% end %>
+        
+          <!-- 加入願望清單-->
+          <span class="add-to-wishlist btn" data-controller="bookwish", data-action="bookwish#add" data-bookwish-id="<%= @book.id %>">
+            <i class="far fa-heart fa-2x"></i>
+          </span>
+        </div>
       </div>
     </div>
 	</div>

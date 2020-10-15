@@ -1,13 +1,18 @@
 .book-show {
   display: flex;
 
+  .info,
   .cover,
   .shopping {
     display: flex;
     flex-direction: column;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+  }
+
+  .cover,
+  .shopping {
     justify-content: space-between;
-    margin-top: 1vh;
-    margin-bottom: 1vh;
   }
 
   .rating {
@@ -15,6 +20,10 @@
   }
 
   .about {
+    -webkit-line-clamp: 15;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    overflow: scroll;
     text-overflow: ellipsis;
   }
 }
@@ -144,18 +153,6 @@
   .cart-price:focus {
     outline: none;
   }
-  .add-to-cart-btn {
-    width: 210px;
-    font-size: 22px;
-    font-weight: 700;
-    transition: 0.3s;
-  }
-}
-
-.add-to-wishlist {
-  font-size: 16px;
-  text-decoration: underline;
-  text-align: left;
 }
 
 .book-show {
