@@ -1,0 +1,146 @@
+section.author-publishing{
+  .author-about{
+    width: 100%;
+    background: #FFFFFF;
+    box-shadow: 7.16829px 7.16829px 19.9119px rgba(0, 0, 0, 0.15);
+    border-radius: 7.96477px;
+    border: 0.8px solid #F1C39E;
+    padding:20px 0 0 0;
+    margin: auto;
+
+
+    .avatar{
+      padding: 0;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      justify-items: space-around;
+      
+      .img-box{
+        margin-bottom: 1rem;
+        p{
+          color: #5C5D60 !important;
+          font-size: 20px;
+        }
+      }
+      .new-book-button{
+        margin-bottom: 17px;
+        height: 50.29px;
+      }
+    }
+  }
+
+  .author-all-books{
+    margin-left: auto;
+    margin-right: auto;
+
+    .all-book-info {
+      text-align: start;
+      font-family: SF Pro Display;
+      font-style: normal;
+      font-weight: bold;
+      padding: 20px 0;
+      letter-spacing: 0.05em;
+      color: #5C5D60 !important;
+      text-align: center;
+      p{
+        margin: auto;
+      }
+    }
+  }
+  .all-books{
+    font-family: SF Pro Display;
+    font-style: normal;
+    font-weight: bold;
+    padding: 20px 0;
+    letter-spacing: 0.05em;
+    color: #5C5D60 !important;
+    text-align: center;
+    h4{
+      margin: 20px 0;
+      color: #5C5D60 !important;
+
+    }
+    pubbook-item{
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .publish-book{
+      margin:auto;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .unpublish-book{
+      margin:auto;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  section.author-publishing{
+    .author-about {
+      padding:20px 0;
+      margin-top: 0;
+
+      .avatar {
+        margin: auto;
+        .new-book-button{
+          padding: 0;
+        }
+
+        .img-box {
+          margin-bottom: auto;
+        }
+      }
+    }
+    .all-books {
+      .publish-book {
+        .pubbook-item {
+          max-width: 20%;
+          margin: 10px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+        }
+      }
+      .unpublish-book {
+        .pubbook-item {
+          max-width: 20%;
+          margin: 10px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+        }
+      }
+    }
+    .author-all-books {
+      .all-book-info{
+        padding: 0px;
+
+        h2 {
+          text-align: left;
+          padding:0 15px;
+        }
+        p{
+          text-align: left;
+
+        }
+      } 
+     
+    }
+    h4{
+      text-align: left;
+    }
+
+  }
+}
+
+
+
