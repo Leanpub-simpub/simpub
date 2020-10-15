@@ -1,23 +1,43 @@
-<div class="container d-flex justify-content-center followship">
-  <div>
-    <h1 class="col">Follow</h1>
-    
-    <div class="col">
-      <p>追隨中</p>
-      <ul class="list-group list-group-flush">
-        <% @followers.each do |follower| %>
-          <li class="list-group-item"><%= link_to follower.name, users_profile_path(follower.username) %></li>
-        <% end %>
-      </ul>
-    </div>
-    
-    <div class="col">
-      <p>追隨者</p>
-      <ul class="list-group list-group-flush">
-        <% @followees.each do |followee| %>
-          <li class="list-group-item"><%= link_to followee.name, users_profile_path(followee.username) %></li>
-        <% end %>
-      </ul>
-    </div>
+<section class="followship container">
+  <h3 class="text-center txt">You are Following</h3>
+  <div class="card-box row m-0">
+    <% @followers.each do |follower| %>
+      <div class="card col-6 col-md-4 col-lg-3 py-3">
+        <div class="img-box col-10 col-lg-8 mx-auto">
+          <%= render "shared/frontend/user_avatar", user: follower %>
+        </div>
+        <div class="card-body col-lg-10 text-center">
+          <h5 class="card-title"><%= follower.name %></h5>
+        </div>
+        <button class="follow-btn btn btn-primary txt col-lg-10 w-100">
+          <% if follower.followed_by?(current_user) %>
+            Following
+          <% else %>
+            Follow
+          <% end %>
+        </button>
+      </div>
+    <% end %>
   </div>
-</div>
+
+  <h3 class="text-center txt mt-5">Who's Following you</h3>
+  <div class="card-box row m-0">
+    <% @followees.each do |followee| %>
+      <div class="card col-6 col-md-4 col-lg-3 py-3">
+        <div class="img-box col-10 col-lg-8 mx-auto">
+          <%= render "shared/frontend/user_avatar", user: followee %>
+        </div>
+        <div class="card-body col-lg-10 text-center">
+          <h5 class="card-title"><%= followee.name %></h5>
+        </div>
+        <button class="follow-btn btn btn-primary txt col-lg-10 w-100">
+          <% if followee.followed_by?(current_user) %>
+            Following
+          <% else %>
+            Follow
+          <% end %>
+        </button>
+      </div>
+    <% end %>
+  </div>
+</section>
