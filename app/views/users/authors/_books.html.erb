@@ -11,9 +11,9 @@
         <i class="fas fa-cog icon"></i>
       <% end %>
       <% if has_published?(book) %>
-        <button class="off-shelf btn" data-bookid="<%= book.slug %>">下架</button>
+        <button class="off-shelf btn btn-primary" data-bookid="<%= book.slug %>">Unpublish</button>
       <% else %>
-        <button class="on-shelf btn" data-bookid="<%= book.slug %>">發佈</button>
+        <button class="on-shelf btn btn-primary" data-bookid="<%= book.slug %>">Publish</button>
       <% end %>
       <%= link_to editor_edit_book_path(book) do %>
         <i class="fas fa-edit icon"></i>
