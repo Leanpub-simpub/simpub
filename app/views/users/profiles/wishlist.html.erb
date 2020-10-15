@@ -16,8 +16,8 @@
         </div>
       
         <div class="wish-btn col-12">
-          <button class="item-edit btn d-block" data-action="wishlist#cart">Move to cart</button>
-          <%= link_to "Remove from your wish list", users_unwish_path(current_user.username, id: book), method: :delete, remote: true, class: "btn border d-block removeWish" %>
+          <button class="item-edit btn d-block border shadow" data-action="wishlist#cart">Move to cart</button>
+          <%= link_to "Remove from your wish list", users_unwish_path(current_user.username, id: book), method: :delete, remote: true, class: "btn  d-block removeWish" %>
         </div>
       </div>
 
