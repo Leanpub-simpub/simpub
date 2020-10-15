@@ -6,6 +6,7 @@ section.author-publishing{
     border-radius: 7.96477px;
     border: 0.8px solid #F1C39E;
     padding:20px 0 0 0;
+    margin: auto;
 
 
     .avatar{
@@ -56,7 +57,9 @@ section.author-publishing{
     color: #5C5D60 !important;
     text-align: center;
     h4{
-      margin:auto;
+      margin: 20px 0;
+      color: #5C5D60 !important;
+
     }
     pubbook-item{
       padding: 10px;
@@ -81,20 +84,63 @@ section.author-publishing{
 @media screen and (min-width: 992px) {
   section.author-publishing{
     .author-about {
-      padding:20px 0;
+      padding: 45px 0;
+      border: 0;
+      margin-top: 0;
+      box-shadow:  0;
+      border-radius: 0;
+
+
       .avatar {
-        margin: 0;
+        margin: auto;
+        .new-book-button{
+          padding: 0;
+        }
 
         .img-box {
           margin-bottom: auto;
         }
       }
     }
-    .author-all-books {
-      h2 {
-        text-align: left;
+    .all-books {
+      .publish-book {
+        .pubbook-item {
+          max-width: 20%;
+          margin: 10px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+        }
+      }
+      .unpublish-book {
+        .pubbook-item {
+          max-width: 20%;
+          margin: 10px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+        }
       }
     }
+    .author-all-books {
+      .all-book-info {
+        h2 {
+          text-align: left;
+          padding:0 15px;
+        }
+        p {
+          text-align: left;
+          
+        }
+      }
+
+    }
+    h4{
+      text-align: left;
+    }
+
   }
 }
 
