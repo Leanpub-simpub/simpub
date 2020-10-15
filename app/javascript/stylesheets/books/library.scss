@@ -2,52 +2,52 @@
   a#download:hover {
     color: #e09a5f;
   }
-}
 
-div#collapseBook {
-  background-color: black;
+  .rating {
+    cursor: pointer;
+  }
 
-  .card {
+  .rating .rating-star {
+    display: inline-block;
+    position: relative;
+    padding-right: 5px;
+    margin-left: -5px;
+    color: #e3cf7a;
+  }
+  .download {
+    background: linear-gradient(90deg, #f28128 0%, #f1c39e 100%);
+    color: white;
+    border: none;
+    border-radius: 12.279px;
+    opacity: 0.9;
+    text-align: center;
+  }
+  .download:hover {
+    opacity: 1;
+    color: #ffffff;
+    background-color: #e09a5f;
+  }
+
+  div#collapseBook {
     background-color: black;
 
-    .book-about {
-      .author {
-        color: #e09a5f;
-      }
+    .card {
+      background-color: black;
 
-      a:hover {
-        color: #e09a5f;
-        line-height: 10px;
-      }
+      .book-about {
+        .author {
+          color: #e09a5f;
+        }
 
-      span {
-        color: rgba(225, 154, 96, 0.5);
+        a:hover {
+          color: #e09a5f;
+          line-height: 10px;
+        }
+
+        span {
+          color: rgba(225, 154, 96, 0.5);
+        }
       }
     }
   }
-}
-
-.rating {
-	cursor: pointer;
-}
-
-.rating .rating-star {
-	display: inline-block;
-  position: relative;
-  padding-right: 5px;
-  margin-left: -5px;
-  color: #e3cf7a;
-}
-.download {
-  background: linear-gradient(90deg, #F28128 0%, #F1C39E 100%);
-  color: white;
-  border: none;
-  border-radius: 12.279px;
-  opacity: 0.9;
-  text-align: center;
-}
-.download:hover {
-  opacity: 1;
-  color: #ffffff;
-  background-color: #e09a5f;
 }

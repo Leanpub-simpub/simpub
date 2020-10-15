@@ -1,7 +1,6 @@
 .book-show {
   display: flex;
 
-  .info,
   .cover,
   .shopping {
     display: flex;
@@ -9,6 +8,14 @@
     justify-content: space-between;
     margin-top: 1vh;
     margin-bottom: 1vh;
+  }
+
+  .rating {
+    border: #cccccc;
+  }
+
+  .about {
+    text-overflow: ellipsis;
   }
 }
 
@@ -22,15 +29,18 @@
   text-decoration: underline;
 }
 
-.tag {
-  // border-radius: 10%;
-  border: 1px solid #cccccc;
-  background-color: #cccccc;
-  padding: 5px 2px;
-  font-size: 1.2rem;
+.tags {
+  display: inline;
 
-  span {
-    margin-right: 10px;
+  .tag {
+    border: 1px solid #cccccc;
+    background-color: #cccccc;
+    padding: 5px 2px;
+    font-size: 0.8rem;
+
+    span {
+      // margin-right: 10px;
+    }
   }
 }
 
@@ -74,9 +84,9 @@
   .author-earns-box {
     height: 28px;
     width: 90px;
-    border-top: 2px solid #333333;
-    border-left: 2px solid #333333;
-    border-bottom: 2px solid #333333;
+    border-top: 2px solid #6666;
+    border-left: 2px solid #6666;
+    border-bottom: 2px solid #6666;
     position: relative;
     background-color: white;
 
@@ -92,22 +102,28 @@
   .author-earns-box {
     width: 80px;
   }
+
   input[type="range"] {
     -webkit-appearance: none;
     height: 28px;
     outline: none;
-    border-top: 2px solid #333333;
-    border-right: 2px solid #333333;
-    border-bottom: 2px solid #333333;
+    border-top: 2px solid #6666;
+    border-right: 2px solid #6666;
+    border-bottom: 2px solid #6666;
   }
   input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     cursor: grabbing;
     width: 12px;
     height: 40px;
-    background-color: #666666;
-    border-radius: 25%;
-    box-shadow: 0 2px 5px 0 #666666;
+    background-color: #e09a5f;
+    border-radius: 50rem !important;
+    border-top-left-radius: 50rem !important;
+    border-top-right-radius: 50rem !important;
+    border-bottom-right-radius: 50rem !important;
+    border-bottom-left-radius: 50rem !important;
+    border: 2px solid white;
+    box-shadow: 0 2px 5px 0 #e09a5f;
   }
 }
 
@@ -149,6 +165,11 @@
 .avatar-container {
   width: 75px;
   height: 75px;
+}
+
+.book-show-item {
+  margin-right: 15px;
+  margin-left: 15px;
 }
 
 @media screen and (max-width: 992px) {

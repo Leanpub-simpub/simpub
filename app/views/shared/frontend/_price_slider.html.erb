@@ -14,17 +14,17 @@
 <div class="slider mb-4">
   <h5 class="mb-1">You Paid</h5>
   <div class="user-pay d-flex my-2">
-    <div class="user-pay-box">
+    <div class="user-pay-box rounded-left">
       <span class="user-pay-show">$<%= book.price * 2 %></span>
     </div>
-    <input id="user-pay" class="w-100 mb-3" type="range" min="<%= book.price %>" max="<%= book.price * 3 %>" value="<%= book.price * 2 %>" step="0.01">
+    <input id="user-pay" class="w-100 rounded-right mb-3" type="range" min="<%= book.price %>" max="<%= book.price * 3 %>" value="<%= book.price * 2 %>" step="0.01">
   </div>
 
   <h6 class="mb-1">Author Earns</h6>
   <div class="author-earns d-flex my-2">
-    <div class="author-earns-box">
+    <div class="author-earns-box rounded-left">
       <span class="author-earns-show">$<%= book.price * 2 * 0.8 %></span>
     </div>
-    <input id="author-earns" class="w-100" type="range" min="<%= book.price * 0.8 %>" max="<%= book.price * 4 %>" value="<%= book.price * 2 %>" step="0.01">
+    <input id="author-earns" class="w-100 rounded-right" type="range" min="<%= book.price * 0.8 %>" max="<%= book.price * 4 %>" value="<%= book.price * 2 %>" step="0.01">
   </div>
 </div>

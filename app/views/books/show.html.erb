@@ -1,5 +1,5 @@
 <div class="book-show container txt d-flex flex-column" >
-	<div class="row">
+	<div class="book-show-item row">
     <div class="col-md-12 col-lg-8 d-flex row">
       <div class="cover d-flex flex-column px-4 col-md-12 col-lg-6">
         <!-- 書本封面 -->
@@ -10,15 +10,24 @@
         <!-- 完成度 -->
         <div class="completeness mt-auto">
           <div class="progress mx-auto mb-2"></div>
-          <p class="text-center mb-0">This book is <%= @book.completeness %>% complete</p>
+          <p class="text-center mb-0">This Book Is <%= @book.completeness %>% Complete</p>
           <p class="text-center mb-0">COMPLETED ON <%= @book.updated_at.to_date %></p>
+        </div>
+
+        <!-- 這本書的標籤 -->
+        <div class="tags mt-2">
+          <% @book.tag_items.each do |tag| %>
+            <span class="tag btn px-4 mr-1 my-1"># <%= tag %></span>
+          <% end %>
         </div>
       </div>
 
-      <div class="info px-4 col-md-12 col-lg-6">
+      <div class="info px-4 col-md-12 col-lg-6 d-flex flex-column">
+        
+        <!-- 標題與作者 -->
         <div class="book-info">
           <!-- 標題 -->
-          <h1 class="title h3 mb-4">
+          <h1 class="title">
             <%= @book.title %>
           </h1>
 
@@ -36,8 +45,21 @@
           </div>
         </div>
 
+        <!-- 評分 -->
+        <%= form_with model: @comment, url: "#", class: "comment-form" do |f| %>
+          <div>
+            <%= f.hidden_field :stars, id: "rating-input", min: "0", max: "5" %>
+          </div>
+
+          <div class="rating" role="optgroup">
+            <% 1.upto(5) do |n| %>
+              <i class="far fa-star fa-2x rating-star" id="rating-<%= n %>" data-rating="<%= n %>" tabindex="0" aria-label="Rate as one out of 5 stars" role="radio"></i>
+            <% end %>
+          </div>
+        <% end %>
+
         <!-- 關於此書 -->
-        <div class="mb-3">
+        <div class="about mt-4">
           <% if @book.about %>
             <%= @book.about %>
           <% else %>
@@ -46,32 +68,25 @@
             </p>
           <% end %>
         </div>
-
-        <!-- 本書的標籤 -->
-        <div class="tags my-2 mt-auto">
-          <% @book.tag_items.each do |tag| %>
-            <span class="tag btn px-4"># <%= tag %></span>
-          <% end %>
-        </div>
-
-        <!-- 試閱 -->
-        <div class="button-group">
-          <%= link_to sample_book_path(@book),class: "w-100" do %>
-            <div class="btn btn-outline-secondary my-3">
-              <span class="mr-2 txt">Read Free Sample</span>
-              <i class="far fa-file-pdf"></i>
-            </div>
-          <% end %> 
-
-          <%= link_to table_of_contents_book_path(@book), class: "w-100" do %>
-            <div class="btn btn-outline-secondary">
-              <span class="mr-2 txt "> Table Of Contents</span>
-              <i class="fas fa-list-ol"></i>
-            </div>
-          <% end %>
-        </div>
-
       </div>
+      
+      <!-- 試閱 -->
+      <div class="button-group col-12">
+        <%= link_to sample_book_path(@book),class: "w-100" do %>
+          <div class="btn btn-outline-secondary my-3">
+            <span class="txt">Read Free Sample</span>
+            <i class="far fa-file-pdf"></i>
+          </div>
+        <% end %> 
+
+        <%= link_to table_of_contents_book_path(@book), class: "w-100" do %>
+          <div class="btn btn-outline-secondary">
+            <span class="txt "> Table Of Contents</span>
+            <i class="fas fa-list-ol"></i>
+          </div>
+        <% end %>
+      </div>
+
     </div>
 
     <!-- 購書區 -->
@@ -84,21 +99,20 @@
           <h4 class="">You Paid </h4>
           <span class="hint"> （＄US DOLLAR ) </span>
         </div>
-        <%= form_with url: add_cart_path(@book.id), class: "add-cart-form" do |f| %>
+
+        <%= form_with url: add_cart_path(@book.id), class: "add-cart-form d-inline" do |f| %>
           <!-- 消費者須付金額-->
           <%= f.text_field :cart_price, class: "cart-price text-center my-1" %>
           
           <!-- 加入購物車按鈕 -->
-        <div class="d-flex align-items-center mt-3">
           <%= f.submit "ADD TO CART", class: "add-to-cart-btn btn btn-primary" %>
         <% end %>
-          <!-- 加入願望清單-->
-          <button class="add-to-wishlist btn" data-controller="bookwish", data-action="bookwish#add" data-bookwish-id="<%= @book.id %>">
-            <i class="far fa-heart fa-2x icon"></i>
-          </button>
-        </div>
-      </div>
 
+        <!-- 加入願望清單-->
+        <span class="add-to-wishlist btn" data-controller="bookwish", data-action="bookwish#add" data-bookwish-id="<%= @book.id %>">
+          <i class="far fa-heart fa-2x icon"></i>
+        </span>
+      </div>
     </div>
 	</div>
 
