@@ -72,17 +72,20 @@
     </div>
 
     <%# 出版過的書 %>
-    <div class="row m-0 d-flex">
+    <div class="row m-0 col-12">
       <h3 class="col-12 title">Published Books</h3>
-      <% @user.pub_books.each do |book| %>
-        <div class="book-item col-6 col-sm-4 col-md-3 col-lg-2 d-flex flex-column justify-content-between">
-          <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
-          <h4><%= book.title %></h4>
-          <div>
-            <%= book.authors[0].name %>
+      <div class="buy-books col-12 row justify-content-between">
+        <% @user.pub_books.each do |book| %>
+          <div class="book-item col-12 col-lg-2">
+            <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
+            <h4><%= book.title %></h4>
+            <div class="book-name">
+              <%= book.authors[0].name %>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
+      
     </div>    
     
   </div>
