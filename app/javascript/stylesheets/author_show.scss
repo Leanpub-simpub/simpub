@@ -6,6 +6,7 @@ section.author-publishing{
     border-radius: 7.96477px;
     border: 0.8px solid #F1C39E;
     padding:20px 0 0 0;
+    margin: auto;
 
 
     .avatar{
@@ -56,7 +57,9 @@ section.author-publishing{
     color: #5C5D60 !important;
     text-align: center;
     h4{
-      margin:auto;
+      margin: 20px 0;
+      color: #5C5D60 !important;
+
     }
     pubbook-item{
       padding: 10px;
@@ -91,10 +94,23 @@ section.author-publishing{
       }
     }
     .author-all-books {
-      h2 {
-        text-align: left;
-      }
+      .all-book-info{
+        padding: 0px;
+        h2 {
+          text-align: left;
+          padding:0 15px;
+        }
+        p{
+          text-align: left;
+
+        }
+      } 
+     
     }
+    h4{
+      text-align: left;
+    }
+
   }
 }
 
