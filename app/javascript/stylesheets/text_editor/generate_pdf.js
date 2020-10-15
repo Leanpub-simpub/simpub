@@ -1,12 +1,13 @@
 import jsPDF from "jspdf";
 import "./TaipeiSansTCBeta-Bold-normal"
-// import html2canvas from 'html2canvas';
+import html2canvas from 'html2canvas';
 import markdownit from "markdown-it/dist/markdown-it" 
 import hljs from 'highlightjs/highlight.pack'
 import "highlightjs/styles/github"
 import axios from "axios"
 import $ from 'jquery'
 window.$ = $
+import Swal from "sweetalert2";
 
 const pdfTemplate = document.createElement('template')
 pdfTemplate.innerHTML=`<div class="pdf_container" ></div>`
@@ -39,7 +40,7 @@ window.addEventListener('turbolinks:load',()=>{
         mdToHTML(allContent,target)
 
         var doc = new jsPDF('p', 'pt', 'a4');
-        doc. setFont('TaipeiSansTCBeta-Bold')
+        doc.setFont('TaipeiSansTCBeta-Bold')
         
         let pdf_ary = document.querySelector('.pdf_container').children
         let h = 50 //current height
@@ -100,37 +101,60 @@ window.addEventListener('turbolinks:load',()=>{
               let txt = pdf_ary[i].textContent.replace(/(\d)(\w)/g,"\n$1   $2")
               doc.setFontSize(12)
               doc.text(txt,30,h)
-
+              // btnDownloadPageBypfd2(pdf_ary[i],h)
+              // console.log('out')
+              // let canvas = document.createElement('canvas')
+              // let imgData
+              // html2canvas(document.querySelector("pre")).then(canvas => {
+              //   document.body.querySelector('.pdf_container').appendChild(canvas)
+              //   return 'ok'
+              // }).then(ok=>{ })
+              // html2canvas(pdf_ary[i]).then(canvas => {
+              //   document.querySelector('.pdf_container').appendChild(canvas)
+              //   console.log(canvas)
+              //   var height = pdf_ary[i].scrollHeight
+              //   doc.addImage(canvas, 'JPEG', 30, h, 500, height);
+              // });
               h += pdf_ary[i].scrollHeight*index
-
             }
+            
 
           }
 
           if(pdf_ary[i].tagName =="OL"){
             doc.setFontSize(12)
-            for(let k = 0; i<pdf_ary[i].children.length;k++){
-              let text = `${k+1}. ${pdf_ary[k].children.textContent}`
-              let line = doc.splitTextToSize(text,500)
-              doc.text(line,30,h)
-              h += pdf_ary[i].children.scrollHeight*index
+            let text_array = pdf_ary[i].textContent.split('\n')
+            text_array.pop()
+            text_array.shift()
+            let text = ""
+            
+            for(let z=0; z< text_array.length;z++){
+              text+= `${z+1}. ${text_array[z]} \n`
             }
+            let line = doc.splitTextToSize(text,500)
+            doc.text(line,30,h)
+            h += pdf_ary[i].scrollHeight*index           
           }
 
           if(pdf_ary[i].tagName =="UL"){
             doc.setFontSize(12)
-            for(let l = 0; i<pdf_ary[i].children.length;l++){
-              let text = `${pdf_ary[i].children.textContent}`
-              let line = doc.splitTextToSize(text,500)
-              doc.text(line,30,h)
-              h += pdf_ary[i].children.scrollHeight*index
+            let text_array = pdf_ary[i].textContent.split('\n')
+            text_array.pop()
+            text_array.shift()
+            let text = ""
+
+            for(let z=0; z< text_array.length;z++){
+              text+= `· ${text_array[z]} \n`
             }
+            let line = doc.splitTextToSize(text,500)
+            doc.text(line,30,h)
+            h += pdf_ary[i].scrollHeight*index  
           }
 
         }
         
-        pdftoserver(doc.output('blob'),bookName,bookName)
         doc.save(`${bookName}`+ '.pdf')
+        pdftoserver(doc.output('blob'),bookName,bookName)
       })
       .catch(function(err){
 
@@ -185,14 +209,71 @@ window.addEventListener('turbolinks:load',()=>{
         data: formData
       })
       .then( result=>{
-        alert('Your book has conveted into PDF')
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Your book has conveted into PDF',
+          showConfirmButton: false,
+          timer: 500
+        })
       })
       .catch(function(err){
-        
+        Swal.fire({
+          position: 'center',
+          icon: 'warning',
+          title: 'Fail to conveted  your book into PDF',
+          showConfirmButton: true,
+          // timer: 1000
+        })
       })
     }
 
-  }
+
+    // function btnDownloadPageBypfd2(pdf_container,h,doc){ //参数是'#pdf_container' 或 '.pdf_container',注意带前缀
+
+    //   var cntElem = pdf_container;
+    //   var shareContent = cntElem; //需要截图的包裹的（原生的）DOM 对象
+    //   var width = shareContent.offsetWidth; //获取dom 宽度
+    //   var height = shareContent.offsetHeight; //获取dom 高度
+    //   var canvas = document.createElement("canvas"); //创建一个canvas节点
+    //   var scale = 2; //定义任意放大倍数 支持小数
+    //   canvas.width = width * scale; //定义canvas 宽度 * 缩放，在此我是把canvas放大了2倍
+    //   canvas.height = height * scale; //定义canvas高度 *缩放
+    //   canvas.getContext("2d").scale(scale, scale); //获取context,设置scale 
+    //   console.log('infunction1')
+
+    //   html2canvas(pdf_container, {
+    //     allowTaint: true,
+    //         taintTest: true,
+    //         canvas: canvas,
+    //     onrendered: function(canvas) {
+    //       console.log('infunction2')
+
+    //     var context = canvas.getContext('2d');
+    //     // 【重要】关闭抗锯齿
+    //     context.mozImageSmoothingEnabled = false;
+    //     context.webkitImageSmoothingEnabled = false;
+    //     context.msImageSmoothingEnabled = false;
+    //     context.imageSmoothingEnabled = false;
+    //     document.body.appendChild(canvas)
+    //       var imgData = canvas.toDataURL('image/jpeg',1.0);//转化成base64格式,可上网了解此格式
+    //       var img = new Image();
+    //       img.src = imgData;
+    //       img.onload = function() {	
+    //         img.width = img.width/2;   //因为在上面放大了2倍，生成image之后要/2
+    //         img.height = img.height/2;
+    //         img.style.transform="scale(0.5)";
+    //         var imgWidth = width;
+    //         var imgHeight =   height;
+    //         doc.addImage(imgData, 'JPEG', 30, h, imgWidth*0.75, imgHeight*0.75);
+    //         console.log('infunction3')
+            
+    //         }
+    //       },
+    //     });
+    //   }
+
+    }
 })
 
 

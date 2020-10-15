@@ -4,10 +4,10 @@ import "highlightjs/styles/github"
 
 import axios from 'axios'
 window.addEventListener('turbolinks:load',()=>{
-  if(document.querySelector('.chapter_list') && document.querySelector('#sourceTA') == null){
+  if(document.querySelector('.chapter_list') && document.querySelector('#sourceTA') == null && document.querySelector('#targetDiv')!==null){
     let bookName = document.querySelector('.book_name')
     let chapterList = document.querySelector('.chapter_list')
-    let current = document.querySelector('.currentTarget')
+
     let chapterName
     let token = document.querySelector("meta[name=csrf-token]").content
     axios.defaults.headers.common['X-CSRF-Token']= token
@@ -16,7 +16,7 @@ window.addEventListener('turbolinks:load',()=>{
     document.querySelector('.chapter').classList.add('active')
     let target = document.querySelector('.active')
     target.parentElement.classList.add('activesite')
-    current.textContent =`----${target.textContent}`
+    
     let chapter = true
     let section = false
     let params = { bookName:bookName.textContent, target:target.textContent , chapter:chapter,  section:section,chapterName:target.textContent}
@@ -31,7 +31,7 @@ window.addEventListener('turbolinks:load',()=>{
       mdToHTML(content)
     })
     .catch(function(err){
-      alert('Fail to get content')
+      
     })
 
     
@@ -39,7 +39,7 @@ window.addEventListener('turbolinks:load',()=>{
     // 點擊到對應章節可以找到該檔案的資料並呈現
     chapterList.addEventListener('click',(e)=>{
       if((e.target.className.match("chapter") != null ||e.target.className.match("section") != null ) && e.target != document.querySelector('.active')&& e.target != chapterList){
-      
+        
         if(e.target.className.match('chapter')!=null){
           chapter = true
           section = false
@@ -66,7 +66,7 @@ window.addEventListener('turbolinks:load',()=>{
 
         })
         .catch(function(err){
-          alert('Fail to get content')
+          
         })
       }
     })
@@ -79,8 +79,7 @@ window.addEventListener('turbolinks:load',()=>{
         let currentActive = document.querySelector('.active')
         currentActive.classList.remove('active')
         e.target.classList.add('active')
-        let current = document.querySelector('.currentTarget')
-        current.textContent = `----${e.target.textContent}`
+        
         document.querySelector('.activesite').classList.remove('activesite')
         
         if(e.target.className.match('chapter')!= null){
