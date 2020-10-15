@@ -84,12 +84,10 @@ section.author-publishing{
 @media screen and (min-width: 992px) {
   section.author-publishing{
     .author-about {
-      padding: 45px 0;
       border: 0;
-      margin-top: 0;
-      box-shadow:  0;
+      margin-top: 20px;
+      box-shadow: none;
       border-radius: 0;
-
 
       .avatar {
         margin: auto;
