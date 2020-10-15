@@ -23,10 +23,12 @@ class Users::LibraryController < ApplicationController
 
     if comment.save
       create_notification(@book.authors[0], current_user, "left a comment on", @book)
-      redirect_to book_path(@book), notice: "New comment added"
+      flash[:notice] = "New comment added"
     else
-      redirect_to users_library_path, notice: "Something went wrong please try again"
+      flash[:notice] = "Something went wrong please try again"
     end
+
+    redirect_to users_library_path
   end
 
 
