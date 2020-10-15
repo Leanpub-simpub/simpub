@@ -1,19 +1,32 @@
-.carousel-inner {
-  max-height: 75vh;
-  margin-top: -2px;
-}
+.home {
+  .carousel-inner {
+    max-height: 75vh;
+    margin-top: -2px;
+  }
 
-.slider-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: auto;
-  transform: translate(-50%, -50%);
-}
-
-@media screen and (max-width: 992px) {
   .slider-content {
-    max-height: 0px;
-    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: auto;
+    transform: translate(-50%, -50%);
+  }
+
+  @media screen and (max-width: 992px) {
+    .slider-content {
+      max-height: 0px;
+      overflow: hidden;
+    }
+    .intro p {
+      text-align: start !important;
+      padding: 20px;
+      margin-bottom: -1rem;
+    }
+  }
+  @media screen and (min-width: 992px) {
+    .logo-mobile {
+      display: none;
+      visibility: hidden;
+    }
   }
 }
