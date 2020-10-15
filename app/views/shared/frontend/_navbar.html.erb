@@ -136,6 +136,11 @@
               <a href="/purchases" class="nav-drop-item">Purchases</a>
             </li>
             
+            <%# 願望清單連結 %>
+            <li class="dropdown-item">
+              <%= link_to 'Wish List',users_wishlist_path(current_user.username),class: "nav-drop-item" %>
+            </li>
+
             <!-- 登出 -->
             <li class="dropdown-item">
               <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "sign_out_btn nav-drop-item"%>
