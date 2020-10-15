@@ -1,0 +1,1 @@
+import "./sign_up_check_box.js"
