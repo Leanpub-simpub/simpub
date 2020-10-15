@@ -6,7 +6,7 @@ class BooksController < ApplicationController
   before_action :find_book, only: [:show, :edit, :update, :pricing, :publish, :unpublish, :wish, :read, :add_chapter, :add_section]
 
   def index
-    @books = Book.published_books
+    @books = Book.published_books.includes(:authors)
 
     if params[:book_search].present?
       @books = @books.book_search(params[:book_search])
