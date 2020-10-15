@@ -1,5 +1,5 @@
 <section class="wishlist txt my-4 container">   
-  <h1 class="text-center mb-4">Wish List for <%= current_user.name %></h1>   
+  <h1 class="text-center mb-4">Wishlist for <%= current_user.name %></h1>   
 
   <% @books.each do |book| %>
     <div class="row" data-controller="wishlist" data-wishlist-book="<%= book.id %>" data-wishlist-username="<%= current_user.username%>">
@@ -16,8 +16,8 @@
         </div>
       
         <div class="wish-btn col-12">
-          <button class="item-edit btn-primary btn d-block" data-action="wishlist#cart">Move to cart</button>
-          <%= link_to "Remove from your wish list", users_unwish_path(current_user.username, id: book), method: :delete, remote: true, class: "btn border rounded d-block" %>
+          <button class="item-edit main-button btn d-block" data-action="wishlist#cart">Move to cart</button>
+          <%= link_to "Remove from your wish list", users_unwish_path(current_user.username, id: book), method: :delete, remote: true, class: "btn border d-block removeWish" %>
         </div>
       </div>
 

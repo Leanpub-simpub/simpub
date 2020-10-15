@@ -1,27 +1,57 @@
 <section class="author-publishing container">
   <div class="row">
-    <div class="author-avatar col-2 d-flex flex-column">
-      <div>
-        <%= render "shared/frontend/user_avatar", user: current_user %>
+    <div class="author-about col-12 d-lg-flex">
+      <div class="avatar col-8 col-md-4 col-lg-3 ">
+        <div class="img-box col-12 col-lg-8 mx-auto">
+          <%= render "shared/frontend/user_avatar", user: current_user %>
+          <p class="text-center"><%= current_user.name %></p>
+        </div>
+        <div class="new-book-button col-12 col-lg-10 m-auto">
+          <%= button_to "Create a Book", :new_book, method: :get, class: "btn btn-primary txt w-100" %>
+        </div>
       </div>
-      <p class="text-center"><%= current_user.name %></p>
-      <%= button_to "Create a Book", :new_book, method: :get, class: "btn btn-primary w-100" %>
     </div>
-    
-    <div class="author-books col-10">
-      <h2>Your Books</h2>
-      <div>
-        <p>You can edit your books by clicking on the <i class="fas fa-cog"></i>. <br> You can also choose which books show up on your profile page by using the <i class="far fa-eye"></i>.
-        <h5>Published (<%= published_books.count %>)</h5>
-        <div class="publish-book row">
+    <div class="all-books justify-content-center col-12 col-md-6 col-lg-9">
+      <div class="author-all-books  col-12 col-md-6 col-lg-9 p-0">
+        <div class="all-book-info col-12 col-md-6 col-lg-9">
+          <h2>Your Books</h2>
+          <div>
+            <p class="col-8 col-md-4 col-lg-3 ">You can edit your books by clicking on the <i class="fas fa-cog"></i>.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row m-0 col-12">
+        <h4 class="col-12 title">Published Books(<%= published_books.count %>)</h4>
+        <div class="publish-book col-12 row justify-content-between">
           <%= render "books", books: published_books %>
         </div>
-        <h5>Unpublished (<%= unpublish_books.count %>)</h5>
-        <div class="unpublish-book row">
+        <h4>Unpublished Books(<%= unpublish_books.count %>)</h4>
+        <div class="unpublish-book col-12 row justify-content-between">
           <%= render "books", books: unpublish_books %>
         </div>
       </div>
     </div>
+
+    <div class="row m-0 col-12">
+      <h3 class="col-12 title">Published Books</h3>
+      <div class="buy-books col-12 row justify-content-between">
+        <% @user.pub_books.each do |book| %>
+          <div class="book-item col-6 col-lg-2">
+            <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
+            <h5><%= book.title %></h5>
+            <div class="book-name">
+              <%= book.authors[0].name %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div> 
+
+
+
+
+
+
   </div>
 </section>
 

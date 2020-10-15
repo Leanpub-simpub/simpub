@@ -21,6 +21,7 @@ import "highlightjs/styles/github"
 import axios from 'axios'
 import syn_scroll from "./syn_scroll.js"
 
+import Swal from "sweetalert2";
 
 window.addEventListener('turbolinks:load',()=>{
   if(document.querySelector('#sourceTA') && document.querySelector('#targetDiv')){
@@ -70,12 +71,12 @@ window.addEventListener('turbolinks:load',()=>{
       syn_scroll()
     })
     .catch(function(err){
-      alert('Fail to get content')
+      
     })
     
     // 點擊到對應章節可以找到該檔案的資料並呈現
     chapterList.addEventListener('click',(e)=>{
-      if((e.target.className.match("chapter") != null ||e.target.className.match("section") != null ) && e.target != document.querySelector('.active') && e.target.className.match('addsection') == null){
+      if((e.target.className.match("chapter") != null ||e.target.className.match("section") != null ) && e.target != document.querySelector('.active') && e.target.className.match('addsection') == null && e.target != chapterList){
         e.stopPropagation()
         if(e.target.className.match('chapter')!=null){
           chapter = true
@@ -116,7 +117,7 @@ window.addEventListener('turbolinks:load',()=>{
           syn_scroll()
         })
         .catch(function(err){
-          alert('Fail to get content')
+          
         })
       }
     })
@@ -134,8 +135,7 @@ window.addEventListener('turbolinks:load',()=>{
         let currentActive = chapterList.querySelector('.active')
         currentActive.classList.remove('active')
         e.target.classList.add('active')
-        let current = document.querySelector('.currentTarget')
-        current.textContent = `----${e.target.textContent}`
+
         document.querySelector('.activesite').classList.remove('activesite')
         if(e.target.className.match('chapter')!= null){
           e.target.parentElement.classList.add('activesite')
@@ -195,7 +195,7 @@ window.addEventListener('turbolinks:load',()=>{
     }
 
     // 手動存檔的code
-    function saveContent(){
+    function saveContent(confirm){
       let content = myCodeMirror.getValue()
       if(startText != content){
         startText = content
@@ -220,12 +220,26 @@ window.addEventListener('turbolinks:load',()=>{
           data: params
         })
         .then( (result)=>{
-          if(result.data['message'] === "ok" ){
-            alert('Success to Save')
-          }
+         
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Success to save',
+            showConfirmButton: false,
+            timer: 500
+          })
+          
+          
         })
         .catch(function(err){
-          alert('Fail to Save')
+          Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: 'Fail to save',
+            showConfirmButton: true,
+            // timer: 2000
+          })
+        
         })
       }
     }

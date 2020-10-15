@@ -23,7 +23,13 @@
           <%= @user.name %> 
         </div>
         <div class="txt user-about">
-          <%= @user.about %>He’s the bestselling author of Steal Like An Artist and other books. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores, eaque ipsam fugit quos perferendis ut dolorum rem error repellendus vitae! 
+          <% if @user.about %>
+            <%= @user.about %>
+          <% else %>
+            <p>
+              Samuel Miller was born and raised in Vermillion, South Dakota, and now resides in Los Angeles, where, in addition to writing, he directs music videos and coaches Little League Baseball. He began writing his first novel while on tour in a fifteen-passenger van with the rock band Paradise Fears. A Lite Too Bright is his debut novel. Currently he attends graduate school at the University of Southern California. He credits his existence entirely to two spectacular parents, three brothers, one sister, and the best and sweetest puppy dog on the whole planet, Addison.
+            </p>
+          <% end %>
         </div>
         <div class="txt user-locate d-flex">
           <i class="fas fa-map-marker-alt fa-2x"></i>
@@ -56,65 +62,29 @@
               <% end %>
             <% end %>
 
-            <%= mail_to "ygfert@gmail.com", target: "_blank", class: "email" do %>
+            <%= mail_to @user.email , target: "_blank", class: "email" do %>
               <i class="far fa-envelope fa-3x"></i>
             <% end %>
             </a>
           </div>
         </div>
-        
       </div>
-
-      
     </div>
 
-    <div class="book-container">
-      <h3 class="col-12 title">Published Books</h3>
-
-      <div id="carousel-example-multi" class="carousel slide carousel-multi-item v-2" data-ride="carousel">
-        <!--Controls-->
-        <div class="controls-top">
-          <a class="btn-floating" href="#carousel-example-multi" data-slide="prev"><i
-              class="fas fa-chevron-left"></i></a>
-          <a class="btn-floating" href="#carousel-example-multi" data-slide="next"><i
-              class="fas fa-chevron-right"></i></a>
-        </div>
-        <!--/.Controls-->
-
-        <div class="carousel-inner v-2" role="listbox">
-          <% @user.pub_books.each do |book| %>
-            <div class="carousel-item d-flex">
-              <div class="col-4 col-md-4">
-                <div class="card mb-2">
-                  <a class="cover-link" data-key="<%= book.id %>">
-                    <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
-                    <h4><%= book.title %></h4>
-                    <div>
-                      <%= book.authors[0].name %>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    
-   
     <%# 出版過的書 %>
-
-    <div class="row m-0 d-flex">
+    <div class="row m-0 col-12">
       <h3 class="col-12 title">Published Books</h3>
-      <% @user.pub_books.each do |book| %>
-        <div class="book-item col-6 col-sm-4 col-md-3 col-lg-2 d-flex flex-column justify-content-between">
-          <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
-          <h4><%= book.title %></h4>
-          <div>
-            <%= book.authors[0].name %>
+      <div class="buy-books col-12 row justify-content-between">
+        <% @user.pub_books.each do |book| %>
+          <div class="book-item col-6 col-lg-2">
+            <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
+            <h5><%= book.title %></h5>
+            <div class="book-name">
+              <%= book.authors[0].name %>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>    
-    
   </div>
 </section>

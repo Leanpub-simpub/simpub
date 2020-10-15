@@ -108,13 +108,29 @@
     font-family: SF Pro Display;
     font-style: normal;
     font-weight: bold;
-    font-size: 39px;
+    font-size: 36px;
     line-height: 49px;
     /* identical to box height */
     letter-spacing: 0.05em;
     color: #e09a5f !important; 
   }
-  
+  .buy-books {
+    margin: auto;
+
+    .book-item{
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      
+      h5{
+        text-align: center;
+      }
+      .book-name{
+        text-align: center;
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 992px) {

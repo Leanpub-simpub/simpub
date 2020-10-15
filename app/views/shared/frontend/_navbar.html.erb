@@ -23,15 +23,17 @@
       <li class="nav-item">
         <%= link_to "Books", books_path, class: "nav-link txt" %>
       </li>
+      <%# 有登入才是以下內容 %>
+      
       <li class="nav-item"><%= link_to "Library", users_library_path, class: "nav-link txt" %></li>
       <li class="nav-item">
         <%= link_to "Create a Book", new_book_path, class: "nav-link txt" %>      
       </li>
-      <%# <% if current_user.as_author %>
-      <li class="nav-item">
-        <%= link_to "My Writings", users_books_path, class: "nav-link txt" %>
-      </li>
-      <%# <% end %>
+        <%# 是作者才顯示寫了哪些書 %>
+        <%# <% if current_user.as_author %> 
+          <li class="nav-item">
+            <%= link_to "My Writings", users_books_path, class: "nav-link txt" %>
+          </li>
     </ul>
 
     <!-- Search Filter -->

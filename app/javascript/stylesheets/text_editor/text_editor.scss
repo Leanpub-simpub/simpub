@@ -5,15 +5,17 @@
   height: unset!important;
   margin-right: 10px;
 }
+
+
 #sampleshow {
-  border: 1px solid #333333;
-  width: 80%;
   height: 100vh;
   padding: 20px 20px 20px 20px;
   overflow-y: scroll;
-  background-color: #fff8dc;
+  background-color: white;
+  box-shadow: 2px 2px 5px black;
   margin-left: 5px;
 }
+
 
 .wrap {
   display: flex;
@@ -38,7 +40,7 @@
     overflow-y: scroll;
     background-color: white;
     margin-left: 5px;
-    box-shadow: 7px 7px 19px black;
+    box-shadow: 2px 2px 5px black;
       // 客製修改
     img {
       width: 500px;
@@ -153,4 +155,7 @@
     border-right: 3px solid greenyellow;
     padding-right: 10px;
   }
+}
+.chapter_box {
+  box-shadow: 2px 2px 5px black;
 }
