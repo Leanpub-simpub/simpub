@@ -99,6 +99,7 @@ class BooksController < ApplicationController
   def wish
     current_user.wish_books << @book
     flash[:notice] = "Added item to your Wish List."
+    render json: { redirect: book_path(@book) }
   end
 
   # 線上編輯 action

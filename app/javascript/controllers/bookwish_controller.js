@@ -11,7 +11,9 @@ export default class extends Controller {
     let id = this.data.get("id");
     axios
       .post(`/books/${id}/wish`)
-      .then(function(result) { location.reload(); })
+      .then(function(result) { 
+        location.href = result.data.redirect;
+      })
       .then(function(error) {})
   }
 
