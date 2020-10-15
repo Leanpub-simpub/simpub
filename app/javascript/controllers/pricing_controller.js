@@ -13,7 +13,7 @@ export default class extends Controller {
 
     Swal
       .fire({
-        text: "確定上架？",
+        text: "Publishing？",
         icon: "warning",
         iconColor: "#f33",
         showCancelButton: true,

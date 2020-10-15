@@ -42,13 +42,7 @@ document.addEventListener("turbolinks:load", () => {
                 axios
                   .patch(`/books/${e.target.dataset.bookid}/unpublish`)
                   .then(function(result) {
-                    location.reload();
-                    // flash.innerHTML = `<div class="alert alert-success alert-dismissible fade show" role="alert">
-                    //   書籍已下架
-                    //   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    //   <span aria-hidden="true">&times;</span>
-                    //   </button>
-                    //   </div>`
+                    location.href = result.data.redirect;
                   });
               }
             });

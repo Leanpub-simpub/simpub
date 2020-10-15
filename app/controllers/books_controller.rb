@@ -92,6 +92,8 @@ class BooksController < ApplicationController
 
   def unpublish
     @book.remove!
+    flash[:notice] = "#{@book.title} is off shelf"
+    render json: { redirect: users_books_path }
   end
 
   def wish
