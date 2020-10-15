@@ -2,7 +2,7 @@
   <!-- 品牌 logo -->
   <div class="logo col-1">
     <a href="/" class="navbar-brand">  
-      <%= image_pack_tag "logo.png", class: "img-fluid" %>
+      <%= image_pack_tag "logo.png", class: "logo-desktop img-fluid" %>
     </a>
   </div>
   
@@ -44,7 +44,6 @@
         <option value="tag-search">Book Tags</option>
       </select>
       <div class="row search-bar">
-
         <!-- book search 表單 -->
         <%= form_with url: books_path, method: :get, class: "nav-search x form-inline d-flex flex-nowrap ml-4", local: true, data: {target: "search.book_search"} do |f| %>
           <%= f.search_field :book_search, class: "search-input book-search-input form-control", placeholder: "Search" %>
@@ -166,11 +165,6 @@
     <div class="icon-btn">
       <i class="light-icon mx-2 fas fa-moon"></i>
     </div>
-    
-    <!-- 
-    <input id="switch" type="checkbox" name="theme">
-    <label for="switch" hidden></label> 
-    -->
 
     <!-- 購物車 -->
     <%= link_to cart_path, class:"nav-icon" do %>

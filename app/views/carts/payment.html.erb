@@ -1,21 +1,7 @@
 <section class="cart-payment txt container" data-controller="checkout">
-<!--- header 是否要留?
-  <div>
-    <header class="checkout_header d-flex justify-content-center mb-5">
-      <div class="py-2 border w-25 d-flex justify-content-center align-items-center">
-        Preview
-      </div>
-      <div class="py-2 border w-25 d-flex justify-content-center align-items-center bg-secondary">
-        Checkout
-      </div>
-      <div class="py-2 border w-25 d-flex justify-content-center align-items-center">
-        Settings & Download
-      </div>
-    </header>
-  </div>
----> 
+
   <div class="d-flex justify-content-center my-4">
-    <h3 class="col-12 col-md-10 d-flex justify-content-start">Summary</h3>
+    <h3 class="summary col-12 col-md-10 d-flex justify-content-start">Summary</h3>
   </div>
 
   <div class="checkoutstage_checkout d-flex justify-content-center">
@@ -23,9 +9,9 @@
       <div>
         <thead class="mb-5">
           <tr class="confirm-details-title"> 
-            <td class="">商品名稱</td> 
-            <td class="text-right">數量</td> 
-            <td class="text-right">小計</td>
+            <td class="">Product</td> 
+            <td class="text-right">Quantity</td> 
+            <td class="text-right">Subtotal</td>
           </tr>
         </thead>
       </div>
@@ -49,13 +35,13 @@
   
   <div class="check-out d-flex justify-content-center mt-3">
     <div class="col-12 col-md-10 d-flex justify-content-end" >
-      <span class="mx-5">總計</span>
+      <span class="mx-5">Total</span>
       $<%= sprintf("%.2f", current_cart.total_price) %>
     </div>
   </div>
   <hr class="border-bottom border-white col-10">
   <div class="d-flex justify-content-center ">
-    <h3 class="col-10 d-flex justify-content-start">信用卡資訊</h3>
+    <h3 class="col-10 d-flex justify-content-start">Credit Card Info</h3>
   </div>
   
   <%= form_with url: "/cart/checkout", method: "post", id: "payment_form", local: true do%>
@@ -65,24 +51,9 @@
     </div>
     <div class="d-flex justify-content-center mt-2">
       <div class=" d-flex justify-content-end col-10">
-        <button id="submit-button" class="main-button btn col-12 col-md-3" data-target="checkout.pay">付款</button>
+        <button id="submit-button" class="btn-primary btn col-12 col-md-3" data-target="checkout.pay">付款</button>
         <button class="ml-auto btn btn-secondary w-25 x" disabled data-target="checkout.wait">Please wait...</button>
       </div>
     </div>
   <% end %>
-
-  <!--
-  <div id="depot-form">
-    <fieldset>
-    <legend class="text-center">Please Enter Your Details</legend>
-
-    <%form_for :order do |f|%>
-      
-
-      <%= submit_tag "Place Order",:class => "submit" %>
-    <%end%>
-    </fieldset>
-  </div>
-  -->
-  
 </section>
