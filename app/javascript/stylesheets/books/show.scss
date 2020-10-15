@@ -22,8 +22,12 @@
   text-decoration: underline;
 }
 
-.tags {
-  border-radius: 5%;
+.tag {
+  // border-radius: 10%;
+  border: 1px solid #cccccc;
+  background-color: #cccccc;
+  padding: 5px 2px;
+  font-size: 1.2rem;
 
   span {
     margin-right: 10px;
@@ -140,12 +144,6 @@
 
 .book-show {
   min-height: 80vh;
-}
-
-.tag {
-  border: 1px solid #333333;
-  border-radius: 5%;
-  padding: 2px;
 }
 
 .avatar-container {

@@ -50,7 +50,7 @@
         <!-- 本書的標籤 -->
         <div class="tags my-2 mt-auto">
           <% @book.tag_items.each do |tag| %>
-            <span class="tag"># <%= tag %></span>
+            <span class="tag btn px-4"># <%= tag %></span>
           <% end %>
         </div>
 
@@ -58,14 +58,14 @@
         <div class="button-group">
           <%= link_to sample_book_path(@book),class: "w-100" do %>
             <div class="btn btn-outline-secondary my-3">
-              <span class="mr-2">Read Free Sample</span>
+              <span class="mr-2 txt">Read Free Sample</span>
               <i class="far fa-file-pdf"></i>
             </div>
           <% end %> 
 
           <%= link_to table_of_contents_book_path(@book), class: "w-100" do %>
             <div class="btn btn-outline-secondary">
-              <span class="mr-2"> Table Of Contents</span>
+              <span class="mr-2 txt"> Table Of Contents</span>
               <i class="fas fa-list-ol"></i>
             </div>
           <% end %>
