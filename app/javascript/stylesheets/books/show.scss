@@ -135,6 +135,17 @@
     box-shadow: 0 2px 5px 0 #e09a5f;
   }
 }
+.cart-price {
+  display: block;
+}
+
+.add-to-cart {
+  display: inline-flex;
+}
+
+.add-to-wishlist .far {
+  display: inline;
+}
 
 .add-to-cart-price {
   span {
