@@ -94,7 +94,7 @@
   #notify-box {
     background-color: #fff;
     width: 100%;
-    top: 3.5rem;
+    top: 4.2rem;
     left: 0;
     border: 1px solid #e09a5f;
     z-index: 100;
@@ -202,11 +202,11 @@
   display: inline-flex;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 720px) {
   .layout-navbar {
     #notify-box {
       width: 50%;
-      top: 3.5rem;
+      top: 4.8rem;
       left: 0;
       right: 0;
       margin-left: auto;
@@ -279,7 +279,6 @@
   .layout-navbar {
     #notify-box {
       width: 40%;
-      top: 3.5rem;
       right: 2rem;
       margin-left: auto;
     }
@@ -290,7 +289,6 @@
   .layout-navbar {
     #notify-box {
       width: 30%;
-      top: 4.8rem;
       right: 8rem;
     }
   }
