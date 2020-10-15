@@ -12,7 +12,7 @@ html {
     background: linear-gradient(90deg, #e09a5f 0%, #f1c39e 100%) !important;
   }
   .btn-outline-secondary {
-    color: var(-txt) !important;
+    color: var(--txt) !important;
   }
   .btn-outline-secondary:hover {
     background-color: #cccccc !important;
