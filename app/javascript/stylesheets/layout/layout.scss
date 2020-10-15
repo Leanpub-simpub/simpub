@@ -1,6 +1,20 @@
 html {
+  // height: 100vh;
+
+  // body {
+  //   display: flex;
+  //   flex-direction: column;
+  // }
+
+  .footer {
+    bottom: 0;
+    height: 10vh;
+
+    span {
+      color: #fff !important;
+    }
+  }
   // 版面共同設定
-  .home,
   .author-publishing,
   .profile-show,
   .book-index,
@@ -15,7 +29,6 @@ html {
   .purchase,
   .resend-confirmation,
   .wishlist {
-    min-height: 100vh;
     margin-top: 5vh;
     margin-bottom: 5vh;
   }
@@ -25,15 +38,6 @@ html {
     padding: 0px;
     margin: 0px;
     max-width: 576px;
-  }
-
-  .footer {
-    position: relative;
-    bottom: 0;
-    
-    span {
-      color: #fff!important;
-    }
   }
 }
 .removeWish {
