@@ -62,7 +62,7 @@
               <% end %>
             <% end %>
 
-            <%= mail_to "ygfert@gmail.com", target: "_blank", class: "email" do %>
+            <%= mail_to @user.email , target: "_blank", class: "email" do %>
               <i class="far fa-envelope fa-3x"></i>
             <% end %>
             </a>
