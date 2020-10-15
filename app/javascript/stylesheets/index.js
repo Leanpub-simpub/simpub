@@ -5,7 +5,6 @@ import "./actiontext.scss";
 import "./cart_review.scss";
 import "./typed.scss";
 import "./modal.scss";
-import "./profiles_show.scss";
 
 import "./books";
 import "./home";
@@ -13,4 +12,4 @@ import "./layout";
 import "./shared";
 import "./text_editor";
 import "./users";
-
+import "./products";
