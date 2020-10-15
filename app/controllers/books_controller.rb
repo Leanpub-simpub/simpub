@@ -43,11 +43,10 @@ class BooksController < ApplicationController
     if @book.save
       # 把 cover 切出 大中小 三個尺寸
       CoverUploaderJob.perform_later(@book) if @book.cover_data?
-      
+      current_user.update(as_author: true)
+
       if @book.md_data
         @book.update(publish_state: "on_shelf")
-        current_user.update(as_author: true)
-
         publish_notify
         
         redirect_to pricing_book_path(@book)
