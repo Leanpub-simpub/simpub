@@ -27,10 +27,12 @@ document.addEventListener("turbolinks:load", () => {
         if (cartItems.cart.items.length !== 0) {
           let cartCount = cartItems.cart.items.length;
           
+          cartBubble.classList.remove("x");
           cartBubble.classList.add("bubble");
           cartBubble.textContent = cartCount;
         } else {
           cartBubble.classList.remove("bubble");
+          cartBubble.classList.add("x");
         }
       });
   }
