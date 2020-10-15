@@ -52,8 +52,17 @@
           </div>
 
           <div class="rating" role="optgroup">
-            <% 1.upto(5) do |n| %>
-              <i class="far fa-star fa-2x rating-star" id="rating-<%= n %>" data-rating="<%= n %>" tabindex="0" aria-label="Rate as one out of 5 stars" role="radio"></i>
+            <% if @stars %>
+              <% 1.upto(@stars) do |n| %>
+                <i class="fas fa-star fa-2x rating-star" id="rating-<%= n %>" data-rating="<%= n %>" tabindex="0" aria-label="Rate as one out of 5 stars" role="radio"></i>
+              <% end %>
+              <% (5 - @stars).times do |n| %>
+                <i class="far fa-star fa-2x rating-star" id="rating-<%= n %>" data-rating="<%= n %>" tabindex="0" aria-label="Rate as one out of 5 stars" role="radio"></i>
+              <% end %>
+            <% else %>
+              <% 1.upto(5) do |n| %>
+                <i class="far fa-star fa-2x rating-star" id="rating-<%= n %>" data-rating="<%= n %>" tabindex="0" aria-label="Rate as one out of 5 stars" role="radio"></i>
+              <% end %>
             <% end %>
           </div>
         <% end %>

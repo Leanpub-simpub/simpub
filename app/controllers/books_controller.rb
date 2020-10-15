@@ -21,7 +21,7 @@ class BooksController < ApplicationController
   
   def show
     @comments = @book.comments.where.not(content: "")
-    @stars = @comments.average(:stars).round() if @comments.size > 0
+    @stars = @book.comments.average(:stars).ceil() if @comments.size > 0
   end
   
 
