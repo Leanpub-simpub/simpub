@@ -5,7 +5,6 @@
     background: #FFFFFF;
     box-shadow: 7.16829px 7.16829px 19.9119px rgba(0, 0, 0, 0.15);
     border-radius: 7.96477px;
-    border: 0.8px solid #F1C39E;
     padding:20px;
 
     .avatar{
@@ -137,6 +136,8 @@
   .profile-show{
     .author-about {
       height: 100%;
+      box-shadow: 7.16829px 7.16829px 19.9119px rgba(0, 0, 0, 0.15);
+      border-radius: 7.96477px;
 
       .avatar {
         padding-top: 17px;

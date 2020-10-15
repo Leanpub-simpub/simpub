@@ -1,17 +1,17 @@
 <section class="author-publishing container">
   <div class="row">
-    <div class="author-about col-10 col-lg-4 d-lg-flex">
-      <div class="avatar col-8 col-lg-8 ">
+    <div class="author-about col-10 col-lg-3 d-lg-flex">
+      <div class="avatar col-8 col-lg-12 ">
         <div class="img-box col-12 col-lg-8 mx-auto">
           <%= render "shared/frontend/user_avatar", user: current_user %>
           <p class="text-center"><%= current_user.name %></p>
         </div>
         <div class="new-book-button col-12 col-lg-8 m-auto">
-          <%= button_to "Create a Book", :new_book, method: :get, class: "btn main-button txt w-100"%>
+          <%= button_to "Create a Book", :new_book, method: :get, class: "btn btn-primary txt w-100"%>
         </div>
       </div>
     </div>
-    <div class="all-books justify-content-center col-12 col-md-6 col-lg-8">
+    <div class="all-books justify-content-center col-12 col-md-6 col-lg-9">
       <div class="author-all-books col-12 col-md-6 col-lg-12 ">
         <div class="all-book-info col-12 col-md-6 col-lg-12">
           <h2>Your Books</h2>
@@ -20,7 +20,7 @@
           </div>
         </div>
       </div>
-      <div class="m-0 col-12">
+      <div class="author-books m-0 col-12">
         <div class="publish_grop">
           <h4 class="col-12 title">Published Books(<%= published_books.count %>)</h4>
           <div class="publish-book col-6 col-lg-12 row">
