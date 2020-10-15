@@ -75,7 +75,7 @@ window.addEventListener('turbolinks:load',()=>{
 
     chapterList.addEventListener('click',(e)=>{     
       if((e.target.className == 'chapter'|| e.target.className == 'section')){
-        console.log('in if') 
+        
         let currentActive = document.querySelector('.active')
         currentActive.classList.remove('active')
         e.target.classList.add('active')
