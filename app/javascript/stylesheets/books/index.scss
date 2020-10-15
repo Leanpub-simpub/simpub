@@ -18,3 +18,10 @@ form.x {
 #carouselExampleControls {
   position: relative;
 }
+.pagination {
+  display: flex;
+  justify-content: center;
+  span {
+    margin: 0px 3px 0px 3px ;
+  }
+}
