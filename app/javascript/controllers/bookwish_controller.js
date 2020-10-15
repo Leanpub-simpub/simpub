@@ -9,9 +9,10 @@ export default class extends Controller {
     axios.defaults.headers.common["X-CSRF-Token"] = token;
 
     let id = this.data.get("id");
-    axios.post(`/books/${id}/wish`)
-         .then(function(result) { location.reload(); })
-         .then(function(error) {})
+    axios
+      .post(`/books/${id}/wish`)
+      .then(function(result) { location.reload(); })
+      .then(function(error) {})
   }
 
 }

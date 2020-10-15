@@ -14,6 +14,7 @@ export default class extends Controller {
     const deleteBtns = this.deleteTargets;
     const paymentBtn = this.paymentTarget;
     const waitBtn = this.waitTarget;
+    const flash = document.querySelector(".flash");
     
     editBtns.forEach(editBtn => {
       editBtn.addEventListener("click", () => {
@@ -161,6 +162,14 @@ export default class extends Controller {
         axios
           .post(`/books/${bookId}/wish`)
           .then(function(result) {
+            flash.innerHTML = 
+              `<div class="alert alert-success alert-dismissible fade show" role="alert">
+                Added item to your Wish List.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>`
+            
             // 從購物車當中刪除
             axios
               .delete(`/cart?index=${index}`)
