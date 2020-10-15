@@ -6,9 +6,25 @@
   .shopping {
     display: flex;
     flex-direction: column;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+  }
+
+  .cover,
+  .shopping {
     justify-content: space-between;
-    margin-top: 1vh;
-    margin-bottom: 1vh;
+  }
+
+  .rating {
+    border: #cccccc;
+  }
+
+  .about {
+    -webkit-line-clamp: 15;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    overflow: scroll;
+    text-overflow: ellipsis;
   }
 }
 
@@ -23,24 +39,17 @@
 }
 
 .tags {
-  border-radius: 5%;
-  padding: 10px;
+  display: inline;
 
-  span {
-    margin-right: 10px;
-  }
-}
+  .tag {
+    border: 1px solid #cccccc;
+    background-color: #cccccc;
+    padding: 5px 2px;
+    font-size: 0.8rem;
 
-.button-group {
-  a.btn {
-    border: 1px solid rgba(225, 154, 96, 0.5);
-    font-size: 14px;
-  }
-}
-
-.cover {
-  div:first-child {
-    border: 1px solid rgba(225, 154, 96, 0.5);
+    span {
+      // margin-right: 10px;
+    }
   }
 }
 
@@ -84,9 +93,9 @@
   .author-earns-box {
     height: 28px;
     width: 90px;
-    border-top: 2px solid #333333;
-    border-left: 2px solid #333333;
-    border-bottom: 2px solid #333333;
+    border-top: 2px solid #6666;
+    border-left: 2px solid #6666;
+    border-bottom: 2px solid #6666;
     position: relative;
     background-color: white;
 
@@ -102,23 +111,40 @@
   .author-earns-box {
     width: 80px;
   }
+
   input[type="range"] {
     -webkit-appearance: none;
     height: 28px;
     outline: none;
-    border-top: 2px solid #333333;
-    border-right: 2px solid #333333;
-    border-bottom: 2px solid #333333;
+    border-top: 2px solid #6666;
+    border-right: 2px solid #6666;
+    border-bottom: 2px solid #6666;
   }
   input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     cursor: grabbing;
     width: 12px;
     height: 40px;
-    background-color: #666666;
-    border-radius: 25%;
-    box-shadow: 0 2px 5px 0 #666666;
+    background-color: #e09a5f;
+    border-radius: 50rem !important;
+    border-top-left-radius: 50rem !important;
+    border-top-right-radius: 50rem !important;
+    border-bottom-right-radius: 50rem !important;
+    border-bottom-left-radius: 50rem !important;
+    border: 2px solid white;
+    box-shadow: 0 2px 5px 0 #e09a5f;
   }
+}
+.cart-price {
+  display: block;
+}
+
+.add-to-cart {
+  display: inline-flex;
+}
+
+.add-to-wishlist .far {
+  display: inline;
 }
 
 .add-to-cart-price {
@@ -138,39 +164,21 @@
   .cart-price:focus {
     outline: none;
   }
-  .add-to-cart-btn {
-    width: 210px;
-    font-size: 22px;
-    font-weight: 700;
-    transition: 0.3s;
-  }
-}
-
-.add-to-wishlist {
-  font-size: 16px;
-  text-decoration: underline;
-  text-align: left;
 }
 
 .book-show {
   min-height: 80vh;
 }
 
-.tag {
-  border: 1px solid #333333;
-  border-radius: 5%;
-  padding: 2px;
-}
-
-@media screen and (max-width: 992px) {
-  .book-show {
-    .cover {
-      order: -1;
-    }
-  }
-}
-
 .avatar-container {
   width: 75px;
   height: 75px;
+}
+
+.book-show-item {
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+@media screen and (max-width: 992px) {
 }

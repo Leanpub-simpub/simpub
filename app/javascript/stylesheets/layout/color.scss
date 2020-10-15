@@ -6,15 +6,15 @@ html {
   .btn-primary {
     background-color: #e09a5f !important;
     border: #e09a5f;
-    color: var(--bg) !important;
+    color: white !important;
   }
   .btn-primary:hover {
-    background: linear-gradient(90deg, #e09a5f 0%, #F1C39E 100%) !important;
+    background: linear-gradient(90deg, #e09a5f 0%, #f1c39e 100%) !important;
   }
-  .btn-outline-secondary{
-    color: var(-txt) !important;
+  .btn-outline-secondary {
+    color: var(--txt) !important;
   }
-  .btn-outline-secondary:hover{
+  .btn-outline-secondary:hover {
     background-color: #cccccc !important;
   }
 }
@@ -30,6 +30,7 @@ body {
   [class*="item"],
   [class*="cover"],
   [class*="name"],
+  [class*="icon"],
   [class*="tag"] {
     color: var(--txt);
   }
@@ -45,7 +46,7 @@ input[id="switch"] {
 }
 
 .layout-navbar {
-	box-shadow: 0px 4px 20px rgba(53, 53, 53, 1);
+  box-shadow: 0px 4px 20px rgba(53, 53, 53, 1);
 
   label {
     background: grey;
@@ -75,12 +76,11 @@ input[id="switch"] {
   color: white;
 }
 
+.add-to-wishlist .far {
+  color: #e09a5f !important;
+}
+
 .cart-bubble {
   background-color: var(--bg);
   color: var(--txt);
-}
-
-.footer {
-	// border-top: 1px solid #e09a5f;
-  box-shadow: 0px 4px 34px 0px rgba(53, 53, 53, 1);
 }
