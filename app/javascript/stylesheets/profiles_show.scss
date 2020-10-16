@@ -138,10 +138,13 @@
       display: -webkit-box;
       overflow: hidden;
       text-overflow: ellipsis;
-      
+      height: 40px;
+      text-align: center;
+
      }
      .book-name p{
        text-overflow: ellipsis;
+       text-align: center;
 
      }
     }
