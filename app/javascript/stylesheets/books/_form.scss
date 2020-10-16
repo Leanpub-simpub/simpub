@@ -1,5 +1,9 @@
 section.book-new,
 section.book-edit {
+  .row{
+    box-shadow: 7.16829px 7.16829px 19.9119px rgba(0, 0, 0, 0.15);
+    border-radius: 7.96477px;
+  }
   
   form {
     width: 100%;
@@ -57,17 +61,28 @@ section.book-edit {
   input[type="submit"] {
     width: 50%;
   }
+  .desk{
+    .finish{
+      margin: 0 0 8px;
+      padding: 4px 0;
+      border-radius: 5px;
+      font-size: 20px;
+    }
+  }
+  
 }
 
 @media screen and (min-width: 992px) {
   section.book-new,
   section.book-edit {
-    .create-none{
-      background-color: royalblue;
-      width: 357.5px;
-    }
     .create-book{
-      width: 482.5px;
+      margin-top:30px;
+      display: flex;
+      flex-direction: row-reverse;
+      h2{
+        width: 581.5px;
+        text-align: left;
+      }
     }
     form {
       display: flex;
@@ -81,15 +96,27 @@ section.book-edit {
         div:last-child {
           padding-right: 0;
         }
+        .upload-btn{
+          text-align:center !important;
+        }
       }
       label[for="book_md"].btn-primary,
       input[type="submit"] {
         width: 100%;
       }
+      .form-item{
+        .cover-grop{
+          .cover{
+            text-align:center ;
+          }
+          text-align:center ;
+          
+        }
+      }
     }
     .form-item {
       margin-bottom: 20px;
-
+      text-align:left!important;
       #cover-preview {
         width: 75%;
       }
