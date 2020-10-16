@@ -16,6 +16,24 @@ body {
   }
   .modal-content {
     height: 100%;
+
+    .modal-header {
+      .modal-title {
+        color: black;
+      }
+    }
+  }
+  .modal-body {
+    .modal-body-title, .modal-body-author {
+      color: black;
+    }
+    .slider {
+      .author-earns {
+        .modal-author-earns-show {
+          color: black;
+        }
+      }
+    }
   }
 }
 
