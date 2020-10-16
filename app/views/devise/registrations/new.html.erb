@@ -63,7 +63,7 @@
           <em class="txt" style="font-weight: normal !important">(<%= @minimum_password_length %> characters minimum)</em>
           <% end %><br />
   
-          <%= f.password_field :password, autocomplete: "new-password", class:"col-12 txt", data: {target: "signup.password"} %>
+          <%= f.password_field :password, autocomplete: "new-password", class:"col-12", data: {target: "signup.password"} %>
           <span class="text-danger d-block mt-1" data-target="signup.password_error"></span>
           <div class="w-100"></div>
         </div>
