@@ -1,6 +1,6 @@
 <section class="flash">
   <% if notice.present? %>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert alert-success alert-dismissible fade show alert-size" role="alert">
       <%= notice %>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -9,7 +9,7 @@
   <% end %>
   
   <% if alert.present? %>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert alert-success alert-dismissible fade show alert-size" role="alert">
       <%= alert %>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>

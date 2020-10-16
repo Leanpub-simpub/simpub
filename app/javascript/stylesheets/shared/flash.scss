@@ -24,3 +24,11 @@ section.flash {
     color: #e09a5f;
   }
 }
+section.flash div.alert.alert-success.alert-size {
+  height: 5rem;
+}
+@media screen and (min-width:768px ){
+  section.flash div.alert.alert-success.alert-size {
+    height: 3rem;
+  }
+}
