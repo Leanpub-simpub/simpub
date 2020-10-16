@@ -46,8 +46,6 @@ input[id="switch"] {
 }
 
 .layout-navbar {
-	box-shadow: 0px 4px 20px rgba(53, 53, 53, 1);
-
   label {
     background: grey;
   }
@@ -68,8 +66,13 @@ input[id="switch"] {
 
 .nav-item:hover,
 .navbar-brand:hover,
+.dropdown-item:hover,
 .nav-drop-item:hover {
-  color: #e09a5f;
+  color: #e09a5f !important;
+}
+
+.dropdown-item:active {
+  background-color: #e09a5f !important;
 }
 
 .slider-content {

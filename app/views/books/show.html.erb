@@ -46,7 +46,7 @@
         </div>
 
         <!-- 評分 -->
-        <%= form_with model: @comment, url: "#", class: "comment-form" do |f| %>
+        <%= form_with model: @comment, url: "#", class: "comment-form mt-2" do |f| %>
           <div>
             <%= f.hidden_field :stars, id: "rating-input", min: "0", max: "5" %>
           </div>
