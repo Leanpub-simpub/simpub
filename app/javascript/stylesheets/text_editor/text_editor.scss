@@ -118,6 +118,8 @@
       margin-right: 20px;
       border-right: 3px solid greenyellow;
       padding-right: 10px;
+      box-sizing: border-box;
+      width: 30px;
     }
   }
 }
@@ -156,6 +158,34 @@
     padding-right: 10px;
   }
 }
+
 .chapter_box {
   box-shadow: 2px 2px 5px black;
+  padding: 20px;
+  font-size: 32px;
+}
+
+@media screen and (min-width:576px){
+  .chapter_box {
+    padding: 30px 30px 30px 30px;
+  }
+}
+
+
+@media screen and (min-width:768px){
+  .chapter_box {
+    padding: 40px 40px 40px 40px;
+  }
+}
+
+@media screen and (min-width:992px){
+  .chapter_box {
+    padding: 40px 40px 40px 60px;
+  }
+}
+
+@media screen and (min-width:1200px){
+  .chapter_box {
+    padding: 40px 40px 40px 80px;
+  }
 }
