@@ -14,7 +14,7 @@
 
   <%= form_with model: @book, class: "txt", data: {target: "pricing.form", pricing_book: @book.slug} do |f| %>
     <div>
-      <%= f.label :price, "設定價格" %><div><em>(minimun price)</em></div>
+      <%= f.label :price, "設定價格 $0 ~ $100" %><div><em>(minimun price)</em></div>
       <%= f.number_field :price, :step => "0.01", data: {required: "requred", target: "pricing.price"} %>
     </div>
 
