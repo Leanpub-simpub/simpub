@@ -65,7 +65,36 @@ section.library {
     background-color: inherit;
     border-color: #e09a5f;
 
+    .info-group {
+      flex-direction: column;
+
+      .cover {
+        margin-bottom: 2rem;
+      }
+      :first-child {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .info {
+        margin-bottom: 2rem;
+      }
+      .book-info {
+        .book-info-avatar {
+          margin-right: 0;
+        }
+        .book-show-author {
+          .book-show-author-name {
+            margin-right: auto;
+          }
+        }
+      }
+      .rating, .about {
+        text-align: center;
+      }
+    }
     .book-about {
+      text-align: center;
+      
       a {
         color: #e09a5f;
         font-size: 18px;
@@ -76,6 +105,21 @@ section.library {
       #comment_content {
         resize: none;
         min-height: 6rem;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 540px) {
+  .library-info {
+    .card.card-body {
+      .book-about {
+        margin-left: auto;
+        margin-right: auto;
+
+        label[for="comment_content"]{
+          font-size: 26px;
+        }
       }
     }
   }
@@ -92,6 +136,29 @@ section.library {
       }
     }
   }
+  .library-info {
+    .card.card-body {
+      .info-group {
+        flex-direction: row;
+        margin-left: 0;
+
+        .book-info {
+          .book-info-avatar {
+            margin-left: 0;
+          }
+        }
+        .rating, .about {
+          text-align: left;
+        }
+      }
+
+      .book-about {
+        margin-right: auto;
+        margin-left: 0;
+        text-align: left;
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 1140px) {
@@ -100,6 +167,25 @@ section.library {
       .book-box {
         .book-item {
           max-width: 20%;
+        }
+      }
+    }
+  }
+  .library-info {
+    .card.card-body {
+      .info-group {
+        div:first-child {
+          margin-right: 0;
+        }
+      }
+      .book-info {
+        margin-left: 0!important;
+
+      }
+      .book-about {
+        .read {
+          margin-left: 0;
+          margin-bottom: 2rem;
         }
       }
     }
