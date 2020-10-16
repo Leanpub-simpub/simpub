@@ -1,6 +1,28 @@
-.library {
-  a#download:hover {
-    color: #e09a5f;
+section.library {
+  .user-avatar {
+    margin-left: auto;
+    margin-right: auto;
+
+    .user-name {
+      font-size: 22px;
+    }
+  }
+  .user-books {
+    h2 {
+      text-align: center;
+      margin-bottom: -2rem;
+    }
+    .book-box {
+      .book-item {
+        margin-top: 4rem;
+
+        .book-title {
+          margin-bottom: .5rem;
+          margin-top: .2rem;
+          font-size: 18px;
+        }
+      }
+    }
   }
 
   .rating {
@@ -14,38 +36,70 @@
     margin-left: -5px;
     color: #e3cf7a;
   }
-  .download {
-    background: linear-gradient(90deg, #f28128 0%, #f1c39e 100%);
-    color: white;
-    border: none;
-    border-radius: 12.279px;
-    opacity: 0.9;
-    text-align: center;
-  }
-  .download:hover {
-    opacity: 1;
-    color: #ffffff;
-    background-color: #e09a5f;
-  }
 
   div#collapseBook {
     background-color: black;
 
     .card {
       background-color: black;
+    }
+    .book-about {
+      .author {
+        color: #e09a5f;
+      }
 
-      .book-about {
-        .author {
-          color: #e09a5f;
-        }
+      a:hover {
+        color: #e09a5f;
+        line-height: 10px;
+      }
 
-        a:hover {
-          color: #e09a5f;
-          line-height: 10px;
-        }
+      span {
+        color: rgba(225, 154, 96, 0.5);
+      }
+    }
+  }
+}
 
-        span {
-          color: rgba(225, 154, 96, 0.5);
+.library-info {
+  .card.card-body {
+    background-color: inherit;
+    border-color: #e09a5f;
+
+    .book-about {
+      a {
+        color: #e09a5f;
+        font-size: 18px;
+      }
+      label[for="comment_content"]{
+        font-size: 18px;
+      }
+      #comment_content {
+        resize: none;
+        min-height: 6rem;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 960px) {
+  section.library {
+    .library-box {
+      flex-wrap: nowrap;
+    }
+    .user-books {
+      h2 {
+        text-align: left;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1140px) {
+  section.library {
+    .user-books {
+      .book-box {
+        .book-item {
+          max-width: 20%;
         }
       }
     }

@@ -48,9 +48,9 @@
         </div>
 
         <div class="mb-3">
-          <%= f.label :username, class:"txt" %><br />
+          <%= f.label :username, class:"txt" %> <em class="txt">(Personal Page)</em><br />
           <div class="username d-flex">
-            <span class="">simpub.tw/u/</span>
+            <span class="domain">simpub.tw/u/</span>
             <%= f.text_field :username, autofocus: true, class:"flex-grow-1", data: {target: "signup.username"} %>
           </div>
           <span class="text-danger d-block mt-1" data-target="signup.username_error"></span>
@@ -59,7 +59,7 @@
 
         <%= f.label :password, class:"txt" %>
         <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <em class="txt">(<%= @minimum_password_length %> characters minimum)</em>
         <% end %><br />
 
         <%= f.password_field :password, autocomplete: "new-password", class:"col-12 mb-3 txt" %>
@@ -69,7 +69,7 @@
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"col-12 mb-3" %>
         <div class="w-100"></div>
 
-        <div class="w-100"><input class= "txt mr-2" type="checkbox">I accept the Simpub Terms of Service and Privacy Policy</div>
+        <div class="w-100 txt"><input class= "txt mr-2" type="checkbox">I accept the Simpub Terms of Service and Privacy Policy</div>
   
         <div class="my-3">
         <%= f.submit "Create Account", class: "btn btn-primary border-0 py-2" %>

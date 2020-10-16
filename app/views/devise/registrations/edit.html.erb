@@ -1,4 +1,4 @@
-<h1 class="text-center">Edit Profile</h1>
+<h1 class="text-center txt pt-5">Edit Profile</h1>
 
 <section class="edit-profile container d-flex justify-content-center my-5">
   <div class="card col-12 col-md-10">
@@ -91,17 +91,23 @@
                 <div class="row">
                   <div class="col-12">
                     <div class="form-group">
-                      <%= f.label :facebook, "FACEBOOK" %>
-                      <span>facebook.com/</span>
-                      <%= f.text_field :facebook, id: "facebook-username", class: "form-control" %>
+                      <div>
+                        <%= f.label :facebook, "FACEBOOK" %>
+                      </div>
+                      <div class="domain-box">
+                        <span class="domain">facebook.com/</span>
+                        <%= f.text_field :facebook, id: "facebook-username", class: "form-control" %>
+                      </div>
                     </div>
                   </div>
 
                   <div class="col-12">
                     <div class="form-group">
                       <%= f.label :github, "GITHUB USERNAME" %>
-                      <span>github.com/</span>
-                      <%= f.text_field :github, id: "github-username", class: "form-control" %>
+                      <div class="domain-box">
+                        <span class="domain">github.com/</span>
+                        <%= f.text_field :github, id: "github-username", class: "form-control" %>
+                      </div>
                     </div>
                   </div>
                 </div>
