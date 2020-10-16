@@ -6,7 +6,6 @@ import "./cart_review.scss";
 import "./typed.scss";
 import "./modal.scss";
 import "./profiles_show.scss";
-import "./layout.scss";
 
 import "./books";
 import "./home";
