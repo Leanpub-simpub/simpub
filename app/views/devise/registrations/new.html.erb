@@ -59,11 +59,7 @@
 
         <%= f.label :password, class:"txt" %>
         <% if @minimum_password_length %>
-<<<<<<< HEAD
         <em class="txt" style="font-weight: normal !important">(<%= @minimum_password_length %> characters minimum)</em>
-=======
-        <em class="txt">(<%= @minimum_password_length %> characters minimum)</em>
->>>>>>> a2bbf9b1513e7cf5567cfb30fc195fe79a0f10ee
         <% end %><br />
 
         <%= f.password_field :password, autocomplete: "new-password", class:"col-12 mb-3 txt" %>
@@ -73,11 +69,7 @@
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"col-12 mb-3" %>
         <div class="w-100"></div>
 
-<<<<<<< HEAD
         <div class="w-100 txt" style="font-weight: normal !important"><input class= "txt mr-2" type="checkbox">I accept the Simpub Terms of Service and Privacy Policy</div>
-=======
-        <div class="w-100 txt"><input class= "txt mr-2" type="checkbox">I accept the Simpub Terms of Service and Privacy Policy</div>
->>>>>>> a2bbf9b1513e7cf5567cfb30fc195fe79a0f10ee
   
         <div class="my-3">
         <%= f.submit "Create Account", class: "btn btn-primary border-0 py-2" %>
