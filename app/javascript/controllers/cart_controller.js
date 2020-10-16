@@ -155,41 +155,25 @@ export default class extends Controller {
         const total = document.querySelector(".cart-total");
         const index = wishBtn.parentElement.dataset.index;
         const cartBubble = document.querySelector(".fa-shopping-cart").firstElementChild;
-        const heartBubble = document.querySelector(".fa-heart").firstElementChild;
+
+        if (document.querySelector(".fa-heart")) {
+          const heartBubble = document.querySelector(".fa-heart").firstElementChild;
+        }
         
-        // 將書籍移動到願望清單
         const bookId = wishBtn.parentElement.dataset.bookid;
+        // 從購物車當中刪除
         axios
-          .post(`/books/${bookId}/wish`)
-          .then(function(result) {
-            flash.innerHTML = 
-              `<div class="alert alert-success alert-dismissible fade show" role="alert">
-                Added item to your Wish List.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>`
-            
-            // 從購物車當中刪除
-            axios
-              .delete(`/cart?index=${index}`)
-              .then(function(result) {
-                // 前端演畫面
-                heartBubble.classList.remove("x");
-                heartBubble.classList.add("bubble");
-                axios
-                  .get(`/cart.json`)
-                  .then(function(result) {
-                    item.remove();
-                    cartBubble.textContent--;
-                    heartBubble.textContent++;
-                    total.textContent = `$${result.data.total.toFixed(2)}`;
-                  })
-                  .catch(function(error) {});
-              })
-              .catch(function(error) {});
-          })
-          .catch(function(error) {})
+        .delete(`/cart?index=${index}`)
+        .then(function(result) {
+          // 將書籍移動到願望清單
+          axios
+            .post(`/cart/cartwish?id=${bookId}`)
+            .then(function(result) {
+              location.href = result.data.redirect;
+            })
+            .catch(function(error) {});
+        })
+        .catch(function(error) {})
       });
     });
     

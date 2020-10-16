@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  before_action :find_book, only: [:edit, :cartwish]
 
   def add
     cart_price = params[:cart_price][1..-1].to_f
@@ -16,7 +17,18 @@ class CartsController < ApplicationController
 
 
   def edit
-    @book = Book.find_by(id: params[:id])
+    # @book = Book.find_by(id: params[:id])
+  end
+
+  def cartwish
+    if current_user
+      current_user.wish_books << @book
+      flash[:notice] = "Added item to your Wish List."
+      render json: { redirect: cart_path }
+    else
+      flash[:notice] = "You need to sign in or sign up before continuing."
+      render json: { redirect: new_user_session_path }
+    end
   end
 
   def update
@@ -115,6 +127,10 @@ class CartsController < ApplicationController
 
 
   private
+  def find_book
+    @book = Book.find_by(id: params[:id])
+  end
+
   def gateway
     Braintree::Gateway.new(
       environment: :sandbox, 
