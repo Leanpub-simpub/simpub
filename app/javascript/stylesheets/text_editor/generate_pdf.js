@@ -173,12 +173,12 @@ window.addEventListener('turbolinks:load',()=>{
           }
 
         }
-        console.log('pdfOK')
+        // console.log('pdfOK')
         pdftoserver(doc.output('blob'),bookName,bookName)
         doc.save(`${bookName}`+ '.pdf')
       })
       .catch(function(err){
-        console.log(err)
+        // console.log(err)
       })
     })
     
