@@ -4,17 +4,10 @@
   }
 
   .book-item {
-    min-height: 30vh;
+    min-height: 45vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-
-    .book-cover{
-      box-shadow: 1px 1px 5px #353535;
-      object-fit: contain;
-      height: 190px;
-      
-     }
+    justify-content: space-between;
   }
 
   .book-title {
@@ -25,15 +18,11 @@
     display: -webkit-box;
     overflow: hidden;
     text-overflow: ellipsis;
-    height: 40px;
-    margin: 10px;
-    text-align: center;
   }
 }
 
 .book-author {
   font-size: 13px;
-  text-align: center;
 }
 
 form.x {
@@ -47,6 +36,6 @@ form.x {
   display: flex;
   justify-content: center;
   span {
-    margin: 0px 3px 0px 3px ;
+    margin: 0px 3px 0px 3px;
   }
 }

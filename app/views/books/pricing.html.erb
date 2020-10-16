@@ -1,15 +1,14 @@
 <div class="pricing container text-center pricing d-flex flex-column justify-content-center" data-controller="pricing">
-  <h1 class="h3 txt" id="bookName"><%= @book.title %></h1>
-  <h1 class="h3 txt">設定書本價格</h1>
+  <h1 class="h3" id="bookName"><%= @book.title %></h1>
 
-  <div class="cover col-3 mx-auto">
+  <div class="cover col-6 mx-auto">
     <%= render partial: "shared/frontend/book_cover", locals: {book: @book, size: :large} %>
   </div>
-  <div class="col-3 mx-auto mt-1 p-0 pdf-notice">
-    <div class="mt-1 ">Upload your book as PDF ?</div>
-    <div class="mt-1 ">If not, press below button</div>
-    <div class="mt-1 btn maint-button" id="pdf-geneator">Convert Your Book to PDF</div>
+  <div class="col-6 mx-auto my-2 p-0 pdf-notice">
+    <span class="mt-1 ">Upload your book as PDF. <br>If not, press below button</span>
   </div>
+
+  <button class="btn btn-outline-secondary d-flex flex-nowrap">Convert to PDF</button>
   <br>
 
   <%= form_with model: @book, class: "txt", data: {target: "pricing.form", pricing_book: @book.slug} do |f| %>
@@ -19,7 +18,7 @@
     </div>
 
     <div>
-      <%= f.submit "上架", data: {action: "pricing#submit"} %>
+      <%= f.submit "Publish", data: {action: "pricing#submit"}, class:"btn btn-primary mt-2" %>
     </div>
   <% end %>
 </div>

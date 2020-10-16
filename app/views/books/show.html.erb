@@ -79,6 +79,7 @@
         </div>
       </div>
       
+      <% if !@book.md_data %>
       <!-- 試閱 -->
       <div class="button-group col-12">
         <%= link_to sample_book_path(@book),class: "w-100" do %>
@@ -95,6 +96,7 @@
           </div>
         <% end %>
       </div>
+      <% end %>
 
     </div>
 

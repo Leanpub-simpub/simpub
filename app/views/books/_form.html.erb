@@ -7,10 +7,10 @@
         <%= image_pack_tag "open_book_cover.jpeg", class: "w-100" %>
       </div>
   
-      <%= f.label :cover, class: "cover upload-btn btn-primary py-1", data: {action: "click->book#upload_cover"} do %>
+      <%= f.label :cover, class: "cover upload-btn btn btn-outline-secondary", data: {action: "click->book#upload_cover"} do %>
         <%= f.hidden_field :cover, value: book.cached_cover_data %>
         <%= f.file_field :cover, id: "cover-input", data: {target: "book.cover"} %>
-        上傳封面圖片
+        Upload Cover
       <% end %>
     </div>
   </div>
@@ -52,7 +52,7 @@
     
       <div class="desk">
         <div class="form-item col-lg-6">
-          <%= f.label :md, class:"btn-outline-secondary btn upload-btn d-inline", data: {action: "click->book#upload_pdf"} do %>
+          <%= f.label :md, class:"upload-btn btn btn-outline-secondary w-100", data: {action: "click->book#upload_pdf"} do %>
             <%= f.hidden_field :md, value: book.cached_md_data %>
             <%= f.file_field :md, class:"mb-3", id: "file_input", data: {target: "book.pdf"} %>
             Upload PDF
@@ -60,7 +60,7 @@
         </div>
       
         <div class="form-item col-lg-6">
-          <%= f.submit "Finish", class:"finish btn-primary btn py-1" %>
+          <%= f.submit "Create", class:"create btn btn-primary" %>
         </div>
       </div>
     </div>
