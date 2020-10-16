@@ -17,6 +17,7 @@ export default class extends Controller {
       .fire({
         text: "Please enter a valid price",
         icon: "error",
+        iconColor: "#e09a5f",
         showCancelButton: true,
         cancelButtonText: "OK",
         focusCancel: true,
@@ -26,8 +27,8 @@ export default class extends Controller {
       Swal
         .fire({
           text: "Publishing？",
-          icon: "warning",
-          iconColor: "#f33",
+          icon: "success",
+          iconColor: "#e09a5f",
           showCancelButton: true,
           cancelButtonText: "No",
           confirmButtonText: "Yes",
