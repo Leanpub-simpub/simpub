@@ -113,25 +113,44 @@
     letter-spacing: 0.05em;
     color: #e09a5f !important; 
   }
-  .buy-books {
-    margin: auto;
-
-    .book-item{
-      padding: 10px;
+  .buy-books{
+    margin:auto;
+    .book-item {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      
-      h5{
-        text-align: center;
-      }
-      .book-name{
-        text-align: center;
-      }
+      justify-content: flex-start;
+     .book-cover{
+      box-shadow: 1px 1px 5px #353535;
+      object-fit: contain;
+      height: 190px;
+
+     }
+     a{
+       text-decoration: none;
+
+     }
+     h5{
+      margin-top: 10px;
+      font-weight: 700;
+      font-size: 15px;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      height: 40px;
+      text-align: center;
+
+     }
+     .book-name p{
+       text-overflow: ellipsis;
+       text-align: center;
+
+     }
     }
   }
-}
-
+  
+ }
 @media screen and (min-width: 992px) {
   .profile-show{
     .author-about {

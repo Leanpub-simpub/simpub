@@ -15,11 +15,30 @@ section.library {
     .book-box {
       .book-item {
         margin-top: 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        .book-cover{
+          box-shadow: 1px 1px 5px #353535;
+          object-fit: contain;
+          height: 190px;
+          
+         }
 
         .book-title {
           margin-bottom: .5rem;
           margin-top: .2rem;
           font-size: 18px;
+          margin-top: 10px;
+          font-weight: 700;
+          font-size: 15px;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          display: -webkit-box;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
         }
       }
       .container {
