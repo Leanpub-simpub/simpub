@@ -4,10 +4,17 @@
   }
 
   .book-item {
-    min-height: 40vh;
+    min-height: 30vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+
+    .book-cover{
+      box-shadow: 1px 1px 5px #353535;
+      object-fit: contain;
+      height: 190px;
+      
+     }
   }
 
   .book-title {
@@ -18,11 +25,15 @@
     display: -webkit-box;
     overflow: hidden;
     text-overflow: ellipsis;
+    height: 40px;
+    margin: 10px;
+    text-align: center;
   }
 }
 
 .book-author {
   font-size: 13px;
+  text-align: center;
 }
 
 form.x {
