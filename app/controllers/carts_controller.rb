@@ -8,13 +8,9 @@ class CartsController < ApplicationController
   end
 
   def show
-    if not user_signed_in?
-      redirect_to new_user_session_path, alert: 'You need to sign in or sign up before continuing.'
-    else
-      respond_to do |format|
-        format.html
-        format.json { current_cart }
-      end
+    respond_to do |format|
+      format.html
+      format.json { current_cart }
     end
   end
 
