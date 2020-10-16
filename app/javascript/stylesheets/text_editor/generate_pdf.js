@@ -48,8 +48,8 @@ window.addEventListener('turbolinks:load',()=>{
         // 拿到所有 md to html 的內容
         for(let i =0 ;i<pdf_ary.length;i++){
           let itemH = pdf_ary[i].scrollHeight
-          let text = pdf_ary[i].textContent
-          let line = doc.splitTextToSize(text,530)
+          
+          
           // 如果內容太多就跳下一頁
           if( (h+itemH) > 900){
           h = 50   
@@ -60,46 +60,67 @@ window.addEventListener('turbolinks:load',()=>{
           //內文有圖片
           if(pdf_ary[i].querySelectorAll('img').length != 0){
             
-            for(let j=0;j<pdf_ary[i].querySelectorAll('img').length;j++){
-              let height = pdf_ary[i].querySelectorAll('img')[j].scrollHeight*0.6
-              let weight = pdf_ary[i].querySelectorAll('img')[j].scrollWidth*0.6
-              doc.addImage(pdf_ary[i].querySelectorAll('img')[j],'JPEG',30,h,weight,height)
-              h+= pdf_ary[i].querySelectorAll('img')[j].scrollHeight*index
-            }
+            // for(let j=0;j<pdf_ary[i].querySelectorAll('img').length;j++){
+            //   let height = pdf_ary[i].querySelectorAll('img')[j].scrollHeight*0.6
+            //   let weight = pdf_ary[i].querySelectorAll('img')[j].scrollWidth*0.6
+            //   doc.addImage(pdf_ary[i].querySelectorAll('img')[j],'JPEG',30,h,weight,height)
+            //   h+= pdf_ary[i].querySelectorAll('img')[j].scrollHeight*index
+            // }
           }else{
             //文字的處理
+            let text = pdf_ary[i].textContent
             if(pdf_ary[i].tagName =='H1'){
+              
+              h += 10
               doc.setFontSize(32)
+              let line = doc.splitTextToSize(text,530)
               doc.text(line,30,h+20)
-              h += 20
+              h += 10
               h += pdf_ary[i].scrollHeight*index
             }else if(pdf_ary[i].tagName =='H2'){
+              h += 10
               doc.setFontSize(24)
+              let line = doc.splitTextToSize(text,530)
               doc.text(line,30,h)
+              h += 10
               h += pdf_ary[i].scrollHeight*index
             }else if(pdf_ary[i].tagName =='H3'){
+              h += 10
               doc.setFontSize(20)
+              let line = doc.splitTextToSize(text,530)
               doc.text(line,30,h)
+              h += 10
               h += pdf_ary[i].scrollHeight*index
             }else if(pdf_ary[i].tagName =='H4'){
+              h += 5
               doc.setFontSize(16)
+              let line = doc.splitTextToSize(text,530)
               doc.text(line,30,h)
+              h += 5
               h += pdf_ary[i].scrollHeight*index
             }else if(pdf_ary[i].tagName =='H5'){
+              h += 5
               doc.setFontSize(14)
+              let line = doc.splitTextToSize(text,530)
               doc.text(line,30,h)
+              h += 5
               h += pdf_ary[i].scrollHeight*index
             }else if(pdf_ary[i].tagName =='H6'){
               doc.setFontSize(13)
+              let line = doc.splitTextToSize(text,530)
               doc.text(line,30,h)
               h += pdf_ary[i].scrollHeight*index
             }else if(pdf_ary[i].tagName =='P'){
+              h += 10
               doc.setFontSize(12)
+              let line = doc.splitTextToSize(text,530)
               doc.text(line,30,h)
+              h += 10
               h += pdf_ary[i].scrollHeight*index
             }else if(pdf_ary[i].tagName =='PRE'){
               let txt = pdf_ary[i].textContent.replace(/(\d)(\w)/g,"\n$1   $2")
               doc.setFontSize(12)
+              let line = doc.splitTextToSize(text,530)
               doc.text(txt,30,h)
               // btnDownloadPageBypfd2(pdf_ary[i],h)
               // console.log('out')
@@ -152,12 +173,12 @@ window.addEventListener('turbolinks:load',()=>{
           }
 
         }
-        
-        doc.save(`${bookName}`+ '.pdf')
+        console.log('pdfOK')
         pdftoserver(doc.output('blob'),bookName,bookName)
+        doc.save(`${bookName}`+ '.pdf')
       })
       .catch(function(err){
-
+        console.log(err)
       })
     })
     
@@ -209,6 +230,7 @@ window.addEventListener('turbolinks:load',()=>{
         data: formData
       })
       .then( result=>{
+        console.log('OK')
         Swal.fire({
           position: 'center',
           icon: 'success',
