@@ -17,7 +17,6 @@ class CartsController < ApplicationController
 
 
   def edit
-    # @book = Book.find_by(id: params[:id])
   end
 
   def cartwish
@@ -59,7 +58,7 @@ class CartsController < ApplicationController
       if user_signed_in?
         @token = gateway.client_token.generate
       else
-        redirect_to new_user_session_path
+        redirect_to new_user_session_path, notice: "You need to sign in or sign up before continuing."
       end
     end
   end
