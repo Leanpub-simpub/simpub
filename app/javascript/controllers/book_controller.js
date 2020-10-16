@@ -4,14 +4,6 @@ import axios from "axios";
 export default class extends Controller {
   static targets = [ "title", "error_msg", "cover", "pdf" ];
 
-  connect() {
-    // 檢查書籍的狀態使否為草稿，非草稿狀態不能改 title
-    let publishState = this.data.get("state");
-    if (publishState == "on_shelf" || publishState == "off_shelf") {
-      this.titleTarget.disabled = true;
-    }
-  }
-
   upload_cover() {
     const coverInput = this.coverTarget;
     coverInput.click();

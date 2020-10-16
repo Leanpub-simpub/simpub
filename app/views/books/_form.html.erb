@@ -1,13 +1,17 @@
 <%= form_for book, data: {controller: "book", book_title: book.title, book_state: book.publish_state} do |f| %>
   
   <div class="form-item col-lg-5">
-    <div class="col-xl-10 pr-xl-0">
+    <div class="cover-grop m-auto col-xl-10 pr-xl-0">
       <p class="cover">The Book Cover</p>
       <div id="cover-preview" class="mx-auto mb-2">
         <%= image_pack_tag "open_book_cover.jpeg", class: "w-100" %>
       </div>
   
+<<<<<<< HEAD
       <%= f.label :cover, class: "cover btn btn-outline-secondary", data: {action: "click->book#upload_cover"} do %>
+=======
+      <%= f.label :cover, class: "cover upload-btn btn-primary py-1", data: {action: "click->book#upload_cover"} do %>
+>>>>>>> 0652e9f71b8a9b098bc71080111db6a3e6ffd54a
         <%= f.hidden_field :cover, value: book.cached_cover_data %>
         <%= f.file_field :cover, id: "cover-input", data: {target: "book.cover"} %>
         Upload Cover
@@ -16,10 +20,14 @@
   </div>
 
   <div class="col-lg-7">
-    <div class="col-xl-10 pl-xl-0">
+    <div class="col-xl-10 pl-xl-0 m-auto">
       <div class="form-item mb-3">
         <%= f.label :title, "The Book Title", class: "book-title" %>
-        <%= f.text_field :title, class: "w-100", data: {action: "book#input", target: "book.title"}, required: true %>
+        <% if params[:controller] == "books" and params[:action] == "new" %>
+          <%= f.text_field :title, class: "w-100", data: {action: "book#input", target: "book.title"}, required: true %>
+        <% else %>
+          <%= f.text_field :title, class: "w-100", disabled: true %>
+        <% end %>
         <span id="error_msg" class="text-danger d-block mt-1" data-target="book.error_msg"></span>
       </div>
     
@@ -48,15 +56,15 @@
     
       <div class="desk">
         <div class="form-item col-lg-6">
-          <%= f.label :md, class:"btn btn-outline-secondary w-100", data: {action: "click->book#upload_pdf"} do %>
+          <%= f.label :md, class:"btn-outline-secondary btn upload-btn d-inline", data: {action: "click->book#upload_pdf"} do %>
             <%= f.hidden_field :md, value: book.cached_md_data %>
             <%= f.file_field :md, class:"mb-3", id: "file_input", data: {target: "book.pdf"} %>
             Upload PDF
           <% end %>
         </div>
       
-        <div class="col-lg-6">
-          <%= f.submit "Create", class:"btn btn-primary", style:"font-size: 18px" %>
+        <div class="form-item col-lg-6">
+          <%= f.submit "Create", class:"create btn-primary btn py-1", style:"font-size: 18px" %>
         </div>
       </div>
     </div>

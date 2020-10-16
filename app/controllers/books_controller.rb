@@ -97,9 +97,14 @@ class BooksController < ApplicationController
   end
 
   def wish
-    current_user.wish_books << @book
-    flash[:notice] = "Added item to your Wish List."
-    render json: { redirect: book_path(@book) }
+    if current_user
+      current_user.wish_books << @book
+      flash[:notice] = "Added item to your Wish List."
+      render json: { redirect: book_path(@book) }
+    else
+      flash[:notice] = "You need to sign in or sign up before continuing."
+      render json: { redirect: new_user_session_path }
+    end
   end
 
   # 線上編輯 action

@@ -68,6 +68,7 @@ Rails.application.routes.draw do
       get :payment
       post :checkout
       post :refund
+      post :cartwish
     end
   end
 

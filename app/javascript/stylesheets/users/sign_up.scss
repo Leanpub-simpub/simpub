@@ -11,3 +11,12 @@
     }
   }
 }
+.field_with_errors {
+  display: inline;
+  width: 100%;
+
+  input {
+    width: 100%;
+    height: 100%;
+  }
+}

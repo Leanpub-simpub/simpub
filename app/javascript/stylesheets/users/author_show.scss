@@ -30,53 +30,60 @@ section.author-publishing{
     }
   }
 
-  .author-all-books{
-    margin-left: auto;
-    margin-right: auto;
-
-    .all-book-info {
-      text-align: start;
-      font-family: SF Pro Display;
-      font-style: normal;
-      font-weight: bold;
-      padding: 20px 0;
-      letter-spacing: 0.05em;
-      color: #5C5D60 !important;
-      text-align: center;
-      p{
-        margin: auto;
-      }
-    }
-  }
+ 
   .all-books{
-    font-family: SF Pro Display;
     font-style: normal;
     font-weight: bold;
     padding: 20px 0;
-    letter-spacing: 0.05em;
     color: #5C5D60 !important;
     text-align: center;
+    .author-all-books{
+      margin-left: auto;
+      margin-right: auto;
+
+      .all-book-info {
+        text-align: start;
+        font-family: SF Pro Display;
+        font-style: normal;
+        font-weight: bold;
+        padding: 20px 0;
+        letter-spacing: 0.05em;
+        color: #5C5D60 !important;
+        text-align: center;
+        p{
+          margin: auto;
+        }
+      }
+    }
+
     h4{
-      margin: 25px 0;
+      margin: 20px 0;
       color: #5C5D60 !important;
 
     }
-    pubbook-item{
+    .pubbook-item{
       padding: 10px;
+      margin-bottom: 10px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      p{
+        margin: 5px;
+      }
     }
 
     .publish-book{
       margin:auto;
-      font-size: 20px;
       font-weight: bold;
     }
     .unpublish-book{
       margin:auto;
-      font-size: 20px;
       font-weight: bold;
+    }
+  }
+  .author-books{
+    .off-shelf, .on-shelf{
+      margin: 0 5px 0 5px;
     }
   }
 }
@@ -84,10 +91,9 @@ section.author-publishing{
 @media screen and (min-width: 992px) {
   section.author-publishing{
     .author-about {
+      padding-bottom: 20px;
       border: 0;
-      margin-top: 20px;
-      box-shadow: none;
-      border-radius: 0;
+      margin-top: 46px;
 
       .avatar {
         margin: auto;

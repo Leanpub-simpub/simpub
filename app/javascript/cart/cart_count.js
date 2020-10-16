@@ -22,18 +22,20 @@ document.addEventListener("turbolinks:load", () => {
     fetch("/cart.json")
       .then((response) => response.json())
       .then((cartItems) => {
-        let cartBubble = document.querySelector(".fa-shopping-cart").firstElementChild;
+        let cartBubbles = document.querySelectorAll(".fa-shopping-cart");
 
-        if (cartItems.cart.items.length !== 0) {
-          let cartCount = cartItems.cart.items.length;
-          
-          cartBubble.classList.remove("x");
-          cartBubble.classList.add("bubble");
-          cartBubble.textContent = cartCount;
-        } else {
-          cartBubble.classList.remove("bubble");
-          cartBubble.classList.add("x");
-        }
+        cartBubbles.forEach(cartBubble => {
+          if (cartItems.cart.items.length !== 0) {
+            let cartCount = cartItems.cart.items.length;
+            
+            cartBubble.firstElementChild.classList.remove("x");
+            cartBubble.firstElementChild.classList.add("bubble");
+            cartBubble.firstElementChild.textContent = cartCount;
+          } else {
+            cartBubble.firstElementChild.classList.remove("bubble");
+            cartBubble.firstElementChild.classList.add("x");
+          }
+        })
       });
   }
 });
