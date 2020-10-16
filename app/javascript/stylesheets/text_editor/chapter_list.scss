@@ -27,7 +27,7 @@
   margin-right: 10px;
 }
 
-.chaptersite:hover,.section:hover  {
+.chaptersite:hover,.chapter_list.section:hover  {
   background-color: rgb(81,81,81);
   width: 100%;
 }
@@ -35,6 +35,15 @@
   background-color: rgb(101,101,101);
 }
 
+.chapter_list .section::before{
+  content: "-";
+  width: 10px;
+  display: inline-block;
+  height: 5px;
+  color: black;
+  line-height: 100%;
+  margin-right: 10px;
+}
 
 .section::before{
   content: "-";
