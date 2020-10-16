@@ -6,7 +6,7 @@ window.addEventListener("turbolinks:load", function () {
     let bookcase = document.querySelector('.book-box')
 
     bookcase.addEventListener('click',(e)=>{
-      if(e.target.className == 'download'){
+      if(e.target.classList.contains('download')){
         
         let bookName = e.target.parentElement.parentElement.querySelector('.book-title').textContent
         let params = {bookName:bookName}

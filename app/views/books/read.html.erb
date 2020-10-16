@@ -1,4 +1,4 @@
-<h1 class="text-center"><span class="book_name"><%=  @book.title %></span><span class="currentTarget"></span></h1>
+<h1 class="text-center my-4 container-lg"><span class="book_name"><%=  @book.title %></span><span class="currentTarget"></span></h1>
 <div class="wrap">
   <div class="chapter_list">
     <% @json.each_with_index do |chapter,index| %>
@@ -12,5 +12,5 @@
       <% end %>
     <% end %>
   </div>
-  <div id="targetDiv" class=" flex-grow-1"></div>
+  <div id="targetDiv" class="read flex-grow-1"></div>
 </div>
