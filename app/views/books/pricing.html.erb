@@ -1,6 +1,6 @@
 <div class="pricing container text-center pricing d-flex flex-column justify-content-center" data-controller="pricing">
   <h1 class="h3" id="bookName"><%= @book.title %></h1>
-  <h1 class="h3">設定書本價格</h1>
+  <h1 class="h3 txt">Set Book Price</h1>
 
   <div class="cover col-3 mx-auto">
     <%= render partial: "shared/frontend/book_cover", locals: {book: @book, size: :large} %>
@@ -14,12 +14,12 @@
 
   <%= form_with model: @book, data: {target: "pricing.form", pricing_book: @book.slug} do |f| %>
     <div>
-      <%= f.label :price, "設定價格" %>
+      <%= f.label :price, "Set Book Price" %>
       <%= f.number_field :price, :step => "0.01", data: {required: "requred"} %>
     </div>
 
     <div>
-      <%= f.submit "上架", data: {action: "pricing#submit"} %>
+      <%= f.submit "Publish", data: {action: "pricing#submit"} %>
     </div>
   <% end %>
 </div>

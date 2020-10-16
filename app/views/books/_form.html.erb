@@ -10,7 +10,7 @@
       <%= f.label :cover, class: "cover btn-primary py-1", data: {action: "click->book#upload_cover"} do %>
         <%= f.hidden_field :cover, value: book.cached_cover_data %>
         <%= f.file_field :cover, id: "cover-input", data: {target: "book.cover"} %>
-        上傳封面圖片
+        Upload Cover
       <% end %>
     </div>
   </div>
@@ -51,12 +51,12 @@
           <%= f.label :md, class:"btn-primary py-1", data: {action: "click->book#upload_pdf"} do %>
             <%= f.hidden_field :md, value: book.cached_md_data %>
             <%= f.file_field :md, class:"mb-3", id: "file_input", data: {target: "book.pdf"} %>
-            上傳 PDF
+            Upload PDF
           <% end %>
         </div>
       
         <div class="col-lg-6">
-          <%= f.submit "Finish", class:"btn btn-danger main-btn" %>
+          <%= f.submit "Create", class:"btn btn-danger main-btn" %>
         </div>
       </div>
     </div>
