@@ -2,7 +2,7 @@ class Users::LibraryController < ApplicationController
 
   def show
     if user_signed_in?
-      @books = current_user.bought_books
+      @books = current_user.bought_books.includes(:authors)
       @book = Book.find_by(id: params[:bookid])
       @book_info = @book.as_json(include: :authors)
       @comment = current_user.comments.new

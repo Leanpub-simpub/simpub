@@ -1,6 +1,5 @@
 import { Controller } from "stimulus";
 import axios from "axios";
-import $ from "jquery";
 
 export default class extends Controller {
   static targets = [ "bookBox" ];

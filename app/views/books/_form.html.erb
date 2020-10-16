@@ -19,7 +19,11 @@
     <div class="col-xl-10 pl-xl-0">
       <div class="form-item mb-3">
         <%= f.label :title, "The Book Title", class: "book-title" %>
-        <%= f.text_field :title, class: "w-100", data: {action: "book#input", target: "book.title"}, required: true %>
+        <% if params[:controller] == "books" and params[:action] == "new" %>
+          <%= f.text_field :title, class: "w-100", data: {action: "book#input", target: "book.title"}, required: true %>
+        <% else %>
+          <%= f.text_field :title, class: "w-100", disabled: true %>
+        <% end %>
         <span id="error_msg" class="text-danger d-block mt-1" data-target="book.error_msg"></span>
       </div>
     
