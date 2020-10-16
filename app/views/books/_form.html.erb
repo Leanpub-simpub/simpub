@@ -1,13 +1,13 @@
 <%= form_for book, data: {controller: "book", book_title: book.title, book_state: book.publish_state} do |f| %>
   
   <div class="form-item col-lg-5">
-    <div class="col-xl-10 pr-xl-0">
+    <div class="cover-grop m-auto col-xl-10 pr-xl-0">
       <p class="cover">The Book Cover</p>
       <div id="cover-preview" class="mx-auto mb-2">
         <%= image_pack_tag "open_book_cover.jpeg", class: "w-100" %>
       </div>
   
-      <%= f.label :cover, class: "cover btn-primary py-1", data: {action: "click->book#upload_cover"} do %>
+      <%= f.label :cover, class: "cover upload-btn btn-primary py-1", data: {action: "click->book#upload_cover"} do %>
         <%= f.hidden_field :cover, value: book.cached_cover_data %>
         <%= f.file_field :cover, id: "cover-input", data: {target: "book.cover"} %>
         上傳封面圖片
@@ -16,7 +16,7 @@
   </div>
 
   <div class="col-lg-7">
-    <div class="col-xl-10 pl-xl-0">
+    <div class="col-xl-10 pl-xl-0 m-auto">
       <div class="form-item mb-3">
         <%= f.label :title, "The Book Title", class: "book-title" %>
         <% if params[:controller] == "books" and params[:action] == "new" %>
@@ -52,15 +52,15 @@
     
       <div class="desk">
         <div class="form-item col-lg-6">
-          <%= f.label :md, class:"btn-primary py-1", data: {action: "click->book#upload_pdf"} do %>
+          <%= f.label :md, class:"btn-outline-secondary btn upload-btn d-inline", data: {action: "click->book#upload_pdf"} do %>
             <%= f.hidden_field :md, value: book.cached_md_data %>
             <%= f.file_field :md, class:"mb-3", id: "file_input", data: {target: "book.pdf"} %>
-            上傳 PDF
+            Upload PDF
           <% end %>
         </div>
       
-        <div class="col-lg-6">
-          <%= f.submit "Finish", class:"btn btn-danger main-btn" %>
+        <div class="form-item col-lg-6">
+          <%= f.submit "Finish", class:"finish btn-primary btn py-1" %>
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@
     <p class="text-center">
       <%= link_to book.title, book_path(book.id), class:"title" %>
     </p>
-    <div class="text-center">
+    <div class="text-center d-flex justify-content-center align-items-center">
       <%= link_to edit_book_path(book) do %>
         <i class="fas fa-cog icon"></i>
       <% end %>
