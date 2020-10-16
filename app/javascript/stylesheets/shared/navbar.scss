@@ -31,13 +31,15 @@
     }
 
     .bubble {
+      background-color: #e09a5f;
+      color: #343a40;
       text-align: center;
-      line-height: 16px;
+      line-height: 18px;
       font-size: 8px;
       display: block;
       border-radius: 50%;
-      height: 16px;
-      width: 16px;
+      height: 18px;
+      width: 18px;
       border: 1px solid;
       position: absolute;
       top: -10px;

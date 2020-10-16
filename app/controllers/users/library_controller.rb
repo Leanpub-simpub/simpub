@@ -3,12 +3,17 @@ class Users::LibraryController < ApplicationController
   def show
     if user_signed_in?
       @books = current_user.bought_books
-      @book_info = Book.find_by(id: params[:id]).as_json(include: :authors)
+      @book = Book.find_by(id: params[:bookid])
+      @book_info = @book.as_json(include: :authors)
       @comment = current_user.comments.new
+
+      @comments = @book.comments if @book
+      @stars = @book.comments.average(:stars).ceil() if @comments and @comments.size > 0
 
       respond_to do |format|
         format.html
-        format.json { render json: @book_info }
+        format.json
+        # format.json { render json: @book_info }
       end
       
     else

@@ -23,7 +23,7 @@
           <%= @user.name %> 
         </div>
         <div class="txt user-about">
-          <% if @user.about %>
+          <% if @user.about and @user.about != "" %>
             <%= @user.about %>
           <% else %>
             <p>
