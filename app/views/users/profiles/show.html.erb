@@ -78,10 +78,12 @@
         <% @user.pub_books.each do |book| %>
           <div class="book-item col-6 col-lg-2">
             <%= render partial: "shared/frontend/book_cover", locals: {book: book, size: :small} %>
-            <h5><%= book.title %></h5>
             <div class="book-name">
-              <%= book.authors[0].name %>
-            </div>
+              <h5><%= book.title %></h5>
+              <p>
+                <%= book.authors[0].name %>
+              </p>
+            </div>            
           </div>
         <% end %>
       </div>
