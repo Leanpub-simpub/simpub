@@ -35,7 +35,6 @@ export default class extends Controller {
           .fire({
             text: "Password confirmation doesn't match",
             icon: "error",
-            iconColor: "#f33",
             showConfirmButton: false,
             showCancelButton: true,
             cancelButtonText: "Got it!"
@@ -46,7 +45,6 @@ export default class extends Controller {
           .fire({
             text: "Email is invalid",
             icon: "error",
-            iconColor: "#f33",
             showConfirmButton: false,
             showCancelButton: true,
             cancelButtonText: "Got it!"

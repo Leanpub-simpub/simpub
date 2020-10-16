@@ -14,8 +14,7 @@ document.addEventListener("turbolinks:load", () => {
         Swal
           .fire({
             text: "Would you like to publish this book?",
-            icon: "success",
-            iconColor: "#e09a5f",
+            icon: "question",
             showCancelButton: true,
             confirmButtonText: "Yes",
             cancelButtonText: "No",
@@ -31,7 +30,6 @@ document.addEventListener("turbolinks:load", () => {
             .fire({
               text: "Would you like to unpublish this book?",
               icon: "question",
-              iconColor: "#e09a5f",
               showCancelButton: true,
               confirmButtonText: "Yes",
               cancelButtonText: "No",
