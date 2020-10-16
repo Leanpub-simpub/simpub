@@ -30,7 +30,7 @@
   </div> 
   <div class="sign-up-column mx-4"> 
     <h3 class="title">Sign Up</h3>
-      <%= form_for resource, as: resource_name, url: registration_path(resource_name), data: {target: "signup.form"} do |f| %>
+      <%= form_for resource, as: resource_name, url: registration_path(resource_name) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
         
         <div class="mb-3">
@@ -57,17 +57,23 @@
           <div class="w-100"></div>
         </div>
 
-        <%= f.label :password, class:"txt" %>
-        <% if @minimum_password_length %>
-        <em class="txt" style="font-weight: normal !important">(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
+        <div class="mb-3">
+          <%= f.label :password, class:"txt" %>
+          <% if @minimum_password_length %>
+          <em class="txt" style="font-weight: normal !important">(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+  
+          <%= f.password_field :password, autocomplete: "new-password", class:"col-12 txt", data: {target: "signup.password"} %>
+          <span class="text-danger d-block mt-1" data-target="signup.password_error"></span>
+          <div class="w-100"></div>
+        </div>
 
-        <%= f.password_field :password, autocomplete: "new-password", class:"col-12 mb-3 txt" %>
-        <div class="w-100"></div>
-
-        <%= f.label :password_confirmation, class:"txt" %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"col-12 mb-3" %>
-        <div class="w-100"></div>
+        <div class="mb-3">
+          <%= f.label :password_confirmation, class:"txt" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"col-12", data: {target: "signup.passconfirm"} %>
+          <span class="text-danger d-block mt-1" data-target="signup.confirm_error"></span>
+          <div class="w-100"></div>
+        </div>
 
         <div class="w-100 txt" style="font-weight: normal !important"><input class= "txt mr-2" type="checkbox">I accept the Simpub Terms of Service and Privacy Policy</div>
   
