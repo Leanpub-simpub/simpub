@@ -25,8 +25,9 @@ import "controllers";
 require("../stylesheets");
 require("../cart");
 require("../books");
-require("../sign_up")
+require("../sign_up");
 import "controllers";
 import "cropperjs";
 import "cropperjs/dist/cropper.css";
 import "sweetalert2";
+import "./layout";
