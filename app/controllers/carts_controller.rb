@@ -56,6 +56,16 @@ class CartsController < ApplicationController
       redirect_to books_path, notice: "Nothing in the Cart"
     else
       if user_signed_in?
+        if current_cart.total_price == 0
+          create_order(current_user)
+          current_cart.items.each do |item|
+            current_user.bought_books << Book.find_by(id: item.book_id)
+          end
+                 
+          session[Cart::SessionKey] = nil
+          redirect_to root_path, notice: "Payment Success"
+        end
+
         @token = gateway.client_token.generate
       else
         redirect_to new_user_session_path, notice: "You need to sign in or sign up before continuing."
@@ -139,7 +149,7 @@ class CartsController < ApplicationController
     )
   end
 
-  def create_order(user, id)
+  def create_order(user, id = nil)
     order = user.orders.create(
       payment_term: "credit card",
       state: "success",
