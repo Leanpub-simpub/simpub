@@ -193,7 +193,7 @@ export default class extends Controller {
             if (result.value) {
               Swal.fire({
                 title: "Deleted!",
-                text: "已從購物車中移除",
+                text: "Book has been removed from your cart",
                 icon: "success",
                 confirmButtonColor: "#e09a5f"
               });
