@@ -67,7 +67,7 @@ class BooksController < ApplicationController
   end
   
   def update
-    if @book.update(book_params)
+    if @book.update(book_params_without_title)
       CoverUploaderJob.perform_later(@book)
       redirect_to pricing_book_path(@book)
     else
