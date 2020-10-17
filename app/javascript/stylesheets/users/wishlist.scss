@@ -2,6 +2,11 @@
 	.cover-box {
 		margin-left: auto;
 		margin-right: auto;
+		.book-cover {
+			box-shadow: 1px 1px 5px #353535;
+			object-fit: contain;
+			height: 190px;
+		}
 	}
 	.wish-btns {
 		.book-title {

@@ -19,16 +19,15 @@ section.library {
         flex-direction: column;
         justify-content: flex-start;
 
-        .book-cover{
+        .book-cover {
           box-shadow: 1px 1px 5px #353535;
           object-fit: contain;
-          height: 190px;
-          
-         }
+          // height: 190px;
+        }
 
         .book-title {
-          margin-bottom: .5rem;
-          margin-top: .2rem;
+          margin-bottom: 0.5rem;
+          margin-top: 0.2rem;
           font-size: 18px;
           margin-top: 10px;
           font-weight: 700;
@@ -38,7 +37,6 @@ section.library {
           display: -webkit-box;
           overflow: hidden;
           text-overflow: ellipsis;
-
         }
       }
       .container {
@@ -115,15 +113,19 @@ section.library {
           }
         }
       }
+      .rating,
+      .about {
+        text-align: center;
+      }
     }
     .book-about {
       text-align: center;
-      
+
       a {
         color: #e09a5f;
         font-size: 18px;
       }
-      label[for="comment_content"]{
+      label[for="comment_content"] {
         font-size: 18px;
       }
       #comment_content {
@@ -141,7 +143,7 @@ section.library {
         margin-left: auto;
         margin-right: auto;
 
-        label[for="comment_content"]{
+        label[for="comment_content"] {
           font-size: 26px;
         }
       }
@@ -171,7 +173,8 @@ section.library {
             margin-left: 0;
           }
         }
-        .rating, .about {
+        .rating,
+        .about {
           text-align: left;
         }
       }
@@ -203,8 +206,7 @@ section.library {
         }
       }
       .book-info {
-        margin-left: 0!important;
-
+        margin-left: 0 !important;
       }
       .book-about {
         .reading {
