@@ -29,9 +29,9 @@
                 <div class="x">
                   <%= render "shared/frontend/user_avatar", user: book.authors[0] %>
                 </div>
-                <!-- 書本標題-->
-                <div class="book-title text-center"><%= book.title %></div>
               </a>
+              <!-- 書本標題-->
+              <div class="book-title text-center"><%= book.title %></div>
             </div>
   
             <!-- 線上閱讀 -->
@@ -39,7 +39,7 @@
               <!-- 加入判斷避免沒上傳檔案的書籍連結壞掉 -->
               <% if book.md_data %>
               <!-- 下載功能-->
-                <p><%= link_to "下載", book.md_url,class:"uploadWholeBook", target: "_blank" %></p>
+                <p><%= link_to "下載", book.md_url, class:"uploadWholeBook", target: "_blank" %></p>
               <% else %>
                 <%= link_to "Read on Simpub",read_book_path(book), class:"txt btn btn-primary w-100 mb-1" %>
                 <div class="download btn btn-outline-secondary w-100" >Download</div> 
@@ -104,20 +104,10 @@
       </div>
   
       <div class="book-about col-12 col-md-6 col-lg-3 d-flex flex-column" >
-        <div class="read">
-          <h2 class="Read this book">Read this book</h2>
-          <a href="#" class="PDF mb-2">
-            <i class="fas fa-laptop"></i> PDF<span>(For reading on a computer)</span>
-          </a>
-          <%= link_to 'Read on Leanpub', method: :post, class: "Leanpub" do %>
-            <p><i class="fab fa-leanpub"></i> "Read on Simpub"</p>
-          <% end %>
-        </div>
-
         <div>
           <%= form_with model: @comment, url: "#", class: "comment-form" do |f| %>
             <div>
-              <%= f.label :content, "留下評論：", class: "mb-2" %>
+              <%= f.label :content, "Leave Comment Below：", class: "mb-2" %>
               <%= f.hidden_field :stars, id: "rating-input", min: "0", max: "5" %>
             </div>
 
@@ -132,7 +122,7 @@
             </div>
 
             <div>
-              <%= f.submit "送出評論", class: "btn btn-primary" %>
+              <%= f.submit "Send", class: "btn btn-primary" %>
             </div>
           <% end %>
         </div>

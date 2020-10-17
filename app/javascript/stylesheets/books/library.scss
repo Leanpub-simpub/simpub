@@ -78,6 +78,9 @@ section.library {
       span {
         color: rgba(225, 154, 96, 0.5);
       }
+      .read {
+        padding: 0!important;
+      }
     }
   }
 }
@@ -206,7 +209,7 @@ section.library {
         margin-left: 0 !important;
       }
       .book-about {
-        .read {
+        .reading {
           margin-left: 0;
           margin-bottom: 2rem;
         }

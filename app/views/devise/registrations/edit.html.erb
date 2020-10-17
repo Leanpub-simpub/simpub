@@ -27,7 +27,7 @@
           </div>
           <div class="preview p-4 flex-grow-1">
             <div class="preview-box text-center m-auto" data-target="avatar.preview_box"></div>
-            <div class="crop-btn btn btn-primary" data-target="avatar.crop">確認</div>
+            <div class="crop-btn btn btn-primary w-100" data-target="avatar.crop">確認</div>
           </div>
         </div>
         <%= f.hidden_field :x, id:"dataX", data: {target: "avatar.x"} %>
@@ -125,7 +125,7 @@
                 </div>
 
                 <div class="d-flex justify-content-end mb-3">
-                  <%= f.submit "Save Settings", class:"mainbtn btn" %>
+                  <%= f.submit "Save Settings", class:"btn btn-primary" %>
                 </div>
 
               <% end %>

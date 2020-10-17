@@ -67,7 +67,7 @@ class BooksController < ApplicationController
   end
   
   def update
-    if @book.update(book_params)
+    if @book.update(book_params_without_title)
       CoverUploaderJob.perform_later(@book)
       redirect_to pricing_book_path(@book)
     else
@@ -386,6 +386,10 @@ class BooksController < ApplicationController
   private
   def book_params
     params.require(:book).permit(:cover, :title, :about, :price, :catalog, :completeness, :md, { tag_items: [] })
+  end
+
+  def book_params_without_title
+    params.require(:book).permit(:cover, :about, :price, :catalog, :completeness, :md, { tag_items: [] })
   end
 
   def find_book
