@@ -11,6 +11,13 @@ section.edit-profile {
           padding-left: 12px;
           color: #555;
         }
+        .cropper-wrap {
+          .preview {
+            .crop-btn {
+              margin-top: 2rem;
+            }
+          }
+        }
       }
     }
   }
