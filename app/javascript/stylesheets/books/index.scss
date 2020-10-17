@@ -4,12 +4,17 @@
   }
 
   .book-item {
-    min-height: 45vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    text-align: center;
   }
-
+  .book-cover {
+    margin-bottom: .5rem !important;
+    box-shadow: 1px 1px 5px #353535;
+    object-fit: contain;
+    height: 190px;
+  }
   .book-title {
     font-weight: bold;
     font-size: 15px;
