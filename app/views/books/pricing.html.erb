@@ -1,4 +1,4 @@
-<div class="pricing container text-center pricing d-flex flex-column justify-content-center" data-controller="pricing">
+<div class="pricing container text-center pricing d-flex flex-column justify-content-center align-items-center" data-controller="pricing">
   <h1 class="h3" id="bookName"><%= @book.title %></h1>
 
   <div class="cover col-6 mx-auto">
@@ -8,7 +8,7 @@
     <span class="mt-1 ">Upload your book as PDF. <br>If not, press below button</span>
   </div>
 
-  <button class="btn btn-outline-secondary d-flex flex-nowrap">Convert to PDF</button>
+  <button class="btn btn-outline-secondary">Convert to PDF</button>
   <br>
 
   <%= form_with model: @book, class: "txt", data: {target: "pricing.form", pricing_book: @book.slug} do |f| %>
