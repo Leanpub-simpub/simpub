@@ -1,5 +1,5 @@
 import jsPDF from "jspdf";
-import "./TaipeiSansTCBeta-Bold-normal";
+// import "./TaipeiSansTCBeta-Bold-normal";
 import html2canvas from "html2canvas";
 import markdownit from "markdown-it/dist/markdown-it";
 import hljs from "highlightjs/highlight.pack";
