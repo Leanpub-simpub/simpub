@@ -117,7 +117,7 @@
         <div>
           <%= form_with model: @comment, url: "#", class: "comment-form" do |f| %>
             <div>
-              <%= f.label :content, "留下評論：", class: "mb-2" %>
+              <%= f.label :content, "Leave Comment Below：", class: "mb-2" %>
               <%= f.hidden_field :stars, id: "rating-input", min: "0", max: "5" %>
             </div>
 
@@ -132,7 +132,7 @@
             </div>
 
             <div>
-              <%= f.submit "送出評論", class: "btn btn-primary" %>
+              <%= f.submit "Send", class: "btn btn-primary" %>
             </div>
           <% end %>
         </div>
