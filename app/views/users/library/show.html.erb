@@ -39,7 +39,7 @@
               <!-- 加入判斷避免沒上傳檔案的書籍連結壞掉 -->
               <% if book.md_data %>
               <!-- 下載功能-->
-                <p><%= link_to "下載", book.md_url,class:"uploadWholeBook", target: "_blank" %></p>
+                <p><%= link_to "下載", book.md_url, class:"uploadWholeBook", target: "_blank" %></p>
               <% else %>
                 <%= link_to "Read on Simpub",read_book_path(book), class:"txt btn btn-primary w-100 mb-1" %>
                 <div class="download btn btn-outline-secondary w-100" >Download</div> 
@@ -104,16 +104,6 @@
       </div>
   
       <div class="book-about col-12 col-md-6 col-lg-3 d-flex flex-column" >
-        <div class="reading">
-          <h2 class="Read this book">Read this book</h2>
-          <a href="#" class="PDF mb-2">
-            <i class="fas fa-laptop"></i> PDF<span>(For reading on a computer)</span>
-          </a>
-          <%= link_to 'Read on Leanpub', method: :post, class: "Leanpub" do %>
-            <p><i class="fab fa-leanpub"></i> "Read on Simpub"</p>
-          <% end %>
-        </div>
-
         <div>
           <%= form_with model: @comment, url: "#", class: "comment-form" do |f| %>
             <div>
