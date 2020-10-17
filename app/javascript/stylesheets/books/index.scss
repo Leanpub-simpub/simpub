@@ -9,7 +9,11 @@
     flex-direction: column;
     justify-content: space-between;
   }
-
+  .book-cover {
+    box-shadow: 1px 1px 5px #353535;
+    object-fit: contain;
+    height: 190px;
+  }
   .book-title {
     font-weight: bold;
     font-size: 15px;
