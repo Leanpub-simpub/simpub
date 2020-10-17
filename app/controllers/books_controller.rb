@@ -388,6 +388,10 @@ class BooksController < ApplicationController
     params.require(:book).permit(:cover, :title, :about, :price, :catalog, :completeness, :md, { tag_items: [] })
   end
 
+  def book_params_without_title
+    params.require(:book).permit(:cover, :about, :price, :catalog, :completeness, :md, { tag_items: [] })
+  end
+
   def find_book
     @book = Book.friendly.find(params[:id])
   end
