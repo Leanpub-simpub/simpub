@@ -15,13 +15,13 @@
           <% end %>
           Purchased on <%= @order.updated_at.strftime("%Y-%m-%d") %>
         </div>
-        <%= link_to "Request Refund", refund_cart_path(trans_id: @order.transaction_id, uuid: @order.uuid), method: :post, class: "btn", data: {confirm: "真的要退款嗎？"} %>
+        <%= link_to "Request Refund", refund_cart_path(trans_id: @order.transaction_id, uuid: @order.uuid), method: :post, class: "btn btn-outline-secondary mx-auto", data: {confirm: "真的要退款嗎？"} %>
       </div>
 
       <!-- 手機版樣式 -->
       <div class="mobile">
         <% @order_items.each do |item| %>
-          <div class="items-box pt-3 mx-auto">
+          <div class="items-box pt-3">
             <div class="row pb-2">
               <div class="col-5">Item : </div>
               <div class="col-6"><%= item.book.title %></div>

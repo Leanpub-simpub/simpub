@@ -1,8 +1,4 @@
 .purchase {
-  .text2 {
-    color: #888;
-  }
-
   #order-info {
     .info-text2 {
       font-size: 12px;
@@ -10,10 +6,9 @@
 
     .order-box {
       a {
-        color: #e09a5f;
-        text-shadow: .3px .3px hsla(27, 68%, 63%, .9);
+        text-shadow: 0.3px 0.3px hsla(27, 68%, 63%, 0.9);
         text-decoration: none;
-        transition: font-size .2s linear;
+        transition: font-size 0.2s linear;
       }
       .col-0 {
         font-size: 0;
@@ -54,10 +49,6 @@
           text-align: left;
         }
       }
-    }
-    .btn {
-      border: 1px solid #e09a5f;
-      color: #e09a5f;
     }
   }
 }
@@ -115,7 +106,8 @@
               border-top: 1px solid #888;
             }
           }
-          .col-2, .col-4 {
+          .col-2,
+          .col-4 {
             text-align-last: center;
           }
         }
@@ -125,7 +117,7 @@
         display: flex;
         align-items: center;
         width: 100%;
-        
+
         div {
           margin-right: auto;
           margin-bottom: 0;

@@ -15,25 +15,25 @@
         <% if any_purchase?(current_user) %>
           <div class="w-100">
             <div class="row py-2 py-lg-3 txt">
-              <div class="col-12 col-lg-5">Purchase ID</div>
-              <div class="col-0 col-lg-2">Purchase Date</div>
-              <div class="col-0 col-lg-2"># of Items</div>
-              <div class="col-0 col-lg-3">Total</div>
+              <div class="col-12 col-lg-5"><strong>Purchase ID</strong></div>
+              <div class="col-0 col-lg-2"><strong>Purchase Date</strong></div>
+              <div class="col-0 col-lg-2"><strong># of Items</strong></div>
+              <div class="col-0 col-lg-3"><strong>Total</strong></div>
             </div>
   
             <% @orders.each do |order| %>
               <div class="row py-2 order-item">
                 <%= link_to "/purchases_show?uuid=#{order.uuid}", class: "orders d-flex w-100", data: {controller: "order", action: "order#show", order_uuid: order.uuid, turbolinks: "false"} do %>
-                  <div class="col-12 col-lg-5"><%= order.order_items[0].book.title %></div>
-                  <div class="col-0 col-lg-2"><%= order.updated_at.strftime("%Y-%m-%d") %></div>
-                  <div class="col-0 col-lg-2"><%= order.order_items.count %></div>
-                  <div class="col-0 col-lg-3">$<%= order.total %></div>
+                  <div class="col-12 col-lg-5 txt"><%= order.order_items[0].book.title %></div>
+                  <div class="col-0 col-lg-2 txt"><%= order.updated_at.strftime("%Y-%m-%d") %></div>
+                  <div class="col-0 col-lg-2 txt"><%= order.order_items.count %></div>
+                  <div class="col-0 col-lg-3 txt">$<%= order.total %></div>
                 <% end %>
               </div>
             <% end %>
           </div>
         <% else %>
-          <div class="empty container d-flex text-center">
+          <div class="empty container d-flex">
             <p class="h2 align-self-center">
               <%= link_to "Get some books", books_path, class: "" %> <br>
               <span class="txt">or</span> <br>
